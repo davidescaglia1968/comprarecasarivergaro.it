@@ -283,8 +283,8 @@ const shortcodes = {
   },
   zona_coverage(o) {
     const fr = (cfg.area_servizio.frazioni || []).map((f) => `<li>${esc(f.nome)}</li>`).join('');
-    const vicine = (cfg.area_servizio.aree_limitrofe || []).map((f) => `<li>${esc(f.nome)}</li>`).join('');
-    return `<div class="zone-block"><ul class="zone-list">${fr}</ul><p class="muted">Zone limitrofe in cui mi muoio senza problemi: <span class="zone-inline">${vicine}</span></p></div>`;
+    const vicine = (cfg.area_servizio.aree_limitrofe || []).map((f) => `<span>${esc(f.nome)}</span>`).join('');
+    return `<div class="zone-block"><ul class="zone-list">${fr}</ul><p class="muted">Zone limitrofe dove lavoro senza problemi: <span class="zone-inline">${vicine}</span></p></div>`;
   },
   guide_teaser() {
     const g = (cfg.contenuti.guide_previste || []).filter((x) => x.stato === 'disponibile');

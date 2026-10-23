@@ -196,8 +196,8 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .zone-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:var(--s2)}
 .zone-list li{border:1px solid var(--line);background:var(--bg-secondary);border-radius:999px;padding:7px 14px;font-size:.875rem}
 .zone-inline{display:inline}
-.zone-inline li{display:inline;color:#e4e4e7}
-.zone-inline li:not(:last-child)::after{content:" · ";color:var(--text-secondary)}
+.zone-inline li,.zone-inline span{display:inline;color:#e4e4e7}
+.zone-inline li:not(:last-child)::after,.zone-inline span:not(:last-child)::after{content:" · ";color:var(--text-secondary)}
 .zone-inline{list-style:none;padding:0;margin:0}
 
 /* ---------------------------------------------------------- cross CTA + contatti */
