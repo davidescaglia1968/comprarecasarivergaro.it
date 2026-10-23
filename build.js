@@ -298,7 +298,6 @@ const shortcodes = {
         <p class="hero-card-mail"><a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></p>
         <hr>
         <p class="hero-card-note">${inline(o.note.join(' '))}</p>
-        ${isConfirmed(pro.anno_inizio_attivita) ? `<p class="hero-card-since">In zona dal ${esc(pro.anno_inizio_attivita)}</p>` : ''}
       </div></div></section>`;
   },
   form_ricerca() {
