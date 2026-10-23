@@ -7,7 +7,7 @@ canonical: /
 ::hero {
   "h1": "Cerchi casa a Rivergaro o in Val Trebbia?",
   "lead": [
-    "A Rivergaro (PC) si compra casa affidandosi a chi gestisce la ricerca degli acquirenti dalla prima chiamata al rogito. Seguo personalmente le richieste su tutto il comune e sulle frazioni — centro, Niviano, Diara, Pieve Dugliara, Ancarano, Bassano, Roveleto Landi — e sull'asta della Val Trebbia.",
+    "A Rivergaro (PC) si compra casa affidandosi a chi gestisce la ricerca degli acquirenti dalla prima chiamata al rogito. Seguo personalmente le richieste su tutto il comune di Rivergaro e lungo l'asta della Val Trebbia, con la sede in frazione Pieve Dugliara.",
     "Lavoro solo con chi sta cercando: filtro le schede, verifico la parte urbanistica e catastale prima delle visite e tratto per te. Se non ho l'immobile giusto in vetrina, lo cerco io."
   ],
   "cta1": "Raccontami che casa cerchi",

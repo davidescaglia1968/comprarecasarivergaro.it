@@ -2,7 +2,7 @@
   "_meta": {
     "file": "site-config.json",
     "scope": "Fonte unica di dati, brand e contatti per comprarecasarivergaro.it",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "fase": 1,
     "regola_dati": "I valori in chiaro sono comunicati da Davide Scaglia o gia' pubblicati su venderecasapiacenza.it. Tutto cio' che non e' confermato vale 'DA CONFERMARE' e non deve mai comparire nella UI pubblica ne' nelle meta. Se un campo e' null, il template omette l'intero blocco invece di mostrare un segnaposto.",
     "manutenzione": "I token citati in DESIGN_SYSTEM.md sono copia dichiarativa di questi valori: da Fase 3 sara' build.js a iniettarli nel CSS generato. Non mantenere gli stessi dati in due posti.",
@@ -111,20 +111,17 @@
     ],
     "frazioni": [
       {
+        "nome": "Pieve Dugliara",
+        "slug": "pieve-dugliara",
+        "nota": "frazione in cui si trova la sede dello studio"
+      },
+      {
         "nome": "Rivergaro centro",
         "slug": "rivergaro-centro"
       },
       {
-        "nome": "Niviano",
-        "slug": "niviano"
-      },
-      {
         "nome": "Diara",
         "slug": "diara"
-      },
-      {
-        "nome": "Pieve Dugliara",
-        "slug": "pieve-dugliara"
       },
       {
         "nome": "Ancarano",
@@ -173,7 +170,9 @@
       "Vigolzone",
       "Ponte dell'Olio"
     ],
-    "nota_aree_limitrofe": "Gossolengo, Vigolzone e Ponte dell'Olio compaiono gia' nelle zone operative di venderecasapiacenza.it: le usiamo solo come areaServed e come filtro 'zone vicine', senza promettere competenza specifica su di esse."
+    "nota_aree_limitrofe": "Gossolengo, Vigolzone e Ponte dell'Olio compaiono gia' nelle zone operative di venderecasapiacenza.it: le usiamo solo come areaServed e come filtro 'zone vicine', senza promettere competenza specifica su di esse.",
+    "nota_elenco_frazioni": "Elenco delle frazioni da usare, DECISO DA DAVIDE (23/10/2026): Niviano e' stata rimossa perche' non pertinente alla zona di interesse. Nessuna frazione va aggiunta o tolta senza una sua indicazione, e ogni nome deve comparire SOLO dove serve (filtro, hub zone): nei testi della home non elenco frazioni a caso.",
+    "elenco_in_ui": "solo filtri e pagina zona, mai nel copy fisso"
   },
   "ecosistema": {
     "sito_madre": {
@@ -454,5 +453,28 @@
       "niente_invenzione": "Prezzo, metratura, locali, classe energetica e data di costruzione arrivano solo da te o da documento. La build crea campi vuoti, non valori."
     },
     "chi_nomina_i_file": "Io: tu depositi i file in img/_in/ anche con nomi da portale (es. '1 (3).jpg'), la build propone lo slug dal prefisso del nome o dal tuo elenco, rinomina, converte e compila la scheda."
+  },
+  "zone_policy": {
+    "regola": "Una pagina per frazione esiste solo quando Davide fornisce contenuto originale e verificabile su quella frazione (servizi, distanze, tessuto edilizio, storia di prezzi reale). Fino a quel momento la frazione e' solo un valore di filtro.",
+    "perche": "Pagine-satellite generate senza contenuto locale reale sono il modo piu' rapido per perdere fiducia nei motori generativi: rispondono a domande sulla zona con frasi vuote."
+  },
+  "immobile_in_preparazione": {
+    "titolo_proposto": "Casa / villa con 3 unita abitative e terreno circostante",
+    "stato": "ATTESA TESTO DAVIDE",
+    "campi_attesi": [
+      "titolo",
+      "prezzo",
+      "superficie totale e per unita",
+      "locali per unita",
+      "comune e frazione",
+      "indirizzo o via (solo se vuole esporlo)",
+      "caratteristiche (riscaldamento, impianti, anno, classe energetica, annessi)",
+      "pertinenze e mq terreno",
+      "stato urbanistico/catastale (unita C/2,C/6, agricolo, sanatorie)",
+      "data inizio commercializzazione",
+      "note per gli acquirenti (accessi, strada, distanza dai servizi)"
+    ],
+    "immagini": "da cartelle che Davide indichera': nessun file verra' usato prima della conferma dello slug",
+    "note_interne": "Primo annuncio reale del sito. Dati solo da Davide: la build non genera valori mancanti, li lascia \"DA CONFERMARE\" e il blocco viene omesso."
   }
 }

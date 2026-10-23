@@ -65,6 +65,12 @@ Estratto in `PROFESSIONISTA.md` (non pubblicato), riversato in `site-config.json
 - Bozza dati generata **senza valori inventati**: campi anagrafici `null`/`DA CONFERMARE`, array immagini già popolato. Diventa `properties.json` solo dopo la tua conferma.
 - `--check` non ricompila più: è un comando di sola verifica, cosi' lo puoi lanciare mille volte senza toccare i file.
 
+## Note di contenuto decise da Davide (23/10/2026)
+
+- **"Niviano" rimossa dall'elenco zone**: non pertinente. Era finita nella home perche' il copy ripeteva l'elenco delle frazioni del config. Doppio intervento: (1) l'elenco in `site-config.json` ora e' quello che mi hai indicato (Pieve Dugliara per prima, perche' li c'e' la sede; niente Niviano); (2) **la home non elenca piu' frazioni a mano**: il copy dice solo "tutto il comune di Rivergaro e l'asta della Val Trebbia, sede in frazione Pieve Dugliara". Regola in config: `elenco_in_ui = solo filtri e pagina zona, mai nel copy fisso`, cosi' il nome di una frazione non puo' piu' saltar fuori dove non serve.
+- **Regola pagine-frazione** (`zone_policy`): una pagina per frazione esiste solo con contenuto originale e verificabile fornito da Davide; fino ad allora la frazione e' solo un valore di filtro. Evitiamo pagine-satellite scritte a mano dai motori di riempimento.
+- **Primo annuncio in arrivo**: casa/villa con 3 unita abitative + terreno circostante. Nessun dato ancora inserito. Template per il testo e per i nominativi delle cartelle: `src/media/_TESTO-ANNUNCIO.md`.
+
 ## Campi aperti ("DA CONFERMARE", nessuno esposto al pubblico)
 
 2. **Bio acquirenti** per la pagina Chi Sono.
