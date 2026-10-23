@@ -1,0 +1,403 @@
+{
+  "_meta": {
+    "file": "site-config.json",
+    "scope": "Fonte unica di dati, brand e contatti per comprarecasarivergaro.it",
+    "version": "0.2.0",
+    "fase": 1,
+    "regola_dati": "I valori in chiaro sono comunicati da Davide Scaglia o gia' pubblicati su venderecasapiacenza.it. Tutto cio' che non e' confermato vale 'DA CONFERMARE' e non deve mai comparire nella UI pubblica ne' nelle meta. Se un campo e' null, il template omette l'intero blocco invece di mostrare un segnaposto.",
+    "manutenzione": "I token citati in DESIGN_SYSTEM.md sono copia dichiarativa di questi valori: da Fase 3 sara' build.js a iniettarli nel CSS generato. Non mantenere gli stessi dati in due posti.",
+    "fonte_verificata": "Valori di anagrafica confermati dai siti fratelli pubblicati (llms.txt di casepodenzano.it e index.html di venderecasapiacenza.it, letti il 23/10/2026 tramite API GitHub). Ogni valore ha un campo 'fonte'; dove non c'e' fonte il campo resta 'DA CONFERMARE'."
+  },
+  "site": {
+    "dominio": "comprarecasarivergaro.it",
+    "url_canonica_base": "https://comprarecasarivergaro.it",
+    "base_path": "/",
+    "output_dir": ".",
+    "lingua": "it-IT",
+    "titolo_home": "Case in vendita a Rivergaro e in Val Trebbia | Davide Scaglia",
+    "description_home": "Cerchi casa a Rivergaro o in Val Trebbia? Seguo gli acquirenti dal 2008: ricerca personalizzata, visite e trattativa assistita. Scrivimi cosa cerchi, penso io a trovarla.",
+    "keywords": [
+      "case in vendita Rivergaro",
+      "comprare casa Val Trebbia",
+      "agenzia Rivergaro acquirenti",
+      "rustici Val Trebbia",
+      "ville Rivergaro"
+    ],
+    "theme_color": "#0a0a0a",
+    "robots_indexable": true,
+    "deploy_notes": "GitHub Pages pubblica il ROOT del ramo main, come gia' fanno venderecasapiacenza.it e casepodenzano.it (repo a layout piatto). Richiede: .nojekyll e CNAME nella radice del repo. Nessun /docs."
+  },
+  "professionista": {
+    "nome_completo": "Davide Scaglia",
+    "brand": "Davide Scaglia — Immobiliare Scaglia",
+    "ruolo": "Agente immobiliare e consulente per gli acquirenti",
+    "telefono_display": "+39 328 693 0033",
+    "telefono_e164": "+393286930033",
+    "email": "info@immobiliarescaglia.com",
+    "whatsapp": "+393286930033",
+    "anno_inizio_attivita": null,
+    "partita_iva": "01493570335",
+    "iscrizione_ruolo": "REA PC-168637",
+    "indirizzo_studio": {
+      "street": "Via Cavallotti 3",
+      "localita": "Rivergaro",
+      "cap": "29029",
+      "provincia": "PC",
+      "paese": "IT"
+    },
+    "indirizzo_postale_privacy": "DA CONFERMARE",
+    "social": {
+      "instagram": "https://www.instagram.com/davidescaglia68/",
+      "facebook": "https://www.facebook.com/p/Immobiliare-Scaglia-Consulenza-Immobiliare-100085654011141/",
+      "linkedin": "https://www.linkedin.com/in/davide-scaglia-55575210b",
+      "youtube": "https://www.youtube.com/@VendereCasaPiacenza"
+    },
+    "bio_acquirenti": null,
+    "nota_bio": "Serve una bio scritta da Davide (esperienza, zona, metodo). Non ne scrivo una io: sarebbe un dato inventato. Finche' e' null, la pagina Chi Sono mostra solo nome, ruolo, anno di attivita', contatti e CTA.",
+    "brand_precedente": "Davide Scaglia — Consulente Immobiliare",
+    "forma_legale": "Immobiliare Scaglia",
+    "nota_anno": "Conflitto da risolvere: il brief dice 2008, venderecasapiacenza.it e casepodenzano.it pubblicati dicono 'dal 2007'. Finche' non confermi, build.js scrive 'agente immobiliare a Rivergaro e in Val Trebbia' senza anno e omette foundingDate nel JSON-LD.",
+    "fonte": {
+      "partita_iva": "casepodenzano.it/llms.txt (P.IVA 01493570335, REA PC-168637)",
+      "indirizzo": "casepodenzano.it/llms.txt (Sede: Via Cavallotti 3, 29029 Rivergaro PC)",
+      "social": "venderecasapiacenza.it/llms.txt (Canali social)",
+      "email": "indicato nel brief; info@venderecasapiacenza.it resta l'altro indirizzo in uso sull'ecosistema",
+      "anno": "nessuna fonte concorde"
+    }
+  },
+  "area_servizio": {
+    "comune_principale": "Rivergaro",
+    "provincia": "PC",
+    "regione": "Emilia-Romagna",
+    "aree": [
+      {
+        "nome": "Rivergaro",
+        "tipo": "comune",
+        "slug": "rivergaro",
+        "priorita": 1,
+        "descrizione": null
+      },
+      {
+        "nome": "Val Trebbia",
+        "tipo": "area",
+        "slug": "val-trebbia",
+        "priorita": 1,
+        "descrizione": null
+      }
+    ],
+    "frazioni": [
+      {
+        "nome": "Rivergaro centro",
+        "slug": "rivergaro-centro"
+      },
+      {
+        "nome": "Niviano",
+        "slug": "niviano"
+      },
+      {
+        "nome": "Diara",
+        "slug": "diara"
+      },
+      {
+        "nome": "Pieve Dugliara",
+        "slug": "pieve-dugliara"
+      },
+      {
+        "nome": "Ancarano",
+        "slug": "ancarano"
+      },
+      {
+        "nome": "Bassano",
+        "slug": "bassano"
+      },
+      {
+        "nome": "Roveleto Landi",
+        "slug": "roveleto-landi"
+      }
+    ],
+    "nota_frazioni": "Elenco usato solo come valore di filtro/zona e come sottotitolo dell'hub Val Trebbia. Nessuna pagina frazione viene pubblicata finche' Davide non fornisce contenuto originale e verificabile (servizi, distanze, tessuto edilizio).",
+    "aree_limitrofe": [
+      {
+        "slug": "piacenza",
+        "nome": "Piacenza",
+        "url_ecosistema": "https://venderecasapiacenza.it"
+      },
+      {
+        "slug": "podenzano",
+        "nome": "Podenzano",
+        "url_ecosistema": "https://casepodenzano.it"
+      },
+      {
+        "slug": "gossolengo",
+        "nome": "Gossolengo"
+      },
+      {
+        "slug": "vigolzone",
+        "nome": "Vigolzone"
+      },
+      {
+        "slug": "ponte-dellolio",
+        "nome": "Ponte dell'Olio"
+      }
+    ],
+    "areaServed_jsonld": [
+      "Rivergaro",
+      "Piacenza",
+      "Podenzano",
+      "Val Trebbia",
+      "Gossolengo",
+      "Vigolzone",
+      "Ponte dell'Olio"
+    ],
+    "nota_aree_limitrofe": "Gossolengo, Vigolzone e Ponte dell'Olio compaiono gia' nelle zone operative di venderecasapiacenza.it: le usiamo solo come areaServed e come filtro 'zone vicine', senza promettere competenza specifica su di esse."
+  },
+  "ecosistema": {
+    "sito_madre": {
+      "nome": "venderecasapiacenza.it",
+      "url": "https://venderecasapiacenza.it",
+      "pubblico": "chi vuole vendere casa",
+      "posizionamento_link": "banner in fondo alla homepage e alle pagine editoriali; non in header, non nella scheda immobile"
+    },
+    "satellite": {
+      "nome": "casepodenzano.it",
+      "url": "https://casepodenzano.it",
+      "pubblico": "acquirenti su Podenzano"
+    },
+    "nap_condiviso": "Davide Scaglia / +39 328 693 0033 / info@immobiliarescaglia.com — identico su tutti i siti dell'ecosistema",
+    "nota_coordinamento": "Da Fase 4 verifichiamo su venderecasapiacenza.it e casepodenzano.it che indirizzo studio, P.IVA e orari coincidano: la coerenza NAP e' un segnale di affidabilita' anche per i motori generativi."
+  },
+  "form": {
+    "provider": "FormSubmit",
+    "action": "https://formsubmit.co/info@immobiliarescaglia.com",
+    "metodo": "POST",
+    "stato_configurazione": "DA CONFERMARE",
+    "attivazione": "Al primo invio FormSubmit manda una mail di attivazione all'indirizzo di destinazione: va confermata una volta sola, da Davide. Fino a quel momento i moduli sono nel repository ma NON vanno pubblicizzati come attivi.",
+    "post_submit_redirect": "/grazie.html",
+    "campi_richiesti": [
+      "nome",
+      "email",
+      "messaggio"
+    ],
+    "anti_spam": [
+      "_honey (honeypot)",
+      "_captcha: false",
+      "_subject personalizzato per modulo",
+      "_template: table"
+    ],
+    "link_informativa_privacy": "/legal/privacy.html",
+    "moduli_previsti": [
+      {
+        "id": "ricerca_personalizzata",
+        "scopo": "raccolta richiesta acquirente (zona, tipologia, budget, recapito)"
+      },
+      {
+        "id": "richiesta_info_immobile",
+        "scopo": "modulo contestuale nella scheda immobile, con slug immobile nel subject"
+      },
+      {
+        "id": "contatti_generici",
+        "scopo": "pagina Contatti"
+      }
+    ]
+  },
+  "catalogo": {
+    "path_dati": "src/data/properties.json",
+    "path_pubblicato": "docs/data/properties.json",
+    "minimo_immobili_per_mostrare_catalogo": 1,
+    "fallback_catalogo_vuoto": "Al posto del catalogo si mostra il blocco 'Ricerca personalizzata' con il modulo. Nessun immobile demo, nessun prezzo d'esempio.",
+    "modi_filtro": [
+      "tipologia",
+      "zona",
+      "prezzo_max"
+    ],
+    "ordinamento_default": "data_pubblicazione_desc",
+    "badge_stato": {
+      "Disponibile": "#16a34a",
+      "In trattativa": "#d97706",
+      "Venduto": "#b91c1c",
+      "Sospeso": "#64748b",
+      "Ritirato": "#64748b"
+    },
+    "regola_pubblicazione": "Solo immobili con stato Disponibile o In trattativa compaiono nel catalogo e nella sitemap; Venduto/Sospeso/Ritirato restano su URL stabili con avviso 'non piu' disponibile' e proposta di ricerca personalizzata."
+  },
+  "seo_geo": {
+    "canonical_assoluti": true,
+    "og_image": "DA CONFERMARE",
+    "og_image_percorso": null,
+    "twitter_card": "summary_large_image",
+    "jsonld": {
+      "globale": "RealEstateAgent",
+      "scheda_immobile": "RealEstateListing",
+      "guide": "Article",
+      "breadcrumb": "BreadcrumbList",
+      "offers_schema": {
+        "disponibile": "https://schema.org/InStock",
+        "in_trattativa": "https://schema.org/LimitedAvailability",
+        "chiuso": "https://schema.org/SoldOut"
+      },
+      "foundingDate": "null-finche'-non-confermato"
+    },
+    "regole_geo": [
+      "Risposta diretta e autonoma nei primi 200 caratteri della descrizione: cosa, dove, per chi, numero con unita di misura.",
+      "NAP identico su tutte le pagine e coerente con l'ecosistema.",
+      "Un solo H1 per pagina; gerarchia H2/H3 senza salti.",
+      "Zero cifre non verificate: niente 'a partire da', niente percentuali di rivalutazione, niente numero di immobili gestiti.",
+      "Ogni guida risponde a una domanda specifica in apertura, poi la sviluppa."
+    ],
+    "verifica_search_console": "DA CONFERMARE",
+    "verifica_sfiducia": "Nessun link a directory/portali non autorizzati: li aggiunge Davide solo se reali.",
+    "llms_txt": {
+      "attivo": true,
+      "percorso": "llms.txt",
+      "fonte": "convenzione gia' usata su venderecasapiacenza.it e casepodenzano.it: file indicizzato a scopo GEO"
+    }
+  },
+  "privacy_cookie": {
+    "banner": {
+      "storage_key": "cookie_consent",
+      "scelte": [
+        "accetta",
+        "tecnici"
+      ],
+      "default_senza_consenso": "essenziali",
+      "scadenza_giorni": 180,
+      "comportamento": "Gli script non essenziali (mappa Street View) vengono innestati solo dopo 'Accetta'. Con 'essenziali' la pagina resta piena e funzionante.",
+      "precedente_storage_key": "csr_cookie_consent_v1",
+      "nota_allineamento": "casepodenzano.it usa localStorage 'cookie_consent' con scelte 'accetta' | 'tecnici'. Allineato per non far rivvedere il banner agli utenti gia' consenzienti. Se vuoi una chiave separata per questo satellite, rimetti csr_cookie_consent_v1.",
+      "valori_persistiti": {
+        "accetta": "accetta",
+        "tecnici": "tecnici"
+      }
+    },
+    "servizi_attivi": [
+      {
+        "nome": "Google Fonts (Playfair Display, Inter)",
+        "tipo": "font",
+        "cookie": false,
+        "consenso_previo_richiesto": "DA CONFERMARE",
+        "informativa": "https://policies.google.com/privacy",
+        "mitigazione_proposta": "In Fase 2 valutiamo il self-hosting dei .woff2: elimina il trasferimento dell'IP a Google, toglie il dubbio di legittimo interesse e migliora LCP."
+      },
+      {
+        "nome": "FormSubmit",
+        "tipo": "invio moduli via email",
+        "cookie": false,
+        "consenso_previo_richiesto": false,
+        "trasferimento_extra_ue": "DA CONFERMARE",
+        "informativa": "https://formsubmit.co/privacy",
+        "nota": "Va citato l'invio del recapito a un servizio terzo e la conservazione nelle mailbox; serve l'elenco esatto dei titolari del trattamento."
+      },
+      {
+        "nome": "iframe Google Street View",
+        "tipo": "mappa",
+        "cookie": true,
+        "consenso_previo_richiesto": true,
+        "click_to_load": true,
+        "informativa": "https://policies.google.com/privacy",
+        "nota": "Solo su richiesta dell'utente (placeholder + bottone). Se la scheda non ha mappa, l'iframe non esiste nel DOM."
+      }
+    ],
+    "analytics": {
+      "attivo": false,
+      "nota": "Nessun tracker non autorizzato. Se servira', solo GA4 o Plausible con consenso esplicito e IP anonimizzato."
+    },
+    "riferimenti_legali": "Le informative devono riportare titolare del trattamento (con indirizzo), responsabile/DPO se nominato, diritti artt. 15-22 GDPR e recapito per le richieste: tutti campi 'DA CONFERMARE' nel config, non compilabili da noi.",
+    "data_retention_richieste": "DA CONFERMARE"
+  },
+  "contenuti": {
+    "guide_previste": [
+      {
+        "slug": "costi-nascosti-acquisto-casa",
+        "titolo": "I costi nascosti nell'acquisto di una casa",
+        "stato": "DA CONFERMARE",
+        "risposta_pronta": null
+      },
+      {
+        "slug": "come-valutare-un-rustico",
+        "titolo": "Come valutare un rustico in Val Trebbia",
+        "stato": "DA CONFERMARE",
+        "risposta_pronta": null
+      }
+    ],
+    "regola_editoriale": "Le guide si scrivono solo con contenuto originale di Davide o fonti verificabili (normativa, dati ISTAT/Agenzia Entrate citati con link). Nessuna guida generata a scopo di riempimento.",
+    "zone": {
+      "hub": "/zona/val-trebbia.html",
+      "pagine_frazione": "solo_se_contenuto_originale"
+    },
+    "grazie": {
+      "percorso": "/grazie.html",
+      "contenuto": "conferma invio + invito a WhatsApp/telefono, nessun impegno dichiarato"
+    }
+  },
+  "contatti_sezione": {
+    "telefono_cliccabile": true,
+    "orari": "DA CONFERMARE",
+    "cta_principale": "Raccontami che casa cerchi",
+    "secondario": "Vedi gli immobili"
+  },
+  "note_interne": {
+    "non_rendealizzate": [
+      "note_interne",
+      "regola_dati",
+      "mitigazione_proposta",
+      "attivazione",
+      "nota_bio",
+      "nota_frazioni",
+      "fonte",
+      "nota_anno",
+      "nota_allineamento",
+      "precedente_storage_key",
+      "valori_persistiti",
+      "description",
+      "repo_img",
+      "repo_video",
+      "struttura",
+      "nota_incoming",
+      "formati",
+      "regole",
+      "nota_aree_limitrofe",
+      "note_interne",
+      "manutenzione",
+      "deploy_notes",
+      "nota_bio",
+      "nota_frazioni",
+      "mitigazione_proposta",
+      "attivazione",
+      "regola_dati",
+      "riferimenti_legali"
+    ],
+    "campi_da_confermare": [
+      "professionista.anno_inizio_attivita (2007 vs 2008)",
+      "professionista.bio_acquirenti",
+      "professionista.indirizzo_postale_privacy",
+      "seo_geo.og_image",
+      "seo_geo.verifica_search_console",
+      "form.stato_configurazione (attivazione FormSubmit)",
+      "privacy_cookie.servizi_attivi[0].consenso_previo_richiesto",
+      "privacy_cookie.servizi_attivi[1].trasferimento_extra_ue",
+      "privacy_cookie.data_retention_richieste",
+      "contatti_sezione.orari",
+      "contenuti.guide_previste",
+      "media.cartella_incoming",
+      "catalogo.properties (nessun immobile presente)"
+    ],
+    "svincolo": "Finche' un campo e' 'DA CONFERMARE' o null, build.js omette il blocco dal markup pubblico e la pagina resta valida. La lista viene riportata in STATO_PROGETTO.md."
+  },
+  "media": {
+    "description": "Cartelle immagine/video da monitorare per la pubblicazione. Nessuna foto viene inventata o scaricata da portali terzi.",
+    "repo_img": "img/",
+    "repo_video": "video/",
+    "struttura": "img/<slug-immobile>/<nome-seo>.webp e video/<slug-immobile>/<nome-seo>.mp4",
+    "cartella_incoming": "DA CONFERMARE",
+    "nota_incoming": "La cartella img/_in-arrivo/ e' il punto di raccolta: ci depositi le foto/video scaricati dai portali o dal telefono, nell'ordine in cui li hai. build.js (comando 'media') la legge, ti restituisce l'elenco con dimensioni reali e peso, propone il nome SEO-friendly e compila l'array immagini di properties.json. Dimmi anche solo 'le immagini sono nel branch X' e la monitoro io. Nessun file viene rinominato o pubblicato senza la tua conferma dello slug di destinazione.",
+    "formati": [
+      "webp",
+      "avif",
+      "jpg"
+    ],
+    "regole": [
+      "WebP primario, width/height sempre reali, alt descrittivo, max 2500px lato lungo, foto reali dell'immobile"
+    ],
+    "repo_incoming": "img/_in/"
+  }
+}
