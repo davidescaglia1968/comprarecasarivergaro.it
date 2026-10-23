@@ -287,11 +287,10 @@ const shortcodes = {
       : `<a class="btn btn-ghost" href="#contatti">Parliamone al telefono</a>`;
     return `<section class="hero" id="top"><div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Acquirenti · Rivergaro e Val Trebbia</p>
+        <p class="eyebrow">Case in vendita a Rivergaro Val Trebbia</p>
         <h1>${inline(o.h1)}</h1>
-        <div class="lead">${o.lead.map((p) => '<p>' + inline(p) + '</p>').join('')}</div>
+        ${o.lead && o.lead.length ? `<div class="lead">${o.lead.map((p) => '<p>' + inline(p) + '</p>').join('')}</div>` : ''}
         <div class="cta-row"><a class="btn btn-primary" href="#ricerca">${esc(o.cta1)}</a>${second}</div>
-        <p class="hero-meta">${esc(pro.nome_completo)} · ${esc(pro.ruolo)}${isConfirmed(pro.anno_inizio_attivita) ? ' · <strong>agente iscritto al ruolo dal ' + esc(pro.anno_inizio_attivita) + '</strong>' : ''} · ${addr ? esc(addr.street + ', ' + addr.localita + (addr.frazione ? ' (fraz. ' + addr.frazione + ')' : '')) : 'Rivergaro (PC)'}</p>
       </div>
       <div class="hero-card">
         <p class="hero-card-label">Parla con chi cerca nella tua zona</p>
@@ -585,14 +584,14 @@ function catalogoPage() {
   const list = catalogo();
   if (!list.length) {
     return '<section class="section"><div class="wrap">'
-      + '<h1>Immobili a Rivergaro e in Val Trebbia</h1>'
-      + '<p class="muted">Seguo gli acquirenti su Rivergaro, le sue frazioni e l\'asta della Val Trebbia. In questo momento non ci sono schede con dati completi da pubblicare: è una scelta di metodo, non un\'assenza di case in zona.</p>'
+      + '<h1>Immobili a Rivergaro</h1>'
+      + '<p class="muted">Le proposte pubblicate riguardano Rivergaro. In questo momento non ci sono schede con dati completi da pubblicare: è una scelta di metodo, non un\'assenza di case in zona.</p>'
       + '<div class="empty-state"><p>Se mi dici cosa cerchi, la ricerca parte oggi e ti contatto quando trovo qualcosa di coerente — anche prima che finisca in vetrina.</p><a class="btn btn-primary" href="index.html#ricerca">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
       + '<p class="draft-note">Schede in bozza (non indicizzate, solo per te): ' + tutteProp().filter((p) => p.bozza).map((p) => `<a href="immobile/${esc(p.slug)}.html">${esc(p.slug)}</a>`).join(', ') + '</p>'
       + '</div></section>';
   }
   return '<section class="section"><div class="wrap">'
-    + '<h1>Immobili a Rivergaro e in Val Trebbia</h1>'
+    + '<h1>Immobili a Rivergaro</h1>'
     + '<p class="muted">Ogni scheda pubblicata qui è una scheda verificata: i dati che non ho in mano non vengono scritti, nemmeno come "circa".</p>'
     + filterBar(list)
     + '<ul class="grid-cards" id="catalogo">' + list.map((p) => cardImmobile(p, 'immobili.html')).join('') + '</ul>'
@@ -953,9 +952,9 @@ function llms() {
   const elencoLlms = tutteProp().filter(pubblicabili);
   const L = [];
   L.push('# ' + pro.brand + ' — ' + cfg.site.dominio, '');
-  L.push('> ' + (isConfirmed(pro.anno_inizio_attivita) ? 'Seguo gli acquirenti su Rivergaro e in Val Trebbia dal ' + pro.anno_inizio_attivita + '.' : 'Seguo gli acquirenti su Rivergaro e in Val Trebbia.') + ' Ricerca personalizzata, visite accompagnate, verifica tecnica e documentale, trattativa e rogito.', '');
+  L.push('> ' + (isConfirmed(pro.anno_inizio_attivita) ? 'Seguo gli acquirenti a Rivergaro dal ' + pro.anno_inizio_attivita + '.' : 'Seguo gli acquirenti che cercano casa a Rivergaro.') + ' Ricerca personalizzata, visite accompagnate, verifica tecnica e documentale, trattativa e rogito.', '');
   L.push('## A chi serve questo sito');
-  L.push('- Chi vuole comprare casa a Rivergaro, nelle sue frazioni o in Val Trebbia.');
+  L.push('- Chi vuole comprare casa a Rivergaro.');
   L.push('- Non è il sito per chi vende: quello è ' + cfg.ecosistema.sito_madre.url + '.', '');
   L.push('## Contatti');
   L.push('- Telefono e WhatsApp: ' + pro.telefono_display);
@@ -966,8 +965,7 @@ function llms() {
   const soc = Object.entries(pro.social || {}).filter(([, v]) => isConfirmed(v));
   if (soc.length) { L.push(''); L.push('## Canali social'); soc.forEach(([k, v]) => L.push('- ' + k + ': ' + v)); }
   L.push('', '## Zona coperta');
-  L.push('- ' + (cfg.area_servizio.frazioni || []).map((f) => f.nome).join(', '));
-  L.push('- Il comune è Rivergaro (PC), Emilia-Romagna, alta Val Trebbia.', '');
+  L.push('- Rivergaro (PC) si trova in Val Trebbia, in Emilia-Romagna.', '');
   const cat = elencoLlms;
   L.push('## Immobili pubblicati');
   if (!cat.length) L.push('Nessun immobile in vetrina al momento: gli acquirenti vengono guidati alla ricerca personalizzata, che intercetta anche immobili non ancora listati. Questa è una scelta, non una mancanza di offerta.');
@@ -1011,7 +1009,7 @@ function main() {
   if (soloCheck) { runCheck(); return; }
   refreshMediaCache();
   // catalogo + dati pubblici per i filtri client-side
-  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro e in Val Trebbia | comprarecasarivergaro.it', description: 'Case e ville in vendita a Rivergaro e in Val Trebbia, con scheda verificata. Filtri per zona, tipologia e budget.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'zona', 'guide', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
+  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro | comprarecasarivergaro.it', description: 'Case e ville in vendita a Rivergaro, con schede verificate. Filtri per zona, tipologia e budget.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'zona', 'guide', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
   fs.writeFileSync(path.join(OUT, 'immobili.html'), catHtml);
   console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
   fs.mkdirSync(path.join(OUT, 'data'), { recursive: true });
