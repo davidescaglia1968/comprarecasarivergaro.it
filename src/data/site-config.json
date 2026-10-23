@@ -2,11 +2,12 @@
   "_meta": {
     "file": "site-config.json",
     "scope": "Fonte unica di dati, brand e contatti per comprarecasarivergaro.it",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "fase": 1,
     "regola_dati": "I valori in chiaro sono comunicati da Davide Scaglia o gia' pubblicati su venderecasapiacenza.it. Tutto cio' che non e' confermato vale 'DA CONFERMARE' e non deve mai comparire nella UI pubblica ne' nelle meta. Se un campo e' null, il template omette l'intero blocco invece di mostrare un segnaposto.",
     "manutenzione": "I token citati in DESIGN_SYSTEM.md sono copia dichiarativa di questi valori: da Fase 3 sara' build.js a iniettarli nel CSS generato. Non mantenere gli stessi dati in due posti.",
-    "fonte_verificata": "Valori di anagrafica confermati dai siti fratelli pubblicati (llms.txt di casepodenzano.it e index.html di venderecasapiacenza.it, letti il 23/10/2026 tramite API GitHub). Ogni valore ha un campo 'fonte'; dove non c'e' fonte il campo resta 'DA CONFERMARE'."
+    "fonte_verificata": "Valori di anagrafica confermati dai siti fratelli pubblicati (llms.txt di casepodenzano.it e index.html di venderecasapiacenza.it, letti il 23/10/2026 tramite API GitHub). Ogni valore ha un campo 'fonte'; dove non c'e' fonte il campo resta 'DA CONFERMARE'.",
+    "fonte_visura": "Anagrafica e qualifiche professionali verificate su visura storica dell'impresa 'IMMOBILIARESCAGLIA DI SCAGLIA DAVIDE', documento T 610879435 estratto dal Registro Imprese il 07/07/2025 (Camera di Commercio Industria Artigianato e Agricoltura dell'EMILIA). Estratto in PROFESSIONISTA.md. I dati personali non pubblicabili (codice fiscale, data e luogo di nascita, residenza) sono nella lista di blocco di build.js e NON devono comparire nel sito."
   },
   "site": {
     "dominio": "comprarecasarivergaro.it",
@@ -35,17 +36,23 @@
     "telefono_e164": "+393286930033",
     "email": "info@immobiliarescaglia.com",
     "whatsapp": "+393286930033",
-    "anno_inizio_attivita": null,
+    "anno_inizio_attivita": 2007,
     "partita_iva": "01493570335",
-    "iscrizione_ruolo": "REA PC-168637",
+    "iscrizione_ruolo": "Ruolo Agenti di Affari in Mediazione, sezione Agenti Immobiliari, Camera di Commercio di Piacenza — dal 07/12/2007",
     "indirizzo_studio": {
-      "street": "Via Cavallotti 3",
+      "street": "Via Felice Cavallotti 3",
       "localita": "Rivergaro",
+      "frazione": "Pieve Dugliara",
       "cap": "29029",
       "provincia": "PC",
       "paese": "IT"
     },
-    "indirizzo_postale_privacy": "DA CONFERMARE",
+    "indirizzo_postale_privacy": {
+      "street": "Via Felice Cavallotti 3",
+      "localita": "Rivergaro",
+      "cap": "29029",
+      "provincia": "PC"
+    },
     "social": {
       "instagram": "https://www.instagram.com/davidescaglia68/",
       "facebook": "https://www.facebook.com/p/Immobiliare-Scaglia-Consulenza-Immobiliare-100085654011141/",
@@ -53,17 +60,34 @@
       "youtube": "https://www.youtube.com/@VendereCasaPiacenza"
     },
     "bio_acquirenti": null,
-    "nota_bio": "Serve una bio scritta da Davide (esperienza, zona, metodo). Non ne scrivo una io: sarebbe un dato inventato. Finche' e' null, la pagina Chi Sono mostra solo nome, ruolo, anno di attivita', contatti e CTA.",
     "brand_precedente": "Davide Scaglia — Consulente Immobiliare",
     "forma_legale": "Immobiliare Scaglia",
-    "nota_anno": "Conflitto da risolvere: il brief dice 2008, venderecasapiacenza.it e casepodenzano.it pubblicati dicono 'dal 2007'. Finche' non confermi, build.js scrive 'agente immobiliare a Rivergaro e in Val Trebbia' senza anno e omette foundingDate nel JSON-LD.",
+    "nota_anno": "RISOLTO dalla visura: due date diverse spiegano il conflitto. 12/12/2007 = data fondazione/inizio attivita' e 07/12/2007 = iscrizione al ruolo agenti di affari in mediazione (PC). 21/05/2008 = iscrizione al Registro Imprese come piccolo imprenditore. Il sito usa 'dal 2007' e foundingDate=2007.",
     "fonte": {
-      "partita_iva": "casepodenzano.it/llms.txt (P.IVA 01493570335, REA PC-168637)",
-      "indirizzo": "casepodenzano.it/llms.txt (Sede: Via Cavallotti 3, 29029 Rivergaro PC)",
-      "social": "venderecasapiacenza.it/llms.txt (Canali social)",
-      "email": "indicato nel brief; info@venderecasapiacenza.it resta l'altro indirizzo in uso sull'ecosistema",
-      "anno": "nessuna fonte concorde"
-    }
+      "partita_iva": "visura camerale 07/07/2025",
+      "indirizzo": "visura (Sede: Rivergaro PC, Via Felice Cavallotti 3, 29029, frazione Pieve Dugliara)",
+      "albo": "visura, sez. Albi e Ruoli",
+      "pec": "visura, Domicilio digitale",
+      "social": "venderecasapiacenza.it/llms.txt",
+      "email": "brief del 23/10/2026"
+    },
+    "denominazione_legale": "IMMOBILIARESCAGLIA DI SCAGLIA DAVIDE",
+    "forma_giuridica": "impresa individuale — piccolo imprenditore (sezione speciale), iscritta il 21/05/2008",
+    "qualifica_albo": {
+      "albo": "Ruoli degli Agenti di Affari in Mediazione",
+      "provincia": "PC",
+      "sezione": "Agenti Immobiliari",
+      "iscrizione": "07/12/2007",
+      "fonte": "Visura camerale 07/07/2025, sez. 'Albi e Ruoli'"
+    },
+    "data_inizio_attivita": "12/12/2007",
+    "data_iscrizione_ri": "21/05/2008",
+    "codice_ateco": "68.31.00 — servizi di intermediazione per attivita' immobiliari",
+    "pec": "immobiliarescaglia@pec.it",
+    "pec_precedente_storico": "d.scaglia@pec.it (variazione del 18/12/2018): usare solo l'attuale",
+    "sede_nella_frazione": true,
+    "rea": "PC-168637",
+    "addetti": "1 (titolare, impresa individuale senza dipendenti)"
   },
   "area_servizio": {
     "comune_principale": "Rivergaro",
@@ -302,7 +326,28 @@
       "nota": "Nessun tracker non autorizzato. Se servira', solo GA4 o Plausible con consenso esplicito e IP anonimizzato."
     },
     "riferimenti_legali": "Le informative devono riportare titolare del trattamento (con indirizzo), responsabile/DPO se nominato, diritti artt. 15-22 GDPR e recapito per le richieste: tutti campi 'DA CONFERMARE' nel config, non compilabili da noi.",
-    "data_retention_richieste": "DA CONFERMARE"
+    "data_retention_richieste": "DA CONFERMARE",
+    "titolare_blocco": {
+      "denominazione": "Immobiliare Scaglia di Scaglia Davide",
+      "forma": "impresa individuale",
+      "indirizzo": "Via Felice Cavallotti 3, 29029 Rivergaro (PC)",
+      "cap": "29029",
+      "partita_iva": "01493570335",
+      "rea": "PC-168637",
+      "email": "info@immobiliarescaglia.com",
+      "telefono": "+39 328 693 0033",
+      "pec": "immobiliarescaglia@pec.it"
+    },
+    "dativietati": {
+      "descrizione": "Campi presenti nella visura che NON devono mai essere pubblicati (trattandosi di persona fisica). build.js --check interrompe la build se li trova nel markup.",
+      "pattern": [
+        "SCGDVD68E26G842Y",
+        "26/05/1968",
+        "PONTE DELL'OLIO (PC)",
+        "26/05",
+        "codice fiscale"
+      ]
+    }
   },
   "contenuti": {
     "guide_previste": [
@@ -367,9 +412,8 @@
       "riferimenti_legali"
     ],
     "campi_da_confermare": [
-      "professionista.anno_inizio_attivita (2007 vs 2008)",
+      "professionista.bio_acquirenti ( testo della pagina Chi Sono, solo da Davide)",
       "professionista.bio_acquirenti",
-      "professionista.indirizzo_postale_privacy",
       "seo_geo.og_image",
       "seo_geo.verifica_search_console",
       "form.stato_configurazione (attivazione FormSubmit)",
@@ -379,7 +423,8 @@
       "contatti_sezione.orari",
       "contenuti.guide_previste",
       "media.cartella_incoming",
-      "catalogo.properties (nessun immobile presente)"
+      "catalogo.properties (nessun immobile presente)",
+      "media: cartella sorgente dei file reali (perche' li smisti io serve il percorso)"
     ],
     "svincolo": "Finche' un campo e' 'DA CONFERMARE' o null, build.js omette il blocco dal markup pubblico e la pagina resta valida. La lista viene riportata in STATO_PROGETTO.md."
   },
@@ -398,6 +443,16 @@
     "regole": [
       "WebP primario, width/height sempre reali, alt descrittivo, max 2500px lato lungo, foto reali dell'immobile"
     ],
-    "repo_incoming": "img/_in/"
+    "repo_incoming": "img/_in/",
+    "intake_regole": {
+      "destinazioni": [
+        "img/<slug>/(foto) ",
+        "video/<slug>/(video)",
+        "src/media/<slug>.md (descrizione + caratteristiche)"
+      ],
+      "chi_nomina_i_file": "Io: tu depositi i file in img/_in/ anche con nomi da portale (es. '1 (3).jpg'), la build propone lo slug dal prefccio del nome o dal tuo elenco, rinomina, converte e compila la scheda.",
+      "niente_invenzione": "Prezzo, metratura, locali, classe energetica e data di costruzione arrivano solo da te o da documento. La build crea campi vuoti, non valori."
+    },
+    "chi_nomina_i_file": "Io: tu depositi i file in img/_in/ anche con nomi da portale (es. '1 (3).jpg'), la build propone lo slug dal prefisso del nome o dal tuo elenco, rinomina, converte e compila la scheda."
   }
 }

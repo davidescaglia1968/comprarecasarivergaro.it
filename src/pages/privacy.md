@@ -10,8 +10,12 @@ Informativa per chi invia una richiesta di ricerca immobiliare. Scritta in modo 
 
 ## Titolare del trattamento
 
-**Davide Scaglia — Immobiliare Scaglia** · Via Cavallotti 3, 29029 Rivergaro (PC) · P.IVA 01493570335
+**Immobiliare Scaglia di Scaglia Davide** — impresa individuale (piccolo imprenditore), iscritta al Registro Imprese di Piacenza
+Via Felice Cavallotti 3, 29029 Rivergaro (PC), frazione Pieve Dugliara
+P.IVA **01493570335** · REA **PC-168637**
 Email: **info@immobiliarescaglia.com** · Telefono: **+39 328 693 0033**
+PEC per richieste ufficiali: **immobiliarescaglia@pec.it**
+Attività: agenzia di mediazione immobiliare (ATECO 68.31.00) · Agente iscritto al ruolo di Piacenza dal 07/12/2007
 
 ## Dati che raccolgo e perche'
 
@@ -27,7 +31,7 @@ Non raccolgo dati "particolari" (salute, orientamento, religioni), non faccio pr
 
 I moduli di questo sito **non hanno un database**: passano da **FormSubmit**, un servizio che inoltra il contenuto del modulo all'email `info@immobiliarescaglia.com` e poi invia a te la copia di conferma. Non conserviamo copie su server nostri. La mailbox è accessibile al titolare e, per le attività di segreteria, alle persone da lui autorizzate.
 
-> **Da confermare e integrare in Fase 4:** elenco completo dei responsabili/autorizzati al trattamento, eventuale nominativo del responsabile DPI, base giuridica del trasferimento extra-UE del provider del form, tempi di conservazione nelle mailbox. Fino a queste conferme, nessuna dichiarazione su conservazioni o responsabilita aggiuntive viene pubblicata.
+> **Da confermare e integrare in Fase 4:** elenco completo dei soggetti autorizzati al trattamento, eventuale nominativo del responsabile della protezione dei dati, base giuridica del trasferimento extra-UE del provider del form, tempi di conservazione nelle mailbox. Data questi dati non ancora confermati, nessuna altra dichiarazione su conservazioni o responsabilita aggiuntive viene pubblicata: preferiamo un paragrafo in meno a un'affermazione sbagliata.
 
 ## Conservazione
 

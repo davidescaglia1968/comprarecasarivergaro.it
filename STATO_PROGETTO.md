@@ -1,5 +1,5 @@
 # STATO_PROGETTO — comprarecasarivergaro.it
-Aggiornato: 2026-10-23 · Fase 2 completata, in attesa di approvazione per la Fase 3.
+Aggiornato: 2026-10-23 (ore 18:20) · **Fase 2 completata + anagrafica verificata da visura camerale + filiera media pronta.** In attesa di approvazione per la Fase 3.
 
 ## Decisioni prese (e perché)
 
@@ -43,15 +43,36 @@ Sede **Via Cavallotti 3, 29029 Rivergaro (PC)** · **P.IVA 01493570335** · **RE
 | Media | `node build.js media` | ✅ `0 file` (nessuna immagine pubblicata, come previsto: nessun dato inventato) |
 | Robustezza editoriale | JSON shortcode volutamente invalido | ⚠️→✅ la build avvisa e continua: nessuna pagina rotta |
 
+## Arrivata la visura camerale (23/10/2026) — dati aggiornati
+
+Estratto in `PROFESSIONISTA.md` (non pubblicato), riversato in `site-config.json`:
+
+| Campo | Prima | Ora (verificato) |
+|---|---|---|
+| Sede | "DA CONFERMARE" (presi Via Cavallotti 3 dal llms.txt) | Via Felice Cavallotti 3, 29029 Rivergaro (PC) — **frazione Pieve Dugliara** |
+| P.IVA / REA | da llms.txt | 01493570335 / PC-168637 (confermati) |
+| Iscrizione ruolo | assente | **Ruolo Agenti di Affari in Mediazione, sez. Agenti Immobiliari, PC — 07/12/2007** |
+| Denominazione | "Davide Scaglia — Consulente Immobiliare" | **Immobiliare Scaglia di Scaglia Davide**, impresa individuale, piccolo imprenditore |
+| PEC | assente | **immobiliarescaglia@pec.it** (in footer e Privacy; il vecchio d.scaglia@pec.it è solo storico) |
+| **Anno "2007 vs 2008"** | conflitto aperto, anno omesso | **Risolto**: attività dal **12/12/2007** (e ruolo dal 07/12/2007), Registro Imprese 21/05/2008. Il sito dice "dal 2007", `foundingDate: 2007` |
+| Attività | — | Agenzia di mediazione immobiliare, ATECO 68.31.00, 1 addetto |
+
+**Privacy by build:** codice fiscale della persona fisica, data/luogo di nascita e protocollo della visura sono in una **lista di blocco**: `privacyGuard()` scansiona ogni HTML pubblicato (+ `llms.txt`, `sitemap.xml`) e **fallisce la build** se uno di quei valori esce. Testato in negativo: ho iniettato le tre stringhe in `grazie.md` → la build ha risposto `✗ PRIVACY … → non pubblicabile` (4 problemi), poi ho rimosso il test.
+
+## Nuove capacità di Fase 2 (dopo la visura)
+
+- `node build.js media` → `MEDIA_RAPPORTO.md` + `src/data/properties.draft.json`: dimensioni **lette dai byte del file** (PNG/JPEG/WebP, senza ImageMagick), peso, nominativi da correggere, foto >2600px o >400KB, file in `img/_in/` senza immobile assegnato, riga `<img width height>` già pronta.
+- Bozza dati generata **senza valori inventati**: campi anagrafici `null`/`DA CONFERMARE`, array immagini già popolato. Diventa `properties.json` solo dopo la tua conferma.
+- `--check` non ricompila più: è un comando di sola verifica, cosi' lo puoi lanciare mille volte senza toccare i file.
+
 ## Campi aperti ("DA CONFERMARE", nessuno esposto al pubblico)
 
-1. **Anno inizio attività** — 2007 (siti pubblicati) o 2008 (brief)? Blocca il testo "dal …" e `foundingDate`.
 2. **Bio acquirenti** per la pagina Chi Sono.
 3. **Orari di studio** e indirizzo postale da mettere in privacy (se diverso da Via Cavallotti 3).
 4. **`og-image`**: serve un'immagine reale (foto studio Davide o cover con brand). Nessun placeholder grafico inventato.
 5. **Attivazione FormSubmit**: al primo invio arriva una mail di attivazione a `info@immobiliarescaglia.com` da confermare. Fino ad allora il form è nel sito ma non va pubblicizzato come attivo.
 6. **Termini e Condizioni** (Fase 4) e conservazione dati nelle mailbox.
-7. **Immobile segnaposto per collaudare la Fase 3**: preferisci `properties.json` vuoto o un immobile reale **tuo** (stato `Sospeso`, marcato `note_interne: DATO DI TEST - NON PUBBLICARE`) che mi passi tu con foto e prezzi veri?
+6. **Immobile segnaposto per collaudare la Fase 3**: aspetto i tuoi file in `img/_in/` + descrizione. Con loro la scheda si collauda su dati veri, non su un demo.
 8. **Cartella immagini/video da monitorare**: percorso, branch o repo. Appena lo inserisci in `media.cartella_incoming`, `node build.js media` diventa il controllo qualità dei tuoi contenuti.
 9. **Google Fonts**: al momento CDN + `preconnect` (come da brief). Il self-hosting dei `.woff2` è pronto da attivare in un passaggio se preferisci azzerare il trasferimento di IP.
 10. **Verifica Search Console** per il dominio, quando sarà attivo.

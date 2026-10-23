@@ -242,6 +242,7 @@ function formRicerca(prefix) {
 
 const shortcodes = {
   hero(o) {
+    o = Object.assign({ h1: '', lead: [], note: [], cta1: cfg.contatti_sezione.cta_principale }, o);
     const nImg = catalogo().length;
     const hasCatalogo = exists('immobili.html');
     const second = hasCatalogo
@@ -253,7 +254,7 @@ const shortcodes = {
         <h1>${inline(o.h1)}</h1>
         <div class="lead">${o.lead.map((p) => '<p>' + inline(p) + '</p>').join('')}</div>
         <div class="cta-row"><a class="btn btn-primary" href="#ricerca">${esc(o.cta1)}</a>${second}</div>
-        <p class="hero-meta">${esc(pro.nome_completo)} · ${esc(pro.ruolo)} · ${addr ? esc(addr.street + ', ' + addr.localita) : 'Rivergaro (PC)'}</p>
+        <p class="hero-meta">${esc(pro.nome_completo)} · ${esc(pro.ruolo)}${isConfirmed(pro.anno_inizio_attivita) ? ' · <strong>agente iscritto al ruolo dal ' + esc(pro.anno_inizio_attivita) + '</strong>' : ''} · ${addr ? esc(addr.street + ', ' + addr.localita + (addr.frazione ? ' (fraz. ' + addr.frazione + ')' : '')) : 'Rivergaro (PC)'}</p>
       </div>
       <div class="hero-card">
         <p class="hero-card-label">Parla con chi cerca nella tua zona</p>
@@ -297,14 +298,18 @@ const shortcodes = {
     return `<aside class="cross-cta"><div><p class="cross-cta-k">Se invece devi vendere</p><p class="cross-cta-t">Su ${esc(m.nome)} trovi il percorso per chi mette in vendita casa, nella stessa zona e con lo stesso metodo.</p></div><a class="btn btn-outline" href="${attr(m.url)}" rel="noopener">vai su ${esc(m.nome)}</a></aside>`;
   },
   contatti_card() {
+    const albo = pro.qualifica_albo && isConfirmed(pro.qualifica_albo.iscrizione)
+      ? `<li><span class="k">Qualifica</span><span class="v">${esc(pro.qualifica_albo.sezione)} — ruolo di Piacenza, iscritto dal ${esc(pro.qualifica_albo.iscrizione)}</span></li>` : '';
+    const pec = isConfirmed(pro.pec) ? `<li><span class="k">PEC</span><span class="v"><a href="mailto:${attr(pro.pec)}">${esc(pro.pec)}</a></span></li>` : '';
     return `<div class="contact-card">
       <ul class="contact-list">
         <li><span class="k">Chi</span><span class="v">${esc(pro.nome_completo)} — ${esc(pro.ruolo)}</span></li>
         <li><span class="k">Telefono e WhatsApp</span><span class="v"><a href="tel:${attr(pro.telefono_e164)}">${esc(pro.telefono_display)}</a></span></li>
         <li><span class="k">Email</span><span class="v"><a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></span></li>
-        ${addr ? `<li><span class="k">Studio</span><span class="v">${esc(addr.street)}, ${esc(addr.cap)} ${esc(addr.localita)} (${esc(addr.provincia)})</span></li>` : ''}
+        ${addr ? `<li><span class="k">Studio</span><span class="v">${esc(addr.street)}, ${esc(addr.cap)} ${esc(addr.localita)} (${esc(addr.provincia)})${addr.frazione ? ' — fraz. ' + esc(addr.frazione) : ''}</span></li>` : ''}
         ${isConfirmed(cfg.contatti_sezione.orari) ? `<li><span class="k">Orari</span><span class="v">${esc(cfg.contatti_sezione.orari)}</span></li>` : ''}
-        ${isConfirmed(pro.partita_iva) ? `<li><span class="k">P.IVA</span><span class="v">${esc(pro.partita_iva)} · ${esc(pro.iscrizione_ruolo)}</span></li>` : ''}
+        ${isConfirmed(pro.partita_iva) ? `<li><span class="k">Dati aziendali</span><span class="v">P.IVA ${esc(pro.partita_iva)} · REA ${esc(pro.rea)}${isConfirmed(pro.pec) ? ' · PEC ' + esc(pro.pec) : ''}</span></li>` : ''}
+        ${albo}
       </ul>
       <div class="contact-social">${socialList()}</div>
     </div>`;
@@ -358,6 +363,33 @@ function cardImmobile(p, prefix) {
       <p class="card-dims">${dims.join(' · ')}</p>
       <p class="card-excerpt">${esc((p.descrizione || '').slice(0, 150))}${(p.descrizione || '').length > 150 ? '…' : ''}</p>
     </div></article></li>`;
+}
+
+/* ---------------------------------------------------------------- privacy */
+
+/* Dati presenti nella visura che non devono mai comparire nel markup pubblico
+   (persona fisica: codice fiscale, nascita, residenza, storico protocolli). */
+function privacyGuard() {
+  const divieto = [
+    { re: /SCGDVD68E26G842Y/i, motivo: 'codice fiscale della persona fisica' },
+    { re: /26\/05\/1968/, motivo: 'data di nascita' },
+    { re: /Ponte dell.Olio \(PC\)/i, motivo: 'luogo di nascita in chiaro' },
+    { re: /\bnato a\b/i, motivo: 'luogo di nascita' },
+    { re: /T ?610879435/, motivo: 'protocollo della visura (documento interno)' },
+  ];
+  let bad = 0;
+  const pubblicati = walk(path.join(ROOT, 'legal')).map((f) => path.relative(ROOT, f).split(path.sep).join('/'))
+    .concat(walk(path.join(ROOT, 'immobile')).map((f) => path.relative(ROOT, f).split(path.sep).join('/')))
+    .filter((f) => f.endsWith('.html'));
+  const targeti = ['index.html', 'grazie.html', 'immobili.html', 'contatti.html', 'chi-sono.html', 'llms.txt', 'sitemap.xml']
+    .filter(exists).concat(pubblicati);
+  for (const f of targeti) {
+    const txt = readIf(path.join(ROOT, f), '');
+    for (const g of divieto) {
+      if (g.re.test(txt)) { console.log('✗ PRIVACY ' + f + ': presente ' + g.motivo + ' → non pubblicabile.'); bad++; }
+    }
+  }
+  return bad;
 }
 
 /* ------------------------------------------------------------------- front */
@@ -481,8 +513,8 @@ function fill(tpl, prefix, page) {
   return tpl.replace(/\{\{([A-Z0-9_]+)\}\}/g, (m0, k) => (map[k] !== undefined ? map[k] : m0));
 }
 function napText() {
-  const parts = [pro.brand];
-  if (addr) parts.push(addr.street + ', ' + addr.cap + ' ' + addr.localita + ' (' + addr.provincia + ')');
+  const parts = [pro.denominazione_legale ? 'Immobiliare Scaglia di Scaglia Davide' : pro.brand];
+  if (addr) parts.push(addr.street + ', ' + addr.cap + ' ' + addr.localita + ' (' + addr.provincia + ')' + (addr.frazione ? ', fraz. ' + addr.frazione : ''));
   parts.push(pro.telefono_display);
   parts.push(pro.email);
   return parts.map(esc).join(' · ');
@@ -582,11 +614,65 @@ function mediaReport(s) {
     lines.push('');
   }
   if (s.warnings.length) lines.push('## Avvisi', ...s.warnings.map((w) => '- ' + w));
+  const schedi = s.items.filter((i) => i.tipo === 'immagine' && i.width);
+  if (schedi.length) {
+    lines.push('', "## Riga <img> pronta (dimensioni reali lette dal file)");
+    for (const i of schedi) lines.push('- `<img src="' + i.path + '" alt="DESCRIVI cosa si vede" width="' + i.width + '" height="' + i.height + '" loading="lazy" decoding="async">`');
+  }
   const inArrivo = s.items.filter((i) => i.path.startsWith('img/_in'));
   if (inArrivo.length) {
     lines.push('', '## In arrivo (da smistare)', ...inArrivo.map((i) => `- \`${i.path}\` ${i.width ? i.width + '×' + i.height : ''} · assegna uno slug prima della pubblicazione`));
   }
   return lines.join('\n') + '\n';
+}
+
+/* ------------------------------------------------------- intake media/dati */
+
+/* Propone lo slug dall'intestazione del file: <slug>-<cosa>-<n>.webp.
+   Da qui nasce src/data/properties.draft.json: struttura pronta, valori vuoti. */
+function guessSlug(nome, cartella) {
+  const generici = new Set(['img', 'video', '_in', 'proprieta', 'proprietá', 'im' + 'mobili', 'foto']);
+  const perCartella = cartella && !generici.has(cartella.toLowerCase());
+  if (perCartella) return cartella.toLowerCase();
+  return nome.replace(/\.[a-z0-9]+$/i, '')            // senza estensione
+    .replace(/\((\d+)\)$/, '')                        // "1 (3)" -> "1"
+    .replace(/[_\s]+/g, '-')                          // spazi/underscore -> -
+    .replace(/-\d+$/, '')                             // indice finale "-12"
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-{2,}/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function buildDraft() {
+  const m = mediaScan();
+  const groups = {};
+  for (const it of m.items) {
+    const key = guessSlug(it.nome, it.cartella) || 'senza-nome';
+    (groups[key] = groups[key] || []).push(it);
+  }
+  const immobili = Object.keys(groups)
+    .filter((k) => groups[k].some((x) => x.tipo === 'immagine'))
+    .map((k) => {
+      const imgs = groups[k].filter((x) => x.tipo === 'immagine');
+      const vid = groups[k].filter((x) => x.tipo === 'video');
+      return {
+        id: 'IMM-' + (1000 + Object.keys(groups).indexOf(k)),
+        slug: k,
+        stato: 'DA CONFERMARE',
+        tipologia: null, comune: 'Rivergaro', zona: null,
+        titolo: 'DA CONFERMARE', prezzo: null, superficie: null, locali: null,
+        descrizione: 'DA CONFERMARE (primi 200 caratteri = risposta pronta per SEO e motori generativi)',
+        caratteristiche: [], pertinenze: [],
+        immagini: imgs.map((i) => path.posix.basename(i.path)),
+        video: vid.map((i) => path.posix.basename(i.path)),
+        dimensioni_immagini: imgs.map((i) => ({ file: path.posix.basename(i.path), width: i.width || null, height: i.height || null, kb: Math.round(i.bytes / 1024) })),
+        data_pubblicazione: null, data_modifica: null,
+        note_interne: 'Bozza generata da build.js il ' + new Date().toISOString().slice(0, 10) + ' dal contenuto di img/ e video/. Compilare solo i campi DA CONFERMARE e cancellare questa nota. ' + (imgs.length === 0 ? 'Nessuna immagine trovata.' : ''),
+      };
+    });
+  if (!immobili.length) { fs.writeFileSync(path.join(SRC, 'data', 'properties.draft.json'), JSON.stringify({ immobili: [], _nota: 'Nessun media trovato: deposita i file in img/_in/ poi riesegui "node build.js media".' }, null, 2)); return 0; }
+  fs.writeFileSync(path.join(SRC, 'data', 'properties.draft.json'), JSON.stringify({ immobili, _nota: 'Bozza generata automaticamente: non e un catalogo. Diventa properties.json solo dopo che Davide ha compilato e confermato i dati.' }, null, 2) + '\n');
+  return immobili.length;
 }
 
 /* --------------------------------------------------------------- sitemap++ */
@@ -655,12 +741,15 @@ function main() {
     const s = mediaScan();
     fs.writeFileSync(path.join(ROOT, 'img', 'manifest.json'), JSON.stringify(s, null, 2));
     fs.writeFileSync(path.join(ROOT, 'MEDIA_RAPPORTO.md'), mediaReport(s));
-    console.log(`media: ${s.items.length} file, ${Object.keys(s.byProp).length} immobili, ${s.warnings.length} avvisi`);
+    const n = buildDraft();
+    console.log(`media: ${s.items.length} file, ${Object.keys(s.byProp).length} immobili, ${s.warnings.length} avvisi, bozza sched: ${n} immobile/i in src/data/properties.draft.json`);
     s.warnings.forEach((w) => console.log('  ! ' + w));
     return;
   }
 
   if (!exists('img')) fs.mkdirSync(path.join(ROOT, 'img'));
+  const soloCheck = argv.includes('--check') && !argv.includes('--force');
+  if (soloCheck) { runCheck(); return; }
   for (const p of PAGES) {
     if (!readIf(path.join(SRC, 'pages', p.source), '')) { console.warn('pagina saltata: ' + p.source); continue; }
     const html = buildPage(p);
@@ -677,7 +766,10 @@ function main() {
   const m = mediaScan();
   fs.writeFileSync(path.join(ROOT, 'img', 'manifest.json'), JSON.stringify(m, null, 2));
 
-  if (argv.includes('--check')) {
+  if (argv.includes('--check')) runCheck();
+}
+
+function runCheck() {
     let problems = 0;
     for (const f of pagesList().concat(['css/main.css', 'js/main.js', 'sitemap.xml', 'llms.txt'])) {
       if (!exists(f)) { console.log('✗ manca ' + f); problems++; }
@@ -699,8 +791,8 @@ function main() {
       const nimg = [...s.matchAll(/<img [^>]*>/g)].filter((x) => !/width="\d+" height="\d+"/.test(x[0])).length;
       if (nimg) { console.log(`✗ ${f}: ${nimg} img senza width/height (rischio CLS)`); problems++; }
     }
-    console.log(problems ? `\n${problems} problemi trovati` : '\n✓ check superato: niente segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite');
+    problems += privacyGuard();
+    console.log(problems ? '\n' + problems + ' problemi trovati' : '\n✓ check superato: nessun dato personale della visura, nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite');
     if (problems) process.exitCode = 1;
-  }
 }
 main();
