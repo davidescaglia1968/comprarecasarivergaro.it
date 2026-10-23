@@ -241,7 +241,9 @@
       "Sospeso": "#64748b",
       "Ritirato": "#64748b"
     },
-    "regola_pubblicazione": "Solo immobili con stato Disponibile o In trattativa compaiono nel catalogo e nella sitemap; Venduto/Sospeso/Ritirato restano su URL stabili con avviso 'non piu' disponibile' e proposta di ricerca personalizzata."
+    "regola_pubblicazione": "Solo immobili con stato Disponibile o In trattativa compaiono nel catalogo e nella sitemap; Venduto/Sospeso/Ritirato restano su URL stabili con avviso 'non piu' disponibile' e proposta di ricerca personalizzata.",
+    "anteprima_bozze": true,
+    "nota_anteprima": "true = le schede marcate bozza:true compaiono nel catalogo e nella home, con la scritta 'BOZZA', cosi' Davide puo' vedere l'impaginazione prima che i dati siano completi. Vanno pero' tenute fuori da sitemap, llms.txt e indice di Google (noindex automatico). Prima di puntare il dominio: mettere false."
   },
   "seo_geo": {
     "canonical_assoluti": true,

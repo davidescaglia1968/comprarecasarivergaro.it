@@ -1,5 +1,26 @@
 # STATO_PROGETTO — comprarecasarivergaro.it
-Aggiornato: 2026-10-23 (ore 18:20) · **Fase 2 completata + anagrafica verificata da visura camerale + filiera media pronta.** In attesa di approvazione per la Fase 3.
+Aggiornato: 2026-10-23 (sera) · **Fase 3 anticipata su richiesta**: prima scheda reale (bozza) visibile e pubblicabile. Fase 2 e anagrafica da visura: complete.
+
+## Fase 3 — cosa è stato costruito e come si comporta la bozza
+
+Prima scheda inserita: `villa-tre-unita-ancarano` (rif. `ANC-001`). Il testo è **quello scritto da Davide, alla lettera**; `bozza: true` perche' mancano prezzo, superfici, locali, stato catastale, APE e foto.
+
+Meccanismo "bozza" (deciso per farti vedere l'impaginazione senza pubblicizzare dati incompleti):
+
+| Dove | Bozza (`bozza: true`) | Scheda completa |
+|---|---|---|
+| Pagina `/immobile/<slug>.html` | generata, con tag "ANTEPRIMA INTERNA · BOZZA" | generata, nessun tag |
+| `<meta robots>` | `noindex, nofollow` | `index, follow` |
+| `sitemap.xml` | **esclusa** | inclusa |
+| `llms.txt` | **esclusa** | inclusa |
+| Home + `immobili.html` | visibile **solo se** `catalogo.anteprima_bozze = true` (ora true, con badge tratteggiato "BOZZA") | sempre visibile |
+| `data/properties.json` (filtri) | inclusa come dato strutturale, valori nulli | completa |
+| JSON-LD `RealEstateListing` | `address`, `identifier`, `name`, `description` | + `offers.price`, `floorSize`, `numberOfRooms`, `image` |
+
+`offers` viene emesso **solo se esiste un prezzo numerico**: un `Offer` senza `price` sarebbe markup dichiarato e non veritiero, quindi viene omesso del tutto (non compilato con 0 né con "su richiesta").
+**Prima di puntare il dominio sul sito: mettere `catalogo.anteprima_bozze: false`** o completare la scheda — cosi' nulla di incompleto resta esposto.
+
+`node build.js --check` verifica anche questo: se una pagina `bozza` finisse in sitemap o contenesse `DA CONFERMARE`, la build fallisce.
 
 ## Decisioni prese (e perché)
 

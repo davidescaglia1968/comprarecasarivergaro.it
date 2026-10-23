@@ -128,6 +128,125 @@
     clear(form, el);
     return true;
   }
+
+  /* --- 5. lightbox galleria (JS nativo: focus trap, Esc, frecce, contatore) --- */
+  (function lightbox() {
+    var shots = Array.prototype.slice.call(document.querySelectorAll('a[data-lightbox]'));
+    if (!shots.length) return;
+    var groups = {};
+    shots.forEach(function (a) { (groups[a.getAttribute('data-lightbox')] = groups[a.getAttribute('data-lightbox')] || []).push(a); });
+    var box = document.createElement('div');
+    box.className = 'lb';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Foto dell immobile');
+    box.innerHTML =
+      '<div class="lb-top"><p class="lb-counter" aria-live="polite"></p><button type="button" class="lb-btn" data-lb="close" aria-label="Chiudi la galleria">Chiudi (Esc)</button></div>' +
+      '<div class="lb-stage"><img alt=""></div>' +
+      '<div class="lb-nav"><button type="button" class="lb-btn" data-lb="prev">← Prec.</button><p class="lb-cap"></p><button type="button" class="lb-btn" data-lb="next">Succ.</button></div>';
+    document.body.appendChild(box);
+    var img = box.querySelector('img'), cap = box.querySelector('.lb-cap'), counter = box.querySelector('.lb-counter');
+    var cur = [], idx = 0, lastFocus = null;
+    function show(i) {
+      idx = (i + cur.length) % cur.length;
+      var a = cur[idx];
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') && a.querySelector('img').getAttribute('alt')) || 'Foto dell immobile';
+      cap.textContent = a.getAttribute('data-caption') || '';
+      counter.textContent = cur.length > 1 ? 'Foto ' + (idx + 1) + ' di ' + cur.length : 'Foto 1';
+    }
+    function open(a) {
+      cur = groups[a.getAttribute('data-lightbox')];
+      lastFocus = document.activeElement;
+      show(cur.indexOf(a));
+      box.dataset.open = '1';
+      document.body.style.overflow = 'hidden';
+      box.querySelector('[data-lb="close"]').focus();
+    }
+    function close() {
+      box.dataset.open = '0';
+      document.body.style.overflow = '';
+      img.removeAttribute('src');
+      if (lastFocus) lastFocus.focus();
+    }
+    shots.forEach(function (a) {
+      a.setAttribute('role', 'button');
+      a.setAttribute('aria-label', 'Apri la foto a schermo intero');
+      a.addEventListener('click', function (e) { e.preventDefault(); open(a); });
+    });
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-lb]');
+      if (!b) { if (e.target === box || e.target.classList.contains('lb-stage')) close(); return; }
+      var k = b.getAttribute('data-lb');
+      if (k === 'close') close();
+      if (k === 'next') show(idx + 1);
+      if (k === 'prev') show(idx - 1);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (box.dataset.open !== '1') return;
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+      if (e.key === 'ArrowRight') show(idx + 1);
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'Tab') {
+        var f = box.querySelectorAll('button');
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  })();
+
+  /* --- 6. filtri catalogo (letti da data/properties.json, niente backend) --- */
+  (function filtri() {
+    var root = document.getElementById('filtri');
+    var list = document.getElementById('catalogo');
+    if (!root || !list) return;
+    var cards = Array.prototype.slice.call(list.children);
+    var count = document.getElementById('fl-count');
+    var selects = Array.prototype.slice.call(root.querySelectorAll('[data-filter]'));
+    function valori(a) {
+      if (a.tagName === 'SELECT') return (a.value || '').toLowerCase();
+      return (a.value || '').trim().toLowerCase();
+    }
+    function applica() {
+      var f = {};
+      selects.forEach(function (a) { var v = valori(a); if (v) f[a.getAttribute('data-filter')] = v; });
+      var n = 0;
+      cards.forEach(function (c) {
+        var ok = true;
+        Object.keys(f).forEach(function (k) {
+          if (k === 'prezzo') {
+            var p = Number(c.getAttribute('data-prezzo') || 0);
+            if (!p || p > Number(f[k])) ok = false;
+          } else {
+            var v = (c.getAttribute('data-' + k) || '').toLowerCase();
+            if (v !== f[k]) ok = false;
+          }
+        });
+        c.hidden = !ok;
+        if (ok) n++;
+      });
+      if (count) count.textContent = n === cards.length
+        ? cards.length + ' immobili in catalogo'
+        : n + (n === 1 ? ' immobile trovato su ' : ' immobili trovati su ') + cards.length;
+      var empty = document.getElementById('fl-empty');
+      if (empty) empty.hidden = n !== 0;
+    }
+    if (count) { var tot = cards.length; if (tot) count.textContent = tot + ' immobili in catalogo'; }
+    selects.forEach(function (a) { a.addEventListener('input', applica); a.addEventListener('change', applica); });
+    var reset = document.getElementById('fl-reset');
+    if (reset) reset.addEventListener('click', function () {
+      selects.forEach(function (a) { a.value = ''; });
+      applica();
+    });
+    var none = document.createElement('div');
+    none.id = 'fl-empty';
+    none.className = 'empty-state';
+    none.hidden = true;
+    none.innerHTML = '<p>Nessuna scheda corrisponde a questi filtri. Prova ad allargare la zona o il budget — oppure dimmi cosa cerchi e cerco io.</p>' +
+      '<a class="btn btn-primary" href="index.html#ricerca">Ricerca personalizzata</a>';
+    list.parentNode.insertBefore(none, list.nextSibling);
+  })();
   var style = document.createElement('style');
   style.textContent = '.is-invalid{border-color:#fca5a5!important}.is-invalid:focus{outline-color:#fca5a5}';
   document.head.appendChild(style);

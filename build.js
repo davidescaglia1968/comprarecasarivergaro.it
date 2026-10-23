@@ -73,6 +73,43 @@ function siteJsonLd() {
   return { '@context': 'https://schema.org', '@graph': g };
 }
 
+
+function listingJsonLd(p) {
+  const o = {
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateListing',
+    '@id': BASE + '/immobile/' + p.slug + '#listing',
+    name: p.titolo,
+    url: BASE + '/immobile/' + p.slug + '.html',
+    description: (p.descrizione || '').slice(0, 300),
+    identifier: p.id || p.slug,
+  };
+  const imgs = (p.immagini || []).filter(Boolean);
+  if (imgs.length) o.image = imgs.map((i) => BASE + '/img/' + p.slug + '/' + i);
+  const addr = { '@type': 'PostalAddress' };
+  if (p.zona) addr.streetAddress = p.zona;
+  if (p.comune) addr.addressLocality = p.comune;
+  if (cfg.area_servizio && cfg.area_servizio.provincia) addr.addressRegion = cfg.area_servizio.provincia;
+  addr.addressCountry = 'IT';
+  if (p.cap) addr.postalCode = p.cap;
+  o.address = addr;
+  const offer = { '@type': 'Offer' };
+  const hasPrice = typeof p.prezzo === 'number' && p.prezzo > 0;
+  if (hasPrice) { offer.price = String(p.prezzo); offer.priceCurrency = 'EUR'; }
+  const map = cfg.seo_geo.jsonld.offers_schema || {};
+  const av = p.stato === 'Disponibile' ? map.disponibile : p.stato === 'In trattativa' ? map.in_trattativa : map.chiuso;
+  if (hasPrice && av) offer.availability = av;
+  if (p.data_pubblicazione) offer.validFrom = p.data_pubblicazione;
+  if (hasPrice && Object.keys(offer).length > 1) o.offers = offer;
+  if (p.stato === 'Venduto') o.usedProd = { '@type': 'Product', name: 'immobile venduto' };
+  if (p.superficie) o.floorSize = { '@type': 'QuantitativeValue', value: p.superficie, unitCode: 'MTK' };
+  if (p.locali) o.numberOfRooms = p.locali;
+  if (p.anno_costruzione) o.yearBuilt = String(p.anno_costruzione);
+  if (p.lat && p.lng) o.geo = { '@type': 'GeoCoordinates', latitude: p.lat, longitude: p.lng };
+  o.areaServed = { '@type': 'City', name: p.comune || cfg.area_servizio.comune_principale };
+  return o;
+}
+
 /* ------------------------------------------------------------- markdown++ */
 
 /* Estrae un oggetto JSON bilanciato che inizia su `firstChunk` (testa dopo il
@@ -339,30 +376,58 @@ function socialList() {
 
 /* ---------------------------------------------------------------- catalogo */
 
-function catalogo() {
-  if (!props || !Array.isArray(props.immobili)) return [];
-  const pubblicati = cfg.catalogo.regola_pubblicazione.includes('Disponibile');
-  return props.immobili.filter((p) => (pubblichi(p) ? true : false));
-}
+function tutteProp() { return props && Array.isArray(props.immobili) ? props.immobili : []; }
+/* In catalogo e in home: gli immobili con scheda pubblicabile (bozza esclusa).
+   La pagina /immobile/<slug>.html viene invece generata ANCHE per le bozze, per poterle
+   vedere e collaudare: esce pero' con meta noindex e fuori da sitemap e llms.txt. */
+function catalogo() { return tutteProp().filter((p) => cfg.catalogo.anteprima_bozze ? pubblichi(p) : pubblicabili(p)); }
+function inCatalogoSoloAnteprima(p) { return p.bozza && cfg.catalogo.anteprima_bozze; }
+function schedaPagine() { return tutteProp().filter(pubblichi); }
 function pubblichi(p) {
-  const ok = ['Disponibile', 'In trattativa'];
+  const ok = ['Disponibile', 'In trattativa', 'Venduto', 'Sospeso', 'Ritirato'];
   return ok.includes(p.stato) && !(p.note_interne || '').includes('NON PUBBLICARE');
 }
+function pubblicabili(p) { return pubblichi(p) && !p.bozza; }
 function prezzo(p) {
-  return typeof p.prezzo === 'number' ? new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(p.prezzo) : '';
+  if (typeof p.prezzo === 'number' && p.prezzo > 0) return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(p.prezzo);
+  return '';
 }
-function cardImmobile(p, prefix) {
-  const img = (p.immagini || [])[0];
-  const url = rel(prefix, 'immobile/' + p.slug + '.html');
-  const badge = `<span class="badge badge--${(p.stato || '').toLowerCase().replace(/\s+/g, '-')}" role="img" aria-label="Stato: ${attr(p.stato)}">${esc(p.stato)}</span>`;
-  const dims = [p.superficie ? p.superficie + ' m²' : null, p.locali ? p.locali + ' locali' : null, p.zona ? esc(p.zona) : null].filter(Boolean);
-  return `<li class="card card--prop"><article>
-    <a class="card-media" href="${url}">${img ? imgTag('img/' + img, (p.titolo || '') + ' — ' + (p.zona || ''), {}) : '<span class="media-placeholder">Foto in preparazione</span>'}${badge}</a>
-    <div class="card-body"><h3><a href="${url}">${esc(p.titolo)}</a></h3>
-      <p class="card-price">${prezzo(p)}</p>
-      <p class="card-dims">${dims.join(' · ')}</p>
-      <p class="card-excerpt">${esc((p.descrizione || '').slice(0, 150))}${(p.descrizione || '').length > 150 ? '…' : ''}</p>
-    </div></article></li>`;
+function prezzoCell(p) {
+  const v = prezzo(p);
+  return v ? `<p class="card-price">${v}</p>` : `<p class="card-price card-price--todo">Prezzo in corso di conferma</p>`;
+}
+function statoBadge(p) {
+  return `<span class="badge badge--${(p.stato || '').toLowerCase().replace(/\s+/g, '-')}" role="img" aria-label="Stato: ${attr(p.stato)}">${esc(p.stato)}</span>`;
+}
+function dimsRow(p) {
+  const items = [];
+  if (p.superficie) items.push(esc(String(p.superficie)) + ' m²');
+  if (p.locali) items.push(esc(String(p.locali)) + ' locali');
+  if (p.unita_abitative) items.push(p.unita_abitative + ' unità abitative');
+  if (p.zona) items.push(esc(p.zona));
+  return items.join(' · ');
+}
+function imgMeta(slug, file) {
+  const m = mediaCache.items.find((i) => i.path === 'img/' + slug + '/' + file);
+  return m || null;
+}
+function galleria(p) {
+  const imgs = (p.immagini || []).filter(Boolean);
+  if (!imgs.length) {
+    return `<figure class="media-empty"><div class="media-empty-box"><span class="media-empty-ico" aria-hidden="true">◻</span><strong>Nessuna foto pubblicata</strong><p>Le immagini di questo immobile non sono ancora state scelte. Appena arrivano, la galleria e l'immagine principale si compilano da sole da <code>img/${esc(p.slug)}/</code>, con le dimensioni vere lette dal file.</p></div></figure>`;
+  }
+  const [prima, ...altre] = imgs;
+  const meta = imgMeta(p.slug, prima) || {};
+  const fig = (f, i, eager) => {
+    const m = imgMeta(p.slug, f) || {};
+    const w = m.width || 1200, h = m.height || 800;
+    const src = 'img/' + p.slug + '/' + f;
+    return `<a class="shot" href="${src}" data-lightbox="${attr(p.slug)}" data-caption="${attr((p.titolo || '') + ' — foto ' + (i + 1) + ' di ' + imgs.length)}"><img src="${src}" alt="${attr((p.tipologia || 'Immobile') + ' ad ' + (p.zona || p.comune || '') + ', foto ' + (i + 1))}" width="${w}" height="${h}" ${eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"'}></a>`;
+  };
+  return `<div class="gallery" role="group" aria-label="Galleria fotografica">
+    <div class="gallery-hero">${fig(prima, 0, true)}${statoBadge(p)}</div>
+    ${altre.length ? `<div class="gallery-strip">${altre.map((f, i) => fig(f, i + 1, false)).join('')}</div>` : ''}
+  </div>`;
 }
 
 /* ---------------------------------------------------------------- privacy */
@@ -391,6 +456,150 @@ function privacyGuard() {
   }
   return bad;
 }
+
+
+/* ------------------------------------------------------- pagina immobile */
+
+function dataRow(p) {
+  const righe = [
+    ['Prezzo', prezzo(p) || 'in corso di conferma'],
+    ['Tipologia', p.tipologia],
+    ['Zona', [p.zona, p.comune].filter(Boolean).join(' · ')],
+    ['Superficie', p.superficie ? p.superficie + ' m²' : null],
+    ['Locali', p.locali ? String(p.locali) : null],
+    ['Unità abitative', p.unita_abitative ? String(p.unita_abitative) : null],
+    ['Pertinenze', p.pertinenze],
+    ['Classe energetica', p.classe_energetica],
+    ['Stato', p.stato],
+    ['Riferimento', p.id],
+    ['Aggiornato il', p.data_modifica],
+  ].filter((r) => r[1] !== null && r[1] !== undefined && isConfirmed(r[1]));
+  return '<dl class="specs">' + righe.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(String(v))}</dd></div>`).join('') + '</dl>';
+}
+
+function formImmobile(p, prefix) {
+  const thanks = abs(BASE, cfg.form.post_submit_redirect || '/index.html');
+  return `<form class="form" method="POST" action="${attr(cfg.form.action)}" id="modulo-immobile">
+        <input type="hidden" name="_subject" value="Richiesta info — ${attr(p.id || p.slug)} — ${attr(p.titolo)}">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="${attr(thanks)}">
+        <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="immobile" value="${attr(p.slug)}">
+        <div class="field-grid">
+          <p class="field"><label for="i-nome">Nome e cognome</label><input id="i-nome" name="nome" type="text" autocomplete="name" required></p>
+          <p class="field"><label for="i-email">Email</label><input id="i-email" name="email" type="email" autocomplete="email" required></p>
+          <p class="field"><label for="i-tel">Telefono</label><input id="i-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel"></p>
+          <p class="field"><label for="i-quando">Quando puoi vedere l'immobile</label><input id="i-quando" name="disponibilita" type="text" placeholder="es. sabato mattina"></p>
+        </div>
+        <p class="field"><label for="i-msg">Domande o note per la visita</label><textarea id="i-msg" name="messaggio" rows="4" required placeholder="Es. le tre unità sono accatastate separatamente?"></textarea></p>
+        <p class="field field-check"><label for="i-privacy"><input id="i-privacy" type="checkbox" name="privacy" value="si" required> Ho letto l'<a href="${rel(prefix, 'legal/privacy.html')}">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato su questo immobile.</label></p>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Chiedi informazioni</button>
+          <a class="btn btn-ghost" href="tel:${attr(pro.telefono_e164)}">Telefonami: ${esc(pro.telefono_display)}</a>
+        </div>
+        <p class="form-note">Su documenti, conformità e prezzi rispondo dopo aver verificato: se una cosa non è ancora verificata, ti scrivo che non lo è.</p>
+      </form>`;
+}
+
+function schedaPage(p, prefix) {
+  const bozza = p.bozza
+    ? '<div class="draft-bar"><strong>Scheda in bozza, non ancora pubblicabile.</strong> Mancano dati che non invento io: prezzo, superfici, stato catastale delle tre unità, classe energetica, foto. La pagina è marcata <code>noindex</code> e non è in sitemap.</div>'
+    : '';
+  const geo = (p.descrizione || '').slice(0, 200);
+  const resto = (p.descrizione || '').slice(200).trim();
+  const manca = [
+    !(typeof p.prezzo === 'number' && p.prezzo > 0) && 'prezzo richiesto',
+    !p.superficie && 'superficie (totale e per unità)',
+    !p.locali && 'numero di locali per unità',
+    !(p.immagini || []).length && 'foto (con dimensioni reali lette dai file)',
+    !p.pertinenze && 'pertinenze e terreno circostante (metratura, destinazione)',
+    !p.classe_energetica && "classe energetica / APE",
+    !p.stato_catastale && 'stato catastale e urbanistico delle tre unità',
+    !p.accesso && 'accesso, strada, servitù di passo',
+    !p.cap && 'indirizzo esatto (se vuoi esporlo)',
+  ].filter(Boolean);
+  const todo = manca.length
+    ? `<section class="todo"><h2 id="da-verificare">Cosa manca per pubblicarla davvero</h2><ul>${manca.map((x) => `<li>${esc(x)}</li>`).join('')}</ul><p class="muted">Sono campi che arrivano solo da te o da un documento: la build non li ipotizza. Finché mancano, il blocco non compare nella scheda e la scheda resta bozza.</p></section>`
+    : '';
+  const chars = (p.caratteristiche || []).filter((c) => isConfirmed(c));
+  return `<article class="prop">
+  <header class="prop-hero"><div class="wrap">
+    <p class="eyebrow">${inCatalogoSoloAnteprima(p) ? '<span class="tag-bozza">ANTEPRIMA INTERNA · BOZZA</span> ' : ''}${esc(p.tipologia || ('Immobile · ' + (p.zona || cfg.area_servizio.comune_principale)))}</p>
+    <h1>${esc(p.titolo)}</h1>
+    <p class="prop-loc">${esc([p.zona, p.comune + ' (PC)'].filter(Boolean).join(' · '))}</p>
+    <div class="prop-meta">${statoBadge(p)}<span class="prop-price">${esc(prezzo(p) || 'Prezzo in corso di conferma')}</span></div>
+    ${p.data_modifica ? `<p class="prop-updated">Scheda aggiornata il ${esc(p.data_modifica)} · rif. ${esc(p.id || p.slug)}</p>` : ''}
+  </div></header>
+  <div class="wrap prop-grid">
+    <div class="prop-main">
+      ${galleria(p)}
+      ${bozza}
+      <section class="prop-desc"><h2 id="descrizione">L'immobile</h2>
+        <p class="prop-answer">${esc(geo)}</p>
+        ${resto ? '<p>' + esc(resto) + '</p>' : ''}
+      </section>
+      ${chars.length ? '<section class="props"><h2 id="caratteristiche">Caratteristiche</h2><ul class="pills">' + chars.map((c) => `<li>${esc(c)}</li>`).join('') + '</ul></section>' : ''}
+      <section class="prop-ask"><h2 id="richiesta">Chiedi informazioni su questo immobile</h2>
+        <p>Scrivimi qui: il messaggio arriva a me con già dentro il riferimento della scheda.</p>
+        <div class="form-shell">${formImmobile(p, prefix)}</div>
+      </section>
+      ${todo}
+    </div>
+    <aside class="prop-side">
+      ${dataRow(p)}
+      <div class="side-box">
+        <p class="side-k">Parla con chi segue l'immobile</p>
+        <a class="side-tel" href="tel:${attr(pro.telefono_e164)}">${esc(pro.telefono_display)}</a>
+        <p class="side-note">${esc(pro.nome_completo)}${isConfirmed(pro.anno_inizio_attivita) ? ', agente iscritto al ruolo di Piacenza dal ' + esc(pro.qualifica_albo.iscrizione) : ''}. Visita, documenti e trattativa: insieme, senza passaggi in segreteria.</p>
+      </div>
+      <div class="side-box side-box--alt">
+        <p class="side-k">Non è quella giusta?</p>
+        <p class="side-note">Dimmi cosa cerchi: la ricerca parte da te, non da quello che ho in vetrina.</p>
+        <a class="btn btn-outline btn-sm" href="${rel(prefix + 'immobile/' + p.slug + '.html', 'index.html')}#ricerca">Ricerca personalizzata</a>
+      </div>
+    </aside>
+  </div>
+</article>`;
+}
+
+/* ------------------------------------------------------- catalogo (lista) */
+
+function filterBar(list) {
+  const zone = [...new Set(list.map((p) => p.zona).filter((z) => isConfirmed(z)))];
+  const tipi = [...new Set(list.map((p) => p.tipologia).filter((t) => isConfirmed(t)))];
+  const prezzi = list.map((p) => p.prezzo).filter((x) => typeof x === 'number');
+  const max = prezzi.length ? Math.max(...prezzi) : null;
+  return `<div class="filters" id="filtri">
+    <div class="filter-row">
+      <p class="field"><label for="fl-zona">Zona</label><select id="fl-zona" data-filter="zona"><option value="">Tutte le zone</option>${zone.map((z) => `<option>${esc(z)}</option>`).join('')}</select></p>
+      <p class="field"><label for="fl-tipo">Tipologia</label><select id="fl-tipo" data-filter="tipologia"><option value="">Tutte le tipologie</option>${tipi.map((t) => `<option>${esc(t)}</option>`).join('')}</select></p>
+      ${max ? `<p class="field"><label for="fl-prezzo">Budget massimo</label><input id="fl-prezzo" data-filter="prezzo" type="number" min="0" step="10000" inputmode="numeric" placeholder="es. 300000"></p>` : ''}
+      <p class="filter-reset"><button type="button" class="btn btn-ghost btn-sm" id="fl-reset">Azzera filtri</button></p>
+    </div>
+    <p class="filter-count" id="fl-count" role="status" aria-live="polite"></p>
+  </div>`;
+}
+
+function catalogoPage() {
+  const list = catalogo();
+  if (!list.length) {
+    return '<section class="section"><div class="wrap">'
+      + '<h1>Immobili a Rivergaro e in Val Trebbia</h1>'
+      + '<p class="muted">Seguo gli acquirenti su Rivergaro, le sue frazioni e l\'asta della Val Trebbia. In questo momento non ci sono schede con dati completi da pubblicare: è una scelta di metodo, non un\'assenza di case in zona.</p>'
+      + '<div class="empty-state"><p>Se mi dici cosa cerchi, la ricerca parte oggi e ti contatto quando trovo qualcosa di coerente — anche prima che finisca in vetrina.</p><a class="btn btn-primary" href="index.html#ricerca">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
+      + '<p class="draft-note">Schede in bozza (non indicizzate, solo per te): ' + tutteProp().filter((p) => p.bozza).map((p) => `<a href="immobile/${esc(p.slug)}.html">${esc(p.slug)}</a>`).join(', ') + '</p>'
+      + '</div></section>';
+  }
+  return '<section class="section"><div class="wrap">'
+    + '<h1>Immobili a Rivergaro e in Val Trebbia</h1>'
+    + '<p class="muted">Ogni scheda pubblicata qui è una scheda verificata: i dati che non ho in mano non vengono scritti, nemmeno come "circa".</p>'
+    + filterBar(list)
+    + '<ul class="grid-cards" id="catalogo">' + list.map((p) => cardImmobile(p, 'immobili.html')).join('') + '</ul>'
+    + '<div class="catalog-cta"><p>Ti serve qualcosa che qui non c\'è?</p><a class="btn btn-outline" href="index.html#ricerca">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
+    + '</div></section>';
+}
+
 
 /* ------------------------------------------------------------------- front */
 
@@ -422,19 +631,19 @@ function parseFrontMatter(raw) {
 function head(page, prefix) {
   const c = [];
   const title = page.title || cfg.site.titolo_home;
-  if (page.noindex) page.robots_off = true;
+  if (page.robots_off) page.noindex = true;
   const desc = page.description || cfg.site.description_home;
   const url = BASE + '/' + (page.canonical || '').replace(/^\//, '');
   c.push('<meta charset="utf-8">');
   c.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
   c.push(`<title>${esc(title)}</title>`);
   c.push('<meta name="description" content="' + attr(desc) + '">');
-  if (page.noindex || !cfg.site.robots_indexable) c.push('<meta name="robots" content="noindex, nofollow">');
+  if (page.noindex || page.robots_off || !cfg.site.robots_indexable) c.push('<meta name="robots" content="noindex, nofollow">');
   else c.push('<meta name="robots" content="index, follow">');
   c.push(`<meta name="author" content="${attr(pro.brand)}">`);
   c.push(`<meta name="theme-color" content="${attr(cfg.site.theme_color)}">`);
   c.push('<link rel="canonical" href="' + attr(url) + '">');
-  c.push('<meta property="og:type" content="website">');
+  c.push('<meta property="og:type" content="' + (page.immobile ? 'article' : 'website') + '">');
   c.push('<meta property="og:site_name" content="' + attr(cfg.site.dominio) + '">');
   c.push('<meta property="og:locale" content="it_IT">');
   c.push('<meta property="og:url" content="' + attr(url) + '">');
@@ -449,7 +658,11 @@ function head(page, prefix) {
   c.push('<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">');
   c.push('<link rel="stylesheet" href="' + rel(page.path || 'index.html', 'css/main.css') + '">');
   if (page.critical_css && exists(page.critical_css)) c.push('<style>' + readIf(path.join(ROOT, page.critical_css), '') + '</style>');
-  const ld = page.jsonld === 'site' || page.jsonld === undefined ? siteJsonLd() : (page.jsonld === 'none' ? null : page.jsonld);
+  let ld;
+  if (page.immobile) ld = { '@context': 'https://schema.org', '@graph': [listingJsonLd(page.immobile), { '@type': 'WebSite', '@id': BASE + '/#website', name: cfg.site.dominio, url: BASE + '/' }] };
+  else if (page.jsonld === 'none') ld = null;
+  else ld = siteJsonLd();
+  if (page.breadcrumb) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: page.breadcrumb }] });
   if (page.faq) {
     ld['@graph'].push({
       '@type': 'FAQPage',
@@ -469,7 +682,7 @@ function buildPage(page) {
   const shell = readIf(path.join(SRC, 'templates', 'layout.html'), '');
   const header = fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), prefix, page);
   const footer = fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), prefix, page);
-  const banner = readIf(path.join(SRC, 'templates', 'cookie-banner.html'), '');
+  const banner = fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), prefix, merged);
   let out = shell
     .replace('{{LANG}}', LANG)
     .replace('{{HEAD}}', head(merged, prefix))
@@ -484,6 +697,8 @@ function buildPage(page) {
 }
 
 function fill(tpl, prefix, page) {
+  page = page || {};
+  if (!page.path) page.path = 'index.html';
   const nav = (page.nav || ['immobili', 'ricerca', 'zona', 'guide', 'contatti']);
   const labels = { immobili: 'Immobili', ricerca: 'Ricerca personalizzata', zona: 'Zone', guide: 'Guide', contatti: 'Contatti' };
   const links = nav
@@ -626,6 +841,9 @@ function mediaReport(s) {
   return lines.join('\n') + '\n';
 }
 
+let mediaCache = { items: [], byProp: {}, warnings: [] };
+function refreshMediaCache() { mediaCache = mediaScan(); }
+
 /* ------------------------------------------------------- intake media/dati */
 
 /* Propone lo slug dall'intestazione del file: <slug>-<cosa>-<n>.webp.
@@ -675,17 +893,47 @@ function buildDraft() {
   return immobili.length;
 }
 
+
+function cardImmobile(p, prefix) {
+  const img = (p.immagini || []).filter(Boolean)[0];
+  const url = rel(prefix, 'immobile/' + p.slug + '.html');
+  const m = img ? imgMeta(p.slug, img) : null;
+  const media = img
+    ? '<img src="' + 'img/' + p.slug + '/' + img + '" alt="' + attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || '')) + '" width="' + (m && m.width ? m.width : 1200) + '" height="' + (m && m.height ? m.height : 800) + '" loading="lazy" decoding="async">'
+    : '<span class="media-placeholder">Foto in preparazione</span>';
+  const draftTag = inCatalogoSoloAnteprima(p) ? '<span class="badge badge--bozza" aria-label="Scheda in bozza, anteprima interna">BOZZA</span>' : '';
+  const excerpt = (p.descrizione || '').slice(0, 150);
+  const attrs = [
+    p.zona && isConfirmed(p.zona) ? `data-zona="${attr(p.zona)}"` : '',
+    p.tipologia && isConfirmed(p.tipologia) ? `data-tipologia="${attr(p.tipologia)}"` : '',
+    typeof p.prezzo === 'number' && p.prezzo > 0 ? `data-prezzo="${p.prezzo}"` : '',
+  ].filter(Boolean).join(' ');
+  return `<li class="card card--prop" ${attrs}><article>
+    <a class="card-media" href="${url}">${media}${statoBadge(p)}${draftTag}</a>
+    <div class="card-body"><h3><a href="${url}">${esc(p.titolo)}</a></h3>
+      ${prezzoCell(p)}
+      <p class="card-dims">${dimsRow(p)}</p>
+      ${excerpt ? `<p class="card-excerpt">${esc(excerpt)}${(p.descrizione || '').length > 150 ? '…' : ''}</p>` : ''}
+      <p class="card-ref"><a href="${url}">Apri la scheda →</a></p>
+    </div></article></li>`;
+}
+
 /* --------------------------------------------------------------- sitemap++ */
 
 function pagesList() {
   const out = [];
-  const push = (p) => out.push(p);
-  ['index.html', 'immobili.html', 'ricerca-personalizzata.html', 'contatti.html', 'chi-sono.html', 'zona/val-trebbia.html', 'grazie.html', 'legal/privacy.html', 'legal/cookie.html', 'legal/termini.html'].forEach((f) => { if (exists(f) && f !== 'grazie.html') push(f); });
-  for (const p of catalogo()) push('immobile/' + p.slug + '.html');
+  ['index.html', 'immobili.html', 'ricerca-personalizzata.html', 'contatti.html', 'chi-sono.html', 'zona/val-trebbia.html', 'legal/privacy.html', 'legal/cookie.html', 'legal/termini.html'].forEach((f) => { if (exists(f)) out.push(f); });
+  return out;
+}
+function pagineIndicizzabili() {
+  const out = [];
+  const indicizzabili = tutteProp().filter(pubblicabili);
+  ['index.html', 'immobili.html', 'ricerca-personalizzata.html', 'contatti.html', 'chi-sono.html', 'zona/val-trebbia.html', 'legal/privacy.html', 'legal/cookie.html', 'legal/termini.html'].forEach((f) => { if (exists(f)) out.push(f); });
+  for (const p of indicizzabili) out.push('immobile/' + p.slug + '.html');
   return out;
 }
 function sitemap() {
-  const mods = pagesList().map((f0) => { const f = f0 === 'index.html' ? '' : f0;
+  const mods = pagineIndicizzabili().map((f0) => { const f = f0 === 'index.html' ? '' : f0;
     let last = null;
     try { last = fs.statSync(path.join(ROOT, f0)).mtime.toISOString().slice(0, 10); } catch (e) {}
     return `  <url>\n    <loc>${BASE}/${f}</loc>${last ? `\n    <lastmod>${last}</lastmod>` : ''}\n    <changefreq>${f.startsWith('immobile') ? 'weekly' : 'monthly'}</changefreq>\n  </url>`;
@@ -693,6 +941,7 @@ function sitemap() {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${mods.join('\n')}\n</urlset>\n`;
 }
 function llms() {
+  const elencoLlms = tutteProp().filter(pubblicabili);
   const L = [];
   L.push('# ' + pro.brand + ' — ' + cfg.site.dominio, '');
   L.push('> ' + (isConfirmed(pro.anno_inizio_attivita) ? 'Seguo gli acquirenti su Rivergaro e in Val Trebbia dal ' + pro.anno_inizio_attivita + '.' : 'Seguo gli acquirenti su Rivergaro e in Val Trebbia.') + ' Ricerca personalizzata, visite accompagnate, verifica tecnica e documentale, trattativa e rogito.', '');
@@ -710,7 +959,7 @@ function llms() {
   L.push('', '## Zona coperta');
   L.push('- ' + (cfg.area_servizio.frazioni || []).map((f) => f.nome).join(', '));
   L.push('- Il comune è Rivergaro (PC), Emilia-Romagna, alta Val Trebbia.', '');
-  const cat = catalogo();
+  const cat = elencoLlms;
   L.push('## Immobili pubblicati');
   if (!cat.length) L.push('Nessun immobile in vetrina al momento: gli acquirenti vengono guidati alla ricerca personalizzata, che intercetta anche immobili non ancora listati. Questa è una scelta, non una mancanza di offerta.');
   else cat.forEach((p) => L.push(`- ${p.titolo} — ${p.zona}, ${p.comune} · ${p.tipologia} · ${p.superficie} m² · ${prezzo(p)} · ${BASE}/immobile/${p.slug}.html`));
@@ -750,6 +999,43 @@ function main() {
   if (!exists('img')) fs.mkdirSync(path.join(ROOT, 'img'));
   const soloCheck = argv.includes('--check') && !argv.includes('--force');
   if (soloCheck) { runCheck(); return; }
+  refreshMediaCache();
+  // catalogo + dati pubblici per i filtri client-side
+  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro e in Val Trebbia | comprarecasarivergaro.it', description: 'Case e ville in vendita a Rivergaro e in Val Trebbia, con scheda verificata. Filtri per zona, tipologia e budget.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'zona', 'guide', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
+  fs.writeFileSync(path.join(OUT, 'immobili.html'), catHtml);
+  console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
+  fs.mkdirSync(path.join(OUT, 'data'), { recursive: true });
+  const pubblici = catalogo().map((p) => ({
+    slug: p.slug, titolo: p.titolo, stato: p.stato, tipologia: p.tipologia || null,
+    comune: p.comune || null, zona: p.zona || null, prezzo: typeof p.prezzo === 'number' ? p.prezzo : null,
+    superficie: p.superficie || null, locali: p.locali || null, data_modifica: p.data_modifica || null,
+    immagini: (p.immagini || []).filter(Boolean).length, url: '/immobile/' + p.slug + '.html',
+  }));
+  fs.writeFileSync(path.join(OUT, 'data', 'properties.json'), JSON.stringify({ generato: new Date().toISOString().slice(0, 10), immobili: pubblici }, null, 2) + '\n');
+  for (const p of schedaPagine()) {
+    const page = {
+      path: 'immobile/' + p.slug + '.html', source: null, immobile: p,
+      title: (p.titolo || 'Immobile').slice(0, 60) + ' | ' + cfg.site.dominio,
+      description: (p.descrizione || '').slice(0, 155),
+      canonical: '/immobile/' + p.slug + '.html',
+      breadcrumb: 'Immobili',
+      noindex: !!p.bozza, robots_off: !!p.bozza,
+    };
+    const content = schedaPage(p, 'immobile/');
+    const shell = readIf(path.join(SRC, 'templates', 'layout.html'), '');
+    const html = shell
+      .replace('{{LANG}}', LANG)
+      .replace('{{HEAD}}', head(page, 'immobile/'))
+      .replace('{{HEADER}}', fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '../', { nav: ['immobili', 'ricerca', 'contatti'], path: page.path }))
+      .replace('{{CONTENT}}', content)
+      .replace('{{FOOTER}}', fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '../', { nav: [], path: page.path }))
+      .replace('{{COOKIE_BANNER}}', fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '../', {}))
+      .replace('{{SCRIPT}}', `<script src="${rel(page.path, 'js/main.js')}" defer></script>`)
+      .replace(/\{\{[A-Z0-9_]+\}\}/g, '');
+    fs.mkdirSync(path.join(OUT, 'immobile'), { recursive: true });
+    fs.writeFileSync(path.join(OUT, page.path), html);
+    console.log('✓ ' + page.path + (p.bozza ? '  [BOZZA · noindex]' : '') + ' (' + (html.length / 1024).toFixed(1) + 'KB)');
+  }
   for (const p of PAGES) {
     if (!readIf(path.join(SRC, 'pages', p.source), '')) { console.warn('pagina saltata: ' + p.source); continue; }
     const html = buildPage(p);
@@ -771,7 +1057,7 @@ function main() {
 
 function runCheck() {
     let problems = 0;
-    for (const f of pagesList().concat(['css/main.css', 'js/main.js', 'sitemap.xml', 'llms.txt'])) {
+    for (const f of pagesList().concat(['immobili.html', 'data/properties.json', 'css/main.css', 'js/main.js', 'sitemap.xml', 'llms.txt'])) {
       if (!exists(f)) { console.log('✗ manca ' + f); problems++; }
     }
     for (const f of pagesList()) {
