@@ -18,6 +18,7 @@
      #ec4899 5.61:1 · #3b82f6 5.38:1 · #f472b6 7.48:1 · #f5f5f5 18.16:1 · #a1a1aa 7.72:1
      bianco su #ec4899 3.53:1 (solo testo grande) → i bottoni usano pink-strong/blu-strong */
   --pink:#ec4899;
+  --gold:#d4a520;
   --pink-strong:#db2777;
   --pink-text:#f472b6;
   --blue:#3b82f6;
@@ -102,11 +103,24 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
   radial-gradient(90% 80% at 0% 0%,rgba(236,72,153,.18),transparent 55%),var(--bg-primary)}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--grad);opacity:.75}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:var(--s7);align-items:start}
+.hero--listing{background:radial-gradient(90% 90% at 50% 0%,rgba(212,165,32,.12),transparent 62%),var(--bg-primary)}
+.hero--listing::after{background:linear-gradient(90deg,transparent,#d4a520,transparent)}
+.hero--listing .hero-grid{grid-template-columns:minmax(0,1000px);justify-content:center;text-align:center}
+.hero--listing .hero-copy{display:flex;flex-direction:column;align-items:center}
+.hero--listing .eyebrow{color:var(--gold)}
+.hero--listing h1{max-width:26ch;font-size:clamp(2.25rem,1.15rem + 4.2vw,4.25rem);line-height:1.06}
+.hero--listing .lead{max-width:70ch;margin-inline:auto}
+.hero--listing .cta-row{justify-content:center;margin-top:var(--s4)}
+.hero-email-link{display:inline-flex;align-items:center;padding:10px 4px;font-size:.9375rem;font-weight:600;color:var(--text-secondary);text-decoration:none}
+.hero-email-link:hover{color:#fff;text-decoration:underline}
 .hero .lead p{color:#d4d4d8;font-size:1.0625rem}
 .hero-card{background:var(--bg-secondary);border:1px solid var(--line);border-radius:var(--radius);padding:var(--s5);box-shadow:var(--shadow)}
 .hero-card-label{font-size:.75rem;letter-spacing:.12em;color:var(--text-secondary);margin:0 0 var(--s2)}
 .hero-card-phone a{font-family:var(--font-title);font-size:1.6rem;font-weight:700;color:#fff;text-decoration:none;display:block}
 .hero-card-phone a:hover{color:var(--pink-text)}
+.hero-card-whatsapp{margin:var(--s2) 0 0}
+.hero-card-whatsapp a{color:#4ade80;font-size:.9375rem;font-weight:600;text-decoration:none}
+.hero-card-whatsapp a:hover{color:#86efac;text-decoration:underline}
 .hero-card-mail a{color:var(--text-secondary);text-decoration:none;font-size:.9375rem;word-break:break-word}
 .hero-card-mail a:hover{color:#fff}
 .hero-card hr{margin:var(--s3) 0}
@@ -147,6 +161,28 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .faq-item{border:1px solid var(--line);border-radius:var(--radius);padding:var(--s4);background:linear-gradient(180deg,rgba(255,255,255,.02),transparent)}
 .faq-item h3{margin:0 0 var(--s1);font-size:1.0625rem;font-family:var(--font-body);font-weight:600;letter-spacing:0}
 .faq-item p{margin:0;color:var(--text-secondary)}
+
+/* ---------------------------------------------------------- proposta in evidenza */
+.featured-property{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(24px,4vw,56px);align-items:stretch;overflow:hidden;border:1px solid var(--line);border-radius:calc(var(--radius) + 4px);background:linear-gradient(135deg,rgba(236,72,153,.045),transparent 42%),var(--bg-secondary);box-shadow:var(--shadow);animation:property-arrive .55s ease-out both}
+@keyframes property-arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.featured-property-media{position:relative;display:grid;place-items:center;min-height:340px;overflow:hidden;background:radial-gradient(ellipse at 20% 15%,rgba(236,72,153,.13),transparent 48%),radial-gradient(ellipse at 90% 85%,rgba(59,130,246,.13),transparent 50%),#111;text-decoration:none}
+.featured-property-media::after{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.08);border-radius:10px;pointer-events:none}
+.featured-property-media img{width:100%;height:100%;min-height:340px;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.featured-media-empty{position:relative;z-index:1;color:var(--text-secondary);font-size:.875rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:24px}
+.featured-property-media .badge{top:28px;left:28px}
+.featured-property-content{padding:clamp(24px,4vw,48px) clamp(24px,3vw,40px) clamp(24px,4vw,48px) 0;align-self:center}
+.featured-property-content .eyebrow{margin-bottom:var(--s2);color:var(--gold)}
+.featured-property-content h3{font-size:clamp(1.5rem,1.15rem + 1.45vw,2.25rem);line-height:1.18;margin-bottom:var(--s3)}
+.featured-property-content h3 a{color:#fff;text-decoration:none}
+.featured-property-content h3 a:hover{color:var(--pink-text)}
+.featured-property-price{font-family:var(--font-title);font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:var(--s3)}
+.featured-property-description{color:#d4d4d8;max-width:60ch}
+.featured-property-facts{list-style:none;padding:0;margin:var(--s4) 0;display:flex;flex-wrap:wrap;gap:8px}
+.featured-property-facts li{border:1px solid var(--line);background:rgba(10,10,10,.35);border-radius:999px;padding:6px 11px;color:#e4e4e7;font-size:.8125rem}
+.featured-property-link{margin-top:var(--s2);background:linear-gradient(135deg,#d4a520 0%,#b8860b 100%);color:#1c1a17;border-color:transparent;font-weight:700;box-shadow:0 12px 28px -18px rgba(212,165,32,.8)}
+.featured-property-link:hover{background:linear-gradient(135deg,#e3b638 0%,#d4a520 100%);color:#1c1a17;border-color:transparent}
+@media(hover:hover){.featured-property:hover .featured-property-media img{transform:scale(1.035)}}
+@media(max-width:760px){.featured-property{grid-template-columns:1fr}.featured-property-media,.featured-property-media img{min-height:clamp(230px,65vw,380px)}.featured-property-content{padding:24px}}
 
 /* ---------------------------------------------------------- card immobili */
 .grid-cards{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--s4)}

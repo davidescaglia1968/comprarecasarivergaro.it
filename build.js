@@ -22,6 +22,7 @@ const exists = (p) => fs.existsSync(path.join(ROOT, p));
 const isConfirmed = (v) => v !== null && v !== undefined && v !== '' && String(v).trim() !== PLACEHOLDER;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const cleanHtml = (s) => s.replace(/[ \t]+\n/g, '\n');
 const abs = (base, p) => (typeof p === 'string' && /^https?:\/\//.test(p) ? p : base + p);
 const rel = (from, to) => {
   if (/^https?:\/\//.test(to)) return to;
@@ -53,24 +54,16 @@ const addressObj = addr
   : undefined;
 
 function siteJsonLd() {
-  const g = [];
-  const agent = {
-    '@type': 'RealEstateAgent',
-    '@id': BASE + '/#agent',
-    name: pro.brand,
-    url: BASE + '/',
-    telephone: pro.telefono_e164,
-    email: pro.email,
-    areaServed: (cfg.area_servizio.areaServed_jsonld || []).map((n) => ({ '@type': 'City', name: n })),
-    sameAs: [cfg.ecosistema.sito_madre.url + '/', cfg.ecosistema.satellite.url + '/'],
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [{
+      '@type': 'WebSite',
+      '@id': BASE + '/#website',
+      name: 'Immobili a Rivergaro',
+      url: BASE + '/',
+      inLanguage: LANG,
+    }],
   };
-  if (pro.partita_iva && isConfirmed(pro.partita_iva)) agent.taxID = pro.partita_iva;
-  if (isConfirmed(pro.iscrizione_ruolo)) agent.knowsAbout = 'Iscrizione ' + pro.iscrizione_ruolo;
-  if (addr) agent.address = addressObj;
-  if (isConfirmed(pro.anno_inizio_attivita)) agent.foundingDate = String(pro.anno_inizio_attivita);
-  agent.founder = { '@type': 'Person', name: pro.nome_completo, jobTitle: 'Agente Immobiliare' };
-  g.push(agent);
-  return { '@context': 'https://schema.org', '@graph': g };
 }
 
 
@@ -246,7 +239,7 @@ function imgTag(src, alt, opts) {
   return `<img src="${attr(src)}" alt="${attr(alt)}" width="${w}" height="${h}" ${lazy}${opts.sizes ? ` sizes="${attr(opts.sizes)}"` : ''}>`;
 }
 
-function formRicerca(prefix) {
+function formRicerca(prefix, submitLabel) {
   const grazie = abs(BASE, cfg.form.post_submit_redirect || '/index.html');
   const zone = (cfg.area_servizio.frazioni || []).map((f) => `<option value="${attr(f.nome)}">${esc(f.nome)}</option>`).join('');
   const aree = (cfg.area_servizio.aree || []).filter((a) => a.slug !== 'val-trebbia').map((a) => `<option value="${attr(a.nome)}">${esc(a.nome)}</option>`).join('');
@@ -270,46 +263,38 @@ function formRicerca(prefix) {
         <p class="field"><label for="f-msg">Cosa cerchi, in parole tue</label><textarea id="f-msg" name="messaggio" rows="5" required placeholder="Es. appartamento con balcone, a Rivergaro o nelle frazioni vicine, da abitare subito, con un posto auto."></textarea></p>
         <p class="field field-check"><label for="f-privacy"><input id="f-privacy" type="checkbox" name="privacy" value="si" required> Ho letto l'<a href="${rel(prefix,'legal/privacy.html')}">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato su questa ricerca.</label></p>
         <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Invia la mia ricerca</button>
+          <button type="submit" class="btn btn-primary">${esc(submitLabel || 'Invia la mia ricerca')}</button>
           <a class="btn btn-ghost" href="tel:${attr(pro.telefono_e164)}">Chiamami ora ${esc(pro.telefono_display)}</a>
         </div>
-        <p class="form-note">Nessuna newsletter, nessun dato ceduto a terzi. Rispondo io, di solito entro un giorno lavorativo.</p>
+        <p class="form-note">Nessuna newsletter. Ti ricontatto appena possibile.</p>
       </form>`;
 }
 
 const shortcodes = {
   hero(o) {
-    o = Object.assign({ h1: '', lead: [], note: [], cta1: cfg.contatti_sezione.cta_principale }, o);
-    const nImg = catalogo().length;
-    const hasCatalogo = exists('immobili.html');
-    const second = hasCatalogo
-      ? `<a class="btn btn-ghost" href="${rel('', 'immobili.html')}">${nImg ? 'Vedi gli immobili (' + nImg + ')' : 'Vedi gli immobili'}</a>`
-      : `<a class="btn btn-ghost" href="#contatti">Parliamone al telefono</a>`;
-    return `<section class="hero" id="top"><div class="wrap hero-grid">
+    o = Object.assign({ eyebrow: '', h1: '', lead: [], cta: 'Scopri la villa' }, o);
+    const wa = String(pro.whatsapp || pro.telefono_e164 || '').replace(/\D/g, '');
+    return `<section class="hero hero--listing" id="top"><div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">Case in vendita a Rivergaro Val Trebbia</p>
+        ${o.eyebrow ? `<p class="eyebrow">${inline(o.eyebrow)}</p>` : ''}
         <h1>${inline(o.h1)}</h1>
         ${o.lead && o.lead.length ? `<div class="lead">${o.lead.map((p) => '<p>' + inline(p) + '</p>').join('')}</div>` : ''}
-        <div class="cta-row"><a class="btn btn-primary" href="#ricerca">${esc(o.cta1)}</a>${second}</div>
-      </div>
-      <div class="hero-card">
-        <p class="hero-card-label">Contatti</p>
-        <p class="hero-card-phone"><a href="tel:${attr(pro.telefono_e164)}">${esc(pro.telefono_display)}</a></p>
-        <p class="hero-card-mail"><a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></p>
-        <hr>
-        <p class="hero-card-note">${inline(o.note.join(' '))}</p>
+        <div class="cta-row"><a class="btn btn-primary" href="#immobile-in-evidenza">${esc(o.cta)}</a><a class="btn btn-ghost" href="https://wa.me/${attr(wa)}" target="_blank" rel="noopener noreferrer">Scrivimi su WhatsApp</a><a class="hero-email-link" href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></div>
       </div></div></section>`;
   },
   form_ricerca() {
-    return `<div class="form-shell">${formRicerca('')}</div>`;
+    return `<div class="form-shell">${formRicerca('', 'Raccontami che casa cerchi')}</div>`;
+  },
+  immobile_evidenza() {
+    return immobileEvidenza();
   },
   immobili(o) {
     const list = catalogo();
     const link = exists('immobili.html')
       ? `<a class="section-more" href="${rel('index.html', 'immobili.html')}">Apri il catalogo con i filtri per zona, tipologia e budget</a>`
-      : `<a class="section-more" href="#contatti">Nel frattempo: chiamami e ti dico cosa si muove in valle</a>`;
+      : `<a class="section-more" href="#la-villa-non-fa-per-te">Nel frattempo: chiamami e ti dico cosa si muove in valle</a>`;
     if (!list.length) {
-      return `<div class="empty-state"><p>${inline(o.empty)}</p><a class="btn btn-primary" href="#ricerca">${esc(cfg.contatti_sezione.cta_principale)}</a></div>${link}`;
+      return `<div class="empty-state"><p>${inline(o.empty)}</p><a class="btn btn-primary" href="#la-villa-non-fa-per-te">${esc(cfg.contatti_sezione.cta_principale)}</a></div>${link}`;
     }
     return `<ul class="grid-cards">${list.map((p) => cardImmobile(p, 'index.html')).join('')}</ul>`;
   },
@@ -324,7 +309,7 @@ const shortcodes = {
   guide_teaser() {
     const g = (cfg.contenuti.guide_previste || []).filter((x) => x.stato === 'disponibile');
     if (!g.length) {
-      return `<div class="empty-state"><p>Le guide per chi compra sono in preparazione: le pubblico solo quando ho contenuto scritto da me, non testi generici.</p><a class="btn btn-ghost" href="#ricerca">Chiedimi direttamente quello che vuoi sapere</a></div>`;
+      return `<div class="empty-state"><p>Le guide per chi compra sono in preparazione: le pubblico solo quando ho contenuto scritto da me, non testi generici.</p><a class="btn btn-ghost" href="#la-villa-non-fa-per-te">Chiedimi direttamente quello che vuoi sapere</a></div>`;
     }
     return `<ul class="grid-cards grid-cards--editorial">${g.map((x) => `<li class="card card--text"><h3><a href="${rel('','guide/'+x.slug+'.html')}">${esc(x.titolo)}</a></h3><p>${inline(x.anteprima||'')}</p></li>`).join('')}</ul>`;
   },
@@ -392,7 +377,7 @@ function prezzo(p) {
 }
 function prezzoCell(p) {
   const v = prezzo(p);
-  return v ? `<p class="card-price">${v}</p>` : `<p class="card-price card-price--todo">Prezzo riservato — da confermare con il proprietario</p>`;
+  return v ? `<p class="card-price">${v}</p>` : '';
 }
 function statoBadge(p) {
   return `<span class="badge badge--${(p.stato || '').toLowerCase().replace(/\s+/g, '-')}" role="img" aria-label="Stato: ${attr(p.stato)}">${esc(p.stato)}</span>`;
@@ -460,7 +445,7 @@ function privacyGuard() {
 
 function dataRow(p) {
   const righe = [
-    ['Prezzo', prezzo(p) || 'in corso di conferma'],
+    ['Prezzo', prezzo(p)],
     ['Tipologia', p.tipologia],
     ['Zona', [p.zona, p.comune].filter(Boolean).join(' · ')],
     ['Superficie', p.superficie ? p.superficie + ' m²' : null],
@@ -507,7 +492,6 @@ function schedaPage(p, prefix) {
   const geo = (p.descrizione || '').slice(0, 200);
   const resto = (p.descrizione || '').slice(200).trim();
   const manca = [
-    !(typeof p.prezzo === 'number' && p.prezzo > 0) && 'prezzo richiesto',
     !p.superficie && 'superficie (totale e per unità)',
     !p.locali && 'numero di locali per unità',
     !(p.immagini || []).length && 'foto (con dimensioni reali lette dai file)',
@@ -517,8 +501,8 @@ function schedaPage(p, prefix) {
     !p.accesso && 'accesso, strada, servitù di passo',
     !p.cap && 'indirizzo esatto (se vuoi esporlo)',
   ].filter(Boolean);
-  const todo = manca.length
-    ? `<section class="todo"><h2 id="da-verificare">Cosa manca per pubblicarla davvero</h2><ul>${manca.map((x) => `<li>${esc(x)}</li>`).join('')}</ul><p class="muted">Sono campi che arrivano solo da te o da un documento: la build non li ipotizza. Finché mancano, il blocco non compare nella scheda e la scheda resta bozza.</p></section>`
+  const todo = p.bozza && manca.length
+    ? `<section class="todo"><h2 id="da-verificare">Informazioni in attesa di conferma</h2><ul>${manca.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></section>`
     : '';
   const chars = (p.caratteristiche || []).filter((c) => isConfirmed(c));
   return `<article class="prop">
@@ -526,7 +510,7 @@ function schedaPage(p, prefix) {
     <p class="eyebrow">${inCatalogoSoloAnteprima(p) ? '<span class="tag-bozza">ANTEPRIMA INTERNA · BOZZA</span> ' : ''}${esc(p.tipologia || ('Immobile · ' + (p.zona || cfg.area_servizio.comune_principale)))}</p>
     <h1>${esc(p.titolo)}</h1>
     <p class="prop-loc">${esc([p.zona, p.comune + ' (PC)'].filter(Boolean).join(' · '))}</p>
-    <div class="prop-meta">${statoBadge(p)}<span class="prop-price">${esc(prezzo(p) || 'Prezzo riservato')}</span></div>
+    <div class="prop-meta">${statoBadge(p)}${prezzo(p) ? `<span class="prop-price">${esc(prezzo(p))}</span>` : ''}</div>
     ${p.data_modifica ? `<p class="prop-updated">Scheda aggiornata il ${esc(p.data_modifica)} · rif. ${esc(p.id || p.slug)}</p>` : ''}
   </div></header>
   <div class="wrap prop-grid">
@@ -547,14 +531,14 @@ function schedaPage(p, prefix) {
     <aside class="prop-side">
       ${dataRow(p)}
       <div class="side-box">
-        <p class="side-k">Parla con chi segue l'immobile</p>
+        <p class="side-k">Contatti per l'immobile</p>
         <a class="side-tel" href="tel:${attr(pro.telefono_e164)}">${esc(pro.telefono_display)}</a>
-        <p class="side-note">${esc(pro.nome_completo)}${isConfirmed(pro.anno_inizio_attivita) ? ', agente iscritto al ruolo di Piacenza dal ' + esc(pro.qualifica_albo.iscrizione) : ''}. Visita, documenti e trattativa: insieme, senza passaggi in segreteria.</p>
+        <p class="side-note"><a href="https://wa.me/${attr(String(pro.whatsapp || pro.telefono_e164).replace(/\D/g, ''))}" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></p>
       </div>
       <div class="side-box side-box--alt">
         <p class="side-k">Non è quella giusta?</p>
         <p class="side-note">Dimmi cosa cerchi: la ricerca parte da te, non da quello che ho in vetrina.</p>
-        <a class="btn btn-outline btn-sm" href="${rel(prefix + 'immobile/' + p.slug + '.html', 'index.html')}#ricerca">Ricerca personalizzata</a>
+        <a class="btn btn-outline btn-sm" href="${rel(prefix + 'immobile/' + p.slug + '.html', 'index.html')}#la-villa-non-fa-per-te">Ricerca personalizzata</a>
       </div>
     </aside>
   </div>
@@ -585,7 +569,7 @@ function catalogoPage() {
     return '<section class="section"><div class="wrap">'
       + '<h1>Immobili a Rivergaro</h1>'
       + '<p class="muted">Le proposte pubblicate riguardano Rivergaro. In questo momento non ci sono schede con dati completi da pubblicare: è una scelta di metodo, non un\'assenza di case in zona.</p>'
-      + '<div class="empty-state"><p>Se mi dici cosa cerchi, la ricerca parte oggi e ti contatto quando trovo qualcosa di coerente — anche prima che finisca in vetrina.</p><a class="btn btn-primary" href="index.html#ricerca">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
+      + '<div class="empty-state"><p>Se mi dici cosa cerchi, la ricerca parte oggi e ti contatto quando trovo qualcosa di coerente — anche prima che finisca in vetrina.</p><a class="btn btn-primary" href="index.html#la-villa-non-fa-per-te">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
       + '<p class="draft-note">Schede in bozza (non indicizzate, solo per te): ' + tutteProp().filter((p) => p.bozza).map((p) => `<a href="immobile/${esc(p.slug)}.html">${esc(p.slug)}</a>`).join(', ') + '</p>'
       + '</div></section>';
   }
@@ -594,7 +578,7 @@ function catalogoPage() {
     + '<p class="muted">Ogni scheda pubblicata qui è una scheda verificata: i dati che non ho in mano non vengono scritti, nemmeno come "circa".</p>'
     + filterBar(list)
     + '<ul class="grid-cards" id="catalogo">' + list.map((p) => cardImmobile(p, 'immobili.html')).join('') + '</ul>'
-    + '<div class="catalog-cta"><p>Ti serve qualcosa che qui non c\'è?</p><a class="btn btn-outline" href="index.html#ricerca">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
+    + '<div class="catalog-cta"><p>Ti serve qualcosa che qui non c\'è?</p><a class="btn btn-outline" href="index.html#la-villa-non-fa-per-te">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
     + '</div></section>';
 }
 
@@ -638,7 +622,7 @@ function head(page, prefix) {
   c.push('<meta name="description" content="' + attr(desc) + '">');
   if (page.noindex || page.robots_off || !cfg.site.robots_indexable) c.push('<meta name="robots" content="noindex, nofollow">');
   else c.push('<meta name="robots" content="index, follow">');
-  c.push(`<meta name="author" content="${attr(pro.brand)}">`);
+  c.push('<meta name="author" content="Immobili a Rivergaro">');
   c.push(`<meta name="theme-color" content="${attr(cfg.site.theme_color)}">`);
   c.push('<link rel="canonical" href="' + attr(url) + '">');
   c.push('<meta property="og:type" content="' + (page.immobile ? 'article' : 'website') + '">');
@@ -650,7 +634,7 @@ function head(page, prefix) {
   if (isConfirmed(cfg.seo_geo.og_image)) c.push('<meta property="og:image" content="' + attr(abs(BASE, '/' + cfg.seo_geo.og_image)) + '">');
   c.push('<meta name="twitter:card" content="' + attr(cfg.seo_geo.twitter_card) + '">');
   if (page.description) c.push('<meta name="keywords" content="' + attr((cfg.site.keywords || []).join(', ')) + '">');
-  c.push('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-family=%22Georgia,serif%22 font-size=%2217%22 font-weight=%22700%22 fill=%22%23ec4899%22 text-anchor=%22middle%22%3ED%3C/text%3E%3C/svg%3E">');
+  c.push('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Cpath d=%22M4 14L16 4l12 10v14H4z%22 fill=%22none%22 stroke=%22%23d4a520%22 stroke-width=%222%22/%3E%3C/svg%3E">');
   c.push('<link rel="preconnect" href="https://fonts.googleapis.com">');
   c.push('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
   c.push('<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">');
@@ -698,28 +682,30 @@ function fill(tpl, prefix, page) {
   page = page || {};
   if (!page.path) page.path = 'index.html';
   const nav = (page.nav || ['immobili', 'ricerca', 'zona', 'guide', 'contatti']);
-  const labels = { immobili: 'Immobili', ricerca: 'Ricerca personalizzata', zona: 'Zone', guide: 'Guide', contatti: 'Contatti' };
+  const labels = { proposta: 'Immobile', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', contatti: 'Contatti' };
   const links = nav
     .map((k) => {
-      const target = { immobili: 'immobili.html', ricerca: '#ricerca', zona: '#zona', guide: '#guide', contatti: '#contatti' }[k];
+      const target = { proposta: '#immobile-in-evidenza', richiesta: '#la-villa-non-fa-per-te', ricerca: '#la-villa-non-fa-per-te', immobili: 'immobili.html', zona: '#zona', guide: '#guide', contatti: 'index.html#la-villa-non-fa-per-te' }[k];
       if (k === 'immobili' && !exists('immobili.html')) return `<a href="#immobili">${labels[k]}</a>`;
       if (!target) return '';
-      const href = target.startsWith('#') ? target : exists(target) ? rel(page.path, target) : '#immobili';
+      const href = target.startsWith('#') ? target : target.includes('#') ? rel(page.path, target.split('#')[0]) + '#' + target.split('#').slice(1).join('#') : exists(target) ? rel(page.path, target) : '#immobili';
       return `<a href="${href}">${labels[k]}</a>`;
     })
     .join('\n        ');
   const map = {
     NAV: links,
-    BRAND: esc(pro.nome_completo),
-    BRAND_FULL: esc(pro.brand),
-    CLAIM: 'Case a Rivergaro',
+    BRAND: 'Rivergaro',
+    BRAND_FULL: 'Immobili a Rivergaro',
+    BRAND_MARK: '⌂',
+    CLAIM: 'Case in vendita',
     TEL: attr(pro.telefono_e164),
     TEL_LABEL: esc(pro.telefono_display),
     EMAIL: attr(pro.email),
     YEAR: String(year),
     FOOTER_NAV: footerNav(prefix, page),
-    NAP: napText(),
-    SOCIAL: socialList(),
+    NAP: page.path.startsWith('legal/') ? napText()
+      : `<a href="tel:${attr(pro.telefono_e164)}">Telefono: ${esc(pro.telefono_display)}</a> · <a href="https://wa.me/${attr(String(pro.whatsapp || pro.telefono_e164).replace(/\D/g, ''))}" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a>`,
+    SOCIAL: '',
     PREFIX: prefix,
     P0: prefix,
   };
@@ -735,7 +721,7 @@ function napText() {
 function footerNav(prefix, page) {
   const items = [];
   if (exists('immobili.html')) items.push(['Immobili', 'immobili.html']);
-  items.push(['Ricerca personalizzata', 'index.html#ricerca']);
+  items.push(['Ricerca personalizzata', 'index.html#la-villa-non-fa-per-te']);
   if (exists('contatti.html')) items.push(['Contatti', 'contatti.html']);
   if (exists('chi-sono.html')) items.push(['Chi sono', 'chi-sono.html']);
   items.push(['Privacy', 'legal/privacy.html']);
@@ -892,6 +878,40 @@ function buildDraft() {
 }
 
 
+function immobileEvidenza() {
+  const list = catalogo();
+  if (!list.length) {
+    return '<div class="empty-state"><p>Al momento non ci sono proposte pubblicate. Se mi racconti cosa cerchi, posso capire da dove partire.</p></div>';
+  }
+  // Il layout mette in primo piano la singola proposta; se il catalogo crescerà,
+  // mantiene visibili tutte le schede invece di nasconderne qualcuna.
+  if (list.length > 1) {
+    return '<ul class="grid-cards">' + list.map((p) => cardImmobile(p, 'index.html')).join('') + '</ul>';
+  }
+  const p = list[0];
+  const url = rel('index.html', 'immobile/' + p.slug + '.html');
+  const file = (p.immagini || []).filter(Boolean)[0];
+  const meta = file ? imgMeta(p.slug, file) : null;
+  const photo = file
+    ? `<img src="img/${attr(p.slug)}/${attr(file)}" alt="${attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || ''))}" width="${meta && meta.width || 1200}" height="${meta && meta.height || 800}" loading="lazy" decoding="async">`
+    : '<span class="featured-media-empty">Nessuna foto pubblicata</span>';
+  const features = (p.caratteristiche || []).filter(isConfirmed);
+  const place = [p.zona, p.comune].filter(isConfirmed).join(' · ');
+  return `<article class="featured-property">
+    <a class="featured-property-media" href="${url}" aria-label="Apri la scheda: ${attr(p.titolo)}">
+      ${photo}${statoBadge(p)}
+    </a>
+    <div class="featured-property-content">
+      <p class="eyebrow">${esc(place || 'Rivergaro')}</p>
+      <h3><a href="${url}">${esc(p.titolo)}</a></h3>
+      ${prezzo(p) ? `<p class="featured-property-price">${esc(prezzo(p))}</p>` : ''}
+      ${p.descrizione && isConfirmed(p.descrizione) ? `<p class="featured-property-description">${esc(p.descrizione)}</p>` : ''}
+      ${features.length ? `<ul class="featured-property-facts">${features.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      <a class="btn btn-outline featured-property-link" href="${url}">Scopri la scheda completa <span aria-hidden="true">→</span></a>
+    </div>
+  </article>`;
+}
+
 function cardImmobile(p, prefix) {
   const img = (p.immagini || []).filter(Boolean)[0];
   const url = rel(prefix, 'immobile/' + p.slug + '.html');
@@ -950,39 +970,29 @@ function sitemap() {
 function llms() {
   const elencoLlms = tutteProp().filter(pubblicabili);
   const L = [];
-  L.push('# ' + pro.brand + ' — ' + cfg.site.dominio, '');
-  L.push('> ' + (isConfirmed(pro.anno_inizio_attivita) ? 'Seguo gli acquirenti a Rivergaro dal ' + pro.anno_inizio_attivita + '.' : 'Seguo gli acquirenti che cercano casa a Rivergaro.') + ' Ricerca personalizzata, visite accompagnate, verifica tecnica e documentale, trattativa e rogito.', '');
-  L.push('## A chi serve questo sito');
-  L.push('- Chi vuole comprare casa a Rivergaro.');
-  L.push('- Non è il sito per chi vende: quello è ' + cfg.ecosistema.sito_madre.url + '.', '');
+  L.push('# Annunci immobiliari a Rivergaro — ' + cfg.site.dominio, '');
+  L.push('> Una proposta immobiliare a Rivergaro, con informazioni pubblicate solo quando disponibili e confermate.', '');
   L.push('## Contatti');
-  L.push('- Telefono e WhatsApp: ' + pro.telefono_display);
-  L.push('- Email: ' + pro.email);
-  if (addr) L.push('- Studio: ' + addr.street + ', ' + addr.cap + ' ' + addr.localita + ' (' + addr.provincia + ')');
-  if (isConfirmed(pro.partita_iva)) L.push('- P.IVA: ' + pro.partita_iva);
-  L.push('- Sito: ' + BASE + '/');
-  const soc = Object.entries(pro.social || {}).filter(([, v]) => isConfirmed(v));
-  if (soc.length) { L.push(''); L.push('## Canali social'); soc.forEach(([k, v]) => L.push('- ' + k + ': ' + v)); }
-  L.push('', '## Zona coperta');
-  L.push('- Rivergaro (PC) si trova in Val Trebbia, in Emilia-Romagna.', '');
-  const cat = elencoLlms;
+  L.push('- Telefono: ' + pro.telefono_display);
+  L.push('- WhatsApp: ' + pro.telefono_display);
+  L.push('- Email: ' + pro.email, '');
+  L.push('## Zona');
+  L.push('- Rivergaro (PC), in Val Trebbia. La Val Trebbia è un riferimento geografico, non una dichiarazione di copertura dell’intera valle.', '');
   L.push('## Immobili pubblicati');
-  if (!cat.length) L.push('Nessun immobile in vetrina al momento: gli acquirenti vengono guidati alla ricerca personalizzata, che intercetta anche immobili non ancora listati. Questa è una scelta, non una mancanza di offerta.');
-  else cat.forEach((p) => L.push(`- ${p.titolo} — ${p.zona}, ${p.comune} · ${p.tipologia} · ${p.superficie} m² · ${prezzo(p)} · ${BASE}/immobile/${p.slug}.html`));
-  L.push('', '## Metodo');
-  L.push('1. Raccolta della richiesta (zona, tipologia, budget, vincoli reali).');
-  L.push('2. Ricerca su più fonti, non solo sul portafoglio diretto.');
-  L.push('3. Visite accompagnate con verifica urbanistica e catastale prima della proposta.');
-  L.push('4. Trattativa e scrittura del preliminare, poi rogito dal notaio.', '');
-  L.push('## Dati verificati');
-  L.push('Nessun prezzo, metratura, rendita o dato di mercato è esposto se non documentato. Le pagine non contengono recensioni, punteggi o statistiche inventate.');
+  if (!elencoLlms.length) L.push('Nessun immobile pubblicato al momento.');
+  else elencoLlms.forEach((p) => {
+    const details = [[p.zona, p.comune].filter(Boolean).join(', '), p.tipologia, p.unita_abitative ? p.unita_abitative + ' unità abitative' : null, p.caratteristiche && p.caratteristiche.includes('12 vani') ? '12 vani' : null].filter(Boolean);
+    L.push(`- ${p.titolo} — ${details.join(' · ')} · ${BASE}/immobile/${p.slug}.html`);
+    if (p.descrizione) L.push('  ' + p.descrizione);
+  });
+  L.push('', 'Non sono pubblicati prezzi né superfici non confermati. Le immagini sono mostrate solo quando vengono fornite foto reali dell’immobile.');
   return L.join('\n') + '\n';
 }
 
 /* -------------------------------------------------------------------- main */
 
 const PAGES = [
-  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site' },
+  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', nav: ['proposta', 'richiesta'] },
   { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata | ' + cfg.site.dominio, canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/privacy.html', source: 'privacy.md', title: 'Privacy Policy | ' + cfg.site.dominio, canonical: '/legal/privacy.html', jsonld: 'none', nav: [] },
   { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },
@@ -1009,7 +1019,7 @@ function main() {
   refreshMediaCache();
   // catalogo + dati pubblici per i filtri client-side
   const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro | comprarecasarivergaro.it', description: 'Case e ville in vendita a Rivergaro, con schede verificate. Filtri per zona, tipologia e budget.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'zona', 'guide', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
-  fs.writeFileSync(path.join(OUT, 'immobili.html'), catHtml);
+  fs.writeFileSync(path.join(OUT, 'immobili.html'), cleanHtml(catHtml));
   console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
   fs.mkdirSync(path.join(OUT, 'data'), { recursive: true });
   const pubblici = catalogo().map((p) => ({
@@ -1040,14 +1050,14 @@ function main() {
       .replace('{{SCRIPT}}', `<script src="${rel(page.path, 'js/main.js')}" defer></script>`)
       .replace(/\{\{[A-Z0-9_]+\}\}/g, '');
     fs.mkdirSync(path.join(OUT, 'immobile'), { recursive: true });
-    fs.writeFileSync(path.join(OUT, page.path), html);
+    fs.writeFileSync(path.join(OUT, page.path), cleanHtml(html));
     console.log('✓ ' + page.path + (p.bozza ? '  [BOZZA · noindex]' : '') + ' (' + (html.length / 1024).toFixed(1) + 'KB)');
   }
   for (const p of PAGES) {
     if (!readIf(path.join(SRC, 'pages', p.source), '')) { console.warn('pagina saltata: ' + p.source); continue; }
     const html = buildPage(p);
     fs.mkdirSync(path.dirname(path.join(OUT, p.path)), { recursive: true });
-    fs.writeFileSync(path.join(OUT, p.path), html);
+    fs.writeFileSync(path.join(OUT, p.path), cleanHtml(html));
     console.log('✓ ' + p.path + ' (' + (html.length / 1024).toFixed(1) + 'KB)');
   }
   fs.copyFileSync(path.join(SRC, 'css', 'main.css'), path.join(OUT, 'css', 'main.css'));
