@@ -1,15 +1,11 @@
 ---
-title: Case in vendita a Rivergaro e in Val Trebbia | Davide Scaglia
-description: Cerchi casa a Rivergaro o in Val Trebbia? Seguo gli acquirenti dalla ricerca al rogito: ricerca personalizzata, visite con verifica tecnica, trattativa assistita.
+title: Case in vendita a Rivergaro Val Trebbia | Davide Scaglia
+description: Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte. Ricerca personalizzata e visite accompagnate con Davide Scaglia.
 canonical: /
 ---
 
 ::hero {
-  "h1": "Cerchi casa a Rivergaro o in Val Trebbia?",
-  "lead": [
-    "A Rivergaro (PC) si compra casa affidandosi a chi gestisce la ricerca degli acquirenti dalla prima chiamata al rogito. Seguo personalmente le richieste su tutto il comune di Rivergaro e lungo l'asta della Val Trebbia, con la sede in frazione Pieve Dugliara.",
-    "Lavoro solo con chi sta cercando: filtro le schede, verifico la parte urbanistica e catastale prima delle visite e tratto per te. Se non ho l'immobile giusto in vetrina, lo cerco io."
-  ],
+  "h1": "Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte.",
   "cta1": "Raccontami che casa cerchi",
   "note": [
     "Rispondo di persona, di solito entro un giorno lavorativo. Nessun modulo che sparisce in una casella condivisa.",
@@ -27,7 +23,7 @@ canonical: /
   ]
 }
 
-## Risposte rapide per chi compra in Val Trebbia
+## Risposte rapide per chi compra casa a Rivergaro
 
 ::risposte_pronte {
   "items": [
@@ -38,7 +34,7 @@ canonical: /
   ]
 }
 
-## Immobili a Rivergaro e in Val Trebbia
+## Immobili a Rivergaro
 
 ::immobili {
   "empty": "In questo momento non c'è un immobile in vetrina con scheda completa. Non è una mancanza di case in zona: è il modo in cui lavoro, cioè pubblicare solo immobili verificati. Se mi dici cosa cerchi, la ricerca inizia oggi."
@@ -49,12 +45,6 @@ canonical: /
 Raccontami cosa cerchi: è il punto di partenza di tutto. Compila i campi essenziali, ti rispondo di persona con una prima selezione o con un motivo onesto per cui in questo momento conviene aspettare.
 
 ::form_ricerca
-
-## Dove lavoro
-
-::zona_coverage
-
-Se ti serve una lettura della zona — distanze, esposizione, strade in inverno, chi ha davvero comprato in questi anni — te la do in chiamata, non in una pagina scritta per i motori di ricerca.
 
 ## Guide per chi compra
 
