@@ -1,0 +1,33 @@
+{
+  "versione": "0.1.0",
+  "nota_file": "Unico posto dove si inseriscono gli immobili. I campi 'DA CONFERMARE' o null vengono OMESSE dalla build, mai mostrate al pubblico. note_interne e bozza non vengono mai renderizzate.",
+  "immobili": [
+    {
+      "id": "ANC-001",
+      "slug": "villa-tre-unita-ancarano",
+      "bozza": false,
+      "stato": "Disponibile",
+      "tipologia": "Villa indipendente con 3 unità abitative",
+      "titolo": "Villa indipendente con 3 unità abitative e arcate in mattoni a vista — Ancarano, Rivergaro",
+      "comune": "Rivergaro",
+      "zona": "Ancarano",
+      "prezzo": null,
+      "superficie": null,
+      "locali": null,
+      "unita_abitative": 3,
+      "pertinenze": null,
+      "caratteristiche": [
+        "3 unità abitative indipendenti",
+        "finiture in mattoni a vista",
+        "ampie arcate",
+        "posizione tranquilla e residenziale"
+      ],
+      "descrizione": "In posizione tranquilla e residenziale nella località Ancarano, a pochi minuti dal centro di Rivergaro, proponiamo splendida villa indipendente con 3 unità abitative, caratterizzata da un'architettura elegante con finiture in mattoni a vista e ampie arcate.",
+      "immagini": [],
+      "video": [],
+      "data_pubblicazione": "2026-10-23",
+      "data_modifica": "2026-10-23",
+      "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex."
+    }
+  ]
+}

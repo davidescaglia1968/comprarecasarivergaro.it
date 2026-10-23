@@ -1,0 +1,13 @@
+{
+  "name": "comprarecasarivergaro.it",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Sito per gli acquirenti di case a Rivergaro e in Val Trebbia — Davide Scaglia. HTML/CSS/JS nativo, build statica senza dipendenze.",
+  "scripts": {
+    "build": "node build.js",
+    "check": "node build.js --check",
+    "media": "node build.js media",
+    "serve": "python3 -m http.server 8080 --bind 0.0.0.0"
+  },
+  "engines": { "node": ">=18" }
+}
