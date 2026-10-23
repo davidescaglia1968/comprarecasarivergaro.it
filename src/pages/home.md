@@ -8,7 +8,7 @@ canonical: /
   "h1": "Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte.",
   "cta1": "Raccontami che casa cerchi",
   "note": [
-    "Rispondo di persona, di solito entro un giorno lavorativo. Nessun modulo che sparisce in una casella condivisa.",
+    "Chiamami a questo numero. Quando non rispondo subito inviami un messaggio su WhatsApp con i tuoi dati, ti richiamo appena possibile.",
     "**Telefono e WhatsApp diretti: +39 328 693 0033.**"
   ]
 }
