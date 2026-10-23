@@ -2,7 +2,7 @@
   "_meta": {
     "file": "site-config.json",
     "scope": "Fonte unica di dati, brand e contatti per comprarecasarivergaro.it",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "fase": 1,
     "regola_dati": "I valori in chiaro sono comunicati da Davide Scaglia o gia' pubblicati su venderecasapiacenza.it. Tutto cio' che non e' confermato vale 'DA CONFERMARE' e non deve mai comparire nella UI pubblica ne' nelle meta. Se un campo e' null, il template omette l'intero blocco invece di mostrare un segnaposto.",
     "manutenzione": "I token citati in DESIGN_SYSTEM.md sono copia dichiarativa di questi valori: da Fase 3 sara' build.js a iniettarli nel CSS generato. Non mantenere gli stessi dati in due posti.",
@@ -243,7 +243,7 @@
     },
     "regola_pubblicazione": "Solo immobili con stato Disponibile o In trattativa compaiono nel catalogo e nella sitemap; Venduto/Sospeso/Ritirato restano su URL stabili con avviso 'non piu' disponibile' e proposta di ricerca personalizzata.",
     "anteprima_bozze": true,
-    "nota_anteprima": "true = le schede marcate bozza:true compaiono nel catalogo e nella home, con la scritta 'BOZZA', cosi' Davide puo' vedere l'impaginazione prima che i dati siano completi. Vanno pero' tenute fuori da sitemap, llms.txt e indice di Google (noindex automatico). Prima di puntare il dominio: mettere false."
+    "nota_anteprima": "Pubblicazione del 23/10/2026 voluta da Davide: la scheda ANC-001 esce gia' indicizzata (bozza:false) pur con campi mancanti, perche' una pagina noindex NON viene considerata da Google e non accumula nulla. Se una scheda e' parziale ma vera, indicizzarla e' meglio; bozza:true va usato solo per prove che non devono essere viste."
   },
   "seo_geo": {
     "canonical_assoluti": true,
@@ -478,5 +478,10 @@
     ],
     "immagini": "da cartelle che Davide indichera': nessun file verra' usato prima della conferma dello slug",
     "note_interne": "Primo annuncio reale del sito. Dati solo da Davide: la build non genera valori mancanti, li lascia \"DA CONFERMARE\" e il blocco viene omesso."
+  },
+  "publish_policy": {
+    "regola": "Si pubblica con i dati che ci sono. Nessun campo vuoto viene mostrato e nessun campo viene ipotizzato. Ogni nuovo dato arrivato aggiorna data_modifica, lastmod in sitemap e il blocco 'aggiornata il': e' li' il segnale di freschezza che premia la costanza, non il numero di parole.",
+    "cosa_non_fare": "Non pubblicare prezzi o metrature 'presunti' in attesa di conferma: un dato sbagliato in una pagina gia' indicizzata vale meno di una pagina in meno.",
+    "scadenza_bozza": "Se una scheda resta senza prezzo per piu' di 14 giorni dalla pubblicazione, passare lo stato a 'Riservato' e tenerla fuori da catalogo."
   }
 }

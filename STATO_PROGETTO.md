@@ -1,6 +1,17 @@
 # STATO_PROGETTO — comprarecasarivergaro.it
 Aggiornato: 2026-10-23 (sera) · **Fase 3 anticipata su richiesta**: prima scheda reale (bozza) visibile e pubblicabile. Fase 2 e anagrafica da visura: complete.
 
+## Pubblicazione (23/10/2026, ore serali)
+
+Sito pubblicato su GitHub Pages dal root del ramo `main`, dominio `comprarecasarivergaro.it` (CNAME + `.nojekyll` nel repo, `robots.txt` e `404.html` generati dalla build).
+
+**Scelta presa insieme a Davide:** la scheda ANC-001 esce **già indicizzata** (`bozza:false`) anche se priva di prezzo, superfici e foto. Motivazione: una pagina `noindex` non viene considerata da Google e non accumula nulla, mentre una pagina vera e parziale può essere aggiornata nel tempo. Conseguenze applicate per non ingannare nessuno:
+- nessun campo vuoto esposto (non esiste "0 locali" o "— m²"), nessun valore ipotizzato;
+- in vece del prezzo: **"Prezzo riservato"** nella scheda e **"Prezzo riservato — da confermare con il proprietario"** nella card;
+- nel testo della scheda una riga che dice che prezzo, superfici e dati tecnici arrivano con la conferma del proprietario;
+- `publish_policy` in config: se una scheda resta senza prezzo oltre 14 giorni, stato "Riservato" e fuori da catalogo;
+- ogni nuovo dato aggiorna `data_modifica` → `lastmod` in sitemap + "scheda aggiornata il": è qui il segnale di freschezza che Davide si aspetta, non nelle parole in più.
+
 ## Fase 3 — cosa è stato costruito e come si comporta la bozza
 
 Prima scheda inserita: `villa-tre-unita-ancarano` (rif. `ANC-001`). Il testo è **quello scritto da Davide, alla lettera**; `bozza: true` perche' mancano prezzo, superfici, locali, stato catastale, APE e foto.

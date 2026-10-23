@@ -394,7 +394,7 @@ function prezzo(p) {
 }
 function prezzoCell(p) {
   const v = prezzo(p);
-  return v ? `<p class="card-price">${v}</p>` : `<p class="card-price card-price--todo">Prezzo in corso di conferma</p>`;
+  return v ? `<p class="card-price">${v}</p>` : `<p class="card-price card-price--todo">Prezzo riservato — da confermare con il proprietario</p>`;
 }
 function statoBadge(p) {
   return `<span class="badge badge--${(p.stato || '').toLowerCase().replace(/\s+/g, '-')}" role="img" aria-label="Stato: ${attr(p.stato)}">${esc(p.stato)}</span>`;
@@ -528,7 +528,7 @@ function schedaPage(p, prefix) {
     <p class="eyebrow">${inCatalogoSoloAnteprima(p) ? '<span class="tag-bozza">ANTEPRIMA INTERNA · BOZZA</span> ' : ''}${esc(p.tipologia || ('Immobile · ' + (p.zona || cfg.area_servizio.comune_principale)))}</p>
     <h1>${esc(p.titolo)}</h1>
     <p class="prop-loc">${esc([p.zona, p.comune + ' (PC)'].filter(Boolean).join(' · '))}</p>
-    <div class="prop-meta">${statoBadge(p)}<span class="prop-price">${esc(prezzo(p) || 'Prezzo in corso di conferma')}</span></div>
+    <div class="prop-meta">${statoBadge(p)}<span class="prop-price">${esc(prezzo(p) || 'Prezzo riservato')}</span></div>
     ${p.data_modifica ? `<p class="prop-updated">Scheda aggiornata il ${esc(p.data_modifica)} · rif. ${esc(p.id || p.slug)}</p>` : ''}
   </div></header>
   <div class="wrap prop-grid">
@@ -918,6 +918,15 @@ function cardImmobile(p, prefix) {
     </div></article></li>`;
 }
 
+function robots() {
+  const linee = ['User-agent: *'];
+  linee.push((cfg.site.robots_indexable ? 'Allow' : 'Disallow') + ': /');
+  linee.push('');
+  linee.push('Sitemap: ' + BASE + '/sitemap.xml');
+  linee.push('');
+  return linee.join('\n');
+}
+
 /* --------------------------------------------------------------- sitemap++ */
 
 function pagesList() {
@@ -979,6 +988,7 @@ const PAGES = [
   { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site' },
   { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata | ' + cfg.site.dominio, canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/privacy.html', source: 'privacy.md', title: 'Privacy Policy | ' + cfg.site.dominio, canonical: '/legal/privacy.html', jsonld: 'none', nav: [] },
+  { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/cookie.html', source: 'cookie.md', title: 'Cookie Policy | ' + cfg.site.dominio, canonical: '/legal/cookie.html', jsonld: 'none', nav: [] },
 ];
 
@@ -1047,6 +1057,7 @@ function main() {
   fs.copyFileSync(path.join(SRC, 'js', 'main.js'), path.join(OUT, 'js', 'main.js'));
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap());
   fs.writeFileSync(path.join(OUT, 'llms.txt'), llms());
+  fs.writeFileSync(path.join(OUT, 'robots.txt'), robots());
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
   fs.writeFileSync(path.join(OUT, 'CNAME'), cfg.site.dominio + '\n');
   const m = mediaScan();
