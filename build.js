@@ -907,7 +907,6 @@ function immobileEvidenza() {
       ${prezzo(p) ? `<p class="featured-property-price">${esc(prezzo(p))}</p>` : ''}
       ${p.descrizione && isConfirmed(p.descrizione) ? `<p class="featured-property-description">${esc(p.descrizione)}</p>` : ''}
       ${features.length ? `<ul class="featured-property-facts">${features.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
-      <a class="btn btn-outline featured-property-link" href="${url}">Scopri la scheda completa <span aria-hidden="true">→</span></a>
     </div>
   </article>`;
 }
