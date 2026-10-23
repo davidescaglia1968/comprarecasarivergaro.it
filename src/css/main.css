@@ -179,8 +179,6 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .featured-property-description{color:#d4d4d8;max-width:60ch}
 .featured-property-facts{list-style:none;padding:0;margin:var(--s4) 0;display:flex;flex-wrap:wrap;gap:8px}
 .featured-property-facts li{border:1px solid var(--line);background:rgba(10,10,10,.35);border-radius:999px;padding:6px 11px;color:#e4e4e7;font-size:.8125rem}
-.featured-property-link{margin-top:var(--s2);background:linear-gradient(135deg,#d4a520 0%,#b8860b 100%);color:#1c1a17;border-color:transparent;font-weight:700;box-shadow:0 12px 28px -18px rgba(212,165,32,.8)}
-.featured-property-link:hover{background:linear-gradient(135deg,#e3b638 0%,#d4a520 100%);color:#1c1a17;border-color:transparent}
 @media(hover:hover){.featured-property:hover .featured-property-media img{transform:scale(1.035)}}
 @media(max-width:760px){.featured-property{grid-template-columns:1fr}.featured-property-media,.featured-property-media img{min-height:clamp(230px,65vw,380px)}.featured-property-content{padding:24px}}
 
