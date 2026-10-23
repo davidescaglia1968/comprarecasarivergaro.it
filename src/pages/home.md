@@ -1,57 +1,44 @@
 ---
-title: Case in vendita a Rivergaro Val Trebbia | Davide Scaglia
-description: Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte. Ricerca personalizzata e visite accompagnate con Davide Scaglia.
+title: Villa indipendente con 3 unità ad Ancarano | Rivergaro
+description: Villa indipendente ad Ancarano, Rivergaro: 12 vani e 3 unità abitative indipendenti. Contattami per informazioni.
 canonical: /
 ---
 
 ::hero {
-  "h1": "Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte.",
-  "cta1": "Raccontami che casa cerchi",
-  "note": [
-    "Chiamami a questo numero. Quando non rispondo subito inviami un messaggio su WhatsApp con i tuoi dati, ti richiamo appena possibile.",
-    "**Telefono e WhatsApp diretti: +39 328 693 0033.**"
-  ]
+  "eyebrow": "IMMOBILE IN VENDITA · ANCARANO",
+  "h1": "LA TUA CASA IN VAL TREBBIA: VILLA INDIPENDENTE CON TRIPLICE POSSIBILITÀ ABITATIVA",
+  "lead": [
+    "Località Ancarano · 29029 Rivergaro (PC)",
+    "Immagina di vivere in spazi ampi e luminosi, fare colazione sotto un porticato luminoso e avere ciò di cui hai bisogno a soli 2 minuti di auto. Questa non è solo una casa: è uno stile di vita."
+  ],
+  "cta": "Scopri la villa"
 }
 
-## Come funziona una richiesta, in tre passaggi
+## Immobile in evidenza
 
-::guida_stato {
-  "steps": [
-    { "titolo": "Mi racconti cosa cerchi", "testo": "Zona, tipologia, budget reale, e soprattutto cosa non deve avere la casa: pendii difficili, da ristrutturare per forza, senza posto auto. Dieci minuti al telefono o un messaggio scritto, come preferisci." },
-    { "titolo": "Cerco io, anche dove non vedi", "testo": "Incrocio il mio portafoglio con le richieste che arrivano dai proprietari e con ciò che si muove in zona. Gli immobili passano da qui quando hanno una scheda verificata, non quando è comodo pubblicarli." },
-    { "titolo": "Visita, verifica, trattativa", "testo": "Prima di fare una proposta controlliamo conformità urbanistica, dati catastali, spese e vincoli. Poi si discute il prezzo con numeri alla mano, e si arriva al preliminare e al rogito senza sorprese dell'ultima settimana." }
-  ]
-}
+::immobile_evidenza
 
-## Risposte rapide per chi compra casa a Rivergaro
+## Spazi e possibilità
 
-::risposte_pronte {
-  "items": [
-    { "d": "Quante case avete in vendita a Rivergaro?", "r": "Nessun numero promesso: gli immobili pubblicati in questo momento sono quelli con scheda verificata, e li trovi in fondo a questa pagina o nella sezione immobili. Se il catalogo è in aggiornamento, la strada più rapida è la ricerca personalizzata: una parte relevante degli immobili di valle non arriva mai in vetrina." },
-    { "d": "Voi lavorate solo per chi vende?", "r": "No. Questo sito esiste per gli acquirenti: la ricerca parte dalla tua richiesta, non dall'elenco da smaltire. Chi vuole vendere usa venderecasapiacenza.it." },
-    { "d": "Si può comprare un rustico in Val Trebbia senza brutte sorprese?", "r": "Sì, se prima della proposta verifichi tre cose: la destinazione urbanistica dell'edificio e del terreno, la regolarità delle sanatorie e i vincoli paesaggistici o idrogeologici. Nelle schede che pubblico trovi scritto se questi controlli sono già fatti o da fare, con i documenti che ho in mano." },
-    { "d": "Le case che cercate sono anche sui portali?", "r": "Quello che pubblico qui viene aggiornato anche sui portali che uso per la promozione, con lo stesso prezzo e le stesse metrature. Se una scheda qui è più recente, chiedi pure: a volte la differenza è una visita fatta ieri." }
-  ]
-}
+Situata in una posizione strategica e riservata, questa villa indipendente ha finiture e archi in mattoni a vista. Offre **12 vani** distribuiti in **3 unità abitative completamente indipendenti**.
 
-## Immobili a Rivergaro
+## Una soluzione per progetti diversi
 
-::immobili {
-  "empty": "In questo momento non c'è un immobile in vetrina con scheda completa. Non è una mancanza di case in zona: è il modo in cui lavoro, cioè pubblicare solo immobili verificati. Se mi dici cosa cerchi, la ricerca inizia oggi."
-}
+- **Famiglie** che desiderano vivere vicine ma con la propria privacy.
+- **Investitori lungimiranti** che cercano un immobile con alto potenziale di reddito (affitti separati o B&B).
+- **Appassionati di spazi** che vogliono creare la propria casa, con un ampio giardino privato dove i bambini possono giocare in sicurezza, gli adulti rilassarsi e tenere animali da compagnia.
 
-## Ricerca personalizzata
+## Servizi a portata di mano
 
-Raccontami cosa cerchi: è il punto di partenza di tutto. Compila i campi essenziali, ti rispondo di persona con una prima selezione o con un motivo onesto per cui in questo momento conviene aspettare.
+Il comune di Rivergaro offre servizi utili alla vita quotidiana delle famiglie:
+
+- **Scuole:** Istituto Comprensivo con scuola dell'infanzia, primaria e secondaria, servizio mensa e trasporto scolastico attivi. [Fonte informativa: Tuttitalia](http://www.tuttitalia.it).
+- **Spesa:** supermercati ed esercizi locali.
+- **Salute:** centro medico e farmacie, con servizi di analisi rapide.
+- **Trasporti:** fermata dell'autobus nelle immediate vicinanze, con collegamenti verso Piacenza.
+
+## La villa non fa per te?
+
+Per informazioni sulla villa o per organizzare una visita, chiamami o scrivimi su WhatsApp. Se cerchi altro, raccontami che casa hai in mente.
 
 ::form_ricerca
-
-## Guide per chi compra
-
-::guide_teaser
-
-## Contatti diretti
-
-::contatti_card
-
-::sito_madre_cta

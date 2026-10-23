@@ -8,7 +8,7 @@
       "bozza": false,
       "stato": "Disponibile",
       "tipologia": "Villa indipendente con 3 unità abitative",
-      "titolo": "Villa indipendente con 3 unità abitative e arcate in mattoni a vista — Ancarano, Rivergaro",
+      "titolo": "La tua casa in Val Trebbia: villa indipendente con triplice possibilità abitativa",
       "comune": "Rivergaro",
       "zona": "Ancarano",
       "prezzo": null,
@@ -17,17 +17,18 @@
       "unita_abitative": 3,
       "pertinenze": null,
       "caratteristiche": [
-        "3 unità abitative indipendenti",
-        "finiture in mattoni a vista",
-        "ampie arcate",
-        "posizione tranquilla e residenziale"
+        "12 vani",
+        "3 unità abitative completamente indipendenti",
+        "finiture e archi in mattoni a vista",
+        "ampio giardino privato"
       ],
-      "descrizione": "In posizione tranquilla e residenziale nella località Ancarano, a pochi minuti dal centro di Rivergaro, proponiamo splendida villa indipendente con 3 unità abitative, caratterizzata da un'architettura elegante con finiture in mattoni a vista e ampie arcate.",
+      "descrizione": "Villa indipendente in località Ancarano, Rivergaro, con finiture e archi in mattoni a vista. Offre 12 vani distribuiti in 3 unità abitative completamente indipendenti.",
       "immagini": [],
       "video": [],
       "data_pubblicazione": "2026-10-23",
       "data_modifica": "2026-10-23",
-      "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex."
+      "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex.",
+      "cap": "29029"
     }
   ]
 }

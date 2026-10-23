@@ -244,7 +244,7 @@
     none.className = 'empty-state';
     none.hidden = true;
     none.innerHTML = '<p>Nessuna scheda corrisponde a questi filtri. Prova ad allargare la zona o il budget — oppure dimmi cosa cerchi e cerco io.</p>' +
-      '<a class="btn btn-primary" href="index.html#ricerca">Ricerca personalizzata</a>';
+      '<a class="btn btn-primary" href="index.html#la-villa-non-fa-per-te">Ricerca personalizzata</a>';
     list.parentNode.insertBefore(none, list.nextSibling);
   })();
   var style = document.createElement('style');
