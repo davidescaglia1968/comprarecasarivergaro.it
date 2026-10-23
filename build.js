@@ -293,7 +293,7 @@ const shortcodes = {
         <div class="cta-row"><a class="btn btn-primary" href="#ricerca">${esc(o.cta1)}</a>${second}</div>
       </div>
       <div class="hero-card">
-        <p class="hero-card-label">Parla con chi cerca nella tua zona</p>
+        <p class="hero-card-label">Contatti</p>
         <p class="hero-card-phone"><a href="tel:${attr(pro.telefono_e164)}">${esc(pro.telefono_display)}</a></p>
         <p class="hero-card-mail"><a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></p>
         <hr>

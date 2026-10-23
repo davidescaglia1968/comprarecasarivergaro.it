@@ -104,7 +104,7 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:var(--s7);align-items:start}
 .hero .lead p{color:#d4d4d8;font-size:1.0625rem}
 .hero-card{background:var(--bg-secondary);border:1px solid var(--line);border-radius:var(--radius);padding:var(--s5);box-shadow:var(--shadow)}
-.hero-card-label{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 var(--s2)}
+.hero-card-label{font-size:.75rem;letter-spacing:.12em;color:var(--text-secondary);margin:0 0 var(--s2)}
 .hero-card-phone a{font-family:var(--font-title);font-size:1.6rem;font-weight:700;color:#fff;text-decoration:none;display:block}
 .hero-card-phone a:hover{color:var(--pink-text)}
 .hero-card-mail a{color:var(--text-secondary);text-decoration:none;font-size:.9375rem;word-break:break-word}
