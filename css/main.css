@@ -79,11 +79,10 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 /* ---------------------------------------------------------- header/nav */
 .site-header{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .header-in{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
-.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--grad);font-family:var(--font-title);font-weight:700;font-size:18px;color:#fff}
-.brand-txt{display:flex;flex-direction:column;line-height:1.1}
-.brand-txt strong{font-family:var(--font-title);font-size:1.02rem;font-weight:700}
-.brand-txt em{font-style:normal;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+.brand-logo{position:relative;display:block;flex:0 1 422px;width:min(60vw,422px);line-height:0;text-decoration:none;container-type:inline-size;isolation:isolate}
+.brand-logo img{display:block;width:100%;height:auto}
+.brand-logo-claim{position:absolute;left:31.3%;top:57.5%;width:60.2%;height:17.5%;display:flex;align-items:center;overflow:hidden;padding:0;background-color:#1e1c18;background-image:repeating-linear-gradient(90deg,rgba(60,54,44,.38) 0 1px,transparent 1px 7.11cqw);color:#c7a568;font-family:var(--font-title);font-size:11px;font-weight:500;letter-spacing:2.4px;line-height:1;text-transform:uppercase;white-space:nowrap}
+@supports(font-size:1cqw){.brand-logo-claim{font-size:2.45cqw;letter-spacing:.58cqw}}
 .nav{display:flex;gap:var(--s4);align-items:center}
 .nav a{color:var(--text-secondary);text-decoration:none;font-size:.9375rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
 .nav a:hover{color:#fff;border-bottom-color:var(--pink)}
@@ -291,6 +290,15 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
   .field-grid{grid-template-columns:1fr}
   .contact-list li{grid-template-columns:1fr;gap:2px}
   .cross-cta{flex-direction:column;align-items:flex-start}
+  .brand-logo{flex-basis:min(45vw,260px);width:min(45vw,260px)}
+  .header-in{gap:8px}
+  .header-cta{gap:6px}
+  .header-cta .btn-tel{font-size:.72rem;padding:8px 9px}
+}
+@media (max-width:360px){
+  .brand-logo{flex-basis:40vw;width:40vw}
+  .header-cta .btn-tel{font-size:.68rem;padding:7px 7px}
+  .burger{padding:7px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
