@@ -43,15 +43,7 @@
         "villa-ancarano-esterno-facciata-balconi-26.webp",
         "villa-ancarano-esterno-lato-balconi-27.webp",
         "villa-ancarano-esterno-vista-giardino-28.webp",
-        "villa-ancarano-esterno-facciata-loggiato-29.webp",
-        "villa-ancarano-piano-primo-ingresso-01.webp",
-        "villa-ancarano-piano-primo-salone-101.webp",
-        "villa-ancarano-piano-primo-salone-102.webp",
-        "villa-ancarano-piano-primo-salone-103.webp",
-        "villa-ancarano-piano-primo-salone-104.webp",
-        "villa-ancarano-piano-primo-salone-106.webp",
-        "villa-ancarano-piano-primo-salone-107.webp",
-        "villa-ancarano-piano-primo-salone-108.webp"
+        "villa-ancarano-esterno-facciata-loggiato-29.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -182,66 +174,6 @@
               "thumb": "villa-ancarano-esterno-facciata-loggiato-29-thumb.webp",
               "didascalia": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione.",
               "alt": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione."
-            }
-          ]
-        },
-        {
-          "id": "piano-primo",
-          "titolo": "Abitazione al piano primo",
-          "immagini": [
-            {
-              "file": "villa-ancarano-piano-primo-ingresso-01.webp",
-              "thumb": "villa-ancarano-piano-primo-ingresso-01-thumb.webp",
-              "didascalia": "Ingresso al piano primo con porte in legno e pavimento a disegno geometrico.",
-              "alt": "Ingresso al piano primo con porte in legno e pavimento a disegno geometrico."
-            }
-          ]
-        },
-        {
-          "id": "salone",
-          "titolo": "Salone",
-          "immagini": [
-            {
-              "file": "villa-ancarano-piano-primo-salone-101.webp",
-              "thumb": "villa-ancarano-piano-primo-salone-101-thumb.webp",
-              "didascalia": "Il salone si apre sulla zona pranzo; la portafinestra dà accesso al terrazzo.",
-              "alt": "Il salone si apre sulla zona pranzo; la portafinestra dà accesso al terrazzo."
-            },
-            {
-              "file": "villa-ancarano-piano-primo-salone-102.webp",
-              "thumb": "villa-ancarano-piano-primo-salone-102-thumb.webp",
-              "didascalia": "Vista ampia del salone con camino in mattoni, divano e tavolo da pranzo.",
-              "alt": "Vista ampia del salone con camino in mattoni, divano e tavolo da pranzo."
-            },
-            {
-              "file": "villa-ancarano-piano-primo-salone-103.webp",
-              "thumb": "villa-ancarano-piano-primo-salone-103-thumb.webp",
-              "didascalia": "Vista del salone con camino, divano e mobile libreria.",
-              "alt": "Vista del salone con camino, divano e mobile libreria."
-            },
-            {
-              "file": "villa-ancarano-piano-primo-salone-104.webp",
-              "thumb": "villa-ancarano-piano-primo-salone-104-thumb.webp",
-              "didascalia": "Zona pranzo e soggiorno con divano, mobile contenitore e passaggio verso il corridoio.",
-              "alt": "Zona pranzo e soggiorno con divano, mobile contenitore e passaggio verso il corridoio."
-            },
-            {
-              "file": "villa-ancarano-piano-primo-salone-106.webp",
-              "thumb": "villa-ancarano-piano-primo-salone-106-thumb.webp",
-              "didascalia": "Area pranzo e soggiorno con tavolo, divano e libreria.",
-              "alt": "Area pranzo e soggiorno con tavolo, divano e libreria."
-            },
-            {
-              "file": "villa-ancarano-piano-primo-salone-107.webp",
-              "thumb": "villa-ancarano-piano-primo-salone-107-thumb.webp",
-              "didascalia": "Vista del soggiorno verso il camino e la portafinestra che conduce al terrazzo.",
-              "alt": "Vista del soggiorno verso il camino e la portafinestra che conduce al terrazzo."
-            },
-            {
-              "file": "villa-ancarano-piano-primo-salone-108.webp",
-              "thumb": "villa-ancarano-piano-primo-salone-108-thumb.webp",
-              "didascalia": "Vista del salone con camino, televisore, divano e portafinestra verso il terrazzo.",
-              "alt": "Vista del salone con camino, televisore, divano e portafinestra verso il terrazzo."
             }
           ]
         }
