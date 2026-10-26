@@ -43,7 +43,11 @@
         "villa-ancarano-esterno-facciata-balconi-26.webp",
         "villa-ancarano-esterno-lato-balconi-27.webp",
         "villa-ancarano-esterno-vista-giardino-28.webp",
-        "villa-ancarano-esterno-facciata-loggiato-29.webp"
+        "villa-ancarano-esterno-facciata-loggiato-29.webp",
+        "villa-ancarano-piano-primo-ingresso-portico-01.webp",
+        "villa-ancarano-piano-primo-ingresso-scala-02.webp",
+        "villa-ancarano-piano-primo-ingresso-corridoio-03.webp",
+        "villa-ancarano-piano-primo-ingresso-pavimento-04.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -174,6 +178,36 @@
               "thumb": "villa-ancarano-esterno-facciata-loggiato-29-thumb.webp",
               "didascalia": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione.",
               "alt": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione."
+            }
+          ]
+        },
+        {
+          "id": "piano-primo",
+          "titolo": "Piano primo",
+          "immagini": [
+            {
+              "file": "villa-ancarano-piano-primo-ingresso-portico-01.webp",
+              "thumb": "villa-ancarano-piano-primo-ingresso-portico-01-thumb.webp",
+              "didascalia": "Portico d’ingresso con accesso coperto, scala esterna e affaccio sull’area verde.",
+              "alt": "Portico d’ingresso con accesso coperto, scala esterna e affaccio sull’area verde."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-ingresso-scala-02.webp",
+              "thumb": "villa-ancarano-piano-primo-ingresso-scala-02-thumb.webp",
+              "didascalia": "Scala interna d’accesso al piano primo, con gradini in cotto e corrimano in legno.",
+              "alt": "Scala interna d’accesso al piano primo, con gradini in cotto e corrimano in legno."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-ingresso-corridoio-03.webp",
+              "thumb": "villa-ancarano-piano-primo-ingresso-corridoio-03-thumb.webp",
+              "didascalia": "Corridoio d’ingresso al piano primo con porte interne e pavimento in cotto.",
+              "alt": "Corridoio d’ingresso al piano primo con porte interne e pavimento in cotto."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-ingresso-pavimento-04.webp",
+              "thumb": "villa-ancarano-piano-primo-ingresso-pavimento-04-thumb.webp",
+              "didascalia": "Dettaglio del pavimento in cotto nell’ingresso al piano primo.",
+              "alt": "Dettaglio del pavimento in cotto nell’ingresso al piano primo."
             }
           ]
         }
