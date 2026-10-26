@@ -454,30 +454,74 @@
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-ingresso-01-thumb.webp",
       "tipo": "immagine",
-      "bytes": 15076,
+      "bytes": 17974,
       "nome": "villa-ancarano-piano-primo-ingresso-01-thumb.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "15KB",
+      "eta": "18KB",
       "width": 900,
       "height": 506
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-ingresso-01.webp",
       "tipo": "immagine",
-      "bytes": 73058,
+      "bytes": 90594,
       "nome": "villa-ancarano-piano-primo-ingresso-01.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "71KB",
+      "eta": "88KB",
       "width": 2200,
       "height": 1238
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-101-thumb.webp",
       "tipo": "immagine",
-      "bytes": 39578,
+      "bytes": 46470,
       "nome": "villa-ancarano-piano-primo-salone-101-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "45KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-101.webp",
+      "tipo": "immagine",
+      "bytes": 192938,
+      "nome": "villa-ancarano-piano-primo-salone-101.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "188KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 44858,
+      "nome": "villa-ancarano-piano-primo-salone-102-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "44KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102.webp",
+      "tipo": "immagine",
+      "bytes": 190702,
+      "nome": "villa-ancarano-piano-primo-salone-102.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "186KB",
+      "width": 2200,
+      "height": 1237
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 40306,
+      "nome": "villa-ancarano-piano-primo-salone-103-thumb.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
       "eta": "39KB",
@@ -485,21 +529,65 @@
       "height": 506
     },
     {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-101.webp",
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103.webp",
       "tipo": "immagine",
-      "bytes": 175964,
-      "nome": "villa-ancarano-piano-primo-salone-101.webp",
+      "bytes": 159642,
+      "nome": "villa-ancarano-piano-primo-salone-103.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "172KB",
+      "eta": "156KB",
       "width": 2200,
-      "height": 1238
+      "height": 1237
     },
     {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102-thumb.webp",
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104-thumb.webp",
       "tipo": "immagine",
-      "bytes": 38788,
-      "nome": "villa-ancarano-piano-primo-salone-102-thumb.webp",
+      "bytes": 39486,
+      "nome": "villa-ancarano-piano-primo-salone-104-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "39KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104.webp",
+      "tipo": "immagine",
+      "bytes": 212538,
+      "nome": "villa-ancarano-piano-primo-salone-104.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "208KB",
+      "width": 2200,
+      "height": 1237
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 43506,
+      "nome": "villa-ancarano-piano-primo-salone-106-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "42KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106.webp",
+      "tipo": "immagine",
+      "bytes": 238422,
+      "nome": "villa-ancarano-piano-primo-salone-106.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "233KB",
+      "width": 2200,
+      "height": 1237
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-107-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 39334,
+      "nome": "villa-ancarano-piano-primo-salone-107-thumb.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
       "eta": "38KB",
@@ -507,125 +595,37 @@
       "height": 506
     },
     {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102.webp",
-      "tipo": "immagine",
-      "bytes": 173186,
-      "nome": "villa-ancarano-piano-primo-salone-102.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "169KB",
-      "width": 2200,
-      "height": 1238
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103-thumb.webp",
-      "tipo": "immagine",
-      "bytes": 37290,
-      "nome": "villa-ancarano-piano-primo-salone-103-thumb.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "36KB",
-      "width": 900,
-      "height": 506
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103.webp",
-      "tipo": "immagine",
-      "bytes": 157290,
-      "nome": "villa-ancarano-piano-primo-salone-103.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "154KB",
-      "width": 2200,
-      "height": 1238
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104-thumb.webp",
-      "tipo": "immagine",
-      "bytes": 34118,
-      "nome": "villa-ancarano-piano-primo-salone-104-thumb.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "33KB",
-      "width": 900,
-      "height": 506
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104.webp",
-      "tipo": "immagine",
-      "bytes": 171290,
-      "nome": "villa-ancarano-piano-primo-salone-104.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "167KB",
-      "width": 2200,
-      "height": 1238
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106-thumb.webp",
-      "tipo": "immagine",
-      "bytes": 36666,
-      "nome": "villa-ancarano-piano-primo-salone-106-thumb.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "36KB",
-      "width": 900,
-      "height": 506
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106.webp",
-      "tipo": "immagine",
-      "bytes": 198852,
-      "nome": "villa-ancarano-piano-primo-salone-106.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "194KB",
-      "width": 2200,
-      "height": 1238
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-107-thumb.webp",
-      "tipo": "immagine",
-      "bytes": 34402,
-      "nome": "villa-ancarano-piano-primo-salone-107-thumb.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "34KB",
-      "width": 900,
-      "height": 506
-    },
-    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-107.webp",
       "tipo": "immagine",
-      "bytes": 149082,
+      "bytes": 164710,
       "nome": "villa-ancarano-piano-primo-salone-107.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "146KB",
+      "eta": "161KB",
       "width": 2200,
-      "height": 1238
+      "height": 1237
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-108-thumb.webp",
       "tipo": "immagine",
-      "bytes": 31936,
+      "bytes": 35788,
       "nome": "villa-ancarano-piano-primo-salone-108-thumb.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "31KB",
+      "eta": "35KB",
       "width": 900,
       "height": 506
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-108.webp",
       "tipo": "immagine",
-      "bytes": 134906,
+      "bytes": 144122,
       "nome": "villa-ancarano-piano-primo-salone-108.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "132KB",
+      "eta": "141KB",
       "width": 2200,
-      "height": 1238
+      "height": 1237
     }
   ],
   "byProp": {
@@ -1090,30 +1090,74 @@
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-ingresso-01-thumb.webp",
           "tipo": "immagine",
-          "bytes": 15076,
+          "bytes": 17974,
           "nome": "villa-ancarano-piano-primo-ingresso-01-thumb.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "15KB",
+          "eta": "18KB",
           "width": 900,
           "height": 506
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-ingresso-01.webp",
           "tipo": "immagine",
-          "bytes": 73058,
+          "bytes": 90594,
           "nome": "villa-ancarano-piano-primo-ingresso-01.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "71KB",
+          "eta": "88KB",
           "width": 2200,
           "height": 1238
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-101-thumb.webp",
           "tipo": "immagine",
-          "bytes": 39578,
+          "bytes": 46470,
           "nome": "villa-ancarano-piano-primo-salone-101-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "45KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-101.webp",
+          "tipo": "immagine",
+          "bytes": 192938,
+          "nome": "villa-ancarano-piano-primo-salone-101.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "188KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 44858,
+          "nome": "villa-ancarano-piano-primo-salone-102-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "44KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102.webp",
+          "tipo": "immagine",
+          "bytes": 190702,
+          "nome": "villa-ancarano-piano-primo-salone-102.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "186KB",
+          "width": 2200,
+          "height": 1237
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 40306,
+          "nome": "villa-ancarano-piano-primo-salone-103-thumb.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
           "eta": "39KB",
@@ -1121,21 +1165,65 @@
           "height": 506
         },
         {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-101.webp",
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103.webp",
           "tipo": "immagine",
-          "bytes": 175964,
-          "nome": "villa-ancarano-piano-primo-salone-101.webp",
+          "bytes": 159642,
+          "nome": "villa-ancarano-piano-primo-salone-103.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "172KB",
+          "eta": "156KB",
           "width": 2200,
-          "height": 1238
+          "height": 1237
         },
         {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102-thumb.webp",
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104-thumb.webp",
           "tipo": "immagine",
-          "bytes": 38788,
-          "nome": "villa-ancarano-piano-primo-salone-102-thumb.webp",
+          "bytes": 39486,
+          "nome": "villa-ancarano-piano-primo-salone-104-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "39KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104.webp",
+          "tipo": "immagine",
+          "bytes": 212538,
+          "nome": "villa-ancarano-piano-primo-salone-104.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "208KB",
+          "width": 2200,
+          "height": 1237
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 43506,
+          "nome": "villa-ancarano-piano-primo-salone-106-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "42KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106.webp",
+          "tipo": "immagine",
+          "bytes": 238422,
+          "nome": "villa-ancarano-piano-primo-salone-106.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "233KB",
+          "width": 2200,
+          "height": 1237
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-107-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 39334,
+          "nome": "villa-ancarano-piano-primo-salone-107-thumb.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
           "eta": "38KB",
@@ -1143,125 +1231,37 @@
           "height": 506
         },
         {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-102.webp",
-          "tipo": "immagine",
-          "bytes": 173186,
-          "nome": "villa-ancarano-piano-primo-salone-102.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "169KB",
-          "width": 2200,
-          "height": 1238
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103-thumb.webp",
-          "tipo": "immagine",
-          "bytes": 37290,
-          "nome": "villa-ancarano-piano-primo-salone-103-thumb.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "36KB",
-          "width": 900,
-          "height": 506
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-103.webp",
-          "tipo": "immagine",
-          "bytes": 157290,
-          "nome": "villa-ancarano-piano-primo-salone-103.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "154KB",
-          "width": 2200,
-          "height": 1238
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104-thumb.webp",
-          "tipo": "immagine",
-          "bytes": 34118,
-          "nome": "villa-ancarano-piano-primo-salone-104-thumb.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "33KB",
-          "width": 900,
-          "height": 506
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-104.webp",
-          "tipo": "immagine",
-          "bytes": 171290,
-          "nome": "villa-ancarano-piano-primo-salone-104.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "167KB",
-          "width": 2200,
-          "height": 1238
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106-thumb.webp",
-          "tipo": "immagine",
-          "bytes": 36666,
-          "nome": "villa-ancarano-piano-primo-salone-106-thumb.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "36KB",
-          "width": 900,
-          "height": 506
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-106.webp",
-          "tipo": "immagine",
-          "bytes": 198852,
-          "nome": "villa-ancarano-piano-primo-salone-106.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "194KB",
-          "width": 2200,
-          "height": 1238
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-107-thumb.webp",
-          "tipo": "immagine",
-          "bytes": 34402,
-          "nome": "villa-ancarano-piano-primo-salone-107-thumb.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "34KB",
-          "width": 900,
-          "height": 506
-        },
-        {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-107.webp",
           "tipo": "immagine",
-          "bytes": 149082,
+          "bytes": 164710,
           "nome": "villa-ancarano-piano-primo-salone-107.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "146KB",
+          "eta": "161KB",
           "width": 2200,
-          "height": 1238
+          "height": 1237
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-108-thumb.webp",
           "tipo": "immagine",
-          "bytes": 31936,
+          "bytes": 35788,
           "nome": "villa-ancarano-piano-primo-salone-108-thumb.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "31KB",
+          "eta": "35KB",
           "width": 900,
           "height": 506
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-salone-108.webp",
           "tipo": "immagine",
-          "bytes": 134906,
+          "bytes": 144122,
           "nome": "villa-ancarano-piano-primo-salone-108.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "132KB",
+          "eta": "141KB",
           "width": 2200,
-          "height": 1238
+          "height": 1237
         }
       ],
       "video": []
@@ -1272,5 +1272,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-10-26T18:46:15.975Z"
+  "generato": "2026-10-26T18:58:37.326Z"
 }
