@@ -12,6 +12,28 @@
       "height": 153
     },
     {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 43794,
+      "nome": "villa-ancarano-esterno-accesso-carrabile-24-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "43KB",
+      "width": 900,
+      "height": 405
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp",
+      "tipo": "immagine",
+      "bytes": 180922,
+      "nome": "villa-ancarano-esterno-accesso-carrabile-24.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "177KB",
+      "width": 2200,
+      "height": 989
+    },
+    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14-thumb.webp",
       "tipo": "immagine",
       "bytes": 74334,
@@ -78,6 +100,28 @@
       "height": 1238
     },
     {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-balconi-26-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 24076,
+      "nome": "villa-ancarano-esterno-facciata-balconi-26-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "24KB",
+      "width": 900,
+      "height": 405
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-balconi-26.webp",
+      "tipo": "immagine",
+      "bytes": 95258,
+      "nome": "villa-ancarano-esterno-facciata-balconi-26.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "93KB",
+      "width": 2200,
+      "height": 989
+    },
+    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15-thumb.webp",
       "tipo": "immagine",
       "bytes": 71304,
@@ -98,6 +142,28 @@
       "eta": "403KB",
       "width": 2200,
       "height": 990
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 52504,
+      "nome": "villa-ancarano-esterno-facciata-loggiato-22-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "51KB",
+      "width": 900,
+      "height": 405
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22.webp",
+      "tipo": "immagine",
+      "bytes": 211112,
+      "nome": "villa-ancarano-esterno-facciata-loggiato-22.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "206KB",
+      "width": 2200,
+      "height": 989
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-laterale-06-thumb.webp",
@@ -164,6 +230,28 @@
       "eta": "357KB",
       "width": 2200,
       "height": 990
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-balconi-27-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 33856,
+      "nome": "villa-ancarano-esterno-lato-balconi-27-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "33KB",
+      "width": 900,
+      "height": 405
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-balconi-27.webp",
+      "tipo": "immagine",
+      "bytes": 141158,
+      "nome": "villa-ancarano-esterno-lato-balconi-27.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "138KB",
+      "width": 2200,
+      "height": 989
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-giardino-12-thumb.webp",
@@ -254,6 +342,28 @@
       "height": 990
     },
     {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-recinzione-cortile-21-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 40854,
+      "nome": "villa-ancarano-esterno-recinzione-cortile-21-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "40KB",
+      "width": 900,
+      "height": 405
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-recinzione-cortile-21.webp",
+      "tipo": "immagine",
+      "bytes": 169814,
+      "nome": "villa-ancarano-esterno-recinzione-cortile-21.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "166KB",
+      "width": 2200,
+      "height": 989
+    },
+    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-cortile-19-thumb.webp",
       "tipo": "immagine",
       "bytes": 45450,
@@ -272,6 +382,50 @@
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
       "eta": "194KB",
+      "width": 2200,
+      "height": 989
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-giardino-28-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 33522,
+      "nome": "villa-ancarano-esterno-vista-giardino-28-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "33KB",
+      "width": 900,
+      "height": 405
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-giardino-28.webp",
+      "tipo": "immagine",
+      "bytes": 130954,
+      "nome": "villa-ancarano-esterno-vista-giardino-28.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "128KB",
+      "width": 2200,
+      "height": 989
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-laterale-23-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 48936,
+      "nome": "villa-ancarano-esterno-vista-laterale-23-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "48KB",
+      "width": 900,
+      "height": 405
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-laterale-23.webp",
+      "tipo": "immagine",
+      "bytes": 216300,
+      "nome": "villa-ancarano-esterno-vista-laterale-23.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "211KB",
       "width": 2200,
       "height": 989
     }
@@ -295,6 +449,28 @@
     },
     "villa-tre-unita-ancarano": {
       "immagini": [
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 43794,
+          "nome": "villa-ancarano-esterno-accesso-carrabile-24-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "43KB",
+          "width": 900,
+          "height": 405
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp",
+          "tipo": "immagine",
+          "bytes": 180922,
+          "nome": "villa-ancarano-esterno-accesso-carrabile-24.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "177KB",
+          "width": 2200,
+          "height": 989
+        },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14-thumb.webp",
           "tipo": "immagine",
@@ -362,6 +538,28 @@
           "height": 1238
         },
         {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-balconi-26-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 24076,
+          "nome": "villa-ancarano-esterno-facciata-balconi-26-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "24KB",
+          "width": 900,
+          "height": 405
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-balconi-26.webp",
+          "tipo": "immagine",
+          "bytes": 95258,
+          "nome": "villa-ancarano-esterno-facciata-balconi-26.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "93KB",
+          "width": 2200,
+          "height": 989
+        },
+        {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15-thumb.webp",
           "tipo": "immagine",
           "bytes": 71304,
@@ -382,6 +580,28 @@
           "eta": "403KB",
           "width": 2200,
           "height": 990
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 52504,
+          "nome": "villa-ancarano-esterno-facciata-loggiato-22-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "51KB",
+          "width": 900,
+          "height": 405
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22.webp",
+          "tipo": "immagine",
+          "bytes": 211112,
+          "nome": "villa-ancarano-esterno-facciata-loggiato-22.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "206KB",
+          "width": 2200,
+          "height": 989
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-laterale-06-thumb.webp",
@@ -448,6 +668,28 @@
           "eta": "357KB",
           "width": 2200,
           "height": 990
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-balconi-27-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 33856,
+          "nome": "villa-ancarano-esterno-lato-balconi-27-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "33KB",
+          "width": 900,
+          "height": 405
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-balconi-27.webp",
+          "tipo": "immagine",
+          "bytes": 141158,
+          "nome": "villa-ancarano-esterno-lato-balconi-27.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "138KB",
+          "width": 2200,
+          "height": 989
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-giardino-12-thumb.webp",
@@ -538,6 +780,28 @@
           "height": 990
         },
         {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-recinzione-cortile-21-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 40854,
+          "nome": "villa-ancarano-esterno-recinzione-cortile-21-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "40KB",
+          "width": 900,
+          "height": 405
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-recinzione-cortile-21.webp",
+          "tipo": "immagine",
+          "bytes": 169814,
+          "nome": "villa-ancarano-esterno-recinzione-cortile-21.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "166KB",
+          "width": 2200,
+          "height": 989
+        },
+        {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-cortile-19-thumb.webp",
           "tipo": "immagine",
           "bytes": 45450,
@@ -558,6 +822,50 @@
           "eta": "194KB",
           "width": 2200,
           "height": 989
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-giardino-28-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 33522,
+          "nome": "villa-ancarano-esterno-vista-giardino-28-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "33KB",
+          "width": 900,
+          "height": 405
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-giardino-28.webp",
+          "tipo": "immagine",
+          "bytes": 130954,
+          "nome": "villa-ancarano-esterno-vista-giardino-28.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "128KB",
+          "width": 2200,
+          "height": 989
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-laterale-23-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 48936,
+          "nome": "villa-ancarano-esterno-vista-laterale-23-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "48KB",
+          "width": 900,
+          "height": 405
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-vista-laterale-23.webp",
+          "tipo": "immagine",
+          "bytes": 216300,
+          "nome": "villa-ancarano-esterno-vista-laterale-23.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "211KB",
+          "width": 2200,
+          "height": 989
         }
       ],
       "video": []
@@ -568,5 +876,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-10-26T12:23:08.433Z"
+  "generato": "2026-10-26T14:08:08.556Z"
 }
