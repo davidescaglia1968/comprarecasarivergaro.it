@@ -78,7 +78,15 @@ function listingJsonLd(p) {
     identifier: p.id || p.slug,
   };
   const imgs = (p.immagini || []).filter(Boolean);
-  if (imgs.length) o.image = imgs.map((i) => BASE + '/img/' + p.slug + '/' + i);
+  if (imgs.length) {
+    const captions = {};
+    (p.gallerie || []).forEach((section) => (section.immagini || []).forEach((image) => {
+      if (image && typeof image === 'object' && image.file && image.didascalia) captions[image.file] = image.didascalia;
+    }));
+    o.image = imgs.map((file) => captions[file]
+      ? { '@type': 'ImageObject', contentUrl: BASE + '/img/' + p.slug + '/' + file, caption: captions[file] }
+      : BASE + '/img/' + p.slug + '/' + file);
+  }
   const addr = { '@type': 'PostalAddress' };
   if (p.zona) addr.streetAddress = p.zona;
   if (p.comune) addr.addressLocality = p.comune;
@@ -395,22 +403,49 @@ function imgMeta(slug, file) {
   return m || null;
 }
 function galleria(p) {
-  const imgs = (p.immagini || []).filter(Boolean);
-  if (!imgs.length) {
+  const raw = (p.gallerie || []).filter((g) => Array.isArray(g.immagini) && g.immagini.length);
+  const sections = raw.length ? raw : ((p.immagini || []).filter(Boolean).length
+    ? [{ id: 'foto', titolo: 'Galleria fotografica', immagini: p.immagini.filter(Boolean).map((file) => ({ file })) }]
+    : []);
+  if (!sections.length) {
     return `<figure class="media-empty"><div class="media-empty-box"><span class="media-empty-ico" aria-hidden="true">◻</span><strong>Nessuna foto pubblicata</strong><p>Le immagini di questo immobile non sono ancora state scelte. Appena arrivano, la galleria e l'immagine principale si compilano da sole da <code>img/${esc(p.slug)}/</code>, con le dimensioni vere lette dal file.</p></div></figure>`;
   }
-  const [prima, ...altre] = imgs;
-  const meta = imgMeta(p.slug, prima) || {};
-  const fig = (f, i, eager) => {
-    const m = imgMeta(p.slug, f) || {};
-    const w = m.width || 1200, h = m.height || 800;
-    const src = 'img/' + p.slug + '/' + f;
-    return `<a class="shot" href="${src}" data-lightbox="${attr(p.slug)}" data-caption="${attr((p.titolo || '') + ' — foto ' + (i + 1) + ' di ' + imgs.length)}"><img src="${src}" alt="${attr((p.tipologia || 'Immobile') + ' ad ' + (p.zona || p.comune || '') + ', foto ' + (i + 1))}" width="${w}" height="${h}" ${eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"'}></a>`;
-  };
-  return `<div class="gallery" role="group" aria-label="Galleria fotografica">
-    <div class="gallery-hero">${fig(prima, 0, true)}${statoBadge(p)}</div>
-    ${altre.length ? `<div class="gallery-strip">${altre.map((f, i) => fig(f, i + 1, false)).join('')}</div>` : ''}
-  </div>`;
+  let first = true;
+  const rendered = sections.map((section, sectionIndex) => {
+    const items = section.immagini.filter((item) => typeof item === 'string' || (item && item.file));
+    if (!items.length) return '';
+    const id = 'foto-' + (section.id || ('sezione-' + (sectionIndex + 1)));
+    const cards = items.map((item) => {
+      const file = typeof item === 'string' ? item : item.file;
+      const caption = (typeof item === 'object' && item.didascalia) || '';
+      const alt = (typeof item === 'object' && item.alt) || caption || ((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || 'Rivergaro'));
+      const thumb = (typeof item === 'object' && item.thumb) || file;
+      const meta = imgMeta(p.slug, file) || {};
+      const thumbMeta = imgMeta(p.slug, thumb) || meta;
+      const w = Number(meta.width) || 1200, h = Number(meta.height) || 800;
+      const tw = Number(thumbMeta.width) || w;
+      const pagePath = 'immobile/' + p.slug + '.html';
+      const src = rel(pagePath, 'img/' + p.slug + '/' + file);
+      const thumbSrc = rel(pagePath, 'img/' + p.slug + '/' + thumb);
+      const isFeatured = first;
+      first = false;
+      const eager = isFeatured ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
+      const srcset = thumb !== file && tw < w ? `srcset="${thumbSrc} ${tw}w, ${src} ${w}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
+      const lightboxCaption = caption || ((p.titolo || 'Immobile') + ' — ' + (section.titolo || 'foto'));
+      return `<figure class="gallery-card${isFeatured ? ' gallery-card--featured' : ''}" style="--gallery-ratio:${w} / ${h}">
+        <a class="shot" href="${src}" data-lightbox="${attr(p.slug)}" data-caption="${attr(lightboxCaption)}" style="aspect-ratio:${w}/${h}">
+          <img src="${thumbSrc}" ${srcset} alt="${attr(alt)}" width="${w}" height="${h}" ${eager}>
+        </a>
+        ${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}
+        ${isFeatured ? statoBadge(p) : ''}
+      </figure>`;
+    }).join('');
+    return `<section class="gallery-section" aria-labelledby="${attr(id)}">
+      <h2 id="${attr(id)}">${esc(section.titolo || 'Foto')}</h2>
+      <div class="gallery-grid">${cards}</div>
+    </section>`;
+  }).join('');
+  return `<div class="gallery" role="group" aria-label="Galleria fotografica dell'immobile">${rendered}</div>`;
 }
 
 /* ---------------------------------------------------------------- privacy */
@@ -476,7 +511,7 @@ function formImmobile(p, prefix) {
           <p class="field"><label for="i-quando">Quando puoi vedere l'immobile</label><input id="i-quando" name="disponibilita" type="text" placeholder="es. sabato mattina"></p>
         </div>
         <p class="field"><label for="i-msg">Domande o note per la visita</label><textarea id="i-msg" name="messaggio" rows="4" required placeholder="Es. le tre unità sono accatastate separatamente?"></textarea></p>
-        <p class="field field-check"><label for="i-privacy"><input id="i-privacy" type="checkbox" name="privacy" value="si" required> Ho letto l'<a href="${rel(prefix, 'legal/privacy.html')}">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato su questo immobile.</label></p>
+        <p class="field field-check"><label for="i-privacy"><input id="i-privacy" type="checkbox" name="privacy" value="si" required> Ho letto l'<a href="${rel('immobile/' + p.slug + '.html', 'legal/privacy.html')}">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato su questo immobile.</label></p>
         <div class="form-actions">
           <button type="submit" class="btn btn-primary">Chiedi informazioni</button>
           <a class="btn btn-ghost" href="tel:${attr(pro.telefono_e164)}">Telefonami: ${esc(pro.telefono_display)}</a>
@@ -538,7 +573,7 @@ function schedaPage(p, prefix) {
       <div class="side-box side-box--alt">
         <p class="side-k">Non è quella giusta?</p>
         <p class="side-note">Dimmi cosa cerchi: la ricerca parte da te, non da quello che ho in vetrina.</p>
-        <a class="btn btn-outline btn-sm" href="${rel(prefix + 'immobile/' + p.slug + '.html', 'index.html')}#la-villa-non-fa-per-te">Ricerca personalizzata</a>
+        <a class="btn btn-outline btn-sm" href="${rel('immobile/' + p.slug + '.html', 'index.html')}#la-villa-non-fa-per-te">Ricerca personalizzata</a>
       </div>
     </aside>
   </div>
@@ -1077,7 +1112,8 @@ function runCheck() {
     for (const f of pagesList().concat(['immobili.html', 'data/properties.json', 'css/main.css', 'js/main.js', 'sitemap.xml', 'llms.txt'])) {
       if (!exists(f)) { console.log('✗ manca ' + f); problems++; }
     }
-    for (const f of pagesList()) {
+    const pagesToCheck = pagesList().concat(schedaPagine().map((p) => 'immobile/' + p.slug + '.html')).filter((f, i, a) => a.indexOf(f) === i && exists(f));
+    for (const f of pagesToCheck) {
       const s = readIf(path.join(ROOT, f), '');
       const leaks = s.match(/DA CONFERMARE/g);
       if (leaks) { console.log(`✗ ${f}: ${leaks.length} segnaposto nel markup pubblico`); problems++; }
