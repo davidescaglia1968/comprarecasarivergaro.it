@@ -450,6 +450,28 @@
       "eta": "211KB",
       "width": 2200,
       "height": 989
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-disimpegno-01-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 15076,
+      "nome": "villa-ancarano-piano-primo-disimpegno-01-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "15KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-disimpegno-01.webp",
+      "tipo": "immagine",
+      "bytes": 73058,
+      "nome": "villa-ancarano-piano-primo-disimpegno-01.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "71KB",
+      "width": 2200,
+      "height": 1238
     }
   ],
   "byProp": {
@@ -910,6 +932,28 @@
           "eta": "211KB",
           "width": 2200,
           "height": 989
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-disimpegno-01-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 15076,
+          "nome": "villa-ancarano-piano-primo-disimpegno-01-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "15KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-disimpegno-01.webp",
+          "tipo": "immagine",
+          "bytes": 73058,
+          "nome": "villa-ancarano-piano-primo-disimpegno-01.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "71KB",
+          "width": 2200,
+          "height": 1238
         }
       ],
       "video": []
@@ -920,5 +964,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-10-26T14:35:40.810Z"
+  "generato": "2026-10-26T16:31:56.562Z"
 }

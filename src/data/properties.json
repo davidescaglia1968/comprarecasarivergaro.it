@@ -43,7 +43,8 @@
         "villa-ancarano-esterno-facciata-balconi-26.webp",
         "villa-ancarano-esterno-lato-balconi-27.webp",
         "villa-ancarano-esterno-vista-giardino-28.webp",
-        "villa-ancarano-esterno-facciata-loggiato-29.webp"
+        "villa-ancarano-esterno-facciata-loggiato-29.webp",
+        "villa-ancarano-piano-primo-disimpegno-01.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -174,6 +175,18 @@
               "thumb": "villa-ancarano-esterno-facciata-loggiato-29-thumb.webp",
               "didascalia": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione.",
               "alt": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione."
+            }
+          ]
+        },
+        {
+          "id": "piano-primo",
+          "titolo": "Abitazione al piano primo",
+          "immagini": [
+            {
+              "file": "villa-ancarano-piano-primo-disimpegno-01.webp",
+              "thumb": "villa-ancarano-piano-primo-disimpegno-01-thumb.webp",
+              "didascalia": "Disimpegno al piano primo con pavimento a disegno geometrico, porte in legno e lampadario a soffitto.",
+              "alt": "Disimpegno al piano primo con pavimento a disegno geometrico, porte in legno e lampadario a soffitto."
             }
           ]
         }
