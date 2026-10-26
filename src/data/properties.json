@@ -42,7 +42,8 @@
         "villa-ancarano-esterno-accesso-carrabile-24.webp",
         "villa-ancarano-esterno-facciata-balconi-26.webp",
         "villa-ancarano-esterno-lato-balconi-27.webp",
-        "villa-ancarano-esterno-vista-giardino-28.webp"
+        "villa-ancarano-esterno-vista-giardino-28.webp",
+        "villa-ancarano-esterno-facciata-loggiato-29.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -167,6 +168,12 @@
               "thumb": "villa-ancarano-esterno-vista-giardino-28-thumb.webp",
               "didascalia": "Veduta obliqua del prospetto con balcone, tende da sole e alberi nell’area verde.",
               "alt": "Veduta obliqua del prospetto con balcone, tende da sole e alberi nell’area verde."
+            },
+            {
+              "file": "villa-ancarano-esterno-facciata-loggiato-29.webp",
+              "thumb": "villa-ancarano-esterno-facciata-loggiato-29-thumb.webp",
+              "didascalia": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione.",
+              "alt": "Facciata con loggiato e archi in mattoni a vista, ripresa da oltre la recinzione."
             }
           ]
         }
