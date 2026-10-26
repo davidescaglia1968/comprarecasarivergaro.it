@@ -108,7 +108,7 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 .hero--listing .hero-grid{grid-template-columns:minmax(0,1000px);justify-content:center;text-align:center}
 .hero--listing .hero-copy{display:flex;flex-direction:column;align-items:center}
 .hero--listing .eyebrow{color:var(--gold)}
-.hero--listing h1{max-width:26ch;font-size:clamp(2.25rem,1.15rem + 4.2vw,4.25rem);line-height:1.06}
+.hero--listing h1{max-width:26ch;font-size:clamp(2.25rem,1.15rem + 4.2vw,4.25rem);line-height:1.06;color:#ffd700;text-shadow:0 0 28px rgba(255,215,0,.16)}
 .hero--listing .lead{max-width:70ch;margin-inline:auto}
 .hero--listing .cta-row{justify-content:center;margin-top:var(--s4)}
 .hero-email-link{display:inline-flex;align-items:center;padding:10px 4px;font-size:.9375rem;font-weight:600;color:var(--text-secondary);text-decoration:none}

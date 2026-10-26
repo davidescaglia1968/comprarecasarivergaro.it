@@ -1,12 +1,12 @@
 ---
-title: Villa indipendente con 3 unità ad Ancarano | Rivergaro
+title: Villa con 3 abitazioni ad Ancarano | Rivergaro
 description: Villa indipendente ad Ancarano, Rivergaro: 12 vani e 3 unità abitative indipendenti. Contattami per informazioni.
 canonical: /
 ---
 
 ::hero {
   "eyebrow": "IMMOBILE IN VENDITA · ANCARANO",
-  "h1": "LA TUA CASA IN VAL TREBBIA: VILLA INDIPENDENTE CON TRIPLICE POSSIBILITÀ ABITATIVA",
+  "h1": "LA TUA CASA IN VAL TREBBIA: VILLA INDIPENDENTE CON 3 ABITAZIONI",
   "lead": [
     "Località Ancarano · 29029 Rivergaro (PC)",
     "Immagina di vivere in spazi ampi e luminosi, fare colazione sotto un porticato luminoso e avere ciò di cui hai bisogno a soli 2 minuti di auto. Questa non è solo una casa: è uno stile di vita."
