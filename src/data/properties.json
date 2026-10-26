@@ -47,7 +47,13 @@
         "villa-ancarano-piano-primo-ingresso-portico-01.webp",
         "villa-ancarano-piano-primo-ingresso-scala-02.webp",
         "villa-ancarano-piano-primo-ingresso-corridoio-03.webp",
-        "villa-ancarano-piano-primo-ingresso-pavimento-04.webp"
+        "villa-ancarano-piano-primo-ingresso-pavimento-04.webp",
+        "villa-ancarano-piano-primo-disimpegno-05.webp",
+        "villa-ancarano-piano-primo-salone-camino-zona-pranzo-06.webp",
+        "villa-ancarano-piano-primo-salone-camino-divano-07.webp",
+        "villa-ancarano-piano-primo-salone-zona-pranzo-08.webp",
+        "villa-ancarano-piano-primo-salone-camino-portafinestra-09.webp",
+        "villa-ancarano-piano-primo-salone-verso-disimpegno-10.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -208,6 +214,42 @@
               "thumb": "villa-ancarano-piano-primo-ingresso-pavimento-04-thumb.webp",
               "didascalia": "Dettaglio del pavimento in cotto nell’ingresso al piano primo.",
               "alt": "Dettaglio del pavimento in cotto nell’ingresso al piano primo."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-disimpegno-05.webp",
+              "thumb": "villa-ancarano-piano-primo-disimpegno-05-thumb.webp",
+              "didascalia": "Disimpegno al piano primo con consolle, specchio e vista verso il salone.",
+              "alt": "Disimpegno al piano primo con consolle, specchio e vista verso il salone."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-salone-camino-zona-pranzo-06.webp",
+              "thumb": "villa-ancarano-piano-primo-salone-camino-zona-pranzo-06-thumb.webp",
+              "didascalia": "Vista ampia del salone con camino, divano e zona pranzo.",
+              "alt": "Vista ampia del salone con camino, divano e zona pranzo."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-salone-camino-divano-07.webp",
+              "thumb": "villa-ancarano-piano-primo-salone-camino-divano-07-thumb.webp",
+              "didascalia": "Vista del salone con camino in mattoni, divano e tavolo da pranzo.",
+              "alt": "Vista del salone con camino in mattoni, divano e tavolo da pranzo."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-salone-zona-pranzo-08.webp",
+              "thumb": "villa-ancarano-piano-primo-salone-zona-pranzo-08-thumb.webp",
+              "didascalia": "Zona pranzo del salone con tavolo, camino e divano.",
+              "alt": "Zona pranzo del salone con tavolo, camino e divano."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-salone-camino-portafinestra-09.webp",
+              "thumb": "villa-ancarano-piano-primo-salone-camino-portafinestra-09-thumb.webp",
+              "didascalia": "Vista del salone con camino in mattoni, divano e portafinestra.",
+              "alt": "Vista del salone con camino in mattoni, divano e portafinestra."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-salone-verso-disimpegno-10.webp",
+              "thumb": "villa-ancarano-piano-primo-salone-verso-disimpegno-10-thumb.webp",
+              "didascalia": "Salone visto verso il disimpegno, con libreria, divano e portafinestra.",
+              "alt": "Salone visto verso il disimpegno, con libreria, divano e portafinestra."
             }
           ]
         }
