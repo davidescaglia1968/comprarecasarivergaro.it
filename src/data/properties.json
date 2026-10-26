@@ -35,7 +35,14 @@
         "villa-ancarano-esterno-prospetto-laterale-16.webp",
         "villa-ancarano-esterno-cancello-villa-17.webp",
         "villa-ancarano-esterno-ingresso-loggiato-18.webp",
-        "villa-ancarano-esterno-vista-cortile-19.webp"
+        "villa-ancarano-esterno-vista-cortile-19.webp",
+        "villa-ancarano-esterno-recinzione-cortile-21.webp",
+        "villa-ancarano-esterno-facciata-loggiato-22.webp",
+        "villa-ancarano-esterno-vista-laterale-23.webp",
+        "villa-ancarano-esterno-accesso-carrabile-24.webp",
+        "villa-ancarano-esterno-facciata-balconi-26.webp",
+        "villa-ancarano-esterno-lato-balconi-27.webp",
+        "villa-ancarano-esterno-vista-giardino-28.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -118,6 +125,48 @@
               "didascalia": "Panoramica della facciata con loggiato, recinzione e piazzale antistante.",
               "alt": "Panoramica della facciata con loggiato, recinzione e piazzale antistante.",
               "thumb": "villa-ancarano-esterno-vista-cortile-19-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-recinzione-cortile-21.webp",
+              "thumb": "villa-ancarano-esterno-recinzione-cortile-21-thumb.webp",
+              "didascalia": "Prospetto della villa visto oltre la recinzione, con area esterna pavimentata.",
+              "alt": "Prospetto della villa visto oltre la recinzione, con area esterna pavimentata."
+            },
+            {
+              "file": "villa-ancarano-esterno-facciata-loggiato-22.webp",
+              "thumb": "villa-ancarano-esterno-facciata-loggiato-22-thumb.webp",
+              "didascalia": "Facciata con loggiato, archi in mattoni a vista e recinzione affacciata sulla strada.",
+              "alt": "Facciata con loggiato, archi in mattoni a vista e recinzione affacciata sulla strada."
+            },
+            {
+              "file": "villa-ancarano-esterno-vista-laterale-23.webp",
+              "thumb": "villa-ancarano-esterno-vista-laterale-23-thumb.webp",
+              "didascalia": "Vista laterale del fabbricato con recinzione e area verde lungo il confine.",
+              "alt": "Vista laterale del fabbricato con recinzione e area verde lungo il confine."
+            },
+            {
+              "file": "villa-ancarano-esterno-accesso-carrabile-24.webp",
+              "thumb": "villa-ancarano-esterno-accesso-carrabile-24-thumb.webp",
+              "didascalia": "Accesso carrabile e area pavimentata tra la villa e la recinzione esterna.",
+              "alt": "Accesso carrabile e area pavimentata tra la villa e la recinzione esterna."
+            },
+            {
+              "file": "villa-ancarano-esterno-facciata-balconi-26.webp",
+              "thumb": "villa-ancarano-esterno-facciata-balconi-26-thumb.webp",
+              "didascalia": "Prospetto con balconi, persiane e ampie aperture al piano terra.",
+              "alt": "Prospetto con balconi, persiane e ampie aperture al piano terra."
+            },
+            {
+              "file": "villa-ancarano-esterno-lato-balconi-27.webp",
+              "thumb": "villa-ancarano-esterno-lato-balconi-27-thumb.webp",
+              "didascalia": "Lato della villa con balconi, finestre con persiane e alberature sul prato.",
+              "alt": "Lato della villa con balconi, finestre con persiane e alberature sul prato."
+            },
+            {
+              "file": "villa-ancarano-esterno-vista-giardino-28.webp",
+              "thumb": "villa-ancarano-esterno-vista-giardino-28-thumb.webp",
+              "didascalia": "Veduta obliqua del prospetto con balcone, tende da sole e alberi nell’area verde.",
+              "alt": "Veduta obliqua del prospetto con balcone, tende da sole e alberi nell’area verde."
             }
           ]
         }
