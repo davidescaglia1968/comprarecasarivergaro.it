@@ -23,12 +23,105 @@
         "ampio giardino privato"
       ],
       "descrizione": "Villa indipendente in località Ancarano, Rivergaro, con finiture e archi in mattoni a vista. Offre 12 vani distribuiti in 3 unità abitative completamente indipendenti.",
-      "immagini": [],
+      "immagini": [
+        "villa-ancarano-esterno-ingresso-portico-01.webp",
+        "villa-ancarano-esterno-lato-prato-03.webp",
+        "villa-ancarano-esterno-facciata-angolare-04.webp",
+        "villa-ancarano-esterno-portico-finestre-05.webp",
+        "villa-ancarano-esterno-ingresso-laterale-06.webp",
+        "villa-ancarano-esterno-lato-giardino-12.webp",
+        "villa-ancarano-esterno-cancello-cortile-14.webp",
+        "villa-ancarano-esterno-facciata-cancello-15.webp",
+        "villa-ancarano-esterno-prospetto-laterale-16.webp",
+        "villa-ancarano-esterno-cancello-villa-17.webp",
+        "villa-ancarano-esterno-ingresso-loggiato-18.webp",
+        "villa-ancarano-esterno-vista-cortile-19.webp"
+      ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
-      "data_modifica": "2026-10-23",
+      "data_modifica": "2026-10-26",
       "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex.",
-      "cap": "29029"
+      "cap": "29029",
+      "gallerie": [
+        {
+          "id": "esterni",
+          "titolo": "Esterni",
+          "immagini": [
+            {
+              "file": "villa-ancarano-esterno-ingresso-portico-01.webp",
+              "didascalia": "Ingresso laterale con scala esterna, parapetto metallico e finestre con persiane.",
+              "alt": "Ingresso laterale con scala esterna, parapetto metallico e finestre con persiane.",
+              "thumb": "villa-ancarano-esterno-ingresso-portico-01-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-lato-prato-03.webp",
+              "didascalia": "Vista del lato della villa affacciato sul prato, con loggiato al piano superiore e recinzione.",
+              "alt": "Vista del lato della villa affacciato sul prato, con loggiato al piano superiore e recinzione.",
+              "thumb": "villa-ancarano-esterno-lato-prato-03-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-facciata-angolare-04.webp",
+              "didascalia": "Veduta angolare della facciata con loggiato, archi in mattoni a vista e area verde.",
+              "alt": "Veduta angolare della facciata con loggiato, archi in mattoni a vista e area verde.",
+              "thumb": "villa-ancarano-esterno-facciata-angolare-04-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-portico-finestre-05.webp",
+              "didascalia": "Prospetto laterale con finestre, persiane, tende da sole e scala esterna.",
+              "alt": "Prospetto laterale con finestre, persiane, tende da sole e scala esterna.",
+              "thumb": "villa-ancarano-esterno-portico-finestre-05-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-ingresso-laterale-06.webp",
+              "didascalia": "Facciata laterale con tende da sole, accesso esterno e recinzione in ferro.",
+              "alt": "Facciata laterale con tende da sole, accesso esterno e recinzione in ferro.",
+              "thumb": "villa-ancarano-esterno-ingresso-laterale-06-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-lato-giardino-12.webp",
+              "didascalia": "Lato della villa con finestre, tende da sole, prato e recinzione.",
+              "alt": "Lato della villa con finestre, tende da sole, prato e recinzione.",
+              "thumb": "villa-ancarano-esterno-lato-giardino-12-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-cancello-cortile-14.webp",
+              "didascalia": "Veduta della villa dalla strada, con cancello d’ingresso e recinzione perimetrale.",
+              "alt": "Veduta della villa dalla strada, con cancello d’ingresso e recinzione perimetrale.",
+              "thumb": "villa-ancarano-esterno-cancello-cortile-14-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-facciata-cancello-15.webp",
+              "didascalia": "Facciata vista dall’esterno della recinzione, con loggiato e pilastri in mattoni.",
+              "alt": "Facciata vista dall’esterno della recinzione, con loggiato e pilastri in mattoni.",
+              "thumb": "villa-ancarano-esterno-facciata-cancello-15-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-prospetto-laterale-16.webp",
+              "didascalia": "Vista panoramica della villa e della recinzione dal piazzale esterno.",
+              "alt": "Vista panoramica della villa e della recinzione dal piazzale esterno.",
+              "thumb": "villa-ancarano-esterno-prospetto-laterale-16-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-cancello-villa-17.webp",
+              "didascalia": "Ingresso carrabile e facciata della villa ripresi dall’area esterna.",
+              "alt": "Ingresso carrabile e facciata della villa ripresi dall’area esterna.",
+              "thumb": "villa-ancarano-esterno-cancello-villa-17-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-ingresso-loggiato-18.webp",
+              "didascalia": "Veduta esterna della villa con loggiato e accesso dalla strada.",
+              "alt": "Veduta esterna della villa con loggiato e accesso dalla strada.",
+              "thumb": "villa-ancarano-esterno-ingresso-loggiato-18-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-esterno-vista-cortile-19.webp",
+              "didascalia": "Panoramica della facciata con loggiato, recinzione e piazzale antistante.",
+              "alt": "Panoramica della facciata con loggiato, recinzione e piazzale antistante.",
+              "thumb": "villa-ancarano-esterno-vista-cortile-19-thumb.webp"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
