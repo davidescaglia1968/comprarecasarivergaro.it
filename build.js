@@ -1063,10 +1063,12 @@ function main() {
     immagini: (p.immagini || []).filter(Boolean).length, url: '/immobile/' + p.slug + '.html',
   }));
   fs.writeFileSync(path.join(OUT, 'data', 'properties.json'), JSON.stringify({ generato: new Date().toISOString().slice(0, 10), immobili: pubblici }, null, 2) + '\n');
+  // Tag <title>: taglia ai confini delle parole (niente parole mozze in SERP)
+  const cutWord = (s, n) => (s.length <= n ? s : (s.slice(0, n).lastIndexOf(' ') > 0 ? s.slice(0, s.slice(0, n).lastIndexOf(' ')) : s.slice(0, n)).trim());
   for (const p of schedaPagine()) {
     const page = {
       path: 'immobile/' + p.slug + '.html', source: null, immobile: p,
-      title: (p.titolo || 'Immobile').slice(0, 60) + ' | ' + cfg.site.dominio,
+      title: cutWord(p.titolo || 'Immobile', 60) + ' | ' + cfg.site.dominio,
       description: (p.descrizione || '').slice(0, 155),
       canonical: '/immobile/' + p.slug + '.html',
       breadcrumb: 'Immobili',
