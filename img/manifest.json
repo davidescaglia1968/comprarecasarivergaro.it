@@ -694,6 +694,50 @@
       "height": 1238
     },
     {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-40-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 184508,
+      "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "180KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+      "tipo": "immagine",
+      "bytes": 348374,
+      "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "340KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-41-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 130786,
+      "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "128KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp",
+      "tipo": "immagine",
+      "bytes": 289516,
+      "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "283KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-disimpegno-05-thumb.webp",
       "tipo": "immagine",
       "bytes": 21186,
@@ -2012,6 +2056,50 @@
           "height": 1238
         },
         {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-40-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 184508,
+          "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "180KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+          "tipo": "immagine",
+          "bytes": 348374,
+          "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "340KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-41-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 130786,
+          "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "128KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp",
+          "tipo": "immagine",
+          "bytes": 289516,
+          "nome": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "283KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-disimpegno-05-thumb.webp",
           "tipo": "immagine",
           "bytes": 21186,
@@ -2636,5 +2724,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-10-27T09:47:56.152Z"
+  "generato": "2026-10-27T09:54:59.816Z"
 }
