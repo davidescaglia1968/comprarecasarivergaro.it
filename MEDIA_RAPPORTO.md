@@ -1,11 +1,11 @@
-# Rapporto media — 2026-10-27T10:06:28.318Z
+# Rapporto media — 2026-10-27T10:14:17.913Z
 
 ## brand
 immagini 1 · video 0
 - `img/brand/logo-davide-scaglia-rivergaro.png` 703×153 60KB · da convertire
 
 ## villa-tre-unita-ancarano
-immagini 140 · video 0
+immagini 138 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24-thumb.webp` 900×405 43KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp` 2200×989 177KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14-thumb.webp` 900×405 73KB 
@@ -58,8 +58,6 @@ immagini 140 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-46.webp` 2200×1238 292KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-47-thumb.webp` 900×506 117KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-47.webp` 2200×1238 145KB 
-- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-48-thumb.webp` 900×506 89KB 
-- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-48.webp` 2200×1238 230KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-49-thumb.webp` 900×506 66KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-49.webp` 2200×1238 275KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-50-thumb.webp` 900×506 61KB 
@@ -206,8 +204,6 @@ immagini 140 · video 0
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-46.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-47-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-47.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
-- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-48-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
-- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-48.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-49-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-49.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-50-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
