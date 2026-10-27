@@ -1,11 +1,11 @@
-# Rapporto media — 2026-10-27T08:49:15.095Z
+# Rapporto media — 2026-10-27T09:13:14.661Z
 
 ## brand
 immagini 1 · video 0
 - `img/brand/logo-davide-scaglia-rivergaro.png` 703×153 60KB · da convertire
 
 ## villa-tre-unita-ancarano
-immagini 76 · video 0
+immagini 84 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24-thumb.webp` 900×405 43KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp` 2200×989 177KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14-thumb.webp` 900×405 73KB 
@@ -82,6 +82,14 @@ immagini 76 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17.webp` 2200×1238 347KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18-thumb.webp` 900×506 108KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18.webp` 2200×1238 358KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19-thumb.webp` 900×506 89KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19.webp` 2200×1238 355KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20-thumb.webp` 900×506 86KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20.webp` 2200×1238 304KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21-thumb.webp` 900×506 68KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp` 2200×1238 238KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp` 900×506 164KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp` 2200×1238 382KB 
 
 ## Avvisi
 - img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp: 0.47MB sopra budget, comprimi
@@ -166,3 +174,11 @@ immagini 76 · video 0
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp" alt="DESCRIVI cosa si vede" width="900" height="506" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
