@@ -53,11 +53,19 @@
         "villa-ancarano-piano-primo-salone-camino-divano-07.webp",
         "villa-ancarano-piano-primo-salone-zona-pranzo-08.webp",
         "villa-ancarano-piano-primo-salone-camino-portafinestra-09.webp",
-        "villa-ancarano-piano-primo-salone-verso-disimpegno-10.webp"
+        "villa-ancarano-piano-primo-salone-verso-disimpegno-10.webp",
+        "villa-ancarano-piano-primo-salone-11.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-12.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-13.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-14.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-15.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-16.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
-      "data_modifica": "2026-10-26",
+      "data_modifica": "2026-10-27",
       "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex.",
       "cap": "29029",
       "gallerie": [
@@ -250,6 +258,54 @@
               "thumb": "villa-ancarano-piano-primo-salone-verso-disimpegno-10-thumb.webp",
               "didascalia": "Salone visto verso il disimpegno, con libreria, divano e portafinestra.",
               "alt": "Salone visto verso il disimpegno, con libreria, divano e portafinestra."
+            },
+            {
+              "file": "villa-ancarano-piano-primo-salone-11.webp",
+              "didascalia": "Salone del piano primo.",
+              "alt": "Salone del piano primo.",
+              "thumb": "villa-ancarano-piano-primo-salone-11-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-12.webp",
+              "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
+              "alt": "Soggiorno/pranzo con accesso al terrazzo.",
+              "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-12-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-13.webp",
+              "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
+              "alt": "Soggiorno/pranzo con accesso al terrazzo.",
+              "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-13-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-14.webp",
+              "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
+              "alt": "Soggiorno/pranzo con accesso al terrazzo.",
+              "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-14-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-15.webp",
+              "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
+              "alt": "Soggiorno/pranzo con accesso al terrazzo.",
+              "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-15-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-16.webp",
+              "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
+              "alt": "Soggiorno/pranzo con accesso al terrazzo.",
+              "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-16-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17.webp",
+              "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
+              "alt": "Soggiorno/pranzo con accesso al terrazzo.",
+              "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18.webp",
+              "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
+              "alt": "Soggiorno/pranzo con accesso al terrazzo.",
+              "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18-thumb.webp"
             }
           ]
         }

@@ -1,4 +1,590 @@
 {
-  "immobili": [],
-  "_nota": "Nessun media trovato: deposita i file in img/_in/ poi riesegui \"node build.js media\"."
+  "immobili": [
+    {
+      "id": "IMM-1000",
+      "slug": "brand",
+      "stato": "DA CONFERMARE",
+      "tipologia": null,
+      "comune": "Rivergaro",
+      "zona": null,
+      "titolo": "DA CONFERMARE",
+      "prezzo": null,
+      "superficie": null,
+      "locali": null,
+      "descrizione": "DA CONFERMARE (primi 200 caratteri = risposta pronta per SEO e motori generativi)",
+      "caratteristiche": [],
+      "pertinenze": [],
+      "immagini": [
+        "logo-davide-scaglia-rivergaro.png"
+      ],
+      "video": [],
+      "dimensioni_immagini": [
+        {
+          "file": "logo-davide-scaglia-rivergaro.png",
+          "width": 703,
+          "height": 153,
+          "kb": 60
+        }
+      ],
+      "data_pubblicazione": null,
+      "data_modifica": null,
+      "note_interne": "Bozza generata da build.js il 2026-10-27 dal contenuto di img/ e video/. Compilare solo i campi DA CONFERMARE e cancellare questa nota. "
+    },
+    {
+      "id": "IMM-1001",
+      "slug": "villa-tre-unita-ancarano",
+      "stato": "DA CONFERMARE",
+      "tipologia": null,
+      "comune": "Rivergaro",
+      "zona": null,
+      "titolo": "DA CONFERMARE",
+      "prezzo": null,
+      "superficie": null,
+      "locali": null,
+      "descrizione": "DA CONFERMARE (primi 200 caratteri = risposta pronta per SEO e motori generativi)",
+      "caratteristiche": [],
+      "pertinenze": [],
+      "immagini": [
+        "villa-ancarano-esterno-accesso-carrabile-24-thumb.webp",
+        "villa-ancarano-esterno-accesso-carrabile-24.webp",
+        "villa-ancarano-esterno-cancello-cortile-14-thumb.webp",
+        "villa-ancarano-esterno-cancello-cortile-14.webp",
+        "villa-ancarano-esterno-cancello-villa-17-thumb.webp",
+        "villa-ancarano-esterno-cancello-villa-17.webp",
+        "villa-ancarano-esterno-facciata-angolare-04-thumb.webp",
+        "villa-ancarano-esterno-facciata-angolare-04.webp",
+        "villa-ancarano-esterno-facciata-balconi-26-thumb.webp",
+        "villa-ancarano-esterno-facciata-balconi-26.webp",
+        "villa-ancarano-esterno-facciata-cancello-15-thumb.webp",
+        "villa-ancarano-esterno-facciata-cancello-15.webp",
+        "villa-ancarano-esterno-facciata-loggiato-22-thumb.webp",
+        "villa-ancarano-esterno-facciata-loggiato-22.webp",
+        "villa-ancarano-esterno-facciata-loggiato-29-thumb.webp",
+        "villa-ancarano-esterno-facciata-loggiato-29.webp",
+        "villa-ancarano-esterno-ingresso-laterale-06-thumb.webp",
+        "villa-ancarano-esterno-ingresso-laterale-06.webp",
+        "villa-ancarano-esterno-ingresso-loggiato-18-thumb.webp",
+        "villa-ancarano-esterno-ingresso-loggiato-18.webp",
+        "villa-ancarano-esterno-ingresso-portico-01-thumb.webp",
+        "villa-ancarano-esterno-ingresso-portico-01.webp",
+        "villa-ancarano-esterno-lato-balconi-27-thumb.webp",
+        "villa-ancarano-esterno-lato-balconi-27.webp",
+        "villa-ancarano-esterno-lato-giardino-12-thumb.webp",
+        "villa-ancarano-esterno-lato-giardino-12.webp",
+        "villa-ancarano-esterno-lato-prato-03-thumb.webp",
+        "villa-ancarano-esterno-lato-prato-03.webp",
+        "villa-ancarano-esterno-portico-finestre-05-thumb.webp",
+        "villa-ancarano-esterno-portico-finestre-05.webp",
+        "villa-ancarano-esterno-prospetto-laterale-16-thumb.webp",
+        "villa-ancarano-esterno-prospetto-laterale-16.webp",
+        "villa-ancarano-esterno-recinzione-cortile-21-thumb.webp",
+        "villa-ancarano-esterno-recinzione-cortile-21.webp",
+        "villa-ancarano-esterno-vista-cortile-19-thumb.webp",
+        "villa-ancarano-esterno-vista-cortile-19.webp",
+        "villa-ancarano-esterno-vista-giardino-28-thumb.webp",
+        "villa-ancarano-esterno-vista-giardino-28.webp",
+        "villa-ancarano-esterno-vista-laterale-23-thumb.webp",
+        "villa-ancarano-esterno-vista-laterale-23.webp",
+        "villa-ancarano-piano-primo-disimpegno-05-thumb.webp",
+        "villa-ancarano-piano-primo-disimpegno-05.webp",
+        "villa-ancarano-piano-primo-ingresso-corridoio-03-thumb.webp",
+        "villa-ancarano-piano-primo-ingresso-corridoio-03.webp",
+        "villa-ancarano-piano-primo-ingresso-pavimento-04-thumb.webp",
+        "villa-ancarano-piano-primo-ingresso-pavimento-04.webp",
+        "villa-ancarano-piano-primo-ingresso-portico-01-thumb.webp",
+        "villa-ancarano-piano-primo-ingresso-portico-01.webp",
+        "villa-ancarano-piano-primo-ingresso-scala-02-thumb.webp",
+        "villa-ancarano-piano-primo-ingresso-scala-02.webp",
+        "villa-ancarano-piano-primo-salone-11-thumb.webp",
+        "villa-ancarano-piano-primo-salone-11.webp",
+        "villa-ancarano-piano-primo-salone-camino-divano-07-thumb.webp",
+        "villa-ancarano-piano-primo-salone-camino-divano-07.webp",
+        "villa-ancarano-piano-primo-salone-camino-portafinestra-09-thumb.webp",
+        "villa-ancarano-piano-primo-salone-camino-portafinestra-09.webp",
+        "villa-ancarano-piano-primo-salone-camino-zona-pranzo-06-thumb.webp",
+        "villa-ancarano-piano-primo-salone-camino-zona-pranzo-06.webp",
+        "villa-ancarano-piano-primo-salone-verso-disimpegno-10-thumb.webp",
+        "villa-ancarano-piano-primo-salone-verso-disimpegno-10.webp",
+        "villa-ancarano-piano-primo-salone-zona-pranzo-08-thumb.webp",
+        "villa-ancarano-piano-primo-salone-zona-pranzo-08.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-12-thumb.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-12.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-13-thumb.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-13.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-14-thumb.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-14.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-15-thumb.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-15.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-16-thumb.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-16.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17-thumb.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18-thumb.webp",
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18.webp"
+      ],
+      "video": [],
+      "dimensioni_immagini": [
+        {
+          "file": "villa-ancarano-esterno-accesso-carrabile-24-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 43
+        },
+        {
+          "file": "villa-ancarano-esterno-accesso-carrabile-24.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 177
+        },
+        {
+          "file": "villa-ancarano-esterno-cancello-cortile-14-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 73
+        },
+        {
+          "file": "villa-ancarano-esterno-cancello-cortile-14.webp",
+          "width": 2200,
+          "height": 990,
+          "kb": 483
+        },
+        {
+          "file": "villa-ancarano-esterno-cancello-villa-17-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 55
+        },
+        {
+          "file": "villa-ancarano-esterno-cancello-villa-17.webp",
+          "width": 2200,
+          "height": 990,
+          "kb": 332
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-angolare-04-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 51
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-angolare-04.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 240
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-balconi-26-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 24
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-balconi-26.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 93
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-cancello-15-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 70
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-cancello-15.webp",
+          "width": 2200,
+          "height": 990,
+          "kb": 403
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-loggiato-22-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 51
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-loggiato-22.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 206
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-loggiato-29-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 56
+        },
+        {
+          "file": "villa-ancarano-esterno-facciata-loggiato-29.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 215
+        },
+        {
+          "file": "villa-ancarano-esterno-ingresso-laterale-06-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 44
+        },
+        {
+          "file": "villa-ancarano-esterno-ingresso-laterale-06.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 228
+        },
+        {
+          "file": "villa-ancarano-esterno-ingresso-loggiato-18-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 50
+        },
+        {
+          "file": "villa-ancarano-esterno-ingresso-loggiato-18.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 201
+        },
+        {
+          "file": "villa-ancarano-esterno-ingresso-portico-01-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 54
+        },
+        {
+          "file": "villa-ancarano-esterno-ingresso-portico-01.webp",
+          "width": 2200,
+          "height": 990,
+          "kb": 357
+        },
+        {
+          "file": "villa-ancarano-esterno-lato-balconi-27-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 33
+        },
+        {
+          "file": "villa-ancarano-esterno-lato-balconi-27.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 138
+        },
+        {
+          "file": "villa-ancarano-esterno-lato-giardino-12-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 49
+        },
+        {
+          "file": "villa-ancarano-esterno-lato-giardino-12.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 184
+        },
+        {
+          "file": "villa-ancarano-esterno-lato-prato-03-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 80
+        },
+        {
+          "file": "villa-ancarano-esterno-lato-prato-03.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 529
+        },
+        {
+          "file": "villa-ancarano-esterno-portico-finestre-05-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 45
+        },
+        {
+          "file": "villa-ancarano-esterno-portico-finestre-05.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 277
+        },
+        {
+          "file": "villa-ancarano-esterno-prospetto-laterale-16-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 58
+        },
+        {
+          "file": "villa-ancarano-esterno-prospetto-laterale-16.webp",
+          "width": 2200,
+          "height": 990,
+          "kb": 395
+        },
+        {
+          "file": "villa-ancarano-esterno-recinzione-cortile-21-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 40
+        },
+        {
+          "file": "villa-ancarano-esterno-recinzione-cortile-21.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 166
+        },
+        {
+          "file": "villa-ancarano-esterno-vista-cortile-19-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 44
+        },
+        {
+          "file": "villa-ancarano-esterno-vista-cortile-19.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 194
+        },
+        {
+          "file": "villa-ancarano-esterno-vista-giardino-28-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 33
+        },
+        {
+          "file": "villa-ancarano-esterno-vista-giardino-28.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 128
+        },
+        {
+          "file": "villa-ancarano-esterno-vista-laterale-23-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 48
+        },
+        {
+          "file": "villa-ancarano-esterno-vista-laterale-23.webp",
+          "width": 2200,
+          "height": 989,
+          "kb": 211
+        },
+        {
+          "file": "villa-ancarano-piano-primo-disimpegno-05-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 21
+        },
+        {
+          "file": "villa-ancarano-piano-primo-disimpegno-05.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 96
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-corridoio-03-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 19
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-corridoio-03.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 113
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-pavimento-04-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 32
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-pavimento-04.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 136
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-portico-01-thumb.webp",
+          "width": 900,
+          "height": 405,
+          "kb": 44
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-portico-01.webp",
+          "width": 2200,
+          "height": 990,
+          "kb": 236
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-scala-02-thumb.webp",
+          "width": 405,
+          "height": 900,
+          "kb": 11
+        },
+        {
+          "file": "villa-ancarano-piano-primo-ingresso-scala-02.webp",
+          "width": 990,
+          "height": 2200,
+          "kb": 46
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-11-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 93
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-11.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 327
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-camino-divano-07-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 36
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-camino-divano-07.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 160
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-camino-portafinestra-09-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 37
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-camino-portafinestra-09.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 157
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-camino-zona-pranzo-06-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 42
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-camino-zona-pranzo-06.webp",
+          "width": 2200,
+          "height": 1237,
+          "kb": 148
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-verso-disimpegno-10-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 38
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-verso-disimpegno-10.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 155
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-zona-pranzo-08-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 35
+        },
+        {
+          "file": "villa-ancarano-piano-primo-salone-zona-pranzo-08.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 145
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-12-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 104
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-12.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 328
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-13-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 75
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-13.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 388
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-14-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 70
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-14.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 242
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-15-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 69
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-15.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 296
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-16-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 84
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-16.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 301
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 86
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-17.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 347
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 108
+        },
+        {
+          "file": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-18.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 358
+        }
+      ],
+      "data_pubblicazione": null,
+      "data_modifica": null,
+      "note_interne": "Bozza generata da build.js il 2026-10-27 dal contenuto di img/ e video/. Compilare solo i campi DA CONFERMARE e cancellare questa nota. "
+    }
+  ],
+  "_nota": "Bozza generata automaticamente: non e un catalogo. Diventa properties.json solo dopo che Davide ha compilato e confermato i dati."
 }
