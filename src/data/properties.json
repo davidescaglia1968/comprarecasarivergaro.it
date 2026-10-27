@@ -65,7 +65,13 @@
         "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19.webp",
         "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20.webp",
         "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp",
-        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp"
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp",
+        "villa-ancarano-piano-primo-terrazzo-23.webp",
+        "villa-ancarano-piano-primo-terrazzo-24.webp",
+        "villa-ancarano-piano-primo-terrazzo-25.webp",
+        "villa-ancarano-piano-primo-terrazzo-26.webp",
+        "villa-ancarano-piano-primo-terrazzo-27.webp",
+        "villa-ancarano-piano-primo-terrazzo-28.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -334,6 +340,42 @@
               "didascalia": "Soggiorno/pranzo con accesso al terrazzo.",
               "alt": "Soggiorno/pranzo con accesso al terrazzo.",
               "thumb": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-terrazzo-23.webp",
+              "didascalia": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "alt": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "thumb": "villa-ancarano-piano-primo-terrazzo-23-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-terrazzo-24.webp",
+              "didascalia": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "alt": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "thumb": "villa-ancarano-piano-primo-terrazzo-24-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-terrazzo-25.webp",
+              "didascalia": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "alt": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "thumb": "villa-ancarano-piano-primo-terrazzo-25-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-terrazzo-26.webp",
+              "didascalia": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "alt": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "thumb": "villa-ancarano-piano-primo-terrazzo-26-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-terrazzo-27.webp",
+              "didascalia": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "alt": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "thumb": "villa-ancarano-piano-primo-terrazzo-27-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-terrazzo-28.webp",
+              "didascalia": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "alt": "Terrazzo comunicante con la zona pranzo e il salone.",
+              "thumb": "villa-ancarano-piano-primo-terrazzo-28-thumb.webp"
             }
           ]
         }

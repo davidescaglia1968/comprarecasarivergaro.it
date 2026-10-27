@@ -128,7 +128,19 @@
         "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21-thumb.webp",
         "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp",
         "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp",
-        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp"
+        "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp",
+        "villa-ancarano-piano-primo-terrazzo-23-thumb.webp",
+        "villa-ancarano-piano-primo-terrazzo-23.webp",
+        "villa-ancarano-piano-primo-terrazzo-24-thumb.webp",
+        "villa-ancarano-piano-primo-terrazzo-24.webp",
+        "villa-ancarano-piano-primo-terrazzo-25-thumb.webp",
+        "villa-ancarano-piano-primo-terrazzo-25.webp",
+        "villa-ancarano-piano-primo-terrazzo-26-thumb.webp",
+        "villa-ancarano-piano-primo-terrazzo-26.webp",
+        "villa-ancarano-piano-primo-terrazzo-27-thumb.webp",
+        "villa-ancarano-piano-primo-terrazzo-27.webp",
+        "villa-ancarano-piano-primo-terrazzo-28-thumb.webp",
+        "villa-ancarano-piano-primo-terrazzo-28.webp"
       ],
       "video": [],
       "dimensioni_immagini": [
@@ -635,6 +647,78 @@
           "width": 2200,
           "height": 1238,
           "kb": 382
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-23-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 103
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-23.webp",
+          "width": 2200,
+          "height": 1237,
+          "kb": 311
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-24-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 108
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-24.webp",
+          "width": 2200,
+          "height": 1237,
+          "kb": 305
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-25-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 105
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-25.webp",
+          "width": 2200,
+          "height": 1237,
+          "kb": 343
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-26-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 106
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-26.webp",
+          "width": 2200,
+          "height": 1237,
+          "kb": 349
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-27-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 105
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-27.webp",
+          "width": 2200,
+          "height": 1237,
+          "kb": 346
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-28-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 147
+        },
+        {
+          "file": "villa-ancarano-piano-primo-terrazzo-28.webp",
+          "width": 2200,
+          "height": 1237,
+          "kb": 322
         }
       ],
       "data_pubblicazione": null,
