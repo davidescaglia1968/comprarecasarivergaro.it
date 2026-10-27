@@ -381,6 +381,7 @@ function pubblichi(p) {
 function pubblicabili(p) { return pubblichi(p) && !p.bozza; }
 function prezzo(p) {
   if (typeof p.prezzo === 'number' && p.prezzo > 0) return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(p.prezzo);
+  if (typeof p.prezzo === 'string' && p.prezzo) return p.prezzo;
   return '';
 }
 function prezzoCell(p) {
