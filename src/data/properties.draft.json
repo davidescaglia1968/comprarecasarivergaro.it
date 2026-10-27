@@ -107,6 +107,10 @@
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-38.webp",
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-39-thumb.webp",
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-39.webp",
+        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40-thumb.webp",
+        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41-thumb.webp",
+        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp",
         "villa-ancarano-piano-primo-disimpegno-05-thumb.webp",
         "villa-ancarano-piano-primo-disimpegno-05.webp",
         "villa-ancarano-piano-primo-ingresso-corridoio-03-thumb.webp",
@@ -537,6 +541,30 @@
           "width": 2200,
           "height": 1238,
           "kb": 388
+        },
+        {
+          "file": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 180
+        },
+        {
+          "file": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 340
+        },
+        {
+          "file": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41-thumb.webp",
+          "width": 900,
+          "height": 506,
+          "kb": 128
+        },
+        {
+          "file": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 283
         },
         {
           "file": "villa-ancarano-piano-primo-disimpegno-05-thumb.webp",

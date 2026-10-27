@@ -82,7 +82,9 @@
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-36.webp",
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-37.webp",
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-38.webp",
-        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-39.webp"
+        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-39.webp",
+        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+        "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -453,6 +455,18 @@
               "didascalia": "Camera matrimoniale con bagno privato.",
               "alt": "Camera matrimoniale con bagno privato.",
               "thumb": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-39-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40.webp",
+              "didascalia": "Bagno privato della camera matrimoniale.",
+              "alt": "Bagno privato della camera matrimoniale.",
+              "thumb": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-40-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41.webp",
+              "didascalia": "Bagno privato della camera matrimoniale.",
+              "alt": "Bagno privato della camera matrimoniale.",
+              "thumb": "villa-ancarano-piano-primo-camera-matrimoniale-bagno-41-thumb.webp"
             }
           ]
         }
