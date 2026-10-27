@@ -92,7 +92,13 @@
         "villa-ancarano-piano-primo-camera-2-46.webp",
         "villa-ancarano-piano-primo-camera-2-47.webp",
         "villa-ancarano-piano-primo-camera-2-49.webp",
-        "villa-ancarano-piano-primo-camera-2-50.webp"
+        "villa-ancarano-piano-primo-camera-2-50.webp",
+        "villa-ancarano-piano-primo-camera-3-balcone-51.webp",
+        "villa-ancarano-piano-primo-bagno-2-52.webp",
+        "villa-ancarano-piano-primo-bagno-2-53.webp",
+        "villa-ancarano-piano-primo-bagno-2-54.webp",
+        "villa-ancarano-piano-primo-bagno-2-55.webp",
+        "villa-ancarano-piano-primo-balconi-56.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -523,6 +529,42 @@
               "didascalia": "Camera 2.",
               "alt": "Camera 2.",
               "thumb": "villa-ancarano-piano-primo-camera-2-50-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-camera-3-balcone-51.webp",
+              "didascalia": "Camera 3 con balcone.",
+              "alt": "Camera 3 con balcone.",
+              "thumb": "villa-ancarano-piano-primo-camera-3-balcone-51-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-52.webp",
+              "didascalia": "Bagno 2.",
+              "alt": "Bagno 2.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-52-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-53.webp",
+              "didascalia": "Bagno 2.",
+              "alt": "Bagno 2.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-53-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-54.webp",
+              "didascalia": "Bagno 2.",
+              "alt": "Bagno 2.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-54-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-55.webp",
+              "didascalia": "Bagno 2.",
+              "alt": "Bagno 2.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-55-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-balconi-56.webp",
+              "didascalia": "Balconi della camera matrimoniale e della camera 3.",
+              "alt": "Balconi della camera matrimoniale e della camera 3.",
+              "thumb": "villa-ancarano-piano-primo-balconi-56-thumb.webp"
             }
           ]
         }
