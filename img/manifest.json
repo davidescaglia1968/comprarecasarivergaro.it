@@ -846,6 +846,94 @@
       "eta": "358KB",
       "width": 2200,
       "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 91380,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "89KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19.webp",
+      "tipo": "immagine",
+      "bytes": 363514,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "355KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 87794,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "86KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20.webp",
+      "tipo": "immagine",
+      "bytes": 311058,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "304KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 69124,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "68KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp",
+      "tipo": "immagine",
+      "bytes": 243558,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "238KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp",
+      "tipo": "immagine",
+      "bytes": 167638,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "164KB",
+      "width": 900,
+      "height": 506
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp",
+      "tipo": "immagine",
+      "bytes": 391664,
+      "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "382KB",
+      "width": 2200,
+      "height": 1238
     }
   ],
   "byProp": {
@@ -1702,6 +1790,94 @@
           "eta": "358KB",
           "width": 2200,
           "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 91380,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "89KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19.webp",
+          "tipo": "immagine",
+          "bytes": 363514,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-19.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "355KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 87794,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "86KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20.webp",
+          "tipo": "immagine",
+          "bytes": 311058,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-20.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "304KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 69124,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "68KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp",
+          "tipo": "immagine",
+          "bytes": 243558,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-21.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "238KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp",
+          "tipo": "immagine",
+          "bytes": 167638,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22-thumb.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "164KB",
+          "width": 900,
+          "height": 506
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp",
+          "tipo": "immagine",
+          "bytes": 391664,
+          "nome": "villa-ancarano-piano-primo-soggiorno-pranzo-terrazzo-22.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "382KB",
+          "width": 2200,
+          "height": 1238
         }
       ],
       "video": []
@@ -1712,5 +1888,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-10-27T08:49:15.095Z"
+  "generato": "2026-10-27T09:13:14.661Z"
 }
