@@ -1,17 +1,18 @@
 ---
-title: Villa con 3 abitazioni ad Ancarano | Rivergaro
-description: Villa indipendente ad Ancarano, Rivergaro: 12 vani e 3 unità abitative indipendenti. Contattami per informazioni.
+title: Case in vendita a Rivergaro Val Trebbia | Davide Scaglia
+description: Case in vendita a Rivergaro e in Val Trebbia: proposta attuale, ricerca personalizzata, visite e trattativa assistita da Davide Scaglia, agente immobiliare a Rivergaro.
 canonical: /
 ---
 
 ::hero {
-  "eyebrow": "IMMOBILE IN VENDITA · ANCARANO",
+  "eyebrow": "Case in vendita a Rivergaro Val Trebbia",
   "h1": "LA TUA CASA IN VAL TREBBIA: VILLA INDIPENDENTE CON 3 ABITAZIONI",
   "lead": [
     "Località Ancarano · 29029 Rivergaro (PC)",
-    "Immagina di vivere in spazi ampi e luminosi, fare colazione sotto un porticato luminoso e avere ciò di cui hai bisogno a soli 2 minuti di auto. Questa non è solo una casa: è uno stile di vita."
+    "Sono Davide Scaglia, agente immobiliare a Rivergaro: seguo chi compra casa in Val Trebbia senza agenzia con vetrina e senza una lista di decine di annunci. Qui sotto trovi la proposta attuale; se cerchi un'altra casa, raccontami cosa ti serve e la cerco io."
   ],
-  "cta": "Scopri la villa"
+  "cta": ["Scopri la villa", "#immobile-in-evidenza"],
+  "cta2": ["Vedi il catalogo con i filtri", "immobili.html"]
 }
 
 ## Immobile in evidenza
@@ -30,12 +31,7 @@ Situata in una posizione strategica e riservata, questa villa indipendente ha fi
 
 ## Servizi a portata di mano
 
-Il comune di Rivergaro offre servizi utili alla vita quotidiana delle famiglie:
-
-- **Scuole:** Istituto Comprensivo con scuola dell'infanzia, primaria e secondaria, servizio mensa e trasporto scolastico attivi. [Fonte informativa: Tuttitalia](http://www.tuttitalia.it).
-- **Spesa:** supermercati ed esercizi locali.
-- **Salute:** centro medico e farmacie, con servizi di analisi rapide.
-- **Trasporti:** fermata dell'autobus nelle immediate vicinanze, con collegamenti verso Piacenza.
+Una casa si valuta anche da cosa trovi intorno. Per la vita quotidiana a Rivergaro contano le scuole, la spesa, i servizi sanitari e i collegamenti con Piacenza: quali ci sono, quanto sono vicini e come si usano davvero lo confermo con te quando mi scrivi, invece di scriverlo qui senza verifiche.
 
 ## La villa non fa per te?
 
