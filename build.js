@@ -31,6 +31,109 @@ const rel = (from, to) => {
   return r || to;
 };
 
+/* Le ancore di menu e footer sono scritte a mano, invece gli id dei paragrafi nascono dal
+   titolo nel markdown: se i due non coincidono il link non porta da nessuna parte. Qui si
+   verifica che l'id esista nella pagina generata e in alternativa si usa il primo paragrafo
+   utile, cosi' la navigazione interna non si rompe quando Davide riscrive un titolo. */
+function mdSourceIds(file) {
+  if (file === 'index.html') return mdIds('home.md');
+  const p = PAGES.find((x) => x.path === file);
+  return p && p.source ? mdIds(p.source) : null;
+}
+function mdIds(source) {
+  const md = readIf(path.join(SRC, 'pages', source), '');
+  if (!md) return null;
+  const ids = new Map();
+  for (const line of md.split(/\r?\n/)) {
+    const h = line.match(/^#{1,4}\s+(.*)$/);
+    if (!h) continue;
+    const forced = h[1].match(/\s*\{#([a-z0-9][a-z0-9-]*)\}\s*$/);
+    const titolo = forced ? h[1].slice(0, forced.index) : h[1];
+    const trailing = titolo.match(/^(.*?)\s*(\[[^\]]+\]\([^)]+\))\s*$/);
+    const testo = trailing && trailing[1].trim() ? trailing[1] : titolo;
+    /* vale la stessa regola del render: {#id} scritto a mano vince, poi lo slug del titolo.
+       Se qui e li' non coincidessero, l'id dichiarato sarebbe IRRAGGIUNGIBILE dai menu. */
+    ids.set(forced ? forced[1] : slugify(testo), testo);
+  }
+  return new Set(ids.keys());
+}
+/* Map id -> titolo, per il confronto di somiglianza */
+function mdTitoli(file) {
+  const md = readIf(path.join(SRC, 'pages', (PAGES.find((p) => p.path === file) || {}).source || '___'), '');
+  const out = new Map();
+  if (!md) return out;
+  for (const line of md.split(/\r?\n/)) {
+    const h = line.match(/^#{2}\s+(.*)$/);
+    if (!h) continue;
+    const forced = h[1].match(/\s*\{#([a-z0-9][a-z0-9-]*)\}\s*$/);
+    const titolo = forced ? h[1].slice(0, forced.index) : h[1];
+    const trailing = titolo.match(/^(.*?)\s*(\[[^\]]+\]\([^)]+\))\s*$/);
+    const testo = trailing && trailing[1].trim() ? trailing[1] : titolo;
+    out.set(forced ? forced[1] : slugify(testo), testo);
+  }
+  return out;
+}
+/* Nessuna corrispondenza esatta: si prende il paragrafo della stessa pagina che condivide
+   piu' parole con il titolo che cercavamo, cosi' un "La villa non fa per te?" diventato
+   "Vuoi vedere altro?" continua a portare nel blocco dei contatti e non nel vuoto. */
+function piuVicino(wanted, ids, file) {
+  const titoli = mdTitoli(file);
+  if (!titoli.size) return '';
+  const t0 = new Set(slugify(wanted).split('-').filter((w) => w.length > 3));
+  let best = ''; let bestScore = 0;
+  titoli.forEach((titolo, id) => {
+    if (titolo === wanted) return;
+    const parole = new Set(slugify(titolo).split('-').filter((w) => w.length > 3));
+    let n = 0; parole.forEach((w) => { if (t0.has(w)) n++; });
+    if (n > bestScore) { bestScore = n; best = id; }
+  });
+  /* un solo punto di contatto non e' una somiglianza: meglio rinunciare al link che far
+     fare al visitatore un salto in un paragrafo sbagliato */
+  if (bestScore < 2 || !ids.has(best)) return '';
+  console.log(`⚠ ancora "${wanted.replace(/\s+/g, '-')}" non trovata in ${file}: uso "${best}" (titolo cambiato nel markdown?)`);
+  return best;
+}
+function pageIds(file) {
+  return new Set([...readIf(path.join(ROOT, file), '').matchAll(/\sid="([^"]+)"/g)].map((x) => x[1]));
+}
+/* Le ancore di menu e footer sono scritte a mano, gli id dei paragrafi invece nascono dal
+   titolo nel markdown: se non coincidono il link non porta da nessuna parte (e Google lo
+   segnala come broken fragment). Qui si cerca l'ancora nella pagina richiesta, poi nelle
+   pagine di riserva; se non c'e' nemmeno il fallback si rinuncia al link, che e' sempre
+   meglio di un link morto. */
+/* L'ancora della sezione "raccontami cosa cerchi" e' un solo punto di verita': il titolo del
+   paragrafo lo scrive Davide e ogni pulsante che ci punta deve seguirlo, non essere riscritto
+   a mano in sei punti diversi. */
+function anchorRicerca(from, prefix) {
+  const t = (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te';
+  return anchorHref(from, t) || (exists(t.split('#')[0]) ? rel(from, t.split('#')[0]) : '') || '#top';
+}
+function anchorHref(from, target) {
+  if (!target || !target.includes('#')) return target;
+  const i = target.indexOf('#');
+  const anchor = target.slice(i + 1);
+  const wanted = anchor.replace(/-/g, ' ');
+  const files = [target.slice(0, i) || from].concat((cfg.navigazione && cfg.navigazione.pagine_ancore) || []);
+  const hits = [];
+  for (const file of files) {
+    if (!exists(file)) continue;
+    const src = mdSourceIds(file);
+    const ids = src && src.size ? src : pageIds(file);
+    let id = ids.has(anchor) ? anchor : slugify(wanted) && ids.has(slugify(wanted)) ? slugify(wanted) : '';
+    if (!id) id = piuVicino(wanted, ids, file);
+    if (!id) continue;
+    const href = rel(from, file) + '#' + id;
+    if (!hits.length) hits[0] = { href, file, id };
+    else if (!hits[1] && file !== from) hits[1] = { href, file, id };
+  }
+  if (!hits.length) return null;
+  const pick = from === hits[0].file ? hits[0] : (hits[1] || hits[0]);
+  if (pick.file === from) return '#' + pick.id; /* stessa pagina: basta l'ancora */
+  if (pick.id !== anchor) console.warn(`⚠ ancora "${anchor}" inesistente in ${pick.file}: il link punta a "${pick.id}" (titolo di paragrafo cambiato?)`);
+  else if (pick.file !== (target.slice(0, i) || from)) console.warn(`⚠ "${anchor}" non c'e' in ${target.slice(0, i) || from}: il link punta alla home, che e' la pagina con quella sezione`);
+  return pick.href;
+}
+
 /* ------------------------------------------------------------------ config */
 
 const cfg = readJson(path.join(SRC, 'data', 'site-config.json'), null);
@@ -96,15 +199,22 @@ function listingJsonLd(p) {
   o.address = addr;
   const offer = { '@type': 'Offer' };
   const hasPrice = typeof p.prezzo === 'number' && p.prezzo > 0;
+  /* Qui il prezzo e' una frase confermata dal proprietario ("Prezzo su richiesta"): non essendo
+     un numero non si inventa price = ..., ma l'indicazione testuale va comunque nell'offerta. */
+  const priceText = !hasPrice && typeof p.prezzo === 'string' && p.prezzo.trim() ? p.prezzo.trim() : '';
   if (hasPrice) { offer.price = String(p.prezzo); offer.priceCurrency = 'EUR'; }
+  else if (priceText) { offer.price = priceText; offer.priceCurrency = 'EUR'; }
   const map = cfg.seo_geo.jsonld.offers_schema || {};
   const av = p.stato === 'Disponibile' ? map.disponibile : p.stato === 'In trattativa' ? map.in_trattativa : map.chiuso;
-  if (hasPrice && av) offer.availability = av;
+  if (av) offer.availability = av;
   if (p.data_pubblicazione) offer.validFrom = p.data_pubblicazione;
-  if (hasPrice && Object.keys(offer).length > 1) o.offers = offer;
+  if (Object.keys(offer).length > 1) o.offers = offer;
   if (p.stato === 'Venduto') o.usedProd = { '@type': 'Product', name: 'immobile venduto' };
   if (p.superficie) o.floorSize = { '@type': 'QuantitativeValue', value: p.superficie, unitCode: 'MTK' };
   if (p.locali) o.numberOfRooms = p.locali;
+  /* i vani sono un dato scritto da Davide: ammissibile qui e in caratteristiche, non come metratura.
+     Si legge dall'elenco caratteristiche cosi' il numero resta scritto una volta sola. */
+  else { const vani = vaniDaCaratteristiche(p); if (vani) o.numberOfRooms = vani; }
   if (p.anno_costruzione) o.yearBuilt = String(p.anno_costruzione);
   if (p.lat && p.lng) o.geo = { '@type': 'GeoCoordinates', latitude: p.lat, longitude: p.lng };
   o.areaServed = { '@type': 'City', name: p.comune || cfg.area_servizio.comune_principale };
@@ -153,9 +263,13 @@ function inline(s) {
   return out;
 }
 
+/* Regola del design system: slug e id in ASCII, niente accentini. Vale per i nomi dei file
+   come per gli id dei paragrafi, che diventano le ancore del menu e finiscono negli URL. */
 function slugify(t) {
-  return String(t).replace(/<\/?[^>]+>/g, '').toLowerCase()
-    .replace(/[^\p{L}\p{N}\s-]/gu, '').trim().replace(/\s+/g, '-');
+  return String(t).replace(/<\/?[^>]+>/g, '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
 }
 
 function renderMarkdown(md) {
@@ -198,8 +312,17 @@ function renderMarkdown(md) {
     if ((m = line.match(/^(#{1,4})\s+(.*)$/))) {
       flushAll();
       const lvl = m[1].length;
-      const text = m[2];
-      html.push('<h' + lvl + ' id="' + slugify(text) + '">' + inline(text) + '</h' + lvl + '>');
+      let text = m[2];
+      /* Un titolo che ha un link in coda o un {#id} finale non e' un paragrafo da usare come
+         ancora: il link si sposta sotto il titolo (sennoe' l'H2 stesso a diventare il link) e
+         l'id scritto a mano diventa la destinazione ufficiale, cosi' il titolo e' libero. */
+      const forced = text.match(/\s*\{#([a-z0-9][a-z0-9-]*)\}\s*$/);
+      if (forced) text = text.slice(0, forced.index);
+      const trailing = text.match(/^(.*?)\s*(\[[^\]]+\]\([^)]+\))\s*$/);
+      let after = '';
+      if (trailing && trailing[1].trim()) { text = trailing[1]; after = trailing[2]; }
+      const id = forced ? forced[1] : slugify(text);
+      html.push('<h' + lvl + (lvl === 2 && id ? ' id="' + id + '"' : '') + '>' + inline(text) + '</h' + lvl + '>' + (after ? '<p>' + inline(after) + '</p>' : ''));
       continue;
     }
     if (/^\s*-{3,}\s*$/.test(line)) { flushAll(); html.push('<hr>'); continue; }
@@ -280,14 +403,29 @@ function formRicerca(prefix, submitLabel) {
 
 const shortcodes = {
   hero(o) {
-    o = Object.assign({ eyebrow: '', h1: '', lead: [], cta: 'Scopri la villa' }, o);
+    /* cta e' sempre [etichetta, destinazione]: la destinazione deve esistere, perche' il
+       testo del paragrafo lo scrive Davide e il pulsante non deve restare orfano. */
+    o = Object.assign({ eyebrow: '', h1: '', lead: [], cta: ['Scopri la villa', '#immobile-in-evidenza'] }, o);
     const wa = String(pro.whatsapp || pro.telefono_e164 || '').replace(/\D/g, '');
+    const resolve = (t) => {
+      if (!t) return '';
+      if (t.startsWith('#')) return anchorHref('index.html', 'index.html' + t) || '';
+      const file = t.split('#')[0];
+      if (t.includes('#')) return anchorHref('index.html', t) || (file !== 'index.html' && exists(file) ? rel('index.html', file) : '');
+      return exists(file) ? rel('index.html', file) : anchorHref('index.html', 'index.html#' + slugify(t)) || '';
+    };
+    const c = Array.isArray(o.cta) ? o.cta : [String(o.cta || ''), '#immobile-in-evidenza'];
+    const cta = { label: c[0] || 'Scopri la villa', href: resolve(c[1]) };
+    if (!cta.href) { console.log(`\u26a0 hero: la destinazione "${c[1]}" non esiste in nessuna pagina: il pulsante punta alla prima sezione con un id`); cta.href = '#immobile-in-evidenza'; }
+    const c2 = Array.isArray(o.cta2) ? o.cta2 : [];
+    const cta2 = c2.length ? { label: c2[0], href: resolve(c2[1]) } : null;
+    if (cta2 && !cta2.href) console.log(`\u26a0 hero: il secondo pulsante "${c2[0]}" non ha destinazione (${c2[1]}) e non viene renderizzato`);
     return `<section class="hero hero--listing" id="top"><div class="wrap hero-grid">
       <div class="hero-copy">
         ${o.eyebrow ? `<p class="eyebrow">${inline(o.eyebrow)}</p>` : ''}
         <h1>${inline(o.h1)}</h1>
         ${o.lead && o.lead.length ? `<div class="lead">${o.lead.map((p) => '<p>' + inline(p) + '</p>').join('')}</div>` : ''}
-        <div class="cta-row"><a class="btn btn-primary" href="#immobile-in-evidenza">${esc(o.cta)}</a><a class="btn btn-ghost" href="https://wa.me/${attr(wa)}" target="_blank" rel="noopener noreferrer">Scrivimi su WhatsApp</a><a class="hero-email-link" href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></div>
+        <div class="cta-row"><a class="btn btn-primary" href="${attr(cta.href)}">${esc(cta.label)}</a>${cta2 && cta2.href ? `<a class="btn btn-ghost" href="${attr(cta2.href)}">${esc(cta2.label)}</a>` : ''}<a class="btn btn-ghost" href="https://wa.me/${attr(wa)}" target="_blank" rel="noopener noreferrer">Scrivimi su WhatsApp</a><a class="hero-email-link" href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></div>
       </div></div></section>`;
   },
   form_ricerca() {
@@ -300,9 +438,9 @@ const shortcodes = {
     const list = catalogo();
     const link = exists('immobili.html')
       ? `<a class="section-more" href="${rel('index.html', 'immobili.html')}">Apri il catalogo con i filtri per zona, tipologia e budget</a>`
-      : `<a class="section-more" href="#la-villa-non-fa-per-te">Nel frattempo: chiamami e ti dico cosa si muove in valle</a>`;
+      : `<a class="section-more" href="${attr(anchorRicerca('index.html'))}">Nel frattempo: chiamami e ti dico cosa si muove in valle</a>`;
     if (!list.length) {
-      return `<div class="empty-state"><p>${inline(o.empty)}</p><a class="btn btn-primary" href="#la-villa-non-fa-per-te">${esc(cfg.contatti_sezione.cta_principale)}</a></div>${link}`;
+      return `<div class="empty-state"><p>${inline(o.empty)}</p><a class="btn btn-primary" href="${attr(anchorRicerca('index.html'))}">${esc(cfg.contatti_sezione.cta_principale)}</a></div>${link}`;
     }
     return `<ul class="grid-cards">${list.map((p) => cardImmobile(p, 'index.html')).join('')}</ul>`;
   },
@@ -317,7 +455,7 @@ const shortcodes = {
   guide_teaser() {
     const g = (cfg.contenuti.guide_previste || []).filter((x) => x.stato === 'disponibile');
     if (!g.length) {
-      return `<div class="empty-state"><p>Le guide per chi compra sono in preparazione: le pubblico solo quando ho contenuto scritto da me, non testi generici.</p><a class="btn btn-ghost" href="#la-villa-non-fa-per-te">Chiedimi direttamente quello che vuoi sapere</a></div>`;
+      return `<div class="empty-state"><p>Le guide per chi compra sono in preparazione: le pubblico solo quando ho contenuto scritto da me, non testi generici.</p><a class="btn btn-ghost" href="${attr(anchorRicerca('index.html'))}">Chiedimi direttamente quello che vuoi sapere</a></div>`;
     }
     return `<ul class="grid-cards grid-cards--editorial">${g.map((x) => `<li class="card card--text"><h3><a href="${rel('','guide/'+x.slug+'.html')}">${esc(x.titolo)}</a></h3><p>${inline(x.anteprima||'')}</p></li>`).join('')}</ul>`;
   },
@@ -379,6 +517,13 @@ function pubblichi(p) {
   return ok.includes(p.stato) && !(p.note_interne || '').includes('NON PUBBLICARE');
 }
 function pubblicabili(p) { return pubblichi(p) && !p.bozza; }
+/* "12 vani" e' una delle righe di caratteristiche dettate da Davide: qui si legge quel numero,
+   non lo si scrive a mano in un secondo punto (altrimenti i due valori divergono dopo una modifica). */
+function vaniDaCaratteristiche(p) {
+  if (p.vani) return Number(p.vani) || null;
+  const v = (p.caratteristiche || []).map(String).find((x) => /^\s*\d+\s+vani\s*$/i.test(x));
+  return v ? parseInt(v, 10) : null;
+}
 function prezzo(p) {
   if (typeof p.prezzo === 'number' && p.prezzo > 0) return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(p.prezzo);
   if (typeof p.prezzo === 'string' && p.prezzo) return p.prezzo;
@@ -574,7 +719,7 @@ function schedaPage(p, prefix) {
       <div class="side-box side-box--alt">
         <p class="side-k">Non è quella giusta?</p>
         <p class="side-note">Dimmi cosa cerchi: la ricerca parte da te, non da quello che ho in vetrina.</p>
-        <a class="btn btn-outline btn-sm" href="${rel('immobile/' + p.slug + '.html', 'index.html')}#la-villa-non-fa-per-te">Ricerca personalizzata</a>
+        <a class="btn btn-outline btn-sm" href="${attr(anchorRicerca('immobile/' + p.slug + '.html', prefix))}">Ricerca personalizzata</a>
       </div>
     </aside>
   </div>
@@ -605,7 +750,7 @@ function catalogoPage() {
     return '<section class="section"><div class="wrap">'
       + '<h1>Immobili a Rivergaro</h1>'
       + '<p class="muted">Le proposte pubblicate riguardano Rivergaro. In questo momento non ci sono schede con dati completi da pubblicare: è una scelta di metodo, non un\'assenza di case in zona.</p>'
-      + '<div class="empty-state"><p>Se mi dici cosa cerchi, la ricerca parte oggi e ti contatto quando trovo qualcosa di coerente — anche prima che finisca in vetrina.</p><a class="btn btn-primary" href="index.html#la-villa-non-fa-per-te">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
+      + '<div class="empty-state"><p>Se mi dici cosa cerchi, la ricerca parte oggi e ti contatto quando trovo qualcosa di coerente — anche prima che finisca in vetrina.</p><a class="btn btn-primary" href="' + anchorRicerca('immobili.html') + '">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
       + '<p class="draft-note">Schede in bozza (non indicizzate, solo per te): ' + tutteProp().filter((p) => p.bozza).map((p) => `<a href="immobile/${esc(p.slug)}.html">${esc(p.slug)}</a>`).join(', ') + '</p>'
       + '</div></section>';
   }
@@ -614,7 +759,7 @@ function catalogoPage() {
     + '<p class="muted">Ogni scheda pubblicata qui è una scheda verificata: i dati che non ho in mano non vengono scritti, nemmeno come "circa".</p>'
     + filterBar(list)
     + '<ul class="grid-cards" id="catalogo">' + list.map((p) => cardImmobile(p, 'immobili.html')).join('') + '</ul>'
-    + '<div class="catalog-cta"><p>Ti serve qualcosa che qui non c\'è?</p><a class="btn btn-outline" href="index.html#la-villa-non-fa-per-te">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
+    + '<div class="catalog-cta"><p>Ti serve qualcosa che qui non c\'è?</p><a class="btn btn-outline" href="' + anchorRicerca('immobili.html') + '">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
     + '</div></section>';
 }
 
@@ -721,10 +866,15 @@ function fill(tpl, prefix, page) {
   const labels = { proposta: 'Immobile', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', contatti: 'Contatti' };
   const links = nav
     .map((k) => {
-      const target = { proposta: '#immobile-in-evidenza', richiesta: '#la-villa-non-fa-per-te', ricerca: '#la-villa-non-fa-per-te', immobili: 'immobili.html', zona: '#zona', guide: '#guide', contatti: 'index.html#la-villa-non-fa-per-te' }[k];
+      const ric = (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te';
+      const target = { proposta: '#immobile-in-evidenza', richiesta: ric, ricerca: ric, immobili: 'immobili.html', zona: '#zona', guide: '#guide', contatti: ric }[k];
       if (k === 'immobili' && !exists('immobili.html')) return `<a href="#immobili">${labels[k]}</a>`;
       if (!target) return '';
-      const href = target.startsWith('#') ? target : target.includes('#') ? rel(page.path, target.split('#')[0]) + '#' + target.split('#').slice(1).join('#') : exists(target) ? rel(page.path, target) : '#immobili';
+      let href;
+      if (target.startsWith('#')) href = page.path === 'index.html' && pageIds('index.html').has(target.slice(1)) ? target : anchorHref(page.path, 'index.html' + target);
+      else if (target.includes('#')) href = anchorHref(page.path, target);
+      else href = exists(target) ? rel(page.path, target) : anchorHref(page.path, 'index.html#' + k);
+      if (!href) { console.warn(`⚠ voce di menu "${labels[k]}" rimossa: nessuna pagina contiene un paragrafo utile (${target})`); return ''; }
       return `<a href="${href}">${labels[k]}</a>`;
     })
     .join('\n        ');
@@ -757,7 +907,7 @@ function napText() {
 function footerNav(prefix, page) {
   const items = [];
   if (exists('immobili.html')) items.push(['Immobili', 'immobili.html']);
-  items.push(['Ricerca personalizzata', 'index.html#la-villa-non-fa-per-te']);
+  items.push(['Ricerca personalizzata', (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te']);
   if (exists('contatti.html')) items.push(['Contatti', 'contatti.html']);
   if (exists('chi-sono.html')) items.push(['Chi sono', 'chi-sono.html']);
   items.push(['Privacy', 'legal/privacy.html']);
@@ -765,7 +915,9 @@ function footerNav(prefix, page) {
   items.push(['Termini', 'legal/termini.html']);
   return items
     .filter(([, f]) => (f.includes('#') ? exists(f.split('#')[0]) : exists(f)))
-    .map(([l, f]) => `<a href="${rel(page.path, f)}">${l}</a>`)
+    .map(([l, f]) => [l, f.includes('#') ? anchorHref(page.path, f) : rel(page.path, f)])
+    .filter(([l, href]) => { if (!href) console.warn(`⚠ voce di footer "${l}" rimossa: nessuna destinazione valida`); return !!href; })
+    .map(([l, href]) => `<a href="${href}">${l}</a>`)
     .join('\n        ');
 }
 
@@ -1016,7 +1168,7 @@ function llms() {
   L.push('## Immobili pubblicati');
   if (!elencoLlms.length) L.push('Nessun immobile pubblicato al momento.');
   else elencoLlms.forEach((p) => {
-    const details = [[p.zona, p.comune].filter(Boolean).join(', '), p.tipologia, p.unita_abitative ? p.unita_abitative + ' unità abitative' : null, p.caratteristiche && p.caratteristiche.includes('12 vani') ? '12 vani' : null].filter(Boolean);
+    const details = [[p.zona, p.comune].filter(Boolean).join(', '), p.tipologia, p.unita_abitative ? p.unita_abitative + ' unità abitative' : null, p.vani ? p.vani + ' vani' : null].filter(Boolean);
     L.push(`- ${p.titolo} — ${details.join(' · ')} · ${BASE}/immobile/${p.slug}.html`);
     if (p.descrizione) L.push('  ' + p.descrizione);
   });
@@ -1052,10 +1204,8 @@ function main() {
   const soloCheck = argv.includes('--check') && !argv.includes('--force');
   if (soloCheck) { runCheck(); return; }
   refreshMediaCache();
-  // catalogo + dati pubblici per i filtri client-side
+  // dati pubblici per i filtri client-side (la pagina catalogo si genera dopo le altre pagine)
   const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro | comprarecasarivergaro.it', description: 'Case e ville in vendita a Rivergaro, con schede verificate. Filtri per zona, tipologia e budget.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'zona', 'guide', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
-  fs.writeFileSync(path.join(OUT, 'immobili.html'), cleanHtml(catHtml));
-  console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
   fs.mkdirSync(path.join(OUT, 'data'), { recursive: true });
   const pubblici = catalogo().map((p) => ({
     slug: p.slug, titolo: p.titolo, stato: p.stato, tipologia: p.tipologia || null,
@@ -1097,6 +1247,8 @@ function main() {
     fs.writeFileSync(path.join(OUT, p.path), cleanHtml(html));
     console.log('✓ ' + p.path + ' (' + (html.length / 1024).toFixed(1) + 'KB)');
   }
+  fs.writeFileSync(path.join(OUT, 'immobili.html'), cleanHtml(catHtml));
+  console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
   fs.copyFileSync(path.join(SRC, 'css', 'main.css'), path.join(OUT, 'css', 'main.css'));
   fs.copyFileSync(path.join(SRC, 'js', 'main.js'), path.join(OUT, 'js', 'main.js'));
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap());
@@ -1124,6 +1276,15 @@ function runCheck() {
         const h = m2[1];
         if (/^(https?:|mailto:|tel:|data:)/.test(h) || h === '') continue;
         if (!exists(path.join(path.dirname(f), h))) { console.log(`✗ ${f}: link rotto ${h}`); problems++; }
+      }
+      for (const m4 of s.matchAll(/<a [^>]*href="([^"]*#[^"]+)"/g)) {
+        const raw = m4[1];
+        if (/^(https?:|mailto:|tel:)/.test(raw)) continue;
+        const anchor = raw.slice(raw.indexOf('#') + 1);
+        const file = raw.slice(0, raw.indexOf('#')) || f;
+        if (!exists(file)) continue;
+        const ids = new Set([...readIf(path.join(ROOT, file), '').matchAll(/\sid="([^"]+)"/g)].map((x) => x[1]));
+        if (!ids.has(anchor)) { console.log('\u2717 ' + f + ': ancora senza destinazione ' + raw); problems++; }
       }
       for (const m3 of s.matchAll(/<img [^>]*src="([^"]+)"/g)) {
         if (!exists(path.join(path.dirname(f), m3[1]))) { console.log(`✗ ${f}: immagine mancante ${m3[1]}`); problems++; }

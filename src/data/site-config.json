@@ -7,7 +7,8 @@
     "regola_dati": "I valori in chiaro sono comunicati da Davide Scaglia o gia' pubblicati su venderecasapiacenza.it. Tutto cio' che non e' confermato vale 'DA CONFERMARE' e non deve mai comparire nella UI pubblica ne' nelle meta. Se un campo e' null, il template omette l'intero blocco invece di mostrare un segnaposto.",
     "manutenzione": "I token citati in DESIGN_SYSTEM.md sono copia dichiarativa di questi valori: da Fase 3 sara' build.js a iniettarli nel CSS generato. Non mantenere gli stessi dati in due posti.",
     "fonte_verificata": "Valori di anagrafica confermati dai siti fratelli pubblicati (llms.txt di casepodenzano.it e index.html di venderecasapiacenza.it, letti il 23/10/2026 tramite API GitHub). Ogni valore ha un campo 'fonte'; dove non c'e' fonte il campo resta 'DA CONFERMARE'.",
-    "fonte_visura": "Anagrafica e qualifiche professionali verificate su visura storica dell'impresa 'IMMOBILIARESCAGLIA DI SCAGLIA DAVIDE', documento T 610879435 estratto dal Registro Imprese il 07/07/2025 (Camera di Commercio Industria Artigianato e Agricoltura dell'EMILIA). Estratto in PROFESSIONISTA.md. I dati personali non pubblicabili (codice fiscale, data e luogo di nascita, residenza) sono nella lista di blocco di build.js e NON devono comparire nel sito."
+    "fonte_visura": "Anagrafica e qualifiche professionali verificate su visura storica dell'impresa 'IMMOBILIARESCAGLIA DI SCAGLIA DAVIDE', documento T 610879435 estratto dal Registro Imprese il 07/07/2025 (Camera di Commercio Industria Artigianato e Agricoltura dell'EMILIA). Estratto in PROFESSIONISTA.md. I dati personali non pubblicabili (codice fiscale, data e luogo di nascita, residenza) sono nella lista di blocco di build.js e NON devono comparire nel sito.",
+    "nota_aggiornamento": "28/10/2026: titolo/description/eyebrow della home allineati al front matter di src/pages/home.md (devono coincidere, vince il front matter) e 'navigazione' con le pagine dove cercare le ancore del menu."
   },
   "site": {
     "dominio": "comprarecasarivergaro.it",
@@ -15,8 +16,8 @@
     "base_path": "/",
     "output_dir": ".",
     "lingua": "it-IT",
-    "titolo_home": "Villa con 3 abitazioni ad Ancarano | Rivergaro",
-    "description_home": "Villa indipendente ad Ancarano, Rivergaro: 12 vani e 3 unità abitative indipendenti. Contattami per informazioni.",
+    "titolo_home": "Case in vendita a Rivergaro Val Trebbia | Davide Scaglia",
+    "description_home": "Case in vendita a Rivergaro e in Val Trebbia: proposta attuale, ricerca personalizzata, visite e trattativa assistita da Davide Scaglia, agente immobiliare a Rivergaro.",
     "keywords": [
       "case in vendita Rivergaro",
       "comprare casa Val Trebbia",
@@ -26,7 +27,8 @@
     ],
     "theme_color": "#0a0a0a",
     "robots_indexable": true,
-    "deploy_notes": "GitHub Pages pubblica il ROOT del ramo main, come gia' fanno venderecasapiacenza.it e casepodenzano.it (repo a layout piatto). Richiede: .nojekyll e CNAME nella radice del repo. Nessun /docs."
+    "deploy_notes": "GitHub Pages pubblica il ROOT del ramo main, come gia' fanno venderecasapiacenza.it e casepodenzano.it (repo a layout piatto). Richiede: .nojekyll e CNAME nella radice del repo. Nessun /docs.",
+    "eyebrow_home": "Case in vendita a Rivergaro Val Trebbia"
   },
   "professionista": {
     "nome_completo": "Davide Scaglia",
@@ -482,5 +484,15 @@
     "regola": "Si pubblica con i dati che ci sono. Nessun campo vuoto viene mostrato e nessun campo viene ipotizzato. Ogni nuovo dato arrivato aggiorna data_modifica, lastmod in sitemap e il blocco 'aggiornata il': e' li' il segnale di freschezza che premia la costanza, non il numero di parole.",
     "cosa_non_fare": "Non pubblicare prezzi o metrature 'presunti' in attesa di conferma: un dato sbagliato in una pagina gia' indicizzata vale meno di una pagina in meno.",
     "scadenza_bozza": "Se una scheda resta senza prezzo per piu' di 14 giorni dalla pubblicazione, passare lo stato a 'Riservato' e tenerla fuori da catalogo."
+  },
+  "navigazione": {
+    "_nota": "Pagine controllate in ordine quando un'ancora del menu non esiste nella pagina richiesta: la sezione 'Ricerca personalizzata' vive nella home, quindi da una pagina senza quel paragrafo il link deve puntare alla home.",
+    "pagine_ancore": [
+      "index.html",
+      "contatti.html",
+      "immobili.html"
+    ],
+    "ancora_ricerca": "index.html#la-villa-non-fa-per-te",
+    "_regola_ancora": "Un solo punto per il pulsante 'Raccontami che casa cerchi': se Davide cambia il titolo del paragrafo in home.md, aggiorna questo valore (build.js lo verifica e avvisa se il paragrafo non esiste piu')."
   }
 }
