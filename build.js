@@ -322,7 +322,7 @@ function renderMarkdown(md) {
       let after = '';
       if (trailing && trailing[1].trim()) { text = trailing[1]; after = trailing[2]; }
       const id = forced ? forced[1] : slugify(text);
-      html.push('<h' + lvl + (lvl === 2 && id ? ' id="' + id + '"' : '') + '>' + inline(text) + '</h' + lvl + '>' + (after ? '<p>' + inline(after) + '</p>' : ''));
+      html.push('<h' + lvl + ((lvl === 1 || lvl === 2) && id ? ' id="' + id + '"' : '') + '>' + inline(text) + '</h' + lvl + '>' + (after ? '<p>' + inline(after) + '</p>' : ''));
       continue;
     }
     if (/^\s*-{3,}\s*$/.test(line)) { flushAll(); html.push('<hr>'); continue; }
@@ -812,8 +812,15 @@ function head(page, prefix) {
   c.push('<meta property="og:url" content="' + attr(url) + '">');
   c.push('<meta property="og:title" content="' + attr(title) + '">');
   c.push('<meta property="og:description" content="' + attr(desc) + '">');
-  if (isConfirmed(cfg.seo_geo.og_image)) c.push('<meta property="og:image" content="' + attr(abs(BASE, '/' + cfg.seo_geo.og_image)) + '">');
-  c.push('<meta name="twitter:card" content="' + attr(cfg.seo_geo.twitter_card) + '">');
+  /* og:image: solo file reali. Per la home si usa il file indicato nel config (foto vera),
+     per la scheda la copertina della sua galleria: cosi' ogni condivisione mostra casa sua. */
+  const cover = page.immobile && (page.immobile.immagini || []).filter(Boolean)[0];
+  const ogImg = cover ? 'img/' + page.immobile.slug + '/' + cover : (isConfirmed(cfg.seo_geo.og_image) ? cfg.seo_geo.og_image : (page.og_img || ''));
+  if (ogImg) {
+    c.push('<meta property="og:image" content="' + attr(abs(BASE, '/' + ogImg)) + '">');
+    const ogm = mediaCache.items.find((i) => i.path === ogImg);
+    if (ogm && ogm.width) c.push('<meta property="og:image:width" content="' + ogm.width + '"><meta property="og:image:height" content="' + ogm.height + '">');
+  }  c.push('<meta name="twitter:card" content="' + attr(cfg.seo_geo.twitter_card) + '">');
   if (page.description) c.push('<meta name="keywords" content="' + attr((cfg.site.keywords || []).join(', ')) + '">');
   c.push('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Cpath d=%22M4 14L16 4l12 10v14H4z%22 fill=%22none%22 stroke=%22%23d4a520%22 stroke-width=%222%22/%3E%3C/svg%3E">');
   c.push('<link rel="preconnect" href="https://fonts.googleapis.com">');
@@ -867,7 +874,10 @@ function fill(tpl, prefix, page) {
   const links = nav
     .map((k) => {
       const ric = (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te';
-      const target = { proposta: '#immobile-in-evidenza', richiesta: ric, ricerca: ric, immobili: 'immobili.html', zona: '#zona', guide: '#guide', contatti: ric }[k];
+      /* se la pagina di una voce esiste (perche' qualcuno ha scritto il suo markdown) la voce
+         del menu punta a quel paragrafo: le "voci fantasma" spariscono da sole appena la pagina c'e' */
+      const verso = (k) => { const pg = PAGES.find((x) => x.source === k + '.md'); return pg && exists(pg.path) ? pg.path + '#' + (pg.nav_id || k) : null; };
+      const target = { proposta: '#immobile-in-evidenza', richiesta: ric, ricerca: ric, immobili: 'immobili.html', zona: '#zona', guide: '#guide', contatti: verso('contatti') || ric }[k];
       if (k === 'immobili' && !exists('immobili.html')) return `<a href="#immobili">${labels[k]}</a>`;
       if (!target) return '';
       let href;
@@ -965,7 +975,11 @@ function mediaScan() {
   const incoming = walk(path.join(ROOT, 'img', '_in')).filter((f) => IMG_EXT.has(path.extname(f).toLowerCase()) || VID_EXT.has(path.extname(f).toLowerCase()));
   const items = [];
   const warnings = [];
+  const derivati = (f) => /-thumb\.(webp|avif|jpg|jpeg|png)$/.test(path.basename(f)) || /(^|\/)(brand|legale)(\/|$)/.test(f.replace(ROOT + '/', ''));
   for (const f of files.concat(incoming)) {
+    /* le miniature (-thumb) sono derivate dai file pieni e i loghi/documenti non sono content
+       di un annuncio: contarli qui significa raddoppiare il rapporto e generare bozze fantasma */
+    if (derivati(f)) continue;
     const relp = path.relative(ROOT, f).split(path.sep).join('/');
     const ext = path.extname(f).toLowerCase();
     const st = fs.statSync(f);
@@ -1037,6 +1051,8 @@ function buildDraft() {
   const m = mediaScan();
   const groups = {};
   for (const it of m.items) {
+    /* img/brand e img/legale contengono asset del sito e documenti: non sono foto di un
+       immobile e non devono generare bozze-fantasma (era comparso uno "scheda" con slug "brand"). */
     const key = guessSlug(it.nome, it.cartella) || 'senza-nome';
     (groups[key] = groups[key] || []).push(it);
   }
@@ -1180,6 +1196,7 @@ function llms() {
 
 const PAGES = [
   { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', nav: ['proposta', 'richiesta'] },
+  { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti | comprarecasarivergaro.it', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite e ricerca personalizzata.', canonical: '/contatti.html', jsonld: 'site', nav: [] },
   { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata | ' + cfg.site.dominio, canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/privacy.html', source: 'privacy.md', title: 'Privacy Policy | ' + cfg.site.dominio, canonical: '/legal/privacy.html', jsonld: 'none', nav: [] },
   { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },

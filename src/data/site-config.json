@@ -16,7 +16,7 @@
     "base_path": "/",
     "output_dir": ".",
     "lingua": "it-IT",
-    "titolo_home": "Case in vendita a Rivergaro Val Trebbia | Davide Scaglia",
+    "titolo_home": "Cerchi casa a Rivergaro in Val Trebbia? Le mie proposte",
     "description_home": "Case in vendita a Rivergaro e in Val Trebbia: proposta attuale, ricerca personalizzata, visite e trattativa assistita da Davide Scaglia, agente immobiliare a Rivergaro.",
     "keywords": [
       "case in vendita Rivergaro",
@@ -28,7 +28,8 @@
     "theme_color": "#0a0a0a",
     "robots_indexable": true,
     "deploy_notes": "GitHub Pages pubblica il ROOT del ramo main, come gia' fanno venderecasapiacenza.it e casepodenzano.it (repo a layout piatto). Richiede: .nojekyll e CNAME nella radice del repo. Nessun /docs.",
-    "eyebrow_home": "Case in vendita a Rivergaro Val Trebbia"
+    "eyebrow_home": "Case in vendita a Rivergaro · Val Trebbia",
+    "_regola_title_home": "Title della home e H1 del ::hero in src/pages/home.md devono restare la stessa frase: cambia l'uno, cambia l'altro. ' | comprarecasarivergaro.it' non entra nei 60 caratteri con la domanda intera, cosi' il brand resta nell'H1 e nel logo. Valgono i campi del front matter di home.md."
   },
   "professionista": {
     "nome_completo": "Davide Scaglia",
@@ -248,7 +249,7 @@
   },
   "seo_geo": {
     "canonical_assoluti": true,
-    "og_image": "DA CONFERMARE",
+    "og_image": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01.webp",
     "og_image_percorso": null,
     "twitter_card": "summary_large_image",
     "jsonld": {
@@ -276,7 +277,8 @@
       "attivo": true,
       "percorso": "llms.txt",
       "fonte": "convenzione gia' usata su venderecasapiacenza.it e casepodenzano.it: file indicizzato a scopo GEO"
-    }
+    },
+    "og_image_fonte": "Foto reale della villa, prima immagine della galleria 'esterni' (2200x990, ~357KB, dentro i 400KB del budget media). Da sostituire con una foto dello studio o con la copertina della prima scheda quando sara' il caso: nessuna grafica inventata."
   },
   "privacy_cookie": {
     "banner": {
@@ -493,6 +495,7 @@
       "immobili.html"
     ],
     "ancora_ricerca": "index.html#la-villa-non-fa-per-te",
-    "_regola_ancora": "Un solo punto per il pulsante 'Raccontami che casa cerchi': se Davide cambia il titolo del paragrafo in home.md, aggiorna questo valore (build.js lo verifica e avvisa se il paragrafo non esiste piu')."
+    "_regola_ancora": "Un solo punto per il pulsante 'Raccontami che casa cerchi': se Davide cambia il titolo del paragrafo in home.md, aggiorna questo valore (build.js lo verifica e avvisa se il paragrafo non esiste piu').",
+    "_regola_voci": "Le voci del menu puntano a una pagina solo se esiste il suo markdown e il paragrafo ha quell'id: 'Contatti' e' diventata automatica il 02/11/2026 con contatti.html."
   }
 }

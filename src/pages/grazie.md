@@ -3,11 +3,10 @@ title: Richiesta ricevuta | comprarecasarivergaro.it
 noindex: 1
 ---
 
-## La tua richiesta è partita
+# Richiesta inviata
 
-Ho ricevuto i dati che mi hai scritto e ti rispondo di persona, di norma entro un giorno lavorativo. Nel frattempo, se vuoi accelerare:
+## Come prosegue
 
-- **chiama o scrivi su WhatsApp:** +39 328 693 0033
-- **se non vedi la mia email dopo 24 ore**, controlla la cartella spam e riscrivi: a volte i messaggi dei moduli finiscono lì.
+Il modulo è arrivato alla mia casella di posta e ti rispondo di persona, appena possibile.
 
-Se la tua ricerca è urgente (visite nel weekend, scadenza sul preliminare, asta da seguire), dillo in una seconda email con l'oggetto "urgente": salta la coda.
+Se hai fretta, il modo più rapido è una chiamata o un messaggio su WhatsApp: li trovi nella [pagina dei contatti](contatti.html). Se dopo un paio di giorni non hai ancora notizie, controlla la cartella spam e riscrivimi: a volte i messaggi dei moduli finiscono lì.

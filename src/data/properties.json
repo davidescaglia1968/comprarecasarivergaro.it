@@ -98,11 +98,17 @@
         "villa-ancarano-piano-primo-bagno-2-53.webp",
         "villa-ancarano-piano-primo-bagno-2-54.webp",
         "villa-ancarano-piano-primo-bagno-2-55.webp",
-        "villa-ancarano-piano-primo-balconi-56.webp"
+        "villa-ancarano-piano-primo-balconi-56.webp",
+        "villa-ancarano-piano-primo-camera-3-balcone-56.webp",
+        "villa-ancarano-piano-primo-camera-3-balcone-57.webp",
+        "villa-ancarano-piano-primo-bagno-2-58.webp",
+        "villa-ancarano-piano-primo-bagno-2-59.webp",
+        "villa-ancarano-piano-primo-bagno-2-60.webp",
+        "villa-ancarano-piano-primo-bagno-2-61.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
-      "data_modifica": "2026-10-27",
+      "data_modifica": "2026-11-02",
       "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex.",
       "cap": "29029",
       "gallerie": [
@@ -565,6 +571,42 @@
               "didascalia": "Balconi della camera matrimoniale e della camera 3.",
               "alt": "Balconi della camera matrimoniale e della camera 3.",
               "thumb": "villa-ancarano-piano-primo-balconi-56-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-camera-3-balcone-56.webp",
+              "didascalia": "Camera 3 con balcone.",
+              "alt": "Camera 3 con balcone.",
+              "thumb": "villa-ancarano-piano-primo-camera-3-balcone-56-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-camera-3-balcone-57.webp",
+              "didascalia": "Balcone della camera 3, vista sui campi.",
+              "alt": "Balcone della camera 3, vista sui campi.",
+              "thumb": "villa-ancarano-piano-primo-camera-3-balcone-57-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-58.webp",
+              "didascalia": "Bagno 2.",
+              "alt": "Bagno 2.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-58-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-59.webp",
+              "didascalia": "Bagno 2, vista dall'alto.",
+              "alt": "Bagno 2, vista dall'alto.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-59-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-60.webp",
+              "didascalia": "Bagno 2, con doccia e specchiera.",
+              "alt": "Bagno 2, con doccia e specchiera.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-60-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-primo-bagno-2-61.webp",
+              "didascalia": "Bagno 2, lavandino, water e bidet.",
+              "alt": "Bagno 2, lavandino, water e bidet.",
+              "thumb": "villa-ancarano-piano-primo-bagno-2-61-thumb.webp"
             }
           ]
         }
