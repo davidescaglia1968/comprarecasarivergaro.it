@@ -43,7 +43,6 @@
         "villa-ancarano-piano-primo-bagno-2-59.webp",
         "villa-ancarano-piano-primo-bagno-2-60.webp",
         "villa-ancarano-piano-primo-bagno-2-61.webp",
-        "villa-ancarano-piano-primo-balconi-56.webp",
         "villa-ancarano-piano-primo-camera-2-42.webp",
         "villa-ancarano-piano-primo-camera-2-43.webp",
         "villa-ancarano-piano-primo-camera-2-44.webp",
@@ -53,7 +52,6 @@
         "villa-ancarano-piano-primo-camera-2-49.webp",
         "villa-ancarano-piano-primo-camera-2-50.webp",
         "villa-ancarano-piano-primo-camera-3-balcone-51.webp",
-        "villa-ancarano-piano-primo-camera-3-balcone-56.webp",
         "villa-ancarano-piano-primo-camera-3-balcone-57.webp",
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-29.webp",
         "villa-ancarano-piano-primo-camera-matrimoniale-bagno-30.webp",
@@ -95,7 +93,8 @@
         "villa-ancarano-piano-primo-terrazzo-25.webp",
         "villa-ancarano-piano-primo-terrazzo-26.webp",
         "villa-ancarano-piano-primo-terrazzo-27.webp",
-        "villa-ancarano-piano-primo-terrazzo-28.webp"
+        "villa-ancarano-piano-primo-terrazzo-28.webp",
+        "villa-ancarano-piano-rialzato-ingressi-59.webp"
       ],
       "video": [],
       "dimensioni_immagini": [
@@ -268,12 +267,6 @@
           "kb": 153
         },
         {
-          "file": "villa-ancarano-piano-primo-balconi-56.webp",
-          "width": 1238,
-          "height": 2200,
-          "kb": 326
-        },
-        {
           "file": "villa-ancarano-piano-primo-camera-2-42.webp",
           "width": 2200,
           "height": 1238,
@@ -326,12 +319,6 @@
           "width": 2200,
           "height": 1238,
           "kb": 302
-        },
-        {
-          "file": "villa-ancarano-piano-primo-camera-3-balcone-56.webp",
-          "width": 2200,
-          "height": 1238,
-          "kb": 135
         },
         {
           "file": "villa-ancarano-piano-primo-camera-3-balcone-57.webp",
@@ -584,6 +571,12 @@
           "width": 2200,
           "height": 1237,
           "kb": 322
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-ingressi-59.webp",
+          "width": 900,
+          "height": 2000,
+          "kb": 127
         }
       ],
       "data_pubblicazione": null,

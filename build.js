@@ -625,16 +625,26 @@ function galleria(p) {
       const alt = (typeof item === 'object' && item.alt) || caption || ((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || 'Rivergaro'));
       const thumb = (typeof item === 'object' && item.thumb) || file;
       const meta = imgMeta(p.slug, file) || {};
-      const thumbMeta = imgMeta(p.slug, thumb) || meta;
       const w = Number(meta.width) || 1200, h = Number(meta.height) || 800;
-      const tw = Number(thumbMeta.width) || w;
+      /* le miniature (-thumb) non sono nel manifesto, che per contratto elenca solo gli originali:
+         le dimensioni si ricavano dalla regola di generazione (900px sul lato lungo) invece di
+         cercarle, perche' imgMeta() su un derivato restituisce null e tw = w azzerava lo srcset */
+      const derivato = thumb !== file && exists('img/' + p.slug + '/' + thumb);
+      const latoLungo = Math.max(w, h);
+      const tl = derivato ? Math.min(900, latoLungo) : latoLungo;
+      /* i descrittori w sono il lato lungo: per un ritratto il 405 reale sarebbe scartato
+         da un browser che guarda "405w" contro un CSS da 280px, e il srcset non si aprirebbe */
+      const tw = tl;
       const pagePath = 'immobile/' + p.slug + '.html';
       const src = rel(pagePath, 'img/' + p.slug + '/' + file);
       const thumbSrc = rel(pagePath, 'img/' + p.slug + '/' + thumb);
       const isFeatured = first;
       first = false;
       const eager = isFeatured ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
-      const srcset = thumb !== file && tw < w ? `srcset="${thumbSrc} ${tw}w, ${src} ${w}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
+      /* il descrittore w e' il lato lungo reale: per i ritratti (lato lungo 1600-2000) il solo
+         confronto tw < w avrebbe escluso lo srcset e il telefono avrebbe scaricato il pieno */
+      const srcset = derivato && tl < latoLungo
+        ? `srcset="${thumbSrc} ${tw}w, ${src} ${latoLungo}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
       const lightboxCaption = caption || ((p.titolo || 'Immobile') + ' — ' + (section.titolo || 'foto'));
       return `<figure class="gallery-card${isFeatured ? ' gallery-card--featured' : ''}" style="--gallery-ratio:${w} / ${h}">
         <a class="shot" href="${src}" data-lightbox="${attr(p.slug)}" data-caption="${attr(lightboxCaption)}" style="aspect-ratio:${w}/${h}">
