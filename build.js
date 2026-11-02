@@ -156,6 +156,44 @@ const addressObj = addr
     }
   : undefined;
 
+/* Opening hours: un solo posto dove scriverle (contatti_sezione.orari_structured) e da li'
+   sia il testo leggibile in contatti_card sia l'orario macchina-leggibile nel JSON-LD. */
+function openingHours() {
+  const map = cfg.contatti_sezione.orari_gg || {};
+  const out = [];
+  Object.keys(cfg.contatti_sezione.orari_structured || {}).forEach((k) => {
+    const days = map[k] || [k];
+    (cfg.contatti_sezione.orari_structured[k] || []).forEach((o) => out.push({
+      '@type': 'OpeningHoursSpecification', dayOfWeek: days, opens: o.opens, closes: o.closes,
+    }));
+  });
+  return out;
+}
+function agentJsonLd() {
+  const a = {
+    '@type': 'RealEstateAgent', '@id': BASE + '/#agent',
+    name: pro.denominazione_legale || pro.brand, alternateName: pro.nome_completo,
+    url: BASE + '/', telephone: pro.telefono_e164, email: pro.email,
+  };
+  if (addr) a.address = { '@type': 'PostalAddress', streetAddress: addr.street, addressLocality: addr.localita, postalCode: addr.cap, addressRegion: addr.provincia, addressCountry: 'IT' };
+  const ore = openingHours();
+  if (ore.length) a.openingHoursSpecification = ore;
+  if (isConfirmed(pro.anno_inizio_attivita)) a.foundingDate = String(pro.anno_inizio_attivita);
+  const as = (cfg.area_servizio.areaServed_jsonld || []).filter(isConfirmed);
+  if (as.length) a.areaServed = as.map((n) => ({ '@type': 'City', name: n }));
+  const social = Object.keys(pro.social || {}).map((k) => pro.social[k]).filter((u) => /^https?:\/\//.test(u));
+  if (social.length) a.sameAs = social;
+  /* Il logo non e' nel manifesto media (img/brand e' escluso per contratto): le dimensioni si
+     leggono dai byte del PNG, cosi' non sono numeri scritti a mano. */
+  const LOGO = 'img/brand/logo-davide-scaglia-rivergaro.png';
+  if (exists(LOGO)) {
+    const dim = pngSize(fs.readFileSync(path.join(ROOT, LOGO)));
+    a.logo = Object.assign({ '@type': 'ImageObject', url: BASE + '/' + LOGO }, dim && dim.w ? { width: dim.w, height: dim.h } : {});
+  }
+  if (isConfirmed(pro.pec)) a.contactPoint = [{ '@type': 'ContactPoint', contactType: 'sales', telephone: pro.telefono_e164, email: pro.email, availableLanguage: ['it'], areaServed: 'IT' }];
+  if (exists('chi-sono.html')) a.additionalProperty = [{ '@type': 'PropertyValue', name: 'Profilo del professionista', value: BASE + '/chi-sono.html' }];
+  return a;
+}
 function siteJsonLd() {
   return {
     '@context': 'https://schema.org',
@@ -165,7 +203,7 @@ function siteJsonLd() {
       name: 'Immobili a Rivergaro',
       url: BASE + '/',
       inLanguage: LANG,
-    }],
+    }, agentJsonLd()],
   };
 }
 
@@ -218,6 +256,8 @@ function listingJsonLd(p) {
   if (p.anno_costruzione) o.yearBuilt = String(p.anno_costruzione);
   if (p.lat && p.lng) o.geo = { '@type': 'GeoCoordinates', latitude: p.lat, longitude: p.lng };
   o.areaServed = { '@type': 'City', name: p.comune || cfg.area_servizio.comune_principale };
+  if (p.data_pubblicazione) o.datePosted = p.data_pubblicazione;
+  if (p.data_modifica) o.dateModified = p.data_modifica; /* il segnale di freschezza che motori e crawler AI leggono davvero */
   return o;
 }
 
@@ -491,8 +531,15 @@ const shortcodes = {
       <div class="contact-social">${socialList()}</div>
     </div>`;
   },
+  home_faq() {
+    const items = homeFaq();
+    items.forEach((it) => FAQ.push({ d: String(it.d).trim(), r: String(it.r).trim(), in: CURRENT_PAGE }));
+    return `<div class="faq">${items.map((it) => `<div class="faq-item"><h3>${inline(it.d)}</h3><p>${inline(it.r)}</p></div>`).join('')}</div>`;
+  },
   risposte_pronte(o) {
-    return `<div class="faq">${o.items.map((it, i) => `<div class="faq-item"><h3>${inline(it.d)}</h3><p>${inline(it.r)}</p></div>`).join('')}</div>`;
+    const items = (o.items || []).filter((it) => it && it.d && it.r);
+    items.forEach((it) => FAQ.push({ d: String(it.d).trim(), r: String(it.r).trim(), in: CURRENT_PAGE }));
+    return `<div class="faq">${items.map((it, i) => `<div class="faq-item"><h3>${inline(it.d)}</h3><p>${inline(it.r)}</p></div>`).join('')}</div>`;
   },
 };
 function shortcode(name, opts) {
@@ -635,6 +682,10 @@ function privacyGuard() {
 
 /* ------------------------------------------------------- pagina immobile */
 
+/* Le domande che compaiono in pagina vengono registrate qui durante il render e usate dopo per
+   il blocco FAQPage: se una domanda non e' in pagina non finisce nemmeno nel markup. */
+const FAQ = [];
+let CURRENT_PAGE = 'index.html';
 function dataRow(p) {
   const righe = [
     ['Prezzo', prezzo(p)],
@@ -840,14 +891,19 @@ function head(page, prefix) {
   c.push('<link rel="stylesheet" href="' + rel(page.path || 'index.html', 'css/main.css') + '">');
   if (page.critical_css && exists(page.critical_css)) c.push('<style>' + readIf(path.join(ROOT, page.critical_css), '') + '</style>');
   let ld;
-  if (page.immobile) ld = { '@context': 'https://schema.org', '@graph': [listingJsonLd(page.immobile), { '@type': 'WebSite', '@id': BASE + '/#website', name: cfg.site.dominio, url: BASE + '/' }] };
+  if (page.immobile) ld = { '@context': 'https://schema.org', '@graph': [listingJsonLd(page.immobile), agentJsonLd(), { '@type': 'WebSite', '@id': BASE + '/#website', name: cfg.site.dominio, url: BASE + '/' }] };
   else if (page.jsonld === 'none') ld = null;
   else ld = siteJsonLd();
   if (page.breadcrumb) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: page.breadcrumb }] });
-  if (page.faq) {
+  /* FAQPage: le righe Q&A che il visitatore sta vedendo, non domande inventate per il markup.
+     Google dal 07/05/2026 non mostra piu' il risultato arricchito FAQ (lo aveva gia' limitato ai
+     siti sanitari/governativi dal 2023), ma il tipo resta valido e viene letto da Bing e dai
+     motori AI per estrarre risposte citabili: lo teniamo per quello, non come arricchimento SERP. */
+  const faq = (page.faq || []).concat(FAQ.filter((f) => f.in === page.path)).map((f) => ({ q: f.q || f.d, a: f.a || f.r }));
+  if (faq.length) {
     ld['@graph'].push({
       '@type': 'FAQPage',
-      mainEntity: page.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     });
   }
   if (ld) c.push('<script type="application/ld+json">\n' + JSON.stringify(ld, null, 1) + '\n</script>');
@@ -856,6 +912,7 @@ function head(page, prefix) {
 
 function buildPage(page) {
   const prefix = page.path.includes('/') ? '../' : '';
+  CURRENT_PAGE = page.path;
   const md = readIf(path.join(SRC, 'pages', page.source), '');
   const { data, body } = parseFrontMatter(md);
   const merged = Object.assign({}, page, data, { jsonld: (data.jsonld && Object.keys(data.jsonld).length) ? data.jsonld : page.jsonld, faq: page.faq });
@@ -1099,6 +1156,12 @@ function buildDraft() {
 }
 
 
+/* Domande di servizio: il config le contiene, la home le mostra e il FAQPage le riusa.
+   Un solo testo, tre uscite: niente divergenze fra cio' che legge il visitatore e cio' che legge
+   il motore. */
+function homeFaq() {
+  return (cfg.contatti_sezione.risposte_brevi || []).filter((x) => x && x.d && x.r);
+}
 function immobileEvidenza() {
   const list = catalogo();
   if (!list.length) {
@@ -1114,7 +1177,17 @@ function immobileEvidenza() {
   const file = (p.immagini || []).filter(Boolean)[0];
   const meta = file ? imgMeta(p.slug, file) : null;
   const photo = file
-    ? `<img src="img/${attr(p.slug)}/${attr(file)}" alt="${attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || ''))}" width="${meta && meta.width || 1200}" height="${meta && meta.height || 800}" loading="lazy" decoding="async">`
+    ? (() => {
+        const thumb = file.replace(/\.webp$/i, '-thumb.webp');
+        const fw = (meta && meta.width) || 1200;
+        const tw = Math.min(900, fw); /* le miniature sono generate a 900px sul lato lungo */
+        const src = `img/${p.slug}/`;
+        const set = thumb !== file && exists('img/' + p.slug + '/' + thumb)
+          ? ` srcset="${src}${thumb} ${tw}w, ${src}${file} ${fw}w" sizes="(max-width: 900px) 100vw, 620px"` : '';
+        /* LCP: la copertina della home e' la prima immagine della pagina, non si carica lazy.
+           Con srcset, pero', i telefoni scaricano la miniatura invece di 357KB. */
+        return `<img src="img/${attr(p.slug)}/${attr(file)}"${set} alt="${attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || ''))}" width="${meta && meta.width || 1200}" height="${meta && meta.height || 800}" fetchpriority="high" decoding="async">`;
+      })()
     : '<span class="featured-media-empty">Nessuna foto pubblicata</span>';
   const features = (p.caratteristiche || []).filter(isConfirmed);
   const place = [p.zona, p.comune].filter(isConfirmed).join(' · ');
@@ -1128,6 +1201,8 @@ function immobileEvidenza() {
       ${prezzo(p) ? `<p class="featured-property-price">${esc(prezzo(p))}</p>` : ''}
       ${p.descrizione && isConfirmed(p.descrizione) ? `<p class="featured-property-description">${esc(p.descrizione)}</p>` : ''}
       ${features.length ? `<ul class="featured-property-facts">${features.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      <div class="featured-property-specs">${dataRow(p)}</div>
+      <p class="featured-property-ref"><a href="${url}">Scheda completa, foto e contatti →</a></p>
     </div>
   </article>`;
 }
@@ -1205,6 +1280,9 @@ function llms() {
     L.push(`- ${p.titolo} — ${details.join(' · ')} · ${BASE}/immobile/${p.slug}.html`);
     if (p.descrizione) L.push('  ' + p.descrizione);
   });
+  if (isConfirmed(cfg.contatti_sezione.orari)) L.push('', '## Orari di apertura', cfg.contatti_sezione.orari, '');
+  const qa = homeFaq();
+  if (qa.length) { L.push('', '## Domande rapide'); qa.forEach((x) => { L.push('**' + x.d + '**'); L.push(x.r); L.push(''); }); }
   L.push('', 'Non sono pubblicati prezzi né superfici non confermati. Le immagini sono mostrate solo quando vengono fornite foto reali dell’immobile.');
   return L.join('\n') + '\n';
 }

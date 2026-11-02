@@ -22,4 +22,4 @@ I dati qui sotto non sono una presentazione: sono quelli del Registro Imprese, v
 
 ## Se vuoi venire a trovarmi
 
-La sede è a Rivergaro, in Via Felice Cavallotti 3, frazione Pieve Dugliara. Per gli orari meglio una telefonata o un messaggio: [pagina dei contatti](contatti.html).
+La sede è a Rivergaro, in Via Felice Cavallotti 3, frazione Pieve Dugliara. Gli orari di apertura sono quelli che trovi nella [pagina dei contatti](contatti.html), insieme al numero per avvisare prima di passare: meglio una telefonata che una porta chiusa.

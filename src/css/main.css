@@ -391,3 +391,8 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .lb-btn{background:var(--bg-tertiary);border:1px solid var(--line);color:#fff;border-radius:999px;padding:10px 16px;font:inherit;font-size:.9375rem;cursor:pointer}
 .lb-btn:hover{border-color:var(--pink)}
 @media (max-width:640px){.lb-cap{font-size:.8125rem}}
+
+/* In evidenza: tabella dati confermati + rimando alla scheda */
+.featured-property-specs{margin-top:var(--s3)}
+.featured-property-specs .specs{margin-bottom:0}
+.featured-property-ref{margin-top:var(--s3)}

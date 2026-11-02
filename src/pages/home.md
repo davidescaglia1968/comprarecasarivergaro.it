@@ -38,3 +38,7 @@ Una casa si valuta anche da cosa trovi intorno. Per la vita quotidiana a Riverga
 Per informazioni sulla villa o per organizzare una visita, chiamami o scrivimi su WhatsApp. Se cerchi altro, raccontami che casa hai in mente.
 
 ::form_ricerca
+
+## Tre domande veloci
+
+::home_faq
