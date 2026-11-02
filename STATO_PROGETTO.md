@@ -211,3 +211,11 @@ Il lotto delle 10 foto del soggiorno era di nuovo **solo in un commit locale** q
 - Nessuna didascalia inventata: la "65" era in bozza "verso il camino", verificando l'immagine ritagliata non c'e' nessun camino (e' lo spigolo del tavolo) -> scritto "verso la finestra e il termosifone".
 - Copertina della scheda invariata perche' Davide ha detto "lascia cosi per ora".
 - Da qui in poi: **mai piu' attendere la fine del turno per spingere**. La spinta parte subito dopo il check verde, perche' due lotti su tre oggi sono stati persi una volta .
+
+## Cucina con zona pranzo: 9 foto + rimozione richiesta, e `<lastmod>` finalmente onesto (03/11/2026)
+
+- **"togli la 75" eseguito.** La foto del soggiorno col cartone in basso a destra non e' mai stata pubblicata (era nel commit perso di ieri sera), quindi non e' mai entrata in nessun file: nessun reindirizzamento rotto, nessuna immagine orfana, nessun URL da disdire. La **74** dello stesso lotto e' stata invece riconvertita e inserita: byte-per-byte identica a ieri (73456 B).
+- **9 foto reali della cucina con zona pranzo**: `villa-ancarano-piano-rialzato-cucina-pranzo-76..84.webp` (2200x1238, 100-161KB) + miniature. Restano nel gruppo `piano-rialzato` perche' quei gruppi organizzano la galleria **per piano**, non per stanza (il piano primo ha gia' soggiorno, camere e bagni dentro un solo blocco). Totale **100 foto**: Esterni 20, Piano primo 57, Piano rialzato 1 = 23.
+- Due didascalie corrette prima di scrivere: avevo messo "piano a induzione **sottovuoto**" (non esiste: e' un normale piano a induzione) e "**termoarredo** sotto il davanzale" (guardando bene e' un termosifone). Un'immagine non va descritta con termini che non si possono verificare.
+- **`<lastmod>` della sitemap leggeva il mtime del file HTML**, non `data_modifica`: cosi' ogni `node build.js` in una data nuova spostava in avanti il segnale di freschezza senza che fosse cambiato niente. Ora per le schede si legge `data_modifica` (2026-11-03), allineato a `dateModified` del JSON-LD e alla riga "Aggiornato il". Le pagine senza immobile restano al mtime.
+- `data_modifica` portato a 2026-11-03: a quest'ora a Roma e' gia' il 3 (l'orologio di sistema in UTC segna 02/11 22:00), quindi la data e' reale e non anticipata.

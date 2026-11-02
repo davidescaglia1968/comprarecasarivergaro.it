@@ -1,7 +1,7 @@
-# Rapporto media — 2026-11-02T21:13:50.699Z
+# Rapporto media — 2026-11-02T22:00:13.788Z
 
 ## villa-tre-unita-ancarano
-immagini 90 · video 0
+immagini 100 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp` 2200×989 177KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp` 2200×990 483KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-villa-17.webp` 2200×990 332KB 
@@ -79,6 +79,15 @@ immagini 90 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-26.webp` 2200×1237 349KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-27.webp` 2200×1237 346KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-28.webp` 2200×1237 322KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-76.webp` 2200×1238 136KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-77.webp` 2200×1238 143KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-78.webp` 2200×1238 157KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-79.webp` 2200×1238 125KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-80.webp` 2200×1238 125KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-81.webp` 2200×1238 134KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-82.webp` 2200×1238 97KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-83.webp` 2200×1238 110KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-84.webp` 2200×1238 130KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingressi-59.webp` 900×2000 127KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp` 900×1600 60KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp` 2200×1238 107KB 
@@ -92,6 +101,7 @@ immagini 90 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-71.webp` 2200×1238 101KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-72.webp` 2200×1238 148KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-73.webp` 2200×1238 93KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-74.webp` 2200×1238 72KB 
 
 ## Avvisi
 - img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp: 0.47MB sopra budget, comprimi
@@ -176,6 +186,15 @@ immagini 90 · video 0
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-26.webp" alt="DESCRIVI cosa si vede" width="2200" height="1237" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-27.webp" alt="DESCRIVI cosa si vede" width="2200" height="1237" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-28.webp" alt="DESCRIVI cosa si vede" width="2200" height="1237" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-76.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-77.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-78.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-79.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-80.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-81.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-82.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-83.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-cucina-pranzo-84.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingressi-59.webp" alt="DESCRIVI cosa si vede" width="900" height="2000" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp" alt="DESCRIVI cosa si vede" width="900" height="1600" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
@@ -189,3 +208,4 @@ immagini 90 · video 0
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-71.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-72.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-73.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-74.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
