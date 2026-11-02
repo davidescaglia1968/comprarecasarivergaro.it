@@ -210,4 +210,4 @@ Il lotto delle 10 foto del soggiorno era di nuovo **solo in un commit locale** q
 - 10 foto `villa-ancarano-piano-rialzato-soggiorno-64..73.webp` (2200x1238, 91-163KB) + miniature nel gruppo `Piano rialzato 1`: totale **90 foto** (Esterni 20, Piano primo 57, Piano rialzato 1 = 13).
 - Nessuna didascalia inventata: la "65" era in bozza "verso il camino", verificando l'immagine ritagliata non c'e' nessun camino (e' lo spigolo del tavolo) -> scritto "verso la finestra e il termosifone".
 - Copertina della scheda invariata perche' Davide ha detto "lascia cosi per ora".
-- Da qui in poi: **mai piu' attendere la fine del turno per spingere**. La spinta parte subito dopo il check verde, perche' due lotti su tre oggi sono stati persiti una volta sola.
+- Da qui in poi: **mai piu' attendere la fine del turno per spingere**. La spinta parte subito dopo il check verde, perche' due lotti su tre oggi sono stati persi una volta .
