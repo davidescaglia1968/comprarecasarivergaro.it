@@ -1,12 +1,12 @@
 ---
-title: Case in vendita a Rivergaro Val Trebbia | Davide Scaglia
+title: Cerchi casa a Rivergaro in Val Trebbia? Le mie proposte
 description: Case in vendita a Rivergaro e in Val Trebbia: proposta attuale, ricerca personalizzata, visite e trattativa assistita da Davide Scaglia, agente immobiliare a Rivergaro.
 canonical: /
 ---
 
 ::hero {
-  "eyebrow": "Case in vendita a Rivergaro Val Trebbia",
-  "h1": "LA TUA CASA IN VAL TREBBIA: VILLA INDIPENDENTE CON 3 ABITAZIONI",
+  "eyebrow": "Case in vendita a Rivergaro · Val Trebbia",
+  "h1": "Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte.",
   "lead": [
     "Località Ancarano · 29029 Rivergaro (PC)",
     "Sono Davide Scaglia, agente immobiliare a Rivergaro: seguo chi compra casa in Val Trebbia senza agenzia con vetrina e senza una lista di decine di annunci. Qui sotto trovi la proposta attuale; se cerchi un'altra casa, raccontami cosa ti serve e la cerco io."

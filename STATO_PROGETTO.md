@@ -135,3 +135,22 @@ Estratto in `PROFESSIONISTA.md` (non pubblicato), riversato in `site-config.json
 
 Mancano le pagine `contatti.html` e `chi-sono.html` (le uniche due che posso scrivere con i soli dati verificati: NAP, qualifiche, numero d'iscrizione al Ruolo Agenti), l'hub `zona/val-trebbia.html` e `legal/termini.html`. Le guide restano chiuse fino a contenuto originale: la regola editoriale in `contenuti.regola_editoriale` non consente guide di riempimento, e `contenuti.guide_previste[*].stato` e' tuttora `DA CONFERMARE`.
 
+## Immagini camera 3 + secondo bagno, H1 e pagina Contatti (02/11/2026)
+
+- **6 nuove foto inserite nell'annuncio ANC-001** (camera 3 con balcone + secondo bagno): convertite in WebP con il profilo gia' usato per le altre (lato lungo 2200px, qualita' 82, ~110-153KB; miniature a 900px) e rinominate secondo la convenzione esistente, proseguendo la numerazione: `villa-ancarano-piano-primo-camera-3-balcone-56/57.webp`, `villa-ancarano-piano-primo-bagno-2-58/59/60/61.webp`. Galleria: 81 immagini, `data_modifica: 2026-11-02` ( quindi `lastmod` in sitemap ).
+- **La foto del balcone e' verticale** (2250x4000): ridimensionata in proporzione a 1600px, non ritagliata. Nel riquadro orizzontale della galleria viene mostrata per intero (la griglia usa `object-fit: contain`), quindi occupa una riga piu' alta: se la preferisci ritagliata a 16/9 come le altre, dimmelo ed e' un comando solo.
+- **Didascalie**: brevi e descrittive come le esistenti, scritte da me su cio' che si vede nel file ("Camera 3 con balcone.", "Bagno 2, con doccia e specchiera."); nessun dato di catastale, metratura o piano aggiunto.
+- **H1 della home**: ora e' la frase che mi hai dettato, `Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte.` (61 caratteri, niente "e in" aggiunto di mia iniziativa), eyebrow `Case in vendita a Rivergaro · Val Trebbia`. Il `<title>` e' `Cerchi casa a Rivergaro in Val Trebbia? Le mie proposte` (57car, senza dominio: la domanda intera + dominio non sta nei 60 caratteri) e la regola di sincronia e' scritta in `site-config.json` → `site._regola_title_home`. Il nome della villa resta nell'H3 della card "Immobile in evidenza" e nell'H1 della scheda.
+- **`og-image`**: ora esce davvero, usando una foto reale. Home = copertina della galleria della villa (2200x990, ~357KB, dentro il budget media); scheda = copertina di quella scheda. Con `og:image:width/height`. Nessuna grafica inventata: se vuoi una foto dello studio al posto di quella della villa, basta cambiare `seo_geo.og_image`.
+- **`contatti.html` pubblicata** (Fase 4, primo pezzo): solo dati verificati — `::contatti_card` (cellulare/WhatsApp, email, studio Via Felice Cavallotti 3, fraz. Pieve Dugliara, P.IVA, REA, PEC, Ruolo Agenti di Piacenza dal 07/12/2007), modulo di ricerca, tre righe su cosa succede dopo il contatto. Gli orari restano `DA CONFERMARE` e non compaiono. La voce "Contatti" del menu ora esiste perche' la pagina c'e' (meccanismo `PAGES.nav_id` + `verso()` in build.js: la voce punta alla pagina appena il markdown esiste).
+- **`grazie.html` ripulita**: conteneva due impegni non tuoi ("di norma entro un giorno lavorativo", "dopo 24 ore") e uno "salta la coda" per le urgenze, oltre al numero di telefono scritto a mano invece che letto dal config. Rimossi: ora dice solo che rispondi di persona, appena possibile.
+- **Tre bug di `build.js` chiusi**, tutti emersi provando: (1) `buildDraft()` generava una scheda fantasma "brand" con le immagini del logo, e il rapporto media contava anche le miniature (162 "immagini" per una scheda da 81): ora i derivati `-thumb`, `img/brand` e `img/legale` sono esclusi da rapporto e bozza; (2) `--check` girava solo sulle pagine **indicizzabili**, quindi non vedeva mai `grazie.html` e `404.html`: ora controlla `PAGES` tutte; (3) un link in coda a un titolo H2 finiva dentro l'H2 e ne sporca l'id: ora scende sotto il titolo.
+- **H1 su `#` di primo livello**: gli id valgono anche per gli H1, quindi una pagina che comincia con `# Titolo` e' raggiungibile via `pagina.html#titolo` dal menu.
+
+### Verifica
+
+```bash
+node build.js && node build.js --check   # ✓ check superato (7 pagine + 1 scheda)
+node build.js media                      # media: 81 file, 1 immobili, bozza sched: 1  (prima: 163 file, 2 immobili)
+```
+
