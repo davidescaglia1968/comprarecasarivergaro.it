@@ -92,7 +92,9 @@
         "villa-ancarano-piano-primo-terrazzo-26.webp",
         "villa-ancarano-piano-primo-terrazzo-27.webp",
         "villa-ancarano-piano-primo-terrazzo-28.webp",
-        "villa-ancarano-piano-rialzato-ingressi-59.webp"
+        "villa-ancarano-piano-rialzato-ingressi-59.webp",
+        "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+        "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp"
       ],
       "video": [],
       "dimensioni_immagini": [
@@ -563,6 +565,18 @@
           "width": 900,
           "height": 2000,
           "kb": 127
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+          "width": 900,
+          "height": 1600,
+          "kb": 60
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 107
         }
       ],
       "data_pubblicazione": null,

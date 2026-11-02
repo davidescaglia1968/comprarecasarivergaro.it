@@ -857,6 +857,28 @@
       "eta": "127KB",
       "width": 900,
       "height": 2000
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+      "tipo": "immagine",
+      "bytes": 61936,
+      "nome": "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "60KB",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+      "tipo": "immagine",
+      "bytes": 109926,
+      "nome": "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "107KB",
+      "width": 2200,
+      "height": 1238
     }
   ],
   "byProp": {
@@ -1719,6 +1741,28 @@
           "eta": "127KB",
           "width": 900,
           "height": 2000
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+          "tipo": "immagine",
+          "bytes": 61936,
+          "nome": "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "60KB",
+          "width": 900,
+          "height": 1600
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+          "tipo": "immagine",
+          "bytes": 109926,
+          "nome": "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "107KB",
+          "width": 2200,
+          "height": 1238
         }
       ],
       "video": []
@@ -1729,5 +1773,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-11-02T20:09:25.397Z"
+  "generato": "2026-11-02T20:14:14.971Z"
 }

@@ -1,7 +1,7 @@
-# Rapporto media — 2026-11-02T20:09:25.397Z
+# Rapporto media — 2026-11-02T20:14:14.971Z
 
 ## villa-tre-unita-ancarano
-immagini 78 · video 0
+immagini 80 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp` 2200×989 177KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp` 2200×990 483KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-villa-17.webp` 2200×990 332KB 
@@ -80,6 +80,8 @@ immagini 78 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-27.webp` 2200×1237 346KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-28.webp` 2200×1237 322KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingressi-59.webp` 900×2000 127KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp` 900×1600 60KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp` 2200×1238 107KB 
 
 ## Avvisi
 - img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp: 0.47MB sopra budget, comprimi
@@ -165,3 +167,5 @@ immagini 78 · video 0
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-27.webp" alt="DESCRIVI cosa si vede" width="2200" height="1237" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-terrazzo-28.webp" alt="DESCRIVI cosa si vede" width="2200" height="1237" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingressi-59.webp" alt="DESCRIVI cosa si vede" width="900" height="2000" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp" alt="DESCRIVI cosa si vede" width="900" height="1600" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`

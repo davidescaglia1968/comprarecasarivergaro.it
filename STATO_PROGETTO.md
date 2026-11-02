@@ -193,3 +193,12 @@ Il commit locale della sessione scorsa (`11f4c43`) era **effettivamente perso**:
 - **Titolo del gruppo: `Piano rialzato 1`** (Richiesta di Davide: "nella scritta metti piano rialzato 1"). Cambiato solo il testo visibile: l'`id` della sezione resta `foto-piano-rialzato`, perche' un id numerato si rompe appena arriva il "Piano rialzato 2" e trascinerebbe via tutti i link interni gia' condivisi.
 - Didascalia del portico **confermata da Davide** ("si va bene"): non serve piu' chiedere se e' condivisa con la seconda abitazione, resta la descrizione di cio' che si vede.
 - Le 2 foto di bagno "ridondanti" che avevo tenuto in sospetto (52-55, 58, 59) restano: sei scatti dello stesso locale, non duplicati.
+
+### Ingresso della prima abitazione: 2 foto in piu' nel gruppo "Piano rialzato 1" (02/11/2026, 20:13)
+
+Davide ha mandato due scatti dello stesso locale (un ritratto 2250x4000 e un orizzontale 4000x2250, stesso disimpegno ripreso da due punti). Nomi dei file originali: `scelte via Bersanti 13 Ancarano RivergaroPiano T appart.1 (1)/(3).jpg` -> il nome dice **Piano T**, ma il lotto e' arrivato mentre lavoravamo al piano rialzato e ritrae lo stesso atrio della foto del portico gia' nel gruppo: inseriti in `piano-rialzato`, titolata "Ingresso della prima abitazione". Se Davide mi dice che e' il piano terra, il gruppo si rinomina in un campo e le foto si spostano senza toccare i file.
+
+- `villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp` 900x1600 (61KB) + miniatura 506x900 - "Ingresso della prima abitazione: disimpegno con pavimentazione in ceramica, porte e cornici in legno a contrasto e finiture rosa alle pareti."
+- `villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp` 2200x1238 (110KB) + miniatura 900x506 - "Il disimpegno visto verso le stanze, con quattro porte e il citofono a muro."
+- Copertina della scheda **non toccata** ("lascia cosi per ora"): resta `villa-ancarano-esterno-ingresso-portico-01.webp`.
+- Totale **80 foto** (78 + 2), gruppo Piano rialzato 1 = 3. Numerazione globale continuata: -62, -63. Nessun avviso nuovo: le due foto stanno dentro il budget (61 e 110KB).

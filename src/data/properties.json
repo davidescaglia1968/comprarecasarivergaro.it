@@ -101,7 +101,9 @@
         "villa-ancarano-piano-primo-camera-3-balcone-57.webp",
         "villa-ancarano-piano-primo-bagno-2-58.webp",
         "villa-ancarano-piano-primo-bagno-2-59.webp",
-        "villa-ancarano-piano-rialzato-ingressi-59.webp"
+        "villa-ancarano-piano-rialzato-ingressi-59.webp",
+        "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+        "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -592,6 +594,18 @@
               "didascalia": "Portico d’ingresso al piano rialzato, con archi in mattoni a vista, due porte d’ingresso indipendenti e pavimentazione in cotto.",
               "alt": "Portico d’ingresso al piano rialzato, con archi in mattoni a vista, due porte d’ingresso indipendenti e pavimentazione in cotto.",
               "thumb": "villa-ancarano-piano-rialzato-ingressi-59-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
+              "didascalia": "Ingresso della prima abitazione: disimpegno con pavimentazione in ceramica, porte e cornici in legno a contrasto e finiture rosa alle pareti.",
+              "alt": "Ingresso della prima abitazione: disimpegno con pavimentazione in ceramica, porte e cornici in legno a contrasto e finiture rosa alle pareti.",
+              "thumb": "villa-ancarano-piano-rialzato-ingresso-disimpegno-62-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+              "didascalia": "Il disimpegno visto verso le stanze, con quattro porte e il citofono a muro.",
+              "alt": "Il disimpegno visto verso le stanze, con quattro porte e il citofono a muro.",
+              "thumb": "villa-ancarano-piano-rialzato-ingresso-disimpegno-63-thumb.webp"
             }
           ]
         }
