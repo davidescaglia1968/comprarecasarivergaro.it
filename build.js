@@ -1299,13 +1299,28 @@ const PAGES = [
   { path: 'legal/cookie.html', source: 'cookie.md', title: 'Cookie Policy | ' + cfg.site.dominio, canonical: '/legal/cookie.html', jsonld: 'none', nav: [] },
 ];
 
+/** Il campo `generato` non deve cambiare a ogni build: senza dati nuovi il file
+ *  resta byte-per-byte identico, cosi' `git status` dopo un `node build.js` dice solo
+ *  se e' cambiato qualcosa di vero (era l'unico rumore fisso nelle diff di verifica). */
+function writeManifest(s) {
+  const file = path.join(ROOT, 'img', 'manifest.json')
+  const senza = (o) => { const c = Object.assign({}, o); delete c.generato; return JSON.stringify(c) }
+  if (fs.existsSync(file)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(file, 'utf8'))
+      if (senza(prev) === senza(s)) s = Object.assign({}, s, { generato: prev.generato })
+    } catch (e) { /* manifesto corrotto: si sovrascrive con un timestamp nuovo */ }
+  }
+  fs.writeFileSync(file, JSON.stringify(s, null, 2))
+}
+
 function main() {
   const argv = process.argv.slice(2);
   const mode = argv.find((a) => !a.startsWith('--'));
 
   if (mode === 'media') {
     const s = mediaScan();
-    fs.writeFileSync(path.join(ROOT, 'img', 'manifest.json'), JSON.stringify(s, null, 2));
+    writeManifest(s);
     fs.writeFileSync(path.join(ROOT, 'MEDIA_RAPPORTO.md'), mediaReport(s));
     const n = buildDraft();
     console.log(`media: ${s.items.length} file, ${Object.keys(s.byProp).length} immobili, ${s.warnings.length} avvisi, bozza sched: ${n} immobile/i in src/data/properties.draft.json`);
@@ -1370,7 +1385,7 @@ function main() {
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
   fs.writeFileSync(path.join(OUT, 'CNAME'), cfg.site.dominio + '\n');
   const m = mediaScan();
-  fs.writeFileSync(path.join(ROOT, 'img', 'manifest.json'), JSON.stringify(m, null, 2));
+  writeManifest(m);
 
   if (argv.includes('--check')) runCheck();
 }
