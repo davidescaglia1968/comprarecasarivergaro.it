@@ -287,28 +287,6 @@
       "height": 1238
     },
     {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-bagno-2-60.webp",
-      "tipo": "immagine",
-      "bytes": 109434,
-      "nome": "villa-ancarano-piano-primo-bagno-2-60.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "107KB",
-      "width": 2200,
-      "height": 1238
-    },
-    {
-      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-bagno-2-61.webp",
-      "tipo": "immagine",
-      "bytes": 156440,
-      "nome": "villa-ancarano-piano-primo-bagno-2-61.webp",
-      "cartella": "villa-tre-unita-ancarano",
-      "stato": "ok",
-      "eta": "153KB",
-      "width": 2200,
-      "height": 1238
-    },
-    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-42.webp",
       "tipo": "immagine",
       "bytes": 317144,
@@ -1171,28 +1149,6 @@
           "height": 1238
         },
         {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-bagno-2-60.webp",
-          "tipo": "immagine",
-          "bytes": 109434,
-          "nome": "villa-ancarano-piano-primo-bagno-2-60.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "107KB",
-          "width": 2200,
-          "height": 1238
-        },
-        {
-          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-bagno-2-61.webp",
-          "tipo": "immagine",
-          "bytes": 156440,
-          "nome": "villa-ancarano-piano-primo-bagno-2-61.webp",
-          "cartella": "villa-tre-unita-ancarano",
-          "stato": "ok",
-          "eta": "153KB",
-          "width": 2200,
-          "height": 1238
-        },
-        {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-primo-camera-2-42.webp",
           "tipo": "immagine",
           "bytes": 317144,
@@ -1773,5 +1729,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-11-02T18:21:12.116Z"
+  "generato": "2026-11-02T20:09:25.397Z"
 }

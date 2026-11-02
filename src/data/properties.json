@@ -101,8 +101,6 @@
         "villa-ancarano-piano-primo-camera-3-balcone-57.webp",
         "villa-ancarano-piano-primo-bagno-2-58.webp",
         "villa-ancarano-piano-primo-bagno-2-59.webp",
-        "villa-ancarano-piano-primo-bagno-2-60.webp",
-        "villa-ancarano-piano-primo-bagno-2-61.webp",
         "villa-ancarano-piano-rialzato-ingressi-59.webp"
       ],
       "video": [],
@@ -579,27 +577,15 @@
             },
             {
               "file": "villa-ancarano-piano-primo-bagno-2-59.webp",
-              "didascalia": "Bagno 2, vista dall'alto.",
-              "alt": "Bagno 2, vista dall'alto.",
+              "didascalia": "Bagno 2, vista dall’alto.",
+              "alt": "Bagno 2, vista dall’alto.",
               "thumb": "villa-ancarano-piano-primo-bagno-2-59-thumb.webp"
-            },
-            {
-              "file": "villa-ancarano-piano-primo-bagno-2-60.webp",
-              "didascalia": "Bagno 2, con doccia e specchiera.",
-              "alt": "Bagno 2, con doccia e specchiera.",
-              "thumb": "villa-ancarano-piano-primo-bagno-2-60-thumb.webp"
-            },
-            {
-              "file": "villa-ancarano-piano-primo-bagno-2-61.webp",
-              "didascalia": "Bagno 2, lavandino, water e bidet.",
-              "alt": "Bagno 2, lavandino, water e bidet.",
-              "thumb": "villa-ancarano-piano-primo-bagno-2-61-thumb.webp"
             }
           ]
         },
         {
           "id": "piano-rialzato",
-          "titolo": "Piano rialzato",
+          "titolo": "Piano rialzato 1",
           "immagini": [
             {
               "file": "villa-ancarano-piano-rialzato-ingressi-59.webp",
