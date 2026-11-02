@@ -103,7 +103,17 @@
         "villa-ancarano-piano-primo-bagno-2-59.webp",
         "villa-ancarano-piano-rialzato-ingressi-59.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
-        "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp"
+        "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-64.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-65.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-66.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-67.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-68.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-69.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-70.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-71.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-72.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-73.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -606,6 +616,66 @@
               "didascalia": "Il disimpegno visto verso le stanze, con quattro porte e il citofono a muro.",
               "alt": "Il disimpegno visto verso le stanze, con quattro porte e il citofono a muro.",
               "thumb": "villa-ancarano-piano-rialzato-ingresso-disimpegno-63-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-64.webp",
+              "didascalia": "Soggiorno della prima abitazione: locale ampio e luminoso, con finestra, tavolo in vetro, poltrone in cuoio e vetrina in legno.",
+              "alt": "Soggiorno della prima abitazione: locale ampio e luminoso, con finestra, tavolo in vetro, poltrone in cuoio e vetrina in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-64-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-65.webp",
+              "didascalia": "Lo stesso soggiorno ripreso dalla parte opposta, verso la finestra e il termosifone.",
+              "alt": "Lo stesso soggiorno ripreso dalla parte opposta, verso la finestra e il termosifone.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-65-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-66.webp",
+              "didascalia": "Il soggiorno dall’alto, con la pavimentazione in cotto e le sedute disposte attorno al tavolo in vetro.",
+              "alt": "Il soggiorno dall’alto, con la pavimentazione in cotto e le sedute disposte attorno al tavolo in vetro.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-66-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-67.webp",
+              "didascalia": "Angolo del soggiorno con la finestra e il termosifone sotto il davanzale.",
+              "alt": "Angolo del soggiorno con la finestra e il termosifone sotto il davanzale.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-67-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-68.webp",
+              "didascalia": "Soggiorno con vetrina in noce, credenza bassa, poltrone e tavolino in vetro su tappeto.",
+              "alt": "Soggiorno con vetrina in noce, credenza bassa, poltrone e tavolino in vetro su tappeto.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-68-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-69.webp",
+              "didascalia": "Veduta larga del soggiorno, con la porta a vetri verso il disimpegno e la credenza in legno chiaro.",
+              "alt": "Veduta larga del soggiorno, con la porta a vetri verso il disimpegno e la credenza in legno chiaro.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-69-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-70.webp",
+              "didascalia": "Il soggiorno verso le due porte: una conduce al disimpegno, attraverso l’altra si vede la sala da pranzo.",
+              "alt": "Il soggiorno verso le due porte: una conduce al disimpegno, attraverso l’altra si vede la sala da pranzo.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-70-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-71.webp",
+              "didascalia": "Soggiorno con finestra, termosifone a muro e la vetrina in legno scuro a tutta altezza.",
+              "alt": "Soggiorno con finestra, termosifone a muro e la vetrina in legno scuro a tutta altezza.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-71-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-72.webp",
+              "didascalia": "Il soggiorno dall’angolo opposto, con l’attrezzo per il fitness sotto la finestra e la vetrina sulla destra.",
+              "alt": "Il soggiorno dall’angolo opposto, con l’attrezzo per il fitness sotto la finestra e la vetrina sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-72-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-73.webp",
+              "didascalia": "Il soggiorno con la credenza in legno chiaro, la poltrona in cuoio e la vetrina scura addossata alla parete.",
+              "alt": "Il soggiorno con la credenza in legno chiaro, la poltrona in cuoio e la vetrina scura addossata alla parete.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-73-thumb.webp"
             }
           ]
         }

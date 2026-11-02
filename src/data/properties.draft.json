@@ -94,7 +94,17 @@
         "villa-ancarano-piano-primo-terrazzo-28.webp",
         "villa-ancarano-piano-rialzato-ingressi-59.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
-        "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp"
+        "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-64.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-65.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-66.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-67.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-68.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-69.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-70.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-71.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-72.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-73.webp"
       ],
       "video": [],
       "dimensioni_immagini": [
@@ -577,6 +587,66 @@
           "width": 2200,
           "height": 1238,
           "kb": 107
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-64.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 92
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-65.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 104
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-66.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 159
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-67.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 100
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-68.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 110
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-69.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 89
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-70.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 89
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-71.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 101
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-72.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 148
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-73.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 93
         }
       ],
       "data_pubblicazione": null,

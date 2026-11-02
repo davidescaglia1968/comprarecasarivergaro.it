@@ -202,3 +202,12 @@ Davide ha mandato due scatti dello stesso locale (un ritratto 2250x4000 e un ori
 - `villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp` 2200x1238 (110KB) + miniatura 900x506 - "Il disimpegno visto verso le stanze, con quattro porte e il citofono a muro."
 - Copertina della scheda **non toccata** ("lascia cosi per ora"): resta `villa-ancarano-esterno-ingresso-portico-01.webp`.
 - Totale **80 foto** (78 + 2), gruppo Piano rialzato 1 = 3. Numerazione globale continuata: -62, -63. Nessun avviso nuovo: le due foto stanno dentro il budget (61 e 110KB).
+
+### Soggiorno prima abitazione, ripubblicato dopo la seconda perdita (02/11/2026, 20:40)
+
+Il lotto delle 10 foto del soggiorno era di nuovo **solo in un commit locale** quando la sandbox si e' ricostruita: `dd79e2f` non c'era piu', `main` era fermo a `c7a1716` (80 foto). Ricostruito da zero in due minuti perche' i JPG originali erano ancora in `/tmp/arena-coding-uploads/`: le conversioni rifatte sono **byte-per-byte identiche** (94378, 106600, 162622, 102286, 112150, 90872, 91282, 103750, 151832, 94720 B) e le didascalie sono state riprese da questo file, non dalla memoria. Spinto e pubblicato finche' la via GitHub era di nuovo aperta.
+
+- 10 foto `villa-ancarano-piano-rialzato-soggiorno-64..73.webp` (2200x1238, 91-163KB) + miniature nel gruppo `Piano rialzato 1`: totale **90 foto** (Esterni 20, Piano primo 57, Piano rialzato 1 = 13).
+- Nessuna didascalia inventata: la "65" era in bozza "verso il camino", verificando l'immagine ritagliata non c'e' nessun camino (e' lo spigolo del tavolo) -> scritto "verso la finestra e il termosifone".
+- Copertina della scheda invariata perche' Davide ha detto "lascia cosi per ora".
+- Da qui in poi: **mai piu' attendere la fine del turno per spingere**. La spinta parte subito dopo il check verde, perche' due lotti su tre oggi sono stati persi una volta .
