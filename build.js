@@ -444,6 +444,17 @@ const shortcodes = {
     }
     return `<ul class="grid-cards">${list.map((p) => cardImmobile(p, 'index.html')).join('')}</ul>`;
   },
+  bio() {
+    /* Il testo lo scrive Davide in site-config.json -> professionista.bio_acquirenti (paragrafi
+       separati da riga vuota). Finche' la bozza non e' confermata la pagina resta pubblicata ma
+       dichiara il proprio stato: niente "DA CONFERMARE" in chiaro e niente autobiografie inventate. */
+    const t = pro.bio_acquirenti;
+    if (!isConfirmed(t)) return '<p class="muted">Questa pagina deve ancora essere completata con le parole di Davide.</p>';
+    const par = String(t).trim().split(/\n\s*\n/).map((x) => '<p>' + inline(x.replace(/\s+/g, ' ').trim()) + '</p>').join('\n      ');
+    const nota = pro.bio_stato === 'bozza-da-rivedere'
+      ? '<p class="muted">Profilo in corso di revisione: i dati anagrafici e professionali qui sotto sono quelli del Registro Imprese.</p>' : '';
+    return par + nota;
+  },
   guida_stato(o) {
     return `<ol class="steps">${o.steps.map((s) => `<li><h3>${inline(s.titolo)}</h3><p>${inline(s.testo)}</p></li>`).join('')}</ol>`;
   },
@@ -869,15 +880,17 @@ function buildPage(page) {
 function fill(tpl, prefix, page) {
   page = page || {};
   if (!page.path) page.path = 'index.html';
-  const nav = (page.nav || ['immobili', 'ricerca', 'zona', 'guide', 'contatti']);
-  const labels = { proposta: 'Immobile', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', contatti: 'Contatti' };
+  /* le voci di default si allargano da sole quando esiste la pagina markdown corrispondente */
+  const nav = (page.nav || ['immobili', 'ricerca', 'zona', 'guide', 'contatti'].concat(navExtra()))
+    .filter((k) => k !== page.nav_key);
+  const labels = { proposta: 'Immobile', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', contatti: 'Contatti', 'chi-sono': 'Chi sono' };
   const links = nav
     .map((k) => {
       const ric = (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te';
       /* se la pagina di una voce esiste (perche' qualcuno ha scritto il suo markdown) la voce
          del menu punta a quel paragrafo: le "voci fantasma" spariscono da sole appena la pagina c'e' */
       const verso = (k) => { const pg = PAGES.find((x) => x.source === k + '.md'); return pg && exists(pg.path) ? pg.path + '#' + (pg.nav_id || k) : null; };
-      const target = { proposta: '#immobile-in-evidenza', richiesta: ric, ricerca: ric, immobili: 'immobili.html', zona: '#zona', guide: '#guide', contatti: verso('contatti') || ric }[k];
+      const target = { proposta: '#immobile-in-evidenza', richiesta: ric, ricerca: ric, immobili: 'immobili.html', zona: '#zona', guide: '#guide', 'chi-sono': verso('chi-sono') || 'index.html', contatti: verso('contatti') || ric }[k];
       if (k === 'immobili' && !exists('immobili.html')) return `<a href="#immobili">${labels[k]}</a>`;
       if (!target) return '';
       let href;
@@ -913,6 +926,10 @@ function napText() {
   parts.push(pro.telefono_display);
   parts.push(pro.email);
   return parts.map(esc).join(' · ');
+}
+/* Voci nate insieme alle pagine: 'Chi sono' entra nel menu quando esiste src/pages/chi-sono.md. */
+function navExtra() {
+  return ['chi-sono'].filter((k) => { const pg = PAGES.find((x) => x.source === k + '.md'); return !!pg && exists(pg.path); });
 }
 function footerNav(prefix, page) {
   const items = [];
@@ -1195,8 +1212,9 @@ function llms() {
 /* -------------------------------------------------------------------- main */
 
 const PAGES = [
-  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', nav: ['proposta', 'richiesta'] },
-  { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti | comprarecasarivergaro.it', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite e ricerca personalizzata.', canonical: '/contatti.html', jsonld: 'site', nav: [] },
+  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', nav: ['proposta', 'richiesta', 'chi-sono'] },
+  { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti | comprarecasarivergaro.it', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite e ricerca personalizzata.', canonical: '/contatti.html', jsonld: 'site', nav: ['immobili', 'ricerca', 'contatti'] },
+  { path: 'chi-sono.html', source: 'chi-sono.md', nav_id: 'chi-sono', title: 'Chi sono | comprarecasarivergaro.it', description: 'Davide Scaglia, agente immobiliare a Rivergaro dal 2007: come lavoro con chi compra casa in Val Trebbia, sede, qualifiche e contatti diretti.', canonical: '/chi-sono.html', jsonld: 'site', nav: ['immobili', 'ricerca', 'contatti', 'chi-sono'] },
   { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata | ' + cfg.site.dominio, canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/privacy.html', source: 'privacy.md', title: 'Privacy Policy | ' + cfg.site.dominio, canonical: '/legal/privacy.html', jsonld: 'none', nav: [] },
   { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },
@@ -1247,7 +1265,7 @@ function main() {
     const html = shell
       .replace('{{LANG}}', LANG)
       .replace('{{HEAD}}', head(page, 'immobile/'))
-      .replace('{{HEADER}}', fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '../', { nav: ['immobili', 'ricerca', 'contatti'], path: page.path }))
+      .replace('{{HEADER}}', fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '../', { nav: ['immobili', 'ricerca', 'contatti', 'chi-sono'], path: page.path, nav_key: page.path }))
       .replace('{{CONTENT}}', content)
       .replace('{{FOOTER}}', fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '../', { nav: [], path: page.path }))
       .replace('{{COOKIE_BANNER}}', fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '../', {}))
