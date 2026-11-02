@@ -1264,10 +1264,23 @@ function pagineIndicizzabili() {
   for (const p of indicizzabili) out.push('immobile/' + p.slug + '.html');
   return out;
 }
+/* Ultimo aggiornamento di una scheda: il campo `data_modifica` e' il segnale che il sito
+ * si e' dato (vedi publish_policy), quindi anche la sitemap deve leggere quello. Se si usasse
+ * il mtime del file, ogni `node build.js` in una data nuova advancebbe il <lastmod> senza
+ * nessun contenuto cambiato: un segnale di freschezza gonfiato e' peggio di nessuno. */
+function ultimaModifica(f0) {
+  const m = f0.match(/^immobile\/([a-z0-9-]+)\.html$/);
+  if (m) {
+    const p = (JSON.parse(fs.readFileSync(path.join(ROOT, 'src', 'data', 'properties.json'), 'utf8')).immobili || [])
+      .find((x) => x.slug === m[1]);
+    if (p && p.data_modifica) return p.data_modifica;
+  }
+  try { return fs.statSync(path.join(ROOT, f0)).mtime.toISOString().slice(0, 10); } catch (e) { return null; }
+}
+
 function sitemap() {
   const mods = pagineIndicizzabili().map((f0) => { const f = f0 === 'index.html' ? '' : f0;
-    let last = null;
-    try { last = fs.statSync(path.join(ROOT, f0)).mtime.toISOString().slice(0, 10); } catch (e) {}
+    const last = ultimaModifica(f0);
     return `  <url>\n    <loc>${BASE}/${f}</loc>${last ? `\n    <lastmod>${last}</lastmod>` : ''}\n    <changefreq>${f.startsWith('immobile') ? 'weekly' : 'monthly'}</changefreq>\n  </url>`;
   });
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${mods.join('\n')}\n</urlset>\n`;

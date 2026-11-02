@@ -92,6 +92,15 @@
         "villa-ancarano-piano-primo-terrazzo-26.webp",
         "villa-ancarano-piano-primo-terrazzo-27.webp",
         "villa-ancarano-piano-primo-terrazzo-28.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-76.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-77.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-78.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-79.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-80.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-81.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-82.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-83.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-84.webp",
         "villa-ancarano-piano-rialzato-ingressi-59.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
@@ -104,7 +113,8 @@
         "villa-ancarano-piano-rialzato-soggiorno-70.webp",
         "villa-ancarano-piano-rialzato-soggiorno-71.webp",
         "villa-ancarano-piano-rialzato-soggiorno-72.webp",
-        "villa-ancarano-piano-rialzato-soggiorno-73.webp"
+        "villa-ancarano-piano-rialzato-soggiorno-73.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-74.webp"
       ],
       "video": [],
       "dimensioni_immagini": [
@@ -571,6 +581,60 @@
           "kb": 322
         },
         {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-76.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 136
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-77.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 143
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-78.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 157
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-79.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 125
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-80.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 125
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-81.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 134
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-82.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 97
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-83.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 110
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-cucina-pranzo-84.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 130
+        },
+        {
           "file": "villa-ancarano-piano-rialzato-ingressi-59.webp",
           "width": 900,
           "height": 2000,
@@ -647,6 +711,12 @@
           "width": 2200,
           "height": 1238,
           "kb": 93
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-soggiorno-74.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 72
         }
       ],
       "data_pubblicazione": null,

@@ -113,11 +113,21 @@
         "villa-ancarano-piano-rialzato-soggiorno-70.webp",
         "villa-ancarano-piano-rialzato-soggiorno-71.webp",
         "villa-ancarano-piano-rialzato-soggiorno-72.webp",
-        "villa-ancarano-piano-rialzato-soggiorno-73.webp"
+        "villa-ancarano-piano-rialzato-soggiorno-73.webp",
+        "villa-ancarano-piano-rialzato-soggiorno-74.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-76.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-77.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-78.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-79.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-80.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-81.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-82.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-83.webp",
+        "villa-ancarano-piano-rialzato-cucina-pranzo-84.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
-      "data_modifica": "2026-11-02",
+      "data_modifica": "2026-11-03",
       "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex.",
       "cap": "29029",
       "gallerie": [
@@ -676,6 +686,66 @@
               "didascalia": "Il soggiorno con la credenza in legno chiaro, la poltrona in cuoio e la vetrina scura addossata alla parete.",
               "alt": "Il soggiorno con la credenza in legno chiaro, la poltrona in cuoio e la vetrina scura addossata alla parete.",
               "thumb": "villa-ancarano-piano-rialzato-soggiorno-73-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-soggiorno-74.webp",
+              "didascalia": "Angolo del soggiorno con la vetrina in noce a tutta altezza, la credenza bassa e le poltrone in cuoio.",
+              "alt": "Angolo del soggiorno con la vetrina in noce a tutta altezza, la credenza bassa e le poltrone in cuoio.",
+              "thumb": "villa-ancarano-piano-rialzato-soggiorno-74-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-76.webp",
+              "didascalia": "Cucina con zona pranzo: tavolo ovale in marmo, pennellate di giallo sui mobili e finestra sul verde.",
+              "alt": "Cucina con zona pranzo: tavolo ovale in marmo, pennellate di giallo sui mobili e finestra sul verde.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-76-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-77.webp",
+              "didascalia": "La cucina a muro, con piano di lavoro in legno, forno e piano di cottura a induzione.",
+              "alt": "La cucina a muro, con piano di lavoro in legno, forno e piano di cottura a induzione.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-77-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-78.webp",
+              "didascalia": "Il tavolo da pranzo e la cucina ripresi dall’alto, sul pavimento in cotto.",
+              "alt": "Il tavolo da pranzo e la cucina ripresi dall’alto, sul pavimento in cotto.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-78-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-79.webp",
+              "didascalia": "Cucina e zona pranzo: sei sedute attorno al tavolo in marmo sotto la lampada a cupola.",
+              "alt": "Cucina e zona pranzo: sei sedute attorno al tavolo in marmo sotto la lampada a cupola.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-79-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-80.webp",
+              "didascalia": "Il tavolo da pranzo visto dalla porta d’ingresso, con la cucina sulla destra.",
+              "alt": "Il tavolo da pranzo visto dalla porta d’ingresso, con la cucina sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-80-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-81.webp",
+              "didascalia": "La parete attrezzata della cucina: lavello a due vasche, forno e cappa in acciaio.",
+              "alt": "La parete attrezzata della cucina: lavello a due vasche, forno e cappa in acciaio.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-81-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-82.webp",
+              "didascalia": "Il tavolo in marmo e, sullo sfondo, la porta aperta verso il soggiorno.",
+              "alt": "Il tavolo in marmo e, sullo sfondo, la porta aperta verso il soggiorno.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-82-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-83.webp",
+              "didascalia": "Cucina completa di zona pranzo, con finestra sulla campagna e termosifone sotto il davanzale.",
+              "alt": "Cucina completa di zona pranzo, con finestra sulla campagna e termosifone sotto il davanzale.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-83-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-cucina-pranzo-84.webp",
+              "didascalia": "La cucina illuminata dalla finestra, con pensili gialli e mensole a tutta larghezza.",
+              "alt": "La cucina illuminata dalla finestra, con pensili gialli e mensole a tutta larghezza.",
+              "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-84-thumb.webp"
             }
           ]
         }
