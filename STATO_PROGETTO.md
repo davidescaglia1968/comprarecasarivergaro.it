@@ -154,3 +154,13 @@ node build.js && node build.js --check   # ✓ check superato (7 pagine + 1 sche
 node build.js media                      # media: 81 file, 1 immobili, bozza sched: 1  (prima: 163 file, 2 immobili)
 ```
 
+## Bozza "Chi sono" (02/11/2026) — da riscrivere con la tua voce
+
+- **`chi-sono.html` pubblicata** con la sola struttura, senza dati inventati: H1 `Chi sono`, bio, "Come lavoro", "Le qualifiche" (riusa `::contatti_card`: dati visura + social), "Se vuoi venire a trovarmi". `data_pubblicazione` non serve: la pagina entra in sitemap (7 voci) e nel menu di **tutte** le pagine.
+- **La bio vive nei dati, non nel markup**: `professionista.bio_acquirenti` in `src/data/site-config.json`, renderizzata dallo shortcode `::bio`. Lì dentro c'è una **BOZZA scritta da me** partendo da soli fatti verificati (dal 2007 nel Ruolo Agenti di Piacenza, impresa individuale con 1 addetto, sede in Via Cavallotti 3 a Pieve Dugliara, zero vetrina di annunci) + le due frasi che avevi già approvato in home. Riscrivila: i paragrafi si separano con riga vuota.
+- **Nessun segnaposto pubblico, due protezioni**: (1) se `bio_acquirenti` è `null` lo shortcode stampa una frase neutra, non "DA CONFERMARE" — testato: `bio_acquirenti: null` → `✓ check superato` e frase di rimpiazzo al suo posto; (2) finché `professionista.bio_stato` resta `bozza-da-rivedere`, in fondo alla bio compare "Profilo in corso di revisione: i dati anagrafici e professionali qui sotto sono quelli del Registro Imprese." **Quando hai riscritto la bio, cancella `bio_stato`** e la nota sparisce.
+- **Tre claim della bozza che devi confermare tu** (non sono nella visura e non me li hai detti): "verifico conformità urbanistica e catastale prima della visita", "nessun prezzo o metratura ipotizzata" (vera oggi, ma è un metodo), "seguo la trattativa fino alla firma del preliminare". Se uno non ti appartiene, cancellalo: è testo tuo, non un dato del sito.
+- **Correzione in corsa**: nella bozza avevo scritto "quattro frazioni"; `area_servizio.frazioni` ne contiene **sei** (Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi). La frase è stata tolta — per la regola che hai dato, i nomi delle frazioni restano nei filtri e nella pagina zona, non nel copy fisso.
+- **Meccanismo nuovo nel menu**: `navExtra()` aggiunge "Chi sono" (e in futuro qualsiasi pagina) alle barre di navigazione **solo quando il markdown esiste**, e la voce punta all'id del suo H1/H2 (`nav_id` nel config delle pagine). Le pagine `contatti.html` e `chi-sono.html` ora hanno entrambe `nav` propria: nessuna pagina resta senza navigazione (prima `contatti.html` aveva il menu vuoto).
+- **Tipografia**: nei testi nuovi ho usato apostrofi tipografici e accenti corretti (`, è, à), uniforme a `home.md`.
+
