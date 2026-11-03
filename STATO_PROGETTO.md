@@ -237,7 +237,7 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 - Nessuna didascalia oltre il verificabile: lo specchio del 101-103 e' "grande specchio a muro", non "specchiera con luce alogena"; la vasca angolare della 104 e' "vasca doccia angolare" perche' e' quello che si vede dal basso.
 - `data_modifica` resta 2026-11-03 (oggi): identico a quello del lotto di ieri sera, perche' la data della scheda non deve correre piu' veloce dei contenuti.
 
-### 3 novembre 2026 – parte 3 · Seconda abitazione: via il gruppo "Piano rialzato 2" (6 foto)
+## Seconda abitazione: il gruppo "Piano rialzato 2" con ingresso e corridoio (03/11/2026, pomeriggio)
 **Cosa hai mandato.** Sei scatti di un'altra unità dello stesso stabile (i tuoi file `...Ai Piano T2 (1..6).jpg`), con la tua indicazione: **(1)(2) = ingresso, (3)(4)(5)(6) = corridoio**.
 
 **Cosa si vede (dalle foto, senza aggiungere nulla).**
