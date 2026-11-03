@@ -136,7 +136,14 @@
         "villa-ancarano-piano-rialzato-camera-94.webp",
         "villa-ancarano-piano-rialzato-camera-95.webp",
         "villa-ancarano-piano-rialzato-camera-96.webp",
-        "villa-ancarano-piano-rialzato-camera-97.webp"
+        "villa-ancarano-piano-rialzato-camera-97.webp",
+        "villa-ancarano-piano-rialzato-camera-2-98.webp",
+        "villa-ancarano-piano-rialzato-camera-2-99.webp",
+        "villa-ancarano-piano-rialzato-camera-2-100.webp",
+        "villa-ancarano-piano-rialzato-bagno-3-101.webp",
+        "villa-ancarano-piano-rialzato-bagno-3-102.webp",
+        "villa-ancarano-piano-rialzato-bagno-3-103.webp",
+        "villa-ancarano-piano-rialzato-bagno-3-104.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -837,6 +844,48 @@
               "didascalia": "Il letto matrimoniale e, a destra, la porta verso il disimpegno.",
               "alt": "Il letto matrimoniale e, a destra, la porta verso il disimpegno.",
               "thumb": "villa-ancarano-piano-rialzato-camera-97-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-2-98.webp",
+              "didascalia": "Seconda camera, con armadio a due ante, specchio pendolo in legno e finestra con termosifone sotto il davanzale.",
+              "alt": "Seconda camera, con armadio a due ante, specchio pendolo in legno e finestra con termosifone sotto il davanzale.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-2-98-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-2-99.webp",
+              "didascalia": "Angolo della seconda camera con l’armadio d’angolo e il comò basso.",
+              "alt": "Angolo della seconda camera con l’armadio d’angolo e il comò basso.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-2-99-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-2-100.webp",
+              "didascalia": "La seconda camera verso la finestra a doppia anta, con comò e specchio.",
+              "alt": "La seconda camera verso la finestra a doppia anta, con comò e specchio.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-2-100-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-bagno-3-101.webp",
+              "didascalia": "Bagno del piano rialzato: sanitari, lavabo e finestra, con rivestimento chiaro e fascia decorativa.",
+              "alt": "Bagno del piano rialzato: sanitari, lavabo e finestra, con rivestimento chiaro e fascia decorativa.",
+              "thumb": "villa-ancarano-piano-rialzato-bagno-3-101-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-bagno-3-102.webp",
+              "didascalia": "Il bagno con grande specchio a muro e mensole accanto al lavabo.",
+              "alt": "Il bagno con grande specchio a muro e mensole accanto al lavabo.",
+              "thumb": "villa-ancarano-piano-rialzato-bagno-3-102-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-bagno-3-103.webp",
+              "didascalia": "Il lavabo del bagno e la porta aperta sul disimpegno.",
+              "alt": "Il lavabo del bagno e la porta aperta sul disimpegno.",
+              "thumb": "villa-ancarano-piano-rialzato-bagno-3-103-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-bagno-3-104.webp",
+              "didascalia": "Il bagno dall’alto: bidet, vasca doccia angolare e pavimento in ceramica chiara.",
+              "alt": "Il bagno dall’alto: bidet, vasca doccia angolare e pavimento in ceramica chiara.",
+              "thumb": "villa-ancarano-piano-rialzato-bagno-3-104-thumb.webp"
             }
           ]
         }
