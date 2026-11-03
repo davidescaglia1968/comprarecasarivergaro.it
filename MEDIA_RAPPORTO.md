@@ -1,13 +1,13 @@
-# Rapporto media — 2026-11-03T20:11:43.379Z
+# Rapporto media — 2026-11-03T21:36:05.641Z
 
 ## villa-tre-unita-ancarano
 immagini 192 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp` 2200×989 177KB 
-- `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp` 2200×990 483KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp` 1900×855 362KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-villa-17.webp` 2200×990 332KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-angolare-04.webp` 2200×1238 240KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-balconi-26.webp` 2200×989 93KB 
-- `img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp` 2200×990 403KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp` 1900×855 306KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22.webp` 2200×989 206KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-29.webp` 2200×989 215KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-laterale-06.webp` 2200×1238 228KB 
@@ -15,7 +15,7 @@ immagini 192 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01.webp` 2200×990 357KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-balconi-27.webp` 2200×989 138KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-giardino-12.webp` 2200×989 184KB 
-- `img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp` 2200×1238 529KB 
+- `img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp` 1900×1069 395KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-portico-finestre-05.webp` 2200×1238 277KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-prospetto-laterale-16.webp` 2200×990 395KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-esterno-recinzione-cortile-21.webp` 2200×989 166KB 
@@ -195,18 +195,14 @@ immagini 192 · video 0
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-73.webp` 2200×1238 93KB 
 - `img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-soggiorno-74.webp` 2200×1238 72KB 
 
-## Avvisi
-- img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp: 0.47MB sopra budget, comprimi
-- img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi
-- img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi
 
 ## Riga <img> pronta (dimensioni reali lette dal file)
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-accesso-carrabile-24.webp" alt="DESCRIVI cosa si vede" width="2200" height="989" loading="lazy" decoding="async">`
-- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp" alt="DESCRIVI cosa si vede" width="2200" height="990" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp" alt="DESCRIVI cosa si vede" width="1900" height="855" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-villa-17.webp" alt="DESCRIVI cosa si vede" width="2200" height="990" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-angolare-04.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-balconi-26.webp" alt="DESCRIVI cosa si vede" width="2200" height="989" loading="lazy" decoding="async">`
-- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp" alt="DESCRIVI cosa si vede" width="2200" height="990" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp" alt="DESCRIVI cosa si vede" width="1900" height="855" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22.webp" alt="DESCRIVI cosa si vede" width="2200" height="989" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-29.webp" alt="DESCRIVI cosa si vede" width="2200" height="989" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-laterale-06.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
@@ -214,7 +210,7 @@ immagini 192 · video 0
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01.webp" alt="DESCRIVI cosa si vede" width="2200" height="990" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-balconi-27.webp" alt="DESCRIVI cosa si vede" width="2200" height="989" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-giardino-12.webp" alt="DESCRIVI cosa si vede" width="2200" height="989" loading="lazy" decoding="async">`
-- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
+- `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp" alt="DESCRIVI cosa si vede" width="1900" height="1069" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-portico-finestre-05.webp" alt="DESCRIVI cosa si vede" width="2200" height="1238" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-prospetto-laterale-16.webp" alt="DESCRIVI cosa si vede" width="2200" height="990" loading="lazy" decoding="async">`
 - `<img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-recinzione-cortile-21.webp" alt="DESCRIVI cosa si vede" width="2200" height="989" loading="lazy" decoding="async">`

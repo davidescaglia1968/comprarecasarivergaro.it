@@ -14,13 +14,13 @@
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp",
       "tipo": "immagine",
-      "bytes": 494200,
+      "bytes": 371044,
       "nome": "villa-ancarano-esterno-cancello-cortile-14.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "483KB",
-      "width": 2200,
-      "height": 990
+      "eta": "362KB",
+      "width": 1900,
+      "height": 855
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-villa-17.webp",
@@ -58,13 +58,13 @@
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp",
       "tipo": "immagine",
-      "bytes": 412584,
+      "bytes": 313346,
       "nome": "villa-ancarano-esterno-facciata-cancello-15.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "403KB",
-      "width": 2200,
-      "height": 990
+      "eta": "306KB",
+      "width": 1900,
+      "height": 855
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22.webp",
@@ -146,13 +146,13 @@
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp",
       "tipo": "immagine",
-      "bytes": 541780,
+      "bytes": 404426,
       "nome": "villa-ancarano-esterno-lato-prato-03.webp",
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
-      "eta": "529KB",
-      "width": 2200,
-      "height": 1238
+      "eta": "395KB",
+      "width": 1900,
+      "height": 1069
     },
     {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-portico-finestre-05.webp",
@@ -2130,13 +2130,13 @@
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp",
           "tipo": "immagine",
-          "bytes": 494200,
+          "bytes": 371044,
           "nome": "villa-ancarano-esterno-cancello-cortile-14.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "483KB",
-          "width": 2200,
-          "height": 990
+          "eta": "362KB",
+          "width": 1900,
+          "height": 855
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-villa-17.webp",
@@ -2174,13 +2174,13 @@
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp",
           "tipo": "immagine",
-          "bytes": 412584,
+          "bytes": 313346,
           "nome": "villa-ancarano-esterno-facciata-cancello-15.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "403KB",
-          "width": 2200,
-          "height": 990
+          "eta": "306KB",
+          "width": 1900,
+          "height": 855
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-loggiato-22.webp",
@@ -2262,13 +2262,13 @@
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp",
           "tipo": "immagine",
-          "bytes": 541780,
+          "bytes": 404426,
           "nome": "villa-ancarano-esterno-lato-prato-03.webp",
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
-          "eta": "529KB",
-          "width": 2200,
-          "height": 1238
+          "eta": "395KB",
+          "width": 1900,
+          "height": 1069
         },
         {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-esterno-portico-finestre-05.webp",
@@ -4232,10 +4232,6 @@
       "video": []
     }
   },
-  "warnings": [
-    "img/villa-tre-unita-ancarano/villa-ancarano-esterno-cancello-cortile-14.webp: 0.47MB sopra budget, comprimi",
-    "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
-    "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
-  ],
-  "generato": "2026-11-03T13:32:45.307Z"
+  "warnings": [],
+  "generato": "2026-11-03T21:36:05.641Z"
 }
