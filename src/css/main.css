@@ -317,11 +317,17 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .prop-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,340px);gap:var(--s7);align-items:start;padding-top:var(--s6);padding-bottom:var(--s8)}
 .prop-main section{margin-bottom:var(--s7)}
 .prop-main h2{margin-bottom:var(--s3)}
-.prop-answer{font-size:1.0625rem;color:#e4e4e7}
-.prop-desc p{max-width:72ch}
-.prop-desc h3{margin:var(--s5) 0 var(--s2)}
-.prop-desc h3:first-of-type{margin-top:0}
-.prop-firma{margin-top:var(--s4);color:var(--text-secondary);font-size:.9375rem}
+/* --- Descrizione: qui la leggibilita' viene prima del resto.
+   Corpo piu' grande (17px) e interlinea ampia; paragrafo-risposta a 19px;
+   sottotitoli di sezione in sans (il serif di titolo, a queste dimensioni,
+   su schermo si legge male) con un filo di separazione sopra. --- */
+.prop-desc{max-width:76ch}
+.prop-desc p{max-width:70ch;font-size:1.0625rem;line-height:1.8;color:#f4f4f5;margin-bottom:var(--s4)}
+.prop-desc .prop-answer{font-size:1.1875rem;line-height:1.7;color:#fff;margin-bottom:var(--s5)}
+.prop-desc strong{color:#fff;font-weight:600}
+.prop-desc h3{font-family:var(--font-body);font-size:1.25rem;font-weight:600;letter-spacing:0;line-height:1.35;color:#fff;margin:var(--s6) 0 var(--s3);padding-top:var(--s5);border-top:1px solid var(--line)}
+.prop-desc h3:first-child{margin-top:0;padding-top:0;border-top:0}
+.prop-firma{margin-top:var(--s5);color:var(--text-secondary);font-size:1rem;letter-spacing:.01em}
 .prop .card,.prop section{position:relative}
 
 .gallery{margin-bottom:var(--s6)}
