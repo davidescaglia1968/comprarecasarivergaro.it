@@ -395,3 +395,15 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Da verificare, e l'ho scritto anche nelle note interne**: i servizi elencati per Rivergaro, la distanza «circa 20 km, 20-25 minuti» per Piacenza (le fonti danno Rivergaro a 20 km e Ancarano tre chilometri più avanti), l'uso a **studio medico**, l'**accessibilità** dei piani rialzati e il progetto di **ospitalità/affitti brevi**. Sono affermazioni tue, pubblicate come le hai scritte: se una non regge, si toglie in un minuto.
 
 **Verificato.** `node build.js media` → **192 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda **257.2KB** · `node build.js --check` ✓. Nella pagina: la descrizione viene **prima** della galleria (posizione 60954 contro 63491 della prima `<figure>`), i **13 blocchi** resi nell'ordine giusto (H3, primo capoverso in `.prop-answer`, cinque capoversi, H3 «La posizione», due capoversi, H3 «Una casa da scoprire», capoverso, firma), **1 H1, 7 H2, 3 H3**, **192 `<figure>`** e JSON-LD con **192 immagini**, `meta description` e `description` dei dati strutturati = primo capoverso.
+
+## Testo della proprietà rifatto, e descrizione resa leggibile (03/11/2026)
+
+**Il testo** è quello nuovo che mi hai dato, pubblicato **alla lettera**: titolo, due capoversi d'apertura, la sezione **«Una proprietà, diverse possibilità»**, i capoversi su studio professionale, ospitalità, accessibilità e finiture, la sezione **«La posizione: tranquillità e servizi a portata di mano»**, la sezione **«Una casa da scoprire»**, la frase finale in grassetto e la firma. Diciotto blocchi in tutto, nell'ordine in cui li hai scritti.
+
+**Grassetti**: il testo ne prevede tre — «**2,5 km**», «**15 km**» e tutta la frase «**A volte il valore di una casa non è soltanto quello che offre oggi, ma anche quello che può diventare domani.**». Nei dati si scrivono con `**…**` e diventano `<strong>` in pagina. Il resto del testo non può produrre markup: viene scappato prima di essere convertito.
+
+**Tipografia rifatta** (era la parte poco leggibile): corpo a **17px** con interlinea **1.8**, paragrafo-risposta a **19px**, colore bianco pieno, più aria fra un capoverso e l'altro (24px). I sottotitoli di sezione ora sono in **sans** invece del serif di titolo — a 20px il Playfair su schermo si impastava — con un filo di separazione sopra ciascuno. Firma in grigio leggero a 16px.
+
+**Numeri aggiornati**: Rivergaro **2,5 km**, Piacenza **15 km**. Sono coerenti con le fonti: Ancarano di Sopra sta a 2,89 km dal centro di Rivergaro, e la zona è indicata a «poco più di 15 km» da Piacenza. Le vecchie indicazioni (20 km, 20-25 minuti) non ci sono più.
+
+**Verificato.** `node build.js media` → **192 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda **258.0KB** · `node build.js --check` ✓. Nella pagina: **18 blocchi** resi nell'ordine giusto, **3 `<strong>`**, descrizione **prima** della galleria, **1 H1**, **192 `<figure>`**, `meta description` = 202 caratteri del primo capoverso. Anteprima locale servita per controllare la resa tipografica prima di pubblicare.

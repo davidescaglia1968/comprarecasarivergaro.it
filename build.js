@@ -742,7 +742,7 @@ function schedaPage(p, prefix) {
   const bozza = p.bozza
     ? '<div class="draft-bar"><strong>Scheda in bozza, non ancora pubblicabile.</strong> Mancano dati che non invento io: prezzo, superfici, stato catastale delle tre unità, classe energetica, foto. La pagina è marcata <code>noindex</code> e non è in sitemap.</div>'
     : '';
-  /* Descrizione: se c'e' `testo` (capoversi e sottotitoli) si rende cosi' com'e' e il
+  /* Descrizione: se c'e' `testo` (capoversi, sottotitoli, firma) si rende cosi' com'e' e il
      primo capoverso fa da paragrafo-risposta. Senza `testo` si usa `descrizione` come
      unico capoverso. Niente taglio a 200 caratteri: spezzava le frasi a meta' quando la
      descrizione era scritta in piu' capoversi. */
@@ -750,13 +750,13 @@ function schedaPage(p, prefix) {
   let primoCapoverso = true;
   const corpoDesc = blocchiDesc.length
     ? blocchiDesc.map((b) => {
-        if (b.tipo === 'h3') return `<h3>${esc(b.testo)}</h3>`;
-        if (b.tipo === 'firma') return `<p class="prop-firma">${esc(b.testo)}</p>`;
+        if (b.tipo === 'h3') return `<h3>${inline(esc(b.testo))}</h3>`;
+        if (b.tipo === 'firma') return `<p class="prop-firma">${inline(esc(b.testo))}</p>`;
         const cls = primoCapoverso ? ' class="prop-answer"' : '';
         primoCapoverso = false;
-        return `<p${cls}>${esc(b.testo)}</p>`;
+        return `<p${cls}>${inline(esc(b.testo))}</p>`;
       }).join('\n        ')
-    : `<p class="prop-answer">${esc(p.descrizione || '')}</p>`;
+    : `<p class="prop-answer">${inline(esc(p.descrizione || ''))}</p>`;
   const manca = [
     !p.superficie && 'superficie (totale e per unità)',
     !p.locali && 'numero di locali per unità',
