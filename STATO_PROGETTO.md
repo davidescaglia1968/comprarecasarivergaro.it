@@ -301,3 +301,19 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Casa abitata.** Nelle foto ci sono un **casco da moto**, una scatola «GP2», tovagliette e oggetti sui piani: **non sono in nessuna didascalia** e non ho commentato gli arredi personali, come per la coperta e il saccone del soggiorno. Due cose che ho lasciato di proposito generiche perché dalla foto non si possono verificare: l'**elettrodomestico bianco** vicino alla porta (non ho scritto "lavatrice" né "lavastoviglie") e la **stanza oltre la porta** (scritto "l'altra stanza", non "camera").
 
 **Verificato.** `node build.js media` → **157 file, 3 avvisi**, gli stessi tre preesistenti degli esterni, nessuno degli 11 nuovi. `node build.js` ✓ scheda 207.3KB · `node build.js --check` ✓ ("nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite"). Nella scheda **157 `<figure>`, 157 `srcset`**, 0 `<img>` senza `width`/`height`, 4 sottogruppi con i loro `<h2>`, JSON-LD `image` = **157**, `sitemap.xml` `<lastmod>2026-11-03`.
+
+## Prima camera del Piano rialzato 2: 9 foto (03/11/2026)
+
+**Cosa hai mandato.** Le foto **(38)…(46)**, tutte **orizzontali 4000×2250**: una delle **due camere** della seconda unità ("ecco le prime 9 di una delle 2 camere"). Le altre arriveranno dopo.
+
+- `villa-ancarano-piano-rialzato-p2-camera-{142..150}.webp`, 2200×1238, ricetta standard (qualità 82, `-strip`) + miniature 900×506. Pesi **104–315KB**: tutti dentro il budget, nessuna riconversione.
+- Descrittore **`p2-camera`**: quando arriverà la seconda camera il descrittore sarà **`p2-camera-2`**, come per la prima unità (`camera-85…97` e `camera-2-98…100`). Così i due locali restano distinguibili senza rinominare niente.
+- Gruppo `piano-rialzato-2`: 37 → **46 foto**. Scheda a **166 foto** — Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · **Piano rialzato 2 46**. `data_modifica` 2026-11-03.
+- Galleria e array piatto aggiornati e verificati identici nello stesso ordine (166 = 166).
+
+**Cosa si vede (dalle foto convertite, una per una).** Camera matrimoniale con **armadio a parete ad ante laccate** che occupa un'intera parete, **letto matrimoniale** con testata imbottita, **cassettone in legno** a cassetti (con un oggetto in vetro blu sopra), **appendiabiti da camera** in legno accanto al cassettone, **sedia a fascia in legno scuro**, **quadro con figura rossa** sopra la testata, **finestra con termosifone** nella nicchia color terracotta, **porta in legno** verso il corridoio, **plafoniera quadrata** a soffitto. **Il pavimento qui è in parquet a listoni chiari**, non in cotto come soggiorno e cucina: differenza reale tra i locali, scritta in didascalia.
+- Lesene e nicchie delle finestre **color terracotta** su pareti chiare: è l'unico elemento decorativo forte della stanza e l'ho descritto per come appare.
+
+**Cosa non ho scritto.** Federe, copriletto e oggetti personali non sono commentati: la camera è abitata, la regola è la stessa del soggiorno (coperta e saccone) e della cucina (casco, scatola «GP2»). Nessuna ipotesi su cosa ci sia dietro la porta aperta: la didascalia dice "la porta aperta sul corridoio", che è quello che si vede.
+
+**Verificato.** `node build.js media` → **166 file, 3 avvisi** (i soliti tre degli esterni, nessuno dei 9 nuovi). `node build.js` ✓ scheda 219.5KB · `node build.js --check` ✓. Nella scheda **166 `<figure>`, 166 `srcset`**, 0 `<img>` senza `width`/`height`, 9 file `p2-camera` presenti, JSON-LD `image` = **166**, `sitemap.xml` `<lastmod>2026-11-03`.
