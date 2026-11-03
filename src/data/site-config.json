@@ -16,13 +16,13 @@
     "base_path": "/",
     "output_dir": ".",
     "lingua": "it-IT",
-    "titolo_home": "Cerchi casa a Rivergaro in Val Trebbia? Le mie proposte",
-    "description_home": "Case in vendita a Rivergaro e in Val Trebbia: proposta attuale, ricerca personalizzata, visite e trattativa assistita da Davide Scaglia, agente immobiliare a Rivergaro.",
+    "titolo_home": "Case in vendita a Rivergaro e Val Trebbia | Davide Scaglia",
+    "description_home": "Cerchi casa a Rivergaro o in Val Trebbia? Scopri le proposte immobiliari di Davide Scaglia e richiedi una ricerca personalizzata in base alle tue esigenze.",
     "theme_color": "#0a0a0a",
     "robots_indexable": true,
     "deploy_notes": "GitHub Pages pubblica il ROOT del ramo main, come gia' fanno venderecasapiacenza.it e casepodenzano.it (repo a layout piatto). Richiede: .nojekyll e CNAME nella radice del repo. Nessun /docs.",
     "eyebrow_home": "Case in vendita a Rivergaro · Val Trebbia",
-    "_regola_title_home": "Title della home e H1 del ::hero in src/pages/home.md devono restare la stessa frase: cambia l'uno, cambia l'altro. ' | comprarecasarivergaro.it' non entra nei 60 caratteri con la domanda intera, cosi' il brand resta nell'H1 e nel logo. Valgono i campi del front matter di home.md."
+    "_regola_title_home": "Title della home e H1 del ::hero non sono piu' la stessa frase (scelta del 03/11/2026): il title porta le parole chiave di ricerca e il nome del professionista entro i 60 caratteri, l'H1 parla a chi legge. Restano pero' legati nel senso: se cambia la promessa della pagina, si aggiornano insieme. Valgono i campi del front matter di home.md, allineati a titolo_home/description_home qui sopra."
   },
   "professionista": {
     "nome_completo": "Davide Scaglia",
