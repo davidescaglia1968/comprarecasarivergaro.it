@@ -178,6 +178,23 @@ function openingHours() {
   });
   return out;
 }
+/* La persona fisica, distinta dall'attivita': il nodo RealEstateAgent resta l'impresa
+   (nome pubblico, ragione sociale, indirizzo, orari), questo e' Davide Scaglia.
+   Solo dati che stanno gia' nel config: niente qualifiche o recapiti inventati. */
+function personJsonLd() {
+  const p = {
+    '@type': 'Person',
+    '@id': BASE + '/#davide-scaglia',
+    name: pro.nome_completo,
+    jobTitle: 'Agente immobiliare',
+    url: BASE + '/chi-sono.html',
+    telephone: pro.telefono_e164,
+    email: pro.email,
+    worksFor: { '@id': BASE + '/#agent' },
+    knowsAbout: ['Case in vendita a Rivergaro', 'Val Trebbia', 'Acquisto di casa'],
+  };
+  return p;
+}
 function agentJsonLd() {
   const a = {
     '@type': 'RealEstateAgent', '@id': BASE + '/#agent',
@@ -932,6 +949,13 @@ function head(page, prefix) {
   if (page.immobile) ld = { '@context': 'https://schema.org', '@graph': [listingJsonLd(page.immobile), agentJsonLd(), { '@type': 'WebSite', '@id': BASE + '/#website', name: cfg.site.dominio, url: BASE + '/' }] };
   else if (page.jsonld === 'none') ld = null;
   else ld = siteJsonLd();
+  /* Person solo dove serve (la home): le altre pagine restano come sono. Il legame e' un
+     riferimento @id, non una copia, cosi' non ci sono due descrizioni della stessa entita'. */
+  if (page.person && ld && Array.isArray(ld['@graph'])) {
+    ld['@graph'].push(personJsonLd());
+    const agente = ld['@graph'].find((n) => n && n['@type'] === 'RealEstateAgent');
+    if (agente) agente.founder = { '@id': BASE + '/#davide-scaglia' };
+  }
   if (page.breadcrumb) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: page.breadcrumb }] });
   /* FAQPage: le righe Q&A che il visitatore sta vedendo, non domande inventate per il markup.
      Google dal 07/05/2026 non mostra piu' il risultato arricchito FAQ (lo aveva gia' limitato ai
@@ -1341,12 +1365,12 @@ function llms() {
 /* -------------------------------------------------------------------- main */
 
 const PAGES = [
-  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', nav: ['proposta', 'richiesta', 'chi-sono'] },
+  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', person: true, nav: ['proposta', 'richiesta', 'chi-sono'] },
   { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti | comprarecasarivergaro.it', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite e ricerca personalizzata.', canonical: '/contatti.html', jsonld: 'site', nav: ['immobili', 'ricerca', 'contatti'] },
   { path: 'chi-sono.html', source: 'chi-sono.md', nav_id: 'chi-sono', title: 'Chi sono | comprarecasarivergaro.it', description: 'Davide Scaglia, agente immobiliare a Rivergaro dal 2007: come lavoro con chi compra casa in Val Trebbia, sede, qualifiche e contatti diretti.', canonical: '/chi-sono.html', jsonld: 'site', nav: ['immobili', 'ricerca', 'contatti', 'chi-sono'] },
-  { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata | ' + cfg.site.dominio, canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
+  { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata | ' + cfg.site.dominio, description: 'Richiesta inviata a Davide Scaglia, agente immobiliare a Rivergaro: ti ricontatto appena possibile.', canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/privacy.html', source: 'privacy.md', title: 'Privacy Policy | ' + cfg.site.dominio, canonical: '/legal/privacy.html', jsonld: 'none', nav: [] },
-  { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },
+  { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', description: 'La pagina cercata non esiste. Torna alla home o apri il catalogo degli immobili disponibili a Rivergaro e in Val Trebbia.', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/cookie.html', source: 'cookie.md', title: 'Cookie Policy | ' + cfg.site.dominio, canonical: '/legal/cookie.html', jsonld: 'none', nav: [] },
 ];
 
