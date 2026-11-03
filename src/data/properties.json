@@ -22,7 +22,61 @@
         "finiture e archi in mattoni a vista",
         "ampio giardino privato"
       ],
-      "descrizione": "Villa indipendente in località Ancarano, Rivergaro, con finiture e archi in mattoni a vista. Offre 12 vani distribuiti in 3 unità abitative completamente indipendenti.",
+      "descrizione": "Ad Ancarano, nel Comune di Rivergaro, proponiamo una residenza indipendente composta da tre abitazioni, ciascuna con ingresso autonomo, inserite in una proprietà con giardino e spazi esterni.",
+      "testo": [
+        {
+          "tipo": "h3",
+          "testo": "Una proprietà, tante possibilità: tre abitazioni indipendenti in Val Trebbia"
+        },
+        {
+          "tipo": "p",
+          "testo": "Ad Ancarano, nel Comune di Rivergaro, proponiamo una residenza indipendente composta da tre abitazioni, ciascuna con ingresso autonomo, inserite in una proprietà con giardino e spazi esterni."
+        },
+        {
+          "tipo": "p",
+          "testo": "Una soluzione particolare per chi desidera coniugare indipendenza, spazio e flessibilità, con la possibilità di adattare gli ambienti a diverse esigenze familiari e professionali."
+        },
+        {
+          "tipo": "p",
+          "testo": "La configurazione è ideale per più generazioni che desiderano vivere vicine mantenendo la propria autonomia, oppure per chi cerca una residenza con spazi da destinare anche a familiari e ospiti."
+        },
+        {
+          "tipo": "p",
+          "testo": "Le unità offrono inoltre interessanti possibilità di utilizzo professionale: una parte della proprietà potrebbe diventare uno studio medico, un ufficio o uno spazio privato per professionisti che desiderano lavorare vicino a casa. Da valutare anche eventuali progetti di ospitalità e affitti brevi, nel rispetto delle normative e delle autorizzazioni necessarie."
+        },
+        {
+          "tipo": "p",
+          "testo": "I piani rialzati sono raggiungibili attraverso percorsi che, con piccoli accorgimenti e gli eventuali adeguamenti necessari, possono essere resi più agevoli anche per persone con difficoltà motorie."
+        },
+        {
+          "tipo": "p",
+          "testo": "Il giardino, i porticati, gli archi in mattoni a vista e le finiture in cotto conferiscono alla residenza un carattere architettonico distintivo e piacevoli spazi da vivere."
+        },
+        {
+          "tipo": "h3",
+          "testo": "La posizione"
+        },
+        {
+          "tipo": "p",
+          "testo": "Ancarano si trova nel territorio di Rivergaro, in un contesto immerso nel verde della Val Trebbia. Il vicino centro abitato offre i principali servizi quotidiani, tra cui negozi, supermercati, farmacia, ufficio postale, bar e ristoranti."
+        },
+        {
+          "tipo": "p",
+          "testo": "Piacenza dista circa 20 km, raggiungibile indicativamente in 20-25 minuti d’auto."
+        },
+        {
+          "tipo": "h3",
+          "testo": "Una casa da scoprire"
+        },
+        {
+          "tipo": "p",
+          "testo": "Una residenza per una famiglia numerosa, una soluzione per più nuclei familiari oppure un progetto che unisce abitazione e attività professionale: questa proprietà offre opportunità difficili da trovare in una tradizionale casa indipendente."
+        },
+        {
+          "tipo": "firma",
+          "testo": "Davide Scaglia – Consulenza immobiliare."
+        }
+      ],
       "immagini": [
         "villa-ancarano-esterno-ingresso-portico-01.webp",
         "villa-ancarano-esterno-lato-prato-03.webp",
@@ -220,7 +274,7 @@
       "video": [],
       "data_pubblicazione": "2026-10-23",
       "data_modifica": "2026-11-03",
-      "note_interne": "Pubblicata il 23/10/2026 su decisione di Davide, con i soli dati suoi: nessun campo vuoto esposto, nessun dato ipotizzato. Testo scritto da Davide Scaglia il 23/10/2026, da usare alla lettera. Mancano tutti i dati che la legge e il buon senso impongono prima della pubblicazione reale: prezzo, superficie totale e per unità, locali, stato catastale e urbanistico delle 3 unità, classe energetica/APE, pertinenz (terreno circostante: metratura e destinazione), accesso e servitù di passo, distanza reale dai servizi. 'Splendida' e 'pochi minuti dal centro' sono parole sue: le tengo perche' le ha scritte lui, non le ho ampliate. bozza:true tiene la scheda fuori da sitemap e da llms.txt e le aggiunge meta noindex.",
+      "note_interne": "Testo della scheda scritto da Davide Scaglia e pubblicato il 03/11/2026, da usare alla lettera: titolo, capoversi, sezioni «La posizione» e «Una casa da scoprire», firma in chiusura. Il testo era stato incollato due volte: pubblicata una copia sola. `descrizione` = primo capoverso (usato da SEO, anteprime e llms.txt); `testo` = blocchi della pagina. Restano da verificare: servizi a Rivergaro, distanza e tempi per Piacenza (20 km / 20-25 minuti), utilizzo a studio medico, accessibilità dei piani rialzati, progetto di ospitalità. Mancano ancora prezzo, superficie totale e per unità, locali, stato catastale e urbanistico, classe energetica/APE, pertinenze e accesso.",
       "cap": "29029",
       "gallerie": [
         {
