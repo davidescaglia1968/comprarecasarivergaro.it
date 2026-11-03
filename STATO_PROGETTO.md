@@ -331,3 +331,18 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 - Se invece preferisci, posso provare a salvarla con una passata leggera di nitidezza: te la mostro prima, senza pubblicarla.
 
 **Verificato.** `node build.js media` → **168 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda 222.2KB · `node build.js --check` ✓. Nella scheda **168 `<figure>`, 168 `srcset`**, 0 `<img>` senza `width`/`height`, **nessun riferimento a `p2-camera-153`** (la scartata non è rimasta appesa a nessun elenco), JSON-LD `image` = **168**, `sitemap.xml` `<lastmod>2026-11-03`.
+
+## Seconda camera del Piano rialzato 2: 9 foto, doppia esposizione sulla loggia (03/11/2026)
+
+**Cosa hai mandato.** Le foto **(50)…(58)** con la sola indicazione "camera 2": 7 orizzontali 4000×2250 e **2 verticali** (2250×4000).
+
+- `villa-ancarano-piano-rialzato-p2-camera-2-{153..161}.webp`, ricetta standard (qualità 82, `-strip`) + miniature. Orizzontali 2200×1238 (69–248KB); **le due verticali (158 e 160) restano verticali a 900×1600** (122 e 204KB) con miniatura 506×900, come `ingressi-59`: ritagliarle in 16/9 avrebbe tagliato soglia e parapetto, che sono il motivo per cui le hai scattate in verticale.
+- Descrittore **`p2-camera-2`**, come annunciato quando è arrivata la prima camera. Gruppo `piano-rialzato-2`: 48 → **57 foto**. Scheda a **177 foto** — Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · **Piano rialzato 2 57**. Galleria e array piatto allineati (177 = 177).
+- **Nessun buco di numerazione**: la 153 era rimasta libera proprio per questa camera (la foto mossa del lotto precedente non è mai entrata negli elenchi).
+
+**Cosa si vede (dalle foto convertite, una per una).** Seconda camera con **letto singolo**, **armadio a parete con ante scorrevoli** (pannelli chiari e fascia in vetro verde) che occupa una parete intera, **scrivania con sedia da ufficio** sotto lo **specchio con decoro a palme e cammelli**, **quadro astratto grande** su un'altra parete, **plafoniera a bracci** a soffitto, **parquet a listoni** come nella prima camera. La stanza ha **due esposizioni**: una **portafinestra con soglia in marmo** che dà sulla **loggia con pavimento in cotto**, parapetto in mattoni pieni con feritoie e **scala esterna in metallo** verso il giardino.
+- Nella 159 e nella 160 il pavimento in cotto della loggia è ripreso dall'alto: è esterno, non un altro locale — l'ho scritto così, senza farlo passare per una stanza.
+
+**Casa abitata.** Giacca sulla sedia, libri e riviste sulla scrivania, targhette e pannelli accostati alla parete, **i piedi in due scatti**: niente di tutto questo è in didascalia. Stessa regola di soggiorno, cucina e prima camera.
+
+**Verificato.** `node build.js media` → **177 file, 3 avvisi** (i soliti tre degli esterni, nessuno dei 9 nuovi). `node build.js` ✓ scheda 234.5KB · `node build.js --check` ✓. Nella scheda **177 `<figure>`, 177 `srcset`**, 0 `<img>` senza `width`/`height`, **le due verticali dichiarano 900×1600** nell'HTML (quindi nessun salto di layout), JSON-LD `image` = **177**, `sitemap.xml` `<lastmod>2026-11-03`.
