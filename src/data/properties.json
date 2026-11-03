@@ -123,7 +123,20 @@
         "villa-ancarano-piano-rialzato-cucina-pranzo-81.webp",
         "villa-ancarano-piano-rialzato-cucina-pranzo-82.webp",
         "villa-ancarano-piano-rialzato-cucina-pranzo-83.webp",
-        "villa-ancarano-piano-rialzato-cucina-pranzo-84.webp"
+        "villa-ancarano-piano-rialzato-cucina-pranzo-84.webp",
+        "villa-ancarano-piano-rialzato-camera-85.webp",
+        "villa-ancarano-piano-rialzato-camera-86.webp",
+        "villa-ancarano-piano-rialzato-camera-87.webp",
+        "villa-ancarano-piano-rialzato-camera-88.webp",
+        "villa-ancarano-piano-rialzato-camera-89.webp",
+        "villa-ancarano-piano-rialzato-camera-90.webp",
+        "villa-ancarano-piano-rialzato-camera-91.webp",
+        "villa-ancarano-piano-rialzato-camera-92.webp",
+        "villa-ancarano-piano-rialzato-camera-93.webp",
+        "villa-ancarano-piano-rialzato-camera-94.webp",
+        "villa-ancarano-piano-rialzato-camera-95.webp",
+        "villa-ancarano-piano-rialzato-camera-96.webp",
+        "villa-ancarano-piano-rialzato-camera-97.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -746,6 +759,84 @@
               "didascalia": "La cucina illuminata dalla finestra, con pensili gialli e mensole a tutta larghezza.",
               "alt": "La cucina illuminata dalla finestra, con pensili gialli e mensole a tutta larghezza.",
               "thumb": "villa-ancarano-piano-rialzato-cucina-pranzo-84-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-85.webp",
+              "didascalia": "Camera da letto con armadio a tutta parete e finestra sul cortile.",
+              "alt": "Camera da letto con armadio a tutta parete e finestra sul cortile.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-85-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-86.webp",
+              "didascalia": "La camera da letto al piano rialzato, con letto matrimoniale in ferro e armadio a tutta altezza.",
+              "alt": "La camera da letto al piano rialzato, con letto matrimoniale in ferro e armadio a tutta altezza.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-86-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-87.webp",
+              "didascalia": "L’armadio a muro della camera: otto ante dal pavimento al soffitto.",
+              "alt": "L’armadio a muro della camera: otto ante dal pavimento al soffitto.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-87-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-88.webp",
+              "didascalia": "La camera ripresa dalla porta, con pavimento in cotto e comodino in legno.",
+              "alt": "La camera ripresa dalla porta, con pavimento in cotto e comodino in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-88-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-89.webp",
+              "didascalia": "Il letto con la finestra sul verde e il termosifone sotto il davanzale.",
+              "alt": "Il letto con la finestra sul verde e il termosifone sotto il davanzale.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-89-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-90.webp",
+              "didascalia": "La camera con la finestra e la poltroncina in midollino ai piedi del letto.",
+              "alt": "La camera con la finestra e la poltroncina in midollino ai piedi del letto.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-90-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-91.webp",
+              "didascalia": "Testiera del letto contro la parete color pesca, con i due comodini ai lati.",
+              "alt": "Testiera del letto contro la parete color pesca, con i due comodini ai lati.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-91-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-92.webp",
+              "didascalia": "La camera dall’angolo della porta: letto, poltroncina in midollino e comodini.",
+              "alt": "La camera dall’angolo della porta: letto, poltroncina in midollino e comodini.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-92-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-93.webp",
+              "didascalia": "La camera con la porta in legno scuro e la parete color pesca.",
+              "alt": "La camera con la porta in legno scuro e la parete color pesca.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-93-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-94.webp",
+              "didascalia": "L’armadio a tutta parete visto dal letto, con la finestra sulla destra.",
+              "alt": "L’armadio a tutta parete visto dal letto, con la finestra sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-94-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-95.webp",
+              "didascalia": "Il pavimento in cotto e il comodino con il quadro appoggiato.",
+              "alt": "Il pavimento in cotto e il comodino con il quadro appoggiato.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-95-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-96.webp",
+              "didascalia": "La camera verso la porta aperta, con l’armadio a destra.",
+              "alt": "La camera verso la porta aperta, con l’armadio a destra.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-96-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-camera-97.webp",
+              "didascalia": "Il letto matrimoniale e, a destra, la porta verso il disimpegno.",
+              "alt": "Il letto matrimoniale e, a destra, la porta verso il disimpegno.",
+              "thumb": "villa-ancarano-piano-rialzato-camera-97-thumb.webp"
             }
           ]
         }

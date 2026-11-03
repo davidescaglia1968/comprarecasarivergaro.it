@@ -219,3 +219,12 @@ Il lotto delle 10 foto del soggiorno era di nuovo **solo in un commit locale** q
 - Due didascalie corrette prima di scrivere: avevo messo "piano a induzione **sottovuoto**" (non esiste: e' un normale piano a induzione) e "**termoarredo** sotto il davanzale" (guardando bene e' un termosifone). Un'immagine non va descritta con termini che non si possono verificare.
 - **`<lastmod>` della sitemap leggeva il mtime del file HTML**, non `data_modifica`: cosi' ogni `node build.js` in una data nuova spostava in avanti il segnale di freschezza senza che fosse cambiato niente. Ora per le schede si legge `data_modifica` (2026-11-03), allineato a `dateModified` del JSON-LD e alla riga "Aggiornato il". Le pagine senza immobile restano al mtime.
 - `data_modifica` portato a 2026-11-03: a quest'ora a Roma e' gia' il 3 (l'orologio di sistema in UTC segna 02/11 22:00), quindi la data e' reale e non anticipata.
+
+## Camera da letto del piano rialzato: 13 foto (03/11/2026) - e la domanda "piano T o rialzato" non esiste piu'
+
+Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma il gruppo giusto resta `piano-rialzato` / titolo **"Piano rialzato 1"**. Domanda chiusa, nessuna rinomina da fare: i file non si toccano e nessun link cambia.
+
+- 13 foto reali della camera matrimoniale: `villa-ancarano-piano-rialzato-camera-85..97.webp` (2200x1238, **69-224KB**, tutte dentro il budget) + 13 miniature a 900px.
+- Totale scheda: **113 foto** - Esterni 20, Piano primo 57, **Piano rialzato 1 = 36**. `RealEstateListing.image` = 113 voci, `dateModified` e `<lastmod>` della sitemap allineati a 2026-11-03.
+- Dodici scatti sono lo stesso locale da angolazioni diverse (il piu' bello e' l'armadio a otto ante dal pavimento al soffitto); la **92** e la **90** hanno vestiti sulla poltroncina in midollino: **le ho tenute** perche' la casa e' abitata e la didascalia non lo nega ne' lo Commenta. Se preferisci un album solo con le stanze in ordine dimmi "togli 90 e 92".
+- Didascalie scritte una per una guardando i file convertiti (13/13), non i nomi degli originali: nessun termine tecnico non verificabile, nessuna ipotesi su cosa ci sia dietro le porte aperte (per la 91 mi sono fermato a "parete color pesca", senza inventarmi un balcone).

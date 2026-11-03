@@ -92,6 +92,19 @@
         "villa-ancarano-piano-primo-terrazzo-26.webp",
         "villa-ancarano-piano-primo-terrazzo-27.webp",
         "villa-ancarano-piano-primo-terrazzo-28.webp",
+        "villa-ancarano-piano-rialzato-camera-85.webp",
+        "villa-ancarano-piano-rialzato-camera-86.webp",
+        "villa-ancarano-piano-rialzato-camera-87.webp",
+        "villa-ancarano-piano-rialzato-camera-88.webp",
+        "villa-ancarano-piano-rialzato-camera-89.webp",
+        "villa-ancarano-piano-rialzato-camera-90.webp",
+        "villa-ancarano-piano-rialzato-camera-91.webp",
+        "villa-ancarano-piano-rialzato-camera-92.webp",
+        "villa-ancarano-piano-rialzato-camera-93.webp",
+        "villa-ancarano-piano-rialzato-camera-94.webp",
+        "villa-ancarano-piano-rialzato-camera-95.webp",
+        "villa-ancarano-piano-rialzato-camera-96.webp",
+        "villa-ancarano-piano-rialzato-camera-97.webp",
         "villa-ancarano-piano-rialzato-cucina-pranzo-76.webp",
         "villa-ancarano-piano-rialzato-cucina-pranzo-77.webp",
         "villa-ancarano-piano-rialzato-cucina-pranzo-78.webp",
@@ -581,6 +594,84 @@
           "kb": 322
         },
         {
+          "file": "villa-ancarano-piano-rialzato-camera-85.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 77
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-86.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 69
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-87.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 67
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-88.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 172
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-89.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 113
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-90.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 119
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-91.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 76
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-92.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 219
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-93.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 87
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-94.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 70
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-95.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 168
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-96.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 72
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-camera-97.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 86
+        },
+        {
           "file": "villa-ancarano-piano-rialzato-cucina-pranzo-76.webp",
           "width": 2200,
           "height": 1238,
@@ -721,7 +812,7 @@
       ],
       "data_pubblicazione": null,
       "data_modifica": null,
-      "note_interne": "Bozza generata da build.js il 2026-11-02 dal contenuto di img/ e video/. Compilare solo i campi DA CONFERMARE e cancellare questa nota. "
+      "note_interne": "Bozza generata da build.js il 2026-11-03 dal contenuto di img/ e video/. Compilare solo i campi DA CONFERMARE e cancellare questa nota. "
     }
   ],
   "_nota": "Bozza generata automaticamente: non e un catalogo. Diventa properties.json solo dopo che Davide ha compilato e confermato i dati."
