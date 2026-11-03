@@ -376,3 +376,22 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Una nota onesta.** Le foto **170 e 171 sono quasi identiche** (stessa inquadratura, scarto di pochi centimetri). Le ho messe entrambe con didascalie che mettono a fuoco cose diverse (il pensile e la finestra / il lavabo e i sanitari), ma se preferisci una galleria più asciutta la 170 si toglie in un minuto: dimmelo.
 
 **Verificato.** `node build.js media` → **192 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda 255.2KB · `node build.js --check` ✓. Nella scheda **192 `<figure>`, 192 `srcset`**, 0 `<img>` senza `width`/`height`, dimensioni dichiarate corrette per i tre verticali (900×1600, 900×1366, 900×1600), JSON-LD `image` = **192 con 0 duplicati**, `sitemap.xml` 7 `<lastmod>2026-11-03`.
+
+## Il testo generale della proprietà, e il blocco descrizione portato in cima (03/11/2026)
+
+**Cosa è cambiato nella pagina.** La descrizione non sta più dopo la galleria: adesso è **il primo blocco della scheda**, subito sotto l'intestazione e **sopra la prima foto degli esterni**. È quello che serviva per far leggere la casa prima di guardarla.
+
+**Il testo** è quello che mi hai dato, pubblicato **alla lettera**: titolo «Una proprietà, tante possibilità: tre abitazioni indipendenti in Val Trebbia», i sei capoversi, le due sezioni **La posizione** e **Una casa da scoprire**, e in chiusura la firma «Davide Scaglia – Consulenza immobiliare.». Non ho riscritto niente: le correzioni di tono le avevi scartate, e il testo è tuo.
+
+**Il testo era incollato due volte** (dalla prima riga fino a «…tradizionale casa indipendente.» e poi da capo, con la firma solo alla fine della seconda copia). Ho pubblicato **una copia sola**, con la firma in chiusura: se volevi davvero due blocchi identici, dimmelo e li rimetto.
+
+**Come è fatto tecnicamente** (per i prossimi testi):
+- in `src/data/properties.json` c'è un campo nuovo **`testo`**: un elenco di blocchi, `h3` per i sottotitoli, `p` per i capoversi, `firma` per la riga finale. Si scrive il testo lì, senza toccare il codice;
+- il **primo capoverso** è quello evidenziato come paragrafo-risposta (lo stile `.prop-answer`), quindi non c'è più il **taglio a 200 caratteri** che spezzava le frasi a metà: via quella riga da `build.js`;
+- `descrizione` contiene solo il primo capoverso (191 caratteri): è quello che finisce in `meta description`, nei dati strutturati, nelle anteprime social e in `llms.txt`;
+- i sottotitoli sono **H3** sotto l'H2 «L'immobile»: la gerarchia resta pulita (un solo H1 in pagina);
+- piccolo ritocco in `src/css/main.css`: margini per i sottotitoli dentro la descrizione e stile della firma.
+
+**Da verificare, e l'ho scritto anche nelle note interne**: i servizi elencati per Rivergaro, la distanza «circa 20 km, 20-25 minuti» per Piacenza (le fonti danno Rivergaro a 20 km e Ancarano tre chilometri più avanti), l'uso a **studio medico**, l'**accessibilità** dei piani rialzati e il progetto di **ospitalità/affitti brevi**. Sono affermazioni tue, pubblicate come le hai scritte: se una non regge, si toglie in un minuto.
+
+**Verificato.** `node build.js media` → **192 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda **257.2KB** · `node build.js --check` ✓. Nella pagina: la descrizione viene **prima** della galleria (posizione 60954 contro 63491 della prima `<figure>`), i **13 blocchi** resi nell'ordine giusto (H3, primo capoverso in `.prop-answer`, cinque capoversi, H3 «La posizione», due capoversi, H3 «Una casa da scoprire», capoverso, firma), **1 H1, 7 H2, 3 H3**, **192 `<figure>`** e JSON-LD con **192 immagini**, `meta description` e `description` dei dati strutturati = primo capoverso.

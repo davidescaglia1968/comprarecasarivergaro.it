@@ -319,6 +319,9 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .prop-main h2{margin-bottom:var(--s3)}
 .prop-answer{font-size:1.0625rem;color:#e4e4e7}
 .prop-desc p{max-width:72ch}
+.prop-desc h3{margin:var(--s5) 0 var(--s2)}
+.prop-desc h3:first-of-type{margin-top:0}
+.prop-firma{margin-top:var(--s4);color:var(--text-secondary);font-size:.9375rem}
 .prop .card,.prop section{position:relative}
 
 .gallery{margin-bottom:var(--s6)}
