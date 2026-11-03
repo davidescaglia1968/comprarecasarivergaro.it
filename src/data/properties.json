@@ -206,7 +206,16 @@
         "villa-ancarano-piano-rialzato-p2-camera-2-164.webp",
         "villa-ancarano-piano-rialzato-p2-camera-2-165.webp",
         "villa-ancarano-piano-rialzato-p2-camera-2-166.webp",
-        "villa-ancarano-piano-rialzato-p2-camera-2-167.webp"
+        "villa-ancarano-piano-rialzato-p2-camera-2-167.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-175.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-176.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -1333,6 +1342,60 @@
               "didascalia": "La seconda camera verso la porta: il quadro astratto, lo specchio e la scrivania con la sedia da ufficio.",
               "alt": "La seconda camera verso la porta: il quadro astratto, lo specchio e la scrivania con la sedia da ufficio.",
               "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-167-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+              "didascalia": "Il bagno della seconda abitazione visto dalla porta: lavabo, sanitari e finestra, con il rivestimento in ceramica a decoro blu e il pavimento in cotto.",
+              "alt": "Il bagno della seconda abitazione visto dalla porta: lavabo, sanitari e finestra, con il rivestimento in ceramica a decoro blu e il pavimento in cotto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-168-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+              "didascalia": "Il pavimento in cotto del bagno visto dall’alto, fra il lavabo e la porta che dà sul corridoio.",
+              "alt": "Il pavimento in cotto del bagno visto dall’alto, fra il lavabo e la porta che dà sul corridoio.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-169-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+              "didascalia": "Il mobile pensile in legno con le mensole e i faretti accanto alla finestra del bagno, con il pensile a stecche sulla parete di fronte.",
+              "alt": "Il mobile pensile in legno con le mensole e i faretti accanto alla finestra del bagno, con il pensile a stecche sulla parete di fronte.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-170-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+              "didascalia": "Il lavabo e i sanitari del bagno sotto la finestra, accanto al mobile pensile in legno.",
+              "alt": "Il lavabo e i sanitari del bagno sotto la finestra, accanto al mobile pensile in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-171-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+              "didascalia": "Il bagno dall’alto: lavabo, bidet e water, con la vasca sulla destra e il pavimento in cotto.",
+              "alt": "Il bagno dall’alto: lavabo, bidet e water, con la vasca sulla destra e il pavimento in cotto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-172-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+              "didascalia": "La vasca del bagno, il mobile con i cassetti e lo specchio con le mensole in vetro, con la porta aperta sul corridoio.",
+              "alt": "La vasca del bagno, il mobile con i cassetti e lo specchio con le mensole in vetro, con la porta aperta sul corridoio.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-173-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+              "didascalia": "La vasca con il miscelatore e la doccetta e il bidet in primo piano, con il mobile in legno e la porta aperta sul corridoio in cotto.",
+              "alt": "La vasca con il miscelatore e la doccetta e il bidet in primo piano, con il mobile in legno e la porta aperta sul corridoio in cotto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-174-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-bagno-175.webp",
+              "didascalia": "La finestra del bagno con il termosifone e il water, accanto al mobile pensile in legno e allo specchio.",
+              "alt": "La finestra del bagno con il termosifone e il water, accanto al mobile pensile in legno e allo specchio.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-bagno-175-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-corridoio-176.webp",
+              "didascalia": "Il corridoio della seconda abitazione verso il fondo, con il pavimento in cotto, la lampada a parete e il quadro dai toni rossi.",
+              "alt": "Il corridoio della seconda abitazione verso il fondo, con il pavimento in cotto, la lampada a parete e il quadro dai toni rossi.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-corridoio-176-thumb.webp"
             }
           ]
         }
