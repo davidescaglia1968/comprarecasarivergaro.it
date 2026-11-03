@@ -321,13 +321,16 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
    Corpo piu' grande (17px) e interlinea ampia; paragrafo-risposta a 19px;
    sottotitoli di sezione in sans (il serif di titolo, a queste dimensioni,
    su schermo si legge male) con un filo di separazione sopra. --- */
-.prop-desc{max-width:76ch}
-.prop-desc p{max-width:70ch;font-size:1.0625rem;line-height:1.8;color:#f4f4f5;margin-bottom:var(--s4)}
-.prop-desc .prop-answer{font-size:1.1875rem;line-height:1.7;color:#fff;margin-bottom:var(--s5)}
+/* il testo sta raccolto in un pannello, con respiro corto fra i capoversi:
+   si legge come un blocco unico, non come righe sparse */
+.prop-desc{max-width:74ch;background:var(--bg-secondary);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,3vw,34px)}
+.prop-desc h2{margin-bottom:var(--s3)}
+.prop-desc p{max-width:70ch;font-size:1.125rem;line-height:1.72;color:#f4f4f5;margin-bottom:var(--s3)}
+.prop-desc .prop-answer{font-size:1.3125rem;line-height:1.6;color:#fff;margin-bottom:var(--s3)}
 .prop-desc strong{color:#fff;font-weight:600}
-.prop-desc h3{font-family:var(--font-body);font-size:1.25rem;font-weight:600;letter-spacing:0;line-height:1.35;color:#fff;margin:var(--s6) 0 var(--s3);padding-top:var(--s5);border-top:1px solid var(--line)}
-.prop-desc h3:first-child{margin-top:0;padding-top:0;border-top:0}
-.prop-firma{margin-top:var(--s5);color:var(--text-secondary);font-size:1rem;letter-spacing:.01em}
+.prop-desc h3{font-family:var(--font-body);font-size:1.375rem;font-weight:600;letter-spacing:0;line-height:1.3;color:#fff;margin:var(--s5) 0 var(--s2);padding-top:var(--s4);border-top:1px solid var(--line)}
+.prop-desc h3:first-child{margin-top:var(--s2);padding-top:0;border-top:0}
+.prop-firma{margin-top:var(--s4);color:var(--text-secondary);font-size:1rem;letter-spacing:.01em}
 .prop .card,.prop section{position:relative}
 
 .gallery{margin-bottom:var(--s6)}

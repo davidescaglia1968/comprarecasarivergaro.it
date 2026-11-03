@@ -407,3 +407,27 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Numeri aggiornati**: Rivergaro **2,5 km**, Piacenza **15 km**. Sono coerenti con le fonti: Ancarano di Sopra sta a 2,89 km dal centro di Rivergaro, e la zona è indicata a «poco più di 15 km» da Piacenza. Le vecchie indicazioni (20 km, 20-25 minuti) non ci sono più.
 
 **Verificato.** `node build.js media` → **192 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda **258.0KB** · `node build.js --check` ✓. Nella pagina: **18 blocchi** resi nell'ordine giusto, **3 `<strong>`**, descrizione **prima** della galleria, **1 H1**, **192 `<figure>`**, `meta description` = 202 caratteri del primo capoverso. Anteprima locale servita per controllare la resa tipografica prima di pubblicare.
+
+## Descrizione sotto le foto degli esterni, testo raccolto e leggibile, nome unico (03/11/2026)
+
+**Posizione del testo.** La descrizione non sta più in cima a tutto: adesso entra **subito dopo il gruppo «Esterni»**, quindi si vedono prima le foto di fuori e poi si legge la casa, come chiedevi. Se una scheda non ha foto, il testo resta al suo posto in cima (fallback previsto nel codice).
+
+**Tipografia.** Corpo da 17 a **18px**, interlinea 1.72; paragrafo-risposta a **21px**; sottotitoli a **22px**. Lo spazio fra un capoverso e l'altro scende da 24 a **16px** e i sottotitoli respirano meno (32/24 invece di 48/32): il testo ora si legge come **un blocco raccolto**, dentro un pannello con bordo arrotondato su fondo leggermente più chiaro, così sta insieme anche visivamente.
+
+**Prezzo**: «Prezzo su richiesta» → **«Prezzo in definizione»**, cambiato nel dato: sparisce da scheda, riepilogo laterale, card in home, catalogo e dati strutturati, perché era un'unica stringa.
+
+**Nome unico, «Davide Scaglia — Immobili a Rivergaro»**:
+- l'occhiello del logo diceva **COMPRARE CASA A RIVERGARO**, ora **IMMOBILI A RIVERGARO**; alt del logo allineato;
+- `professionista.brand` aggiornato; la firma in fondo al testo ora è «Davide Scaglia – Immobili a Rivergaro.»;
+- dati strutturati: `name: "Immobili a Rivergaro"`, `alternateName: "Davide Scaglia"`, e la ragione sociale completa passa in **`legalName`** — così il nome pubblico è uno solo ma l'identità registrata non si perde;
+- `og:site_name` non è più il dominio ma il nome;
+- **privacy e cookie restano con la ragione sociale** («Immobiliare Scaglia di Scaglia Davide», P.IVA): è il titolare del trattamento, non un'etichetta di marketing, e non si cambia.
+
+**Cose tolte.**
+- **La nota di bozza**: sulla pagina *Chi sono* compariva «Profilo in corso di revisione: i dati anagrafici e professionali qui sotto sono quelli del Registro Imprese». Era pilotata da `professionista.bio_stato: "bozza-da-rivedere"` → ora **`confermato`**, la nota non viene più resa.
+- **Le meta keywords**: riga rimossa da `head()` e chiave `keywords` tolta dal config. Non servono a Google da anni e sono un segnale di sito vecchio.
+- **Il refuso**: la `meta description` veniva tagliata a 155 caratteri **a metà parola** («…ciascuna con il proprio ingresso, inserite»), e lo stesso succedeva all'estratto delle card. Ora c'è `clipMeta()`, che taglia a fine parola, e per la scheda una **descrizione dedicata** di 145 caratteri: «Tre abitazioni indipendenti ad Ancarano, Rivergaro, in Val Trebbia: 12 vani, giardino e spazi esterni. Ideale per più nuclei o per casa e studio.»
+
+**Indicizzazione: cosa posso verificare e cosa no.** Non ho accesso alla Search Console: quello lo devi guardare tu. Quello che ho controllato nel codice pubblicato: `robots.txt` permette tutto e indica la sitemap; **nessuna pagina è noindex** (`index, follow` su tutte); canonical corretti e su dominio proprio (CNAME `comprarecasarivergaro.it`); sitemap con **7 URL**, scheda compresa, `lastmod` 2026-11-03; `llms.txt` presente; dati strutturati `RealEstateListing` con 192 immagini. Quindi tecnicamente il sito è indicizzabile: il fatto che per la descrizione escano Casa.it e Idealista è normale — quei portali hanno autorità e link che un sito nuovo non ha — e le pagine GitHub che uscivano prima sono normale residuo delle prime settimane.
+
+**Verificato.** `node build.js media` → **192 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ · `node build.js --check` ✓. Nella pagina: descrizione **dopo** gli esterni e **prima** di «Piano primo», **192 `<figure>`**, **1 H1 / 7 H2 / 4 H3**, nessuna `keywords`, nessun «Prezzo su richiesta», nessuna nota di bozza, firma nuova, `author` e `og:site_name` = «Immobili a Rivergaro».
