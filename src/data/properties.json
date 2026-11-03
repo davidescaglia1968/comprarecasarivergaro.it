@@ -169,7 +169,18 @@
         "villa-ancarano-piano-rialzato-p2-soggiorno-127.webp",
         "villa-ancarano-piano-rialzato-p2-soggiorno-128.webp",
         "villa-ancarano-piano-rialzato-p2-soggiorno-129.webp",
-        "villa-ancarano-piano-rialzato-p2-soggiorno-130.webp"
+        "villa-ancarano-piano-rialzato-p2-soggiorno-130.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-131.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-132.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-133.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-134.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-135.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-136.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-137.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-138.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-139.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-140.webp",
+        "villa-ancarano-piano-rialzato-p2-cucina-141.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -1074,6 +1085,72 @@
               "didascalia": "Il pavimento in cotto del soggiorno, con il divano, il tavolino e la credenza in legno.",
               "alt": "Il pavimento in cotto del soggiorno, con il divano, il tavolino e la credenza in legno.",
               "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-130-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-131.webp",
+              "didascalia": "La cucina della seconda abitazione: colonna forno e basi in legno chiaro con piano scuro, penisola con due sgabelli e pavimento in cotto.",
+              "alt": "La cucina della seconda abitazione: colonna forno e basi in legno chiaro con piano scuro, penisola con due sgabelli e pavimento in cotto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-131-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-132.webp",
+              "didascalia": "La cucina verso la colonna con il forno incassato e i pensili che corrono lungo la parete di fondo.",
+              "alt": "La cucina verso la colonna con il forno incassato e i pensili che corrono lungo la parete di fondo.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-132-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-133.webp",
+              "didascalia": "La cucina in asse: basi e pensili in legno chiaro, piano cottura a gas, lavello sotto la finestra e penisola al centro.",
+              "alt": "La cucina in asse: basi e pensili in legno chiaro, piano cottura a gas, lavello sotto la finestra e penisola al centro.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-133-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-134.webp",
+              "didascalia": "Il pavimento in cotto della cucina, con la penisola su base in acciaio e i due sgabelli.",
+              "alt": "Il pavimento in cotto della cucina, con la penisola su base in acciaio e i due sgabelli.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-134-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-135.webp",
+              "didascalia": "La cucina con la porta aperta verso le altre stanze e la fila di basi con piano scuro sulla destra.",
+              "alt": "La cucina con la porta aperta verso le altre stanze e la fila di basi con piano scuro sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-135-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-136.webp",
+              "didascalia": "La colonna forno e la base continua della cucina, con il piano cottura in primo piano e un pensile aperto.",
+              "alt": "La colonna forno e la base continua della cucina, con il piano cottura in primo piano e un pensile aperto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-136-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-137.webp",
+              "didascalia": "Il lavello a due vasche con gocciolatoio e il piano cottura a quattro fuochi della cucina.",
+              "alt": "Il lavello a due vasche con gocciolatoio e il piano cottura a quattro fuochi della cucina.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-137-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-138.webp",
+              "didascalia": "L’angolo cottura con la finestra e il termosifone, la penisola con gli sgabelli e la porta aperta sull’altra stanza.",
+              "alt": "L’angolo cottura con la finestra e il termosifone, la penisola con gli sgabelli e la porta aperta sull’altra stanza.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-138-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-139.webp",
+              "didascalia": "La finestra della cucina con il termosifone e i quadri a parete, la penisola e la porta aperta sull’altra stanza.",
+              "alt": "La finestra della cucina con il termosifone e i quadri a parete, la penisola e la porta aperta sull’altra stanza.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-139-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-140.webp",
+              "didascalia": "Il pavimento in cotto e i frontali chiari delle basi, con gli sgabelli della penisola in primo piano.",
+              "alt": "Il pavimento in cotto e i frontali chiari delle basi, con gli sgabelli della penisola in primo piano.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-140-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-cucina-141.webp",
+              "didascalia": "La cucina con il rivestimento a piastrelle decorate, il lavello, il piano cottura e i pensili in legno chiaro.",
+              "alt": "La cucina con il rivestimento a piastrelle decorate, il lavello, il piano cottura e i pensili in legno chiaro.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-cucina-141-thumb.webp"
             }
           ]
         }

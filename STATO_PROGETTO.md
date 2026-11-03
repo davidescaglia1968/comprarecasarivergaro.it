@@ -286,3 +286,18 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Regola "casa abitata" rispettata.** La coperta e il saccone a macchie sul divano compaiono in quasi tutti questi scatti (la 130 li ha in primo piano, la 126 è centrata sul divano): **non sono nominati in nessuna didascalia** e non ho commentato gli oggetti personali. Il divano è citato solo come arredo, nella 126 e nella 130.
 
 **Verificato.** `node build.js media` → **146 file, 3 avvisi**, gli stessi tre preesistenti degli esterni (`cancello-cortile-14`, `facciata-cancello-15`, `lato-prato-03`), nessuno dei 10 nuovi. `node build.js` ✓ scheda 192.4KB · `node build.js --check` ✓. Nella scheda **146 `<figure>`, 146 `srcset`**, 0 `<img>` senza `width`/`height`, 4 sottogruppi con i loro `<h2>`, JSON-LD `image` = **146**, `sitemap.xml` `<lastmod>2026-11-03`. Nessuna didascalia inventata: le dieci sono state scritte leggendo i file convertiti, non i nomi originali.
+
+## Cucina del Piano rialzato 2: 11 foto (03/11/2026)
+
+**Cosa hai mandato.** Le foto **(27)…(37)** di `scelte via Bersanti 13 Ancarano Rivergaro Ai Piano T2`, tutte **orizzontali 4000×2250**: la cucina della seconda unità, con la tua richiesta secca "ora pubblica la cucina".
+
+- `villa-ancarano-piano-rialzato-p2-cucina-{131..141}.webp`, 2200×1238, ricetta standard (qualità 82, `-strip`) + miniature 900×506. Pesi **105–222KB**: nessuno sopra il budget.
+- Descrittore **`p2-cucina`**, coerente con `p2-ingresso`, `p2-corridoio`, `p2-soggiorno`. La cucina della prima unità resta `cucina-pranzo-76…84`: descrittori distinti perché sono due unità diverse, non due nomi dello stesso locale.
+- Gruppo `piano-rialzato-2`: 26 → **37 foto**. Scheda a **157 foto** — Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · **Piano rialzato 2 37**. `data_modifica` 2026-11-03.
+- Aggiornati **entrambi** gli elenchi di `properties.json` (galleria + array piatto) e verificati identici nello stesso ordine: 157 = 157.
+
+**Cosa si vede (dalle foto convertite, una per una).** Cucina componibile in **legno chiaro con piano di lavoro scuro**: colonna con **forno incassato**, basi a cassettoni lungo due pareti, **pensili** con un'anta aperta, **piano cottura a gas a quattro fuochi**, **lavello a due vasche con gocciolatoio**, **rivestimento a piastrelle decorate** (a destra effetto marmo), **caldaia a parete con sportello in legno** e passaggio dei tubi a vista sopra la fascia dei pensili. Al centro una **penisola con piano chiaro e due sgabelli** (è la zona pranzo di questa unità: da qui il descrittore resta `cucina`, come deciso), **finestra con termosifone**, quadri a parete, **pavimento in cotto a quadrotte** come nel resto del piano. Una porta collega la cucina alle altre stanze.
+
+**Casa abitata.** Nelle foto ci sono un **casco da moto**, una scatola «GP2», tovagliette e oggetti sui piani: **non sono in nessuna didascalia** e non ho commentato gli arredi personali, come per la coperta e il saccone del soggiorno. Due cose che ho lasciato di proposito generiche perché dalla foto non si possono verificare: l'**elettrodomestico bianco** vicino alla porta (non ho scritto "lavatrice" né "lavastoviglie") e la **stanza oltre la porta** (scritto "l'altra stanza", non "camera").
+
+**Verificato.** `node build.js media` → **157 file, 3 avvisi**, gli stessi tre preesistenti degli esterni, nessuno degli 11 nuovi. `node build.js` ✓ scheda 207.3KB · `node build.js --check` ✓ ("nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite"). Nella scheda **157 `<figure>`, 157 `srcset`**, 0 `<img>` senza `width`/`height`, 4 sottogruppi con i loro `<h2>`, JSON-LD `image` = **157**, `sitemap.xml` `<lastmod>2026-11-03`.
