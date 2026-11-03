@@ -149,7 +149,17 @@
         "villa-ancarano-piano-rialzato-p2-corridoio-107.webp",
         "villa-ancarano-piano-rialzato-p2-corridoio-108.webp",
         "villa-ancarano-piano-rialzato-p2-corridoio-109.webp",
-        "villa-ancarano-piano-rialzato-p2-corridoio-110.webp"
+        "villa-ancarano-piano-rialzato-p2-corridoio-110.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-111.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-112.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-113.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-114.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-115.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-116.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-117.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-118.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-119.webp",
+        "villa-ancarano-piano-rialzato-p2-soggiorno-120.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -934,6 +944,66 @@
               "didascalia": "Il corridoio con la porta a vetro smerigliato e, in fondo, il bagno.",
               "alt": "Il corridoio con la porta a vetro smerigliato e, in fondo, il bagno.",
               "thumb": "villa-ancarano-piano-rialzato-p2-corridoio-110-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-111.webp",
+              "didascalia": "Il soggiorno della seconda abitazione: due finestre con infissi in legno, pareti con finitura decorativa gialla e pavimento in cotto.",
+              "alt": "Il soggiorno della seconda abitazione: due finestre con infissi in legno, pareti con finitura decorativa gialla e pavimento in cotto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-111-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-112.webp",
+              "didascalia": "Il soggiorno verso la finestra centrale, tra la libreria in legno a sinistra e la credenza intarsiata a destra.",
+              "alt": "Il soggiorno verso la finestra centrale, tra la libreria in legno a sinistra e la credenza intarsiata a destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-112-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-113.webp",
+              "didascalia": "Il pavimento in cotto del soggiorno in primo piano, con libreria, divano e credenza sullo sfondo.",
+              "alt": "Il pavimento in cotto del soggiorno in primo piano, con libreria, divano e credenza sullo sfondo.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-113-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-114.webp",
+              "didascalia": "Angolo del soggiorno con la finestra, il termosifone sotto il davanzale e la libreria in legno.",
+              "alt": "Angolo del soggiorno con la finestra, il termosifone sotto il davanzale e la libreria in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-114-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-115.webp",
+              "didascalia": "Il soggiorno con la sospensione a braccio, la finestra al centro e la credenza intarsiata con i diffusori ai lati.",
+              "alt": "Il soggiorno con la sospensione a braccio, la finestra al centro e la credenza intarsiata con i diffusori ai lati.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-115-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-116.webp",
+              "didascalia": "Vista ampia del soggiorno: pavimento in cotto, libreria, termosifone, divano, credenza e porta in legno.",
+              "alt": "Vista ampia del soggiorno: pavimento in cotto, libreria, termosifone, divano, credenza e porta in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-116-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-117.webp",
+              "didascalia": "Il soggiorno verso la credenza intarsiata, con la vetrina in legno sopra e la porta a vetro smerigliato a destra.",
+              "alt": "Il soggiorno verso la credenza intarsiata, con la vetrina in legno sopra e la porta a vetro smerigliato a destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-117-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-118.webp",
+              "didascalia": "Il soggiorno con la finestra e il termosifone, la credenza intarsiata a destra e la libreria sulla sinistra.",
+              "alt": "Il soggiorno con la finestra e il termosifone, la credenza intarsiata a destra e la libreria sulla sinistra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-118-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-119.webp",
+              "didascalia": "La porta a vetro smerigliato del soggiorno accanto alla credenza, con la finestra sulla sinistra e la sospensione in alto.",
+              "alt": "La porta a vetro smerigliato del soggiorno accanto alla credenza, con la finestra sulla sinistra e la sospensione in alto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-119-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-soggiorno-120.webp",
+              "didascalia": "Il soggiorno con la porta a vetro smerigliato, il pannello a bande verticali sulla parete e la finestra con davanzale in legno.",
+              "alt": "Il soggiorno con la porta a vetro smerigliato, il pannello a bande verticali sulla parete e la finestra con davanzale in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-soggiorno-120-thumb.webp"
             }
           ]
         }

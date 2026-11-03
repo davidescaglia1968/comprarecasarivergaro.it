@@ -255,3 +255,20 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Perché la scheda resta onesta.** Il testo che mi dettasti dice "composta da 3 unità indipendenti": ora la scheda mostra foto dell'unità 1 (piano rialzato 1 + piano primo) e l'ingresso/corridoio dell'unità 2. Non ho aggiunto vani, superfici o prezzi: per il Piano rialzato 2 le didascalie dicono solo cosa si vede. Se vuoi che la seconda unità esca dalla pagina pubblica finché non ha i suoi dati, sposto il gruppo in `bozza`: è una modifica di una riga.
 
 **Verificato.** `node build.js --check` ✓, 4 sottogruppi resi con i loro `<h2>` (`foto-esterni`, `foto-piano-primo`, `foto-piano-rialzato`, `foto-piano-rialzato-2`), 6/6 `srcset` + `width/height` espliciti, 6 didascalie uniche, lightbox su 6 figure, JSON-LD `image` = 126 (6 nuovi), `sitemap.xml` con `<lastmod>2026-11-03`.
+
+## Soggiorno del Piano rialzato 2: prime 10 foto (03/11/2026, sera)
+
+**Cosa hai mandato.** Le foto **(7)…(16)** di `scelte via Bersanti 13 Ancarano Rivergaro Ai Piano T2`, tutte **orizzontali 4000×2250** (nomi originali `... Ai Piano T2 (7).jpg` … `(16).jpg`). Il lotto era di 20 scatti: sono arrivate le prime 10, le **(17)…(26)** restano da mandare.
+
+**Cosa si vede (dalle foto convertite, una per una).** Soggiorno della seconda unità: due finestre a doppia anta con infissi in legno e davanzale in marmo, termosifoni sotto le finestre, **pavimento in cotto a quadrotte**, pareti con **finitura decorativa gialla a spugna**, sospensione a braccio con diffusore in vetro. Arredi: **libreria in legno con vetrina**, **credenza intarsiata con rosoni a stella** sormontata da una vetrinetta, due diffusori neri ai lati, divano chiaro, porta in legno **a vetro smerigliato**, pannello a bande verticali su una parete.
+
+**Scelte tecniche.**
+- Numerazione sulla sequenza globale: `p2-soggiorno-111…120` (prosegue da -110, il 75 resta bucato). File `villa-ancarano-piano-rialzato-p2-soggiorno-{111..120}.webp`, 2200×1238, + miniature a 900×506 (900×506 = 38–69KB).
+- Ricetta standard: lato lungo 2200 px, qualità 82, `-strip`. Unica eccezione la **117**, che a qualità 82 pesava **441KB** (sopra il budget di 400KB): riconvertita a **qualità 78 + `webp:method=6` → 325KB**, differenza non percepibile a schermo. Pesi finali **171–325KB**.
+- Gruppo `piano-rialzato-2` già esistente: 6 → **16 foto**. Scheda a **136 foto** (Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · Piano rialzato 2 16), `data_modifica` 2026-11-03.
+- **Doppio elenco aggiornato**: oltre a `gallerie[].immagini` ho aggiunto i 10 file anche all'array piatto `immagini`, che è quello che alimenta `RealEstateListing.image` del JSON-LD, la copertina e i conteggi. Senza questo la galleria mostrava 136 figure ma il JSON-LD ne dichiarava 126 (errore trovato e corretto in questo lotto, e ora i due elenchi sono verificati identici nello stesso ordine).
+- Didascalie scritte **dopo aver riletto i 10 file convertiti**, non i nomi originali. Nessun riferimento a **coperta e peluche sul divano** (casa abitata, tua richiesta esplicita): il divano è citato come arredo in due didascalie, gli oggetti personali no. Il pannello a bande è descritto per quello che si vede (bande verticali chiare e scure), senza attribuirgli una funzione che dalla foto non si può verificare.
+
+**Verificato.** `node build.js media` → 136 file, 3 avvisi (tutti e tre preesistenti: `esterno-cancello-cortile-14`, `esterno-facciata-cancello-15`, `esterno-lato-prato-03`, nessuno dei nuovi file). `node build.js` ✓ · `node build.js --check` ✓ ("nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite"). Nella scheda **136 figure**, **136 `srcset`**, 0 `<img>` senza `width`/`height`, 4 sottogruppi con i loro `<h2>`, JSON-LD `image` = **136**, `sitemap.xml` `<lastmod>2026-11-03`.
+
+**In attesa.** Le foto **(17)…(26)** per chiudere il gruppo: numero `-121…-130`, stesso descrittore `p2-soggiorno`, stessa ricetta. Dimmi se dalla (17) in poi cambia la stanza (cucina, camera…) e il descrittore cambia di conseguenza.
