@@ -346,3 +346,16 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Casa abitata.** Giacca sulla sedia, libri e riviste sulla scrivania, targhette e pannelli accostati alla parete, **i piedi in due scatti**: niente di tutto questo è in didascalia. Stessa regola di soggiorno, cucina e prima camera.
 
 **Verificato.** `node build.js media` → **177 file, 3 avvisi** (i soliti tre degli esterni, nessuno dei 9 nuovi). `node build.js` ✓ scheda 234.5KB · `node build.js --check` ✓. Nella scheda **177 `<figure>`, 177 `srcset`**, 0 `<img>` senza `width`/`height`, **le due verticali dichiarano 900×1600** nell'HTML (quindi nessun salto di layout), JSON-LD `image` = **177**, `sitemap.xml` `<lastmod>2026-11-03`.
+
+## Seconda camera del Piano rialzato 2: altre 6 foto, e una già pubblicata (03/11/2026)
+
+**Cosa hai mandato.** Sette file, **(58)…(64)**. La **(58) era già online**: è lo stesso scatto del lotto precedente, pubblicato come `p2-camera-2-161`. Verificato prima di toccare qualsiasi cosa — riconvertito il JPG e confrontato con il `.webp` in repository: **stesso byte per byte** (`md5 306013e0…`). Quindi nessun doppione in galleria e nessun file nuovo creato per lei.
+
+- **6 foto nuove**: `villa-ancarano-piano-rialzato-p2-camera-2-{162..167}.webp` (2200×1238, qualità 82) + miniature 900×506. Pesi **67–121KB**, tutti dentro il budget.
+- Gruppo `piano-rialzato-2`: 57 → **63 foto**. Scheda a **183 foto** — Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · **Piano rialzato 2 63**. Galleria e array piatto allineati (183 = 183) e **zero duplicati** controllati nell'elenco del JSON-LD.
+- Didascalie lette sui 6 file convertiti, tutte diverse da quelle già in pagina: il letto singolo **con la struttura in metallo**, la scrivania sotto lo **specchio con il decoro a palme**, la **portafinestra aperta sulla loggia**, l'armadio a parete, il parquet a listoni. Nella 162 si vede anche il **secondo tavolo con i cassetti e i cesti in vimini** accanto alla scrivania.
+
+**Casa abitata.** Giacca sullo sgabello, libri e riviste, pannelli accostati alla parete, cestini e il riflesso della persona nello specchio della 167: **niente di questo è in didascalia**, come nei lotti precedenti.
+- Un dettaglio che ho lasciato generico: nel pannello accostato alla parete non ho scritto "lavagna" né "quadro" — dalla foto è un telaio con superficie chiara, e non serve attribuirgli un nome per descrivere la stanza.
+
+**Verificato.** `node build.js media` → **183 file, 3 avvisi** (i soliti tre degli esterni, nessuno dei 6 nuovi). `node build.js` ✓ scheda 242.7KB · `node build.js --check` ✓. Nella scheda **183 `<figure>`, 183 `srcset`**, 0 `<img>` senza `width`/`height`, 15 file `p2-camera-2` distinti, JSON-LD `image` = **183 con 0 duplicati**, `sitemap.xml` `<lastmod>2026-11-03`.
