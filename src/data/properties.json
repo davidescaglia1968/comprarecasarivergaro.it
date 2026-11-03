@@ -200,7 +200,13 @@
         "villa-ancarano-piano-rialzato-p2-camera-2-158.webp",
         "villa-ancarano-piano-rialzato-p2-camera-2-159.webp",
         "villa-ancarano-piano-rialzato-p2-camera-2-160.webp",
-        "villa-ancarano-piano-rialzato-p2-camera-2-161.webp"
+        "villa-ancarano-piano-rialzato-p2-camera-2-161.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-2-162.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-2-163.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-2-164.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-2-165.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-2-166.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-2-167.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -1291,6 +1297,42 @@
               "didascalia": "La seconda camera verso la porta: il quadro astratto, lo specchio con il decoro a palme e la scrivania.",
               "alt": "La seconda camera verso la porta: il quadro astratto, lo specchio con il decoro a palme e la scrivania.",
               "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-161-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-2-162.webp",
+              "didascalia": "La seconda camera dall’angolo: il letto singolo, la scrivania e la porta verso il corridoio, sul parquet a listoni.",
+              "alt": "La seconda camera dall’angolo: il letto singolo, la scrivania e la porta verso il corridoio, sul parquet a listoni.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-162-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-2-163.webp",
+              "didascalia": "La seconda camera verso la porta, tra l’armadio a parete e lo specchio con il decoro a palme.",
+              "alt": "La seconda camera verso la porta, tra l’armadio a parete e lo specchio con il decoro a palme.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-163-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-2-164.webp",
+              "didascalia": "Il letto singolo con la struttura in metallo e l’armadio a parete sullo sfondo, con la scrivania sulla destra.",
+              "alt": "Il letto singolo con la struttura in metallo e l’armadio a parete sullo sfondo, con la scrivania sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-164-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-2-165.webp",
+              "didascalia": "La scrivania della seconda camera accanto alla portafinestra aperta sulla loggia, con l’armadio scorrevole a destra.",
+              "alt": "La scrivania della seconda camera accanto alla portafinestra aperta sulla loggia, con l’armadio scorrevole a destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-165-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-2-166.webp",
+              "didascalia": "La scrivania sotto lo specchio a parete, con la sedia accanto e la portafinestra sulla destra.",
+              "alt": "La scrivania sotto lo specchio a parete, con la sedia accanto e la portafinestra sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-166-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-2-167.webp",
+              "didascalia": "La seconda camera verso la porta: il quadro astratto, lo specchio e la scrivania con la sedia da ufficio.",
+              "alt": "La seconda camera verso la porta: il quadro astratto, lo specchio e la scrivania con la sedia da ufficio.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-2-167-thumb.webp"
             }
           ]
         }
