@@ -272,3 +272,17 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Verificato.** `node build.js media` → 136 file, 3 avvisi (tutti e tre preesistenti: `esterno-cancello-cortile-14`, `esterno-facciata-cancello-15`, `esterno-lato-prato-03`, nessuno dei nuovi file). `node build.js` ✓ · `node build.js --check` ✓ ("nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite"). Nella scheda **136 figure**, **136 `srcset`**, 0 `<img>` senza `width`/`height`, 4 sottogruppi con i loro `<h2>`, JSON-LD `image` = **136**, `sitemap.xml` `<lastmod>2026-11-03`.
 
 **In attesa.** Le foto **(17)…(26)** per chiudere il gruppo: numero `-121…-130`, stesso descrittore `p2-soggiorno`, stessa ricetta. Dimmi se dalla (17) in poi cambia la stanza (cucina, camera…) e il descrittore cambia di conseguenza.
+
+## Soggiorno del Piano rialzato 2, secondo tempo: le altre 10 foto — gruppo chiuso (03/11/2026)
+
+**Cosa hai mandato.** Le foto **(17)…(26)**, tutte **orizzontali 4000×2250**. Con le **(7)…(16)** del lotto precedente il soggiorno della seconda unità è completo: **20 scatti**, come previsto.
+
+- `villa-ancarano-piano-rialzato-p2-soggiorno-{121..130}.webp`, 2200×1238, stessa ricetta (qualità 82, `-strip`) + miniature 900×506. Pesi **162–288KB**, nessuno sopra il budget: nessuna eccezione da segnalare come per la 117.
+- Gruppo `piano-rialzato-2`: 16 → **26 foto**. Scheda a **146 foto** — Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · **Piano rialzato 2 26**. `data_modifica` 2026-11-03.
+- Aggiornati **entrambi** gli elenchi (`gallerie[].immagini` e l'array piatto `immagini`) e verificati identici nello stesso ordine: senza il secondo il JSON-LD sarebbe rimasto a 136 su 146 figure.
+
+**Cosa si vede nelle nuove (dalle foto convertite, una per una).** Lo stesso soggiorno ripreso dagli altri lati: il **divano** bianco con il **tavolino dal piano in vetro**, la **teca in legno e vetro** con una scultura in legno sopra, il **quadro a parete con i dischi colorati**, il **mobiletto a cassetti** chiaro con l'oggetto in vetro azzurro, il **mobile alto in legno scuro**, la **libreria a vetri**, la **porta a vetro smerigliato** e le **due finestre con i termosifoni** (una con l'anta aperta). Il pavimento è sempre il **cotto a quadrotte** e le pareti la finitura gialla a spugna.
+
+**Regola "casa abitata" rispettata.** La coperta e il saccone a macchie sul divano compaiono in quasi tutti questi scatti (la 130 li ha in primo piano, la 126 è centrata sul divano): **non sono nominati in nessuna didascalia** e non ho commentato gli oggetti personali. Il divano è citato solo come arredo, nella 126 e nella 130.
+
+**Verificato.** `node build.js media` → **146 file, 3 avvisi**, gli stessi tre preesistenti degli esterni (`cancello-cortile-14`, `facciata-cancello-15`, `lato-prato-03`), nessuno dei 10 nuovi. `node build.js` ✓ scheda 192.4KB · `node build.js --check` ✓. Nella scheda **146 `<figure>`, 146 `srcset`**, 0 `<img>` senza `width`/`height`, 4 sottogruppi con i loro `<h2>`, JSON-LD `image` = **146**, `sitemap.xml` `<lastmod>2026-11-03`. Nessuna didascalia inventata: le dieci sono state scritte leggendo i file convertiti, non i nomi originali.
