@@ -133,6 +133,8 @@
         "villa-ancarano-piano-rialzato-p2-camera-148.webp",
         "villa-ancarano-piano-rialzato-p2-camera-149.webp",
         "villa-ancarano-piano-rialzato-p2-camera-150.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-151.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-152.webp",
         "villa-ancarano-piano-rialzato-p2-corridoio-107.webp",
         "villa-ancarano-piano-rialzato-p2-corridoio-108.webp",
         "villa-ancarano-piano-rialzato-p2-corridoio-109.webp",
@@ -891,6 +893,18 @@
           "width": 2200,
           "height": 1238,
           "kb": 307
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-camera-151.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 111
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-camera-152.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 122
         },
         {
           "file": "villa-ancarano-piano-rialzato-p2-corridoio-107.webp",

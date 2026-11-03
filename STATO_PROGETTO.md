@@ -317,3 +317,17 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Cosa non ho scritto.** Federe, copriletto e oggetti personali non sono commentati: la camera è abitata, la regola è la stessa del soggiorno (coperta e saccone) e della cucina (casco, scatola «GP2»). Nessuna ipotesi su cosa ci sia dietro la porta aperta: la didascalia dice "la porta aperta sul corridoio", che è quello che si vede.
 
 **Verificato.** `node build.js media` → **166 file, 3 avvisi** (i soliti tre degli esterni, nessuno dei 9 nuovi). `node build.js` ✓ scheda 219.5KB · `node build.js --check` ✓. Nella scheda **166 `<figure>`, 166 `srcset`**, 0 `<img>` senza `width`/`height`, 9 file `p2-camera` presenti, JSON-LD `image` = **166**, `sitemap.xml` `<lastmod>2026-11-03`.
+
+## Prima camera del Piano rialzato 2: altre 2 foto, e una scartata (03/11/2026)
+
+**Cosa hai mandato.** Tre scatti ancora della stessa camera, **(47) (48) (49)**, orizzontali 4000×2250.
+
+- **Pubblicate 2**: `villa-ancarano-piano-rialzato-p2-camera-{151,152}.webp` (2200×1238, qualità 82) + miniature 900×506. Pesi **113 e 125KB**, dentro il budget.
+- Gruppo `piano-rialzato-2`: 46 → **48 foto**. Scheda a **168 foto** — Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · **Piano rialzato 2 48**. Galleria e array piatto allineati (168 = 168).
+- Didascalie lette sui file convertiti: la **parete dell'armadio con il cassettone** e la porta sul corridoio (151); il **cassettone, l'appendiabiti e il quadro sopra la testata** (152). Nessun oggetto personale commentato.
+
+**La (49) non l'ho pubblicata, ed è una scelta.** Guardando il file convertito si vede che è **mossa**: il letto e la fascia del telaio sono sdoppiati, il parquet e la parete dell'armadio sono fuori fuoco su tutta l'inquadratura. Non è un problema di compressione (133KB, come le altre): è il mosso dello scatto, e la conversione non lo recupera. Su una scheda di vendita una foto così toglie credibilità alle altre 167, che sono nitide.
+- Il JPG originale **è ancora in `/tmp/arena-coding-uploads/`**, non l'ho cancellato: se la vuoi comunque pubblica, dimmi "metti anche la 49" e la aggiungo come `-153` in un comando (con la sua didascalia, che descrive solo il parquet e il bordo del letto).
+- Se invece preferisci, posso provare a salvarla con una passata leggera di nitidezza: te la mostro prima, senza pubblicarla.
+
+**Verificato.** `node build.js media` → **168 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda 222.2KB · `node build.js --check` ✓. Nella scheda **168 `<figure>`, 168 `srcset`**, 0 `<img>` senza `width`/`height`, **nessun riferimento a `p2-camera-153`** (la scartata non è rimasta appesa a nessun elenco), JSON-LD `image` = **168**, `sitemap.xml` `<lastmod>2026-11-03`.

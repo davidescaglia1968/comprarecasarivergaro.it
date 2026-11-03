@@ -189,7 +189,9 @@
         "villa-ancarano-piano-rialzato-p2-camera-147.webp",
         "villa-ancarano-piano-rialzato-p2-camera-148.webp",
         "villa-ancarano-piano-rialzato-p2-camera-149.webp",
-        "villa-ancarano-piano-rialzato-p2-camera-150.webp"
+        "villa-ancarano-piano-rialzato-p2-camera-150.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-151.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-152.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -1214,6 +1216,18 @@
               "didascalia": "Il parquet a listoni della camera, con il letto, il termosifone e il cassettone in legno.",
               "alt": "Il parquet a listoni della camera, con il letto, il termosifone e il cassettone in legno.",
               "thumb": "villa-ancarano-piano-rialzato-p2-camera-150-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-151.webp",
+              "didascalia": "La parete dell’armadio e il cassettone della camera, con la porta aperta sul corridoio e il letto in primo piano.",
+              "alt": "La parete dell’armadio e il cassettone della camera, con la porta aperta sul corridoio e il letto in primo piano.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-151-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-152.webp",
+              "didascalia": "Il cassettone, l’appendiabiti e la porta della camera, con il quadro appeso sopra la testata del letto.",
+              "alt": "Il cassettone, l’appendiabiti e la porta della camera, con il quadro appeso sopra la testata del letto.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-152-thumb.webp"
             }
           ]
         }
