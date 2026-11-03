@@ -1200,6 +1200,94 @@
       "height": 1238
     },
     {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+      "tipo": "immagine",
+      "bytes": 100076,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "98KB",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+      "tipo": "immagine",
+      "bytes": 84034,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "82KB",
+      "width": 900,
+      "height": 1366
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+      "tipo": "immagine",
+      "bytes": 206372,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "202KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+      "tipo": "immagine",
+      "bytes": 215394,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "210KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+      "tipo": "immagine",
+      "bytes": 222550,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "217KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+      "tipo": "immagine",
+      "bytes": 202540,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "198KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+      "tipo": "immagine",
+      "bytes": 199132,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "194KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-175.webp",
+      "tipo": "immagine",
+      "bytes": 210978,
+      "nome": "villa-ancarano-piano-rialzato-p2-bagno-175.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "206KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-camera-142.webp",
       "tipo": "immagine",
       "bytes": 164068,
@@ -1526,6 +1614,17 @@
       "cartella": "villa-tre-unita-ancarano",
       "stato": "ok",
       "eta": "49KB",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-corridoio-176.webp",
+      "tipo": "immagine",
+      "bytes": 46740,
+      "nome": "villa-ancarano-piano-rialzato-p2-corridoio-176.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "46KB",
       "width": 900,
       "height": 1600
     },
@@ -3217,6 +3316,94 @@
           "height": 1238
         },
         {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+          "tipo": "immagine",
+          "bytes": 100076,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "98KB",
+          "width": 900,
+          "height": 1600
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+          "tipo": "immagine",
+          "bytes": 84034,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "82KB",
+          "width": 900,
+          "height": 1366
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+          "tipo": "immagine",
+          "bytes": 206372,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "202KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+          "tipo": "immagine",
+          "bytes": 215394,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "210KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+          "tipo": "immagine",
+          "bytes": 222550,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "217KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+          "tipo": "immagine",
+          "bytes": 202540,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "198KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+          "tipo": "immagine",
+          "bytes": 199132,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "194KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-bagno-175.webp",
+          "tipo": "immagine",
+          "bytes": 210978,
+          "nome": "villa-ancarano-piano-rialzato-p2-bagno-175.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "206KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-camera-142.webp",
           "tipo": "immagine",
           "bytes": 164068,
@@ -3543,6 +3730,17 @@
           "cartella": "villa-tre-unita-ancarano",
           "stato": "ok",
           "eta": "49KB",
+          "width": 900,
+          "height": 1600
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-corridoio-176.webp",
+          "tipo": "immagine",
+          "bytes": 46740,
+          "nome": "villa-ancarano-piano-rialzato-p2-corridoio-176.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "46KB",
           "width": 900,
           "height": 1600
         },
@@ -4039,5 +4237,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-11-03T12:54:10.288Z"
+  "generato": "2026-11-03T13:32:45.307Z"
 }

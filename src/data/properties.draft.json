@@ -124,6 +124,14 @@
         "villa-ancarano-piano-rialzato-ingressi-59.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+        "villa-ancarano-piano-rialzato-p2-bagno-175.webp",
         "villa-ancarano-piano-rialzato-p2-camera-142.webp",
         "villa-ancarano-piano-rialzato-p2-camera-143.webp",
         "villa-ancarano-piano-rialzato-p2-camera-144.webp",
@@ -154,6 +162,7 @@
         "villa-ancarano-piano-rialzato-p2-corridoio-108.webp",
         "villa-ancarano-piano-rialzato-p2-corridoio-109.webp",
         "villa-ancarano-piano-rialzato-p2-corridoio-110.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-176.webp",
         "villa-ancarano-piano-rialzato-p2-cucina-131.webp",
         "villa-ancarano-piano-rialzato-p2-cucina-132.webp",
         "villa-ancarano-piano-rialzato-p2-cucina-133.webp",
@@ -856,6 +865,54 @@
           "kb": 107
         },
         {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-168.webp",
+          "width": 900,
+          "height": 1600,
+          "kb": 98
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-169.webp",
+          "width": 900,
+          "height": 1366,
+          "kb": 82
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-170.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 202
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-171.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 210
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-172.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 217
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-173.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 198
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-174.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 194
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-bagno-175.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 206
+        },
+        {
           "file": "villa-ancarano-piano-rialzato-p2-camera-142.webp",
           "width": 2200,
           "height": 1238,
@@ -1034,6 +1091,12 @@
           "width": 900,
           "height": 1600,
           "kb": 49
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-corridoio-176.webp",
+          "width": 900,
+          "height": 1600,
+          "kb": 46
         },
         {
           "file": "villa-ancarano-piano-rialzato-p2-cucina-131.webp",

@@ -359,3 +359,20 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 - Un dettaglio che ho lasciato generico: nel pannello accostato alla parete non ho scritto "lavagna" né "quadro" — dalla foto è un telaio con superficie chiara, e non serve attribuirgli un nome per descrivere la stanza.
 
 **Verificato.** `node build.js media` → **183 file, 3 avvisi** (i soliti tre degli esterni, nessuno dei 6 nuovi). `node build.js` ✓ scheda 242.7KB · `node build.js --check` ✓. Nella scheda **183 `<figure>`, 183 `srcset`**, 0 `<img>` senza `width`/`height`, 15 file `p2-camera-2` distinti, JSON-LD `image` = **183 con 0 duplicati**, `sitemap.xml` `<lastmod>2026-11-03`.
+
+## Il bagno del Piano rialzato 2 e un'altra vista del corridoio: 9 foto (03/11/2026)
+
+**Cosa hai mandato.** Nove file, **(65)…(73)**. Otto sono il **bagno della seconda abitazione**, la **(73) però non è il bagno**: è il **corridoio** visto verso il fondo. L'ho messa lì, non nel bagno — è una vista diversa dalle quattro già in galleria (`-107…-110`, che sono il tratto verso la porta del bagno), quindi è entrata come `p2-corridoio-176`.
+
+- **`p2-bagno-168…175`** — 8 foto (2 verticali: 168 a 900×1600, 169 a 900×1366; 6 orizzontali a 2200×1238) + **`p2-corridoio-176`** verticale 900×1600. Tutte le miniature 900px. Pesi **47–223KB**, tutti dentro budget.
+- Gruppo `piano-rialzato-2`: 63 → **72 foto**. Scheda a **192 foto** — Esterni 20 · Piano primo 57 · Piano rialzato 1 43 · **Piano rialzato 2 72**. Galleria e array piatto allineati (192 = 192), **0 duplicati** nel JSON-LD.
+
+**Il nome.** L'unità 1 usa `bagno-3`, ma qui l'unità ha **un bagno solo**: chiamarlo "3" avrebbe creato un numero senza senso. Quindi descrittore **`p2-bagno`** senza numerazione, e didascalie che dicono "**il bagno della seconda abitazione**", coerente con "la seconda camera della seconda abitazione" già in pagina.
+
+**Cosa dicono le foto** (lette tutte prima di scrivere): rivestimento in **ceramica bianca a decoro blu floreale** con fascia a greca, **pavimento in cotto a posa diagonale**, **lavabo** su colonna, **bidet**, **water**, **vasca** con miscelatore e doccetta, **termosifone** sotto la finestra, **mobile pensile in legno con mensole e faretti**, **specchio con mensole in vetro**, **mobile con cassetti**, un **pensile a stecche giallo** sulla parete di fronte, plafoniera a **vetro blu** sul soffitto, finestra con vista sul cortile e sullo stendibiancheria.
+
+**Casa abitata.** Asciugamani sulla vasca e appesi alla porta, boccette e flaconi sul mobiletto bianco, spazzolini, il **riflesso della persona nello specchio** della 173: tutto lasciato fuori dalle didascalie. Il **mobiletto bianco accanto al termosifone** resta descritto per quello che è, senza attribuirgli un nome di elettrodomestico.
+
+**Una nota onesta.** Le foto **170 e 171 sono quasi identiche** (stessa inquadratura, scarto di pochi centimetri). Le ho messe entrambe con didascalie che mettono a fuoco cose diverse (il pensile e la finestra / il lavabo e i sanitari), ma se preferisci una galleria più asciutta la 170 si toglie in un minuto: dimmelo.
+
+**Verificato.** `node build.js media` → **192 file, 3 avvisi** (i soliti tre degli esterni). `node build.js` ✓ scheda 255.2KB · `node build.js --check` ✓. Nella scheda **192 `<figure>`, 192 `srcset`**, 0 `<img>` senza `width`/`height`, dimensioni dichiarate corrette per i tre verticali (900×1600, 900×1366, 900×1600), JSON-LD `image` = **192 con 0 duplicati**, `sitemap.xml` 7 `<lastmod>2026-11-03`.
