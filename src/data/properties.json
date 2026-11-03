@@ -180,7 +180,16 @@
         "villa-ancarano-piano-rialzato-p2-cucina-138.webp",
         "villa-ancarano-piano-rialzato-p2-cucina-139.webp",
         "villa-ancarano-piano-rialzato-p2-cucina-140.webp",
-        "villa-ancarano-piano-rialzato-p2-cucina-141.webp"
+        "villa-ancarano-piano-rialzato-p2-cucina-141.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-142.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-143.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-144.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-145.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-146.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-147.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-148.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-149.webp",
+        "villa-ancarano-piano-rialzato-p2-camera-150.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -1151,6 +1160,60 @@
               "didascalia": "La cucina con il rivestimento a piastrelle decorate, il lavello, il piano cottura e i pensili in legno chiaro.",
               "alt": "La cucina con il rivestimento a piastrelle decorate, il lavello, il piano cottura e i pensili in legno chiaro.",
               "thumb": "villa-ancarano-piano-rialzato-p2-cucina-141-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-142.webp",
+              "didascalia": "La camera matrimoniale della seconda abitazione: letto, armadio a parete con ante laccate e finestra con termosifone, su pavimento in parquet.",
+              "alt": "La camera matrimoniale della seconda abitazione: letto, armadio a parete con ante laccate e finestra con termosifone, su pavimento in parquet.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-142-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-143.webp",
+              "didascalia": "La camera vista dalla porta d’ingresso, con l’armadio a parete sulla destra e la nicchia della finestra color terracotta.",
+              "alt": "La camera vista dalla porta d’ingresso, con l’armadio a parete sulla destra e la nicchia della finestra color terracotta.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-143-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-144.webp",
+              "didascalia": "La camera con il letto in primo piano, la finestra al centro e la parete dell’armadio a tutta altezza.",
+              "alt": "La camera con il letto in primo piano, la finestra al centro e la parete dell’armadio a tutta altezza.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-144-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-145.webp",
+              "didascalia": "La camera verso la finestra: il quadro a parete, la sedia in legno scuro e l’armadio laccato sulla destra.",
+              "alt": "La camera verso la finestra: il quadro a parete, la sedia in legno scuro e l’armadio laccato sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-145-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-146.webp",
+              "didascalia": "La camera verso la porta: il cassettone in legno, l’appendiabiti e la porta aperta sul corridoio.",
+              "alt": "La camera verso la porta: il cassettone in legno, l’appendiabiti e la porta aperta sul corridoio.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-146-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-147.webp",
+              "didascalia": "Il letto matrimoniale visto dal lato dell’armadio, con il cassettone e l’appendiabiti sullo sfondo.",
+              "alt": "Il letto matrimoniale visto dal lato dell’armadio, con il cassettone e l’appendiabiti sullo sfondo.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-147-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-148.webp",
+              "didascalia": "La testata del letto con il quadro sopra, la sedia in legno scuro e la finestra aperta sulla destra.",
+              "alt": "La testata del letto con il quadro sopra, la sedia in legno scuro e la finestra aperta sulla destra.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-148-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-149.webp",
+              "didascalia": "L’armadio a parete con le ante laccate color bordeaux, il cassettone in legno e il parquet a listoni chiari.",
+              "alt": "L’armadio a parete con le ante laccate color bordeaux, il cassettone in legno e il parquet a listoni chiari.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-149-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-camera-150.webp",
+              "didascalia": "Il parquet a listoni della camera, con il letto, il termosifone e il cassettone in legno.",
+              "alt": "Il parquet a listoni della camera, con il letto, il termosifone e il cassettone in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-camera-150-thumb.webp"
             }
           ]
         }
