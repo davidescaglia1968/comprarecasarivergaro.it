@@ -1244,6 +1244,127 @@
       "height": 1600
     },
     {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-131.webp",
+      "tipo": "immagine",
+      "bytes": 144516,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-131.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "141KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-132.webp",
+      "tipo": "immagine",
+      "bytes": 110126,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-132.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "108KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-133.webp",
+      "tipo": "immagine",
+      "bytes": 114066,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-133.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "111KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-134.webp",
+      "tipo": "immagine",
+      "bytes": 178576,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-134.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "174KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-135.webp",
+      "tipo": "immagine",
+      "bytes": 104736,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-135.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "102KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-136.webp",
+      "tipo": "immagine",
+      "bytes": 112604,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-136.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "110KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-137.webp",
+      "tipo": "immagine",
+      "bytes": 222454,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-137.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "217KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-138.webp",
+      "tipo": "immagine",
+      "bytes": 129240,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-138.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "126KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-139.webp",
+      "tipo": "immagine",
+      "bytes": 123352,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-139.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "120KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-140.webp",
+      "tipo": "immagine",
+      "bytes": 169942,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-140.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "166KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-141.webp",
+      "tipo": "immagine",
+      "bytes": 130438,
+      "nome": "villa-ancarano-piano-rialzato-p2-cucina-141.webp",
+      "cartella": "villa-tre-unita-ancarano",
+      "stato": "ok",
+      "eta": "127KB",
+      "width": 2200,
+      "height": 1238
+    },
+    {
       "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-ingresso-105.webp",
       "tipo": "immagine",
       "bytes": 70628,
@@ -2854,6 +2975,127 @@
           "height": 1600
         },
         {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-131.webp",
+          "tipo": "immagine",
+          "bytes": 144516,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-131.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "141KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-132.webp",
+          "tipo": "immagine",
+          "bytes": 110126,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-132.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "108KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-133.webp",
+          "tipo": "immagine",
+          "bytes": 114066,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-133.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "111KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-134.webp",
+          "tipo": "immagine",
+          "bytes": 178576,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-134.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "174KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-135.webp",
+          "tipo": "immagine",
+          "bytes": 104736,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-135.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "102KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-136.webp",
+          "tipo": "immagine",
+          "bytes": 112604,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-136.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "110KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-137.webp",
+          "tipo": "immagine",
+          "bytes": 222454,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-137.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "217KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-138.webp",
+          "tipo": "immagine",
+          "bytes": 129240,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-138.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "126KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-139.webp",
+          "tipo": "immagine",
+          "bytes": 123352,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-139.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "120KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-140.webp",
+          "tipo": "immagine",
+          "bytes": 169942,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-140.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "166KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
+          "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-cucina-141.webp",
+          "tipo": "immagine",
+          "bytes": 130438,
+          "nome": "villa-ancarano-piano-rialzato-p2-cucina-141.webp",
+          "cartella": "villa-tre-unita-ancarano",
+          "stato": "ok",
+          "eta": "127KB",
+          "width": 2200,
+          "height": 1238
+        },
+        {
           "path": "img/villa-tre-unita-ancarano/villa-ancarano-piano-rialzato-p2-ingresso-105.webp",
           "tipo": "immagine",
           "bytes": 70628,
@@ -3225,5 +3467,5 @@
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-facciata-cancello-15.webp: 0.39MB sopra budget, comprimi",
     "img/villa-tre-unita-ancarano/villa-ancarano-esterno-lato-prato-03.webp: 0.52MB sopra budget, comprimi"
   ],
-  "generato": "2026-11-03T11:09:59.359Z"
+  "generato": "2026-11-03T11:29:40.904Z"
 }
