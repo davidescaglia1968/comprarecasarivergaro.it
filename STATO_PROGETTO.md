@@ -236,3 +236,22 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 - Nelle foto `(39)` e `(40)` della seconda camera si vedono **giacca e pantaloni sullo scaldino pieghevole e uno zaino rosso sulla sedia**: le ho tenute (casa abitata, stessa scelta gia' discussa e non contestata per le foto 90 e 92 della camera matrimoniale) e **non l'ho scritto in didascalia**: non e' un dato della casa, e commentarlo sarebbe un giudizio.
 - Nessuna didascalia oltre il verificabile: lo specchio del 101-103 e' "grande specchio a muro", non "specchiera con luce alogena"; la vasca angolare della 104 e' "vasca doccia angolare" perche' e' quello che si vede dal basso.
 - `data_modifica` resta 2026-11-03 (oggi): identico a quello del lotto di ieri sera, perche' la data della scheda non deve correre piu' veloce dei contenuti.
+
+## Seconda abitazione: il gruppo "Piano rialzato 2" con ingresso e corridoio (03/11/2026, pomeriggio)
+**Cosa hai mandato.** Sei scatti di un'altra unità dello stesso stabile (i tuoi file `...Ai Piano T2 (1..6).jpg`), con la tua indicazione: **(1)(2) = ingresso, (3)(4)(5)(6) = corridoio**.
+
+**Cosa si vede (dalle foto, senza aggiungere nulla).**
+| Foto | File | Cosa mostra |
+|---|---|---|
+| 1 (verticale) | `p2-ingresso-105` | Portico con archi in mattoni a vista, pavimento in cotto a quadrotte, porta d'ingresso aperta, finestra con persiane in legno. |
+| 2 | `p2-ingresso-106` | Lo stesso portico ripreso verso il giardino/strada, con la ringhiera in pietra. |
+| 3 | `p2-corridoio-107` | Locale d'ingresso: parete con pannello decorato rosso, sedia in midollino, porta in legno scuro socchiusa. |
+| 4 | `p2-corridoio-108` | Corridoio con porte in legno, pavimento in marmo, citofono a parete; bagno in fondo. |
+| 5 (verticale) | `p2-corridoio-109` | Il pavimento in cotto del corridoio. |
+| 6 (verticale) | `p2-corridoio-110` | Il corridoio con porta a vetro smerigliato e il bagno in fondo. |
+
+**Scelte tecniche.** Il gruppo `piano-rialzato-2` (titolo **Piano rialzato 2**) sta dopo `Piano rialzato 1`: 20 + 57 + 43 + 6 = **126 foto** nella scheda, `data_modifica` fermo al 03/11. Numerazione `-105…-110` sulla sequenza globale (il 75 resta bucato di proposito). Tre sono verticali (le tue foto fatte col telefono in verticale): le ho lasciate verticali come `ingressi-59`, con il lato lungo a 1600 px, perché ritagliarle in 16/9 avrebbe tagliato gli archi del portico e la porta del bagno. Peso finale 50–281 KB, nessuno oltre la soglia di guardia.
+
+**Perché la scheda resta onesta.** Il testo che mi dettasti dice "composta da 3 unità indipendenti": ora la scheda mostra foto dell'unità 1 (piano rialzato 1 + piano primo) e l'ingresso/corridoio dell'unità 2. Non ho aggiunto vani, superfici o prezzi: per il Piano rialzato 2 le didascalie dicono solo cosa si vede. Se vuoi che la seconda unità esca dalla pagina pubblica finché non ha i suoi dati, sposto il gruppo in `bozza`: è una modifica di una riga.
+
+**Verificato.** `node build.js --check` ✓, 4 sottogruppi resi con i loro `<h2>` (`foto-esterni`, `foto-piano-primo`, `foto-piano-rialzato`, `foto-piano-rialzato-2`), 6/6 `srcset` + `width/height` espliciti, 6 didascalie uniche, lightbox su 6 figure, JSON-LD `image` = 126 (6 nuovi), `sitemap.xml` con `<lastmod>2026-11-03`.

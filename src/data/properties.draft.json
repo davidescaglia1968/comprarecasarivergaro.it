@@ -124,6 +124,12 @@
         "villa-ancarano-piano-rialzato-ingressi-59.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-62.webp",
         "villa-ancarano-piano-rialzato-ingresso-disimpegno-63.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-107.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-108.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-109.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-110.webp",
+        "villa-ancarano-piano-rialzato-p2-ingresso-105.webp",
+        "villa-ancarano-piano-rialzato-p2-ingresso-106.webp",
         "villa-ancarano-piano-rialzato-soggiorno-64.webp",
         "villa-ancarano-piano-rialzato-soggiorno-65.webp",
         "villa-ancarano-piano-rialzato-soggiorno-66.webp",
@@ -791,6 +797,42 @@
           "width": 2200,
           "height": 1238,
           "kb": 107
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-corridoio-107.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 126
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-corridoio-108.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 52
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-corridoio-109.webp",
+          "width": 965,
+          "height": 1600,
+          "kb": 132
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-corridoio-110.webp",
+          "width": 900,
+          "height": 1600,
+          "kb": 49
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-ingresso-105.webp",
+          "width": 900,
+          "height": 1600,
+          "kb": 69
+        },
+        {
+          "file": "villa-ancarano-piano-rialzato-p2-ingresso-106.webp",
+          "width": 2200,
+          "height": 1238,
+          "kb": 275
         },
         {
           "file": "villa-ancarano-piano-rialzato-soggiorno-64.webp",

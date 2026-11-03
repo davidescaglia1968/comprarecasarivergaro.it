@@ -143,7 +143,13 @@
         "villa-ancarano-piano-rialzato-bagno-3-101.webp",
         "villa-ancarano-piano-rialzato-bagno-3-102.webp",
         "villa-ancarano-piano-rialzato-bagno-3-103.webp",
-        "villa-ancarano-piano-rialzato-bagno-3-104.webp"
+        "villa-ancarano-piano-rialzato-bagno-3-104.webp",
+        "villa-ancarano-piano-rialzato-p2-ingresso-105.webp",
+        "villa-ancarano-piano-rialzato-p2-ingresso-106.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-107.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-108.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-109.webp",
+        "villa-ancarano-piano-rialzato-p2-corridoio-110.webp"
       ],
       "video": [],
       "data_pubblicazione": "2026-10-23",
@@ -886,6 +892,48 @@
               "didascalia": "Il bagno dall’alto: bidet, vasca doccia angolare e pavimento in ceramica chiara.",
               "alt": "Il bagno dall’alto: bidet, vasca doccia angolare e pavimento in ceramica chiara.",
               "thumb": "villa-ancarano-piano-rialzato-bagno-3-104-thumb.webp"
+            }
+          ]
+        },
+        {
+          "id": "piano-rialzato-2",
+          "titolo": "Piano rialzato 2",
+          "immagini": [
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-ingresso-105.webp",
+              "didascalia": "Il portico d’ingresso della seconda abitazione, con archi in mattoni a vista, pavimentazione in cotto e porta indipendente.",
+              "alt": "Il portico d’ingresso della seconda abitazione, con archi in mattoni a vista, pavimentazione in cotto e porta indipendente.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-ingresso-105-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-ingresso-106.webp",
+              "didascalia": "Lo stesso portico ripreso verso il giardino, con finestra e persiane in legno.",
+              "alt": "Lo stesso portico ripreso verso il giardino, con finestra e persiane in legno.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-ingresso-106-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-corridoio-107.webp",
+              "didascalia": "Ingresso della seconda abitazione: locale con parete decorata e porta in legno scuro verso il corridoio.",
+              "alt": "Ingresso della seconda abitazione: locale con parete decorata e porta in legno scuro verso il corridoio.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-corridoio-107-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-corridoio-108.webp",
+              "didascalia": "Il corridoio della seconda abitazione, con porte in legno e pavimenti in marmo.",
+              "alt": "Il corridoio della seconda abitazione, con porte in legno e pavimenti in marmo.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-corridoio-108-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-corridoio-109.webp",
+              "didascalia": "Il pavimento in cotto del corridoio, visto dal vano d’ingresso.",
+              "alt": "Il pavimento in cotto del corridoio, visto dal vano d’ingresso.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-corridoio-109-thumb.webp"
+            },
+            {
+              "file": "villa-ancarano-piano-rialzato-p2-corridoio-110.webp",
+              "didascalia": "Il corridoio con la porta a vetro smerigliato e, in fondo, il bagno.",
+              "alt": "Il corridoio con la porta a vetro smerigliato e, in fondo, il bagno.",
+              "thumb": "villa-ancarano-piano-rialzato-p2-corridoio-110-thumb.webp"
             }
           ]
         }
