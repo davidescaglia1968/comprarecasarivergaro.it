@@ -21,6 +21,15 @@ const readJson = (p, fb) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')
 const exists = (p) => fs.existsSync(path.join(ROOT, p));
 const isConfirmed = (v) => v !== null && v !== undefined && v !== '' && String(v).trim() !== PLACEHOLDER;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+/* Descrizione per <meta>: se supera il limite si taglia a fine parola (mai a meta' parola,
+   che in SERP sembra un refuso) e si chiude con i puntini. */
+function clipMeta(t, n = 155) {
+  const s = String(t || '').replace(/\s+/g, ' ').trim();
+  if (s.length <= n) return s;
+  const cut = s.slice(0, n);
+  const sp = cut.lastIndexOf(' ');
+  return (sp > 60 ? cut.slice(0, sp) : cut).replace(/[\s,;:.\u2013-]+$/, '') + '\u2026';
+}
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const cleanHtml = (s) => s.replace(/[ \t]+\n/g, '\n');
 const abs = (base, p) => (typeof p === 'string' && /^https?:\/\//.test(p) ? p : base + p);
@@ -172,7 +181,8 @@ function openingHours() {
 function agentJsonLd() {
   const a = {
     '@type': 'RealEstateAgent', '@id': BASE + '/#agent',
-    name: pro.denominazione_legale || pro.brand, alternateName: pro.nome_completo,
+    name: 'Immobili a Rivergaro', alternateName: pro.nome_completo,
+    legalName: pro.denominazione_legale || undefined,
     url: BASE + '/', telephone: pro.telefono_e164, email: pro.email,
   };
   if (addr) a.address = { '@type': 'PostalAddress', streetAddress: addr.street, addressLocality: addr.localita, postalCode: addr.cap, addressRegion: addr.provincia, addressCountry: 'IT' };
@@ -237,7 +247,7 @@ function listingJsonLd(p) {
   o.address = addr;
   const offer = { '@type': 'Offer' };
   const hasPrice = typeof p.prezzo === 'number' && p.prezzo > 0;
-  /* Qui il prezzo e' una frase confermata dal proprietario ("Prezzo su richiesta"): non essendo
+  /* Qui il prezzo e' una frase confermata dal proprietario ("Prezzo in definizione"): non essendo
      un numero non si inventa price = ..., ma l'indicazione testuale va comunque nell'offerta. */
   const priceText = !hasPrice && typeof p.prezzo === 'string' && p.prezzo.trim() ? p.prezzo.trim() : '';
   if (hasPrice) { offer.price = String(p.prezzo); offer.priceCurrency = 'EUR'; }
@@ -606,7 +616,7 @@ function imgMeta(slug, file) {
   const m = mediaCache.items.find((i) => i.path === 'img/' + slug + '/' + file);
   return m || null;
 }
-function galleria(p) {
+function galleria(p, dopoPrimoGruppo = '') {
   const raw = (p.gallerie || []).filter((g) => Array.isArray(g.immagini) && g.immagini.length);
   const sections = raw.length ? raw : ((p.immagini || []).filter(Boolean).length
     ? [{ id: 'foto', titolo: 'Galleria fotografica', immagini: p.immagini.filter(Boolean).map((file) => ({ file })) }]
@@ -615,6 +625,7 @@ function galleria(p) {
     return `<figure class="media-empty"><div class="media-empty-box"><span class="media-empty-ico" aria-hidden="true">◻</span><strong>Nessuna foto pubblicata</strong><p>Le immagini di questo immobile non sono ancora state scelte. Appena arrivano, la galleria e l'immagine principale si compilano da sole da <code>img/${esc(p.slug)}/</code>, con le dimensioni vere lette dal file.</p></div></figure>`;
   }
   let first = true;
+  let inserito = false;
   const rendered = sections.map((section, sectionIndex) => {
     const items = section.immagini.filter((item) => typeof item === 'string' || (item && item.file));
     if (!items.length) return '';
@@ -654,10 +665,13 @@ function galleria(p) {
         ${isFeatured ? statoBadge(p) : ''}
       </figure>`;
     }).join('');
-    return `<section class="gallery-section" aria-labelledby="${attr(id)}">
+    let out = `<section class="gallery-section" aria-labelledby="${attr(id)}">
       <h2 id="${attr(id)}">${esc(section.titolo || 'Foto')}</h2>
       <div class="gallery-grid">${cards}</div>
     </section>`;
+    /* la descrizione entra subito dopo il primo gruppo: si legge la casa dopo aver visto gli esterni */
+    if (!inserito) { inserito = true; out += dopoPrimoGruppo; }
+    return out;
   }).join('');
   return `<div class="gallery" role="group" aria-label="Galleria fotografica dell'immobile">${rendered}</div>`;
 }
@@ -757,6 +771,11 @@ function schedaPage(p, prefix) {
         return `<p${cls}>${inline(esc(b.testo))}</p>`;
       }).join('\n        ')
     : `<p class="prop-answer">${inline(esc(p.descrizione || ''))}</p>`;
+  const descSection = `<section class="prop-desc"><h2 id="descrizione">L'immobile</h2>
+        ${corpoDesc}
+      </section>`;
+  const haGalleria = (p.gallerie || []).some((g) => Array.isArray(g.immagini) && g.immagini.length)
+    || (p.immagini || []).filter(Boolean).length > 0;
   const manca = [
     !p.superficie && 'superficie (totale e per unità)',
     !p.locali && 'numero di locali per unità',
@@ -781,10 +800,8 @@ function schedaPage(p, prefix) {
   </div></header>
   <div class="wrap prop-grid">
     <div class="prop-main">
-      <section class="prop-desc"><h2 id="descrizione">L'immobile</h2>
-        ${corpoDesc}
-      </section>
-      ${galleria(p)}
+      ${haGalleria ? '' : descSection}
+      ${galleria(p, haGalleria ? descSection : '')}
       ${bozza}
       ${chars.length ? '<section class="props"><h2 id="caratteristiche">Caratteristiche</h2><ul class="pills">' + chars.map((c) => `<li>${esc(c)}</li>`).join('') + '</ul></section>' : ''}
       <section class="prop-ask"><h2 id="richiesta">Chiedi informazioni su questo immobile</h2>
@@ -891,7 +908,7 @@ function head(page, prefix) {
   c.push(`<meta name="theme-color" content="${attr(cfg.site.theme_color)}">`);
   c.push('<link rel="canonical" href="' + attr(url) + '">');
   c.push('<meta property="og:type" content="' + (page.immobile ? 'article' : 'website') + '">');
-  c.push('<meta property="og:site_name" content="' + attr(cfg.site.dominio) + '">');
+  c.push('<meta property="og:site_name" content="Immobili a Rivergaro">');
   c.push('<meta property="og:locale" content="it_IT">');
   c.push('<meta property="og:url" content="' + attr(url) + '">');
   c.push('<meta property="og:title" content="' + attr(title) + '">');
@@ -905,7 +922,6 @@ function head(page, prefix) {
     const ogm = mediaCache.items.find((i) => i.path === ogImg);
     if (ogm && ogm.width) c.push('<meta property="og:image:width" content="' + ogm.width + '"><meta property="og:image:height" content="' + ogm.height + '">');
   }  c.push('<meta name="twitter:card" content="' + attr(cfg.seo_geo.twitter_card) + '">');
-  if (page.description) c.push('<meta name="keywords" content="' + attr((cfg.site.keywords || []).join(', ')) + '">');
   c.push('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Cpath d=%22M4 14L16 4l12 10v14H4z%22 fill=%22none%22 stroke=%22%23d4a520%22 stroke-width=%222%22/%3E%3C/svg%3E">');
   c.push('<link rel="preconnect" href="https://fonts.googleapis.com">');
   c.push('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
@@ -1237,7 +1253,7 @@ function cardImmobile(p, prefix) {
     ? '<img src="' + 'img/' + p.slug + '/' + img + '" alt="' + attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || '')) + '" width="' + (m && m.width ? m.width : 1200) + '" height="' + (m && m.height ? m.height : 800) + '" loading="lazy" decoding="async">'
     : '<span class="media-placeholder">Foto in preparazione</span>';
   const draftTag = inCatalogoSoloAnteprima(p) ? '<span class="badge badge--bozza" aria-label="Scheda in bozza, anteprima interna">BOZZA</span>' : '';
-  const excerpt = (p.descrizione || '').slice(0, 150);
+  const excerpt = clipMeta(p.descrizione || '', 150);
   const attrs = [
     p.zona && isConfirmed(p.zona) ? `data-zona="${attr(p.zona)}"` : '',
     p.tipologia && isConfirmed(p.tipologia) ? `data-tipologia="${attr(p.tipologia)}"` : '',
@@ -1248,7 +1264,7 @@ function cardImmobile(p, prefix) {
     <div class="card-body"><h3><a href="${url}">${esc(p.titolo)}</a></h3>
       ${prezzoCell(p)}
       <p class="card-dims">${dimsRow(p)}</p>
-      ${excerpt ? `<p class="card-excerpt">${esc(excerpt)}${(p.descrizione || '').length > 150 ? '…' : ''}</p>` : ''}
+      ${excerpt ? `<p class="card-excerpt">${esc(excerpt)}</p>` : ''}
       <p class="card-ref"><a href="${url}">Apri la scheda →</a></p>
     </div></article></li>`;
 }
@@ -1383,7 +1399,7 @@ function main() {
     const page = {
       path: 'immobile/' + p.slug + '.html', source: null, immobile: p,
       title: cutWord(p.titolo || 'Immobile', 60) + ' | ' + cfg.site.dominio,
-      description: (p.descrizione || '').slice(0, 155),
+      description: clipMeta(p.descrizione_meta || p.descrizione || '', 155),
       canonical: '/immobile/' + p.slug + '.html',
       breadcrumb: 'Immobili',
       noindex: !!p.bozza, robots_off: !!p.bozza,

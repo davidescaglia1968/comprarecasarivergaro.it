@@ -18,13 +18,6 @@
     "lingua": "it-IT",
     "titolo_home": "Cerchi casa a Rivergaro in Val Trebbia? Le mie proposte",
     "description_home": "Case in vendita a Rivergaro e in Val Trebbia: proposta attuale, ricerca personalizzata, visite e trattativa assistita da Davide Scaglia, agente immobiliare a Rivergaro.",
-    "keywords": [
-      "case in vendita Rivergaro",
-      "comprare casa Val Trebbia",
-      "agenzia Rivergaro acquirenti",
-      "rustici Val Trebbia",
-      "ville Rivergaro"
-    ],
     "theme_color": "#0a0a0a",
     "robots_indexable": true,
     "deploy_notes": "GitHub Pages pubblica il ROOT del ramo main, come gia' fanno venderecasapiacenza.it e casepodenzano.it (repo a layout piatto). Richiede: .nojekyll e CNAME nella radice del repo. Nessun /docs.",
@@ -33,7 +26,7 @@
   },
   "professionista": {
     "nome_completo": "Davide Scaglia",
-    "brand": "Davide Scaglia — Immobiliare Scaglia",
+    "brand": "Davide Scaglia — Immobili a Rivergaro",
     "ruolo": "Agente immobiliare e consulente per gli acquirenti",
     "telefono_display": "+39 328 693 0033",
     "telefono_e164": "+393286930033",
@@ -92,7 +85,7 @@
     "rea": "PC-168637",
     "addetti": "1 (titolare, impresa individuale senza dipendenti)",
     "_regola_bio": "Testo BOZZA preparata l’02/11/2026 da Arena a partire dai soli dati verificati (visura camerale, config, copy gia’ approvato in home). Non è autobiografia: nessun numero di immobili, nessuna zona 'conosciuta’ diversa da quelle in area_servizio, nessuna esperienza personale. Davide deve riscriverlo con la sua voce: i paragrafi si separano con una riga vuota. Finchè resta questo testo, in fondo alla pagina compare la nota 'profilo in corso di revisionè.",
-    "bio_stato": "bozza-da-rivedere"
+    "bio_stato": "confermato"
   },
   "area_servizio": {
     "comune_principale": "Rivergaro",
