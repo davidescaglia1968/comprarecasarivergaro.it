@@ -660,6 +660,38 @@ function imgMeta(slug, file) {
   const m = mediaCache.items.find((i) => i.path === 'img/' + slug + '/' + file);
   return m || null;
 }
+/* Numeri all'italiana: 764.36 -> "764,36". Serve per rendite catastali e indici APE. */
+function numIT(n, dec = 2) {
+  return Number(n).toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+function euroIT(n) { return numIT(n) + ' €'; }
+
+/* Dati per unità immobiliare (superficie, rendita catastale, APE). Si mostra solo quello che
+   c'è nel dato: nessun valore inventato, nessuna superficie dedotta. */
+function unitaSezione(p) {
+  const unita = (p.unita || []).filter((u) => u && u.nome);
+  if (!unita.length) return '';
+  const righe = unita.map((u) => {
+    const ape = u.ape_classe
+      ? esc(u.ape_classe) + (u.ape_indice ? ' · ' + esc(numIT(u.ape_indice)) : '')
+      : '—';
+    return `<tr><th scope="row">${esc(u.nome)}</th><td>${u.mq ? esc(numIT(u.mq, 0)) + ' m²' : '—'}</td><td>${u.rendita_catastale ? esc(euroIT(u.rendita_catastale)) : '—'}</td><td>${ape}</td></tr>`;
+  }).join('');
+  const senzaApe = unita.filter((u) => !u.ape_classe).map((u) => esc(u.nome));
+  const nota = [
+    'Rendita catastale espressa in euro.',
+    senzaApe.length ? 'Senza attestato energetico indicato: ' + senzaApe.join(', ') + '.' : '',
+    "Per l'APE sono riportati la classe e l'indice dell'attestato.",
+  ].filter(Boolean).join(' ');
+  return `<section class="prop-units"><h2 id="unita">Superfici, rendite catastali e APE</h2>
+        <div class="table-wrap"><table><caption class="sr-only">Dati per unità immobiliare</caption>
+          <thead><tr><th scope="col">Unità</th><th scope="col">Superficie</th><th scope="col">Rendita catastale</th><th scope="col">APE</th></tr></thead>
+          <tbody>${righe}</tbody>
+        </table></div>
+        <p class="prop-units-note">${nota}</p>
+      </section>`;
+}
+
 function galleria(p, dopoPrimoGruppo = '') {
   const raw = (p.gallerie || []).filter((g) => Array.isArray(g.immagini) && g.immagini.length);
   const sections = raw.length ? raw : ((p.immagini || []).filter(Boolean).length
@@ -712,9 +744,18 @@ function galleria(p, dopoPrimoGruppo = '') {
         ${isFeatured ? statoBadge(p) : ''}
       </figure>`;
     }).join('');
+    /* se la sezione corrisponde a un'unità, i suoi numeri stanno sotto il titolo */
+    const u = (p.unita || []).find((x) => x && x.id === section.id);
+    const rigaUnita = u
+      ? ['<p class="gallery-sub">' + [
+          u.mq ? esc(numIT(u.mq, 0)) + ' m²' : '',
+          u.rendita_catastale ? 'rendita catastale ' + esc(euroIT(u.rendita_catastale)) : '',
+          u.ape_classe ? 'APE classe ' + esc(u.ape_classe) + (u.ape_indice ? ' (' + esc(numIT(u.ape_indice)) + ')' : '') : '',
+        ].filter(Boolean).join(' · ') + '</p>']
+      : [];
     let out = `<section class="gallery-section" aria-labelledby="${attr(id)}">
       <h2 id="${attr(id)}">${esc(section.titolo || 'Foto')}</h2>
-      <div class="gallery-grid">${cards}</div>
+      ${rigaUnita.join('')}<div class="gallery-grid">${cards}</div>
     </section>`;
     /* la descrizione entra subito dopo il primo gruppo: si legge la casa dopo aver visto gli esterni */
     if (!inserito) { inserito = true; out += dopoPrimoGruppo; }
@@ -847,8 +888,8 @@ function schedaPage(p, prefix) {
   </div></header>
   <div class="wrap prop-grid">
     <div class="prop-main">
-      ${haGalleria ? '' : descSection}
-      ${galleria(p, haGalleria ? descSection : '')}
+      ${haGalleria ? '' : descSection + unitaSezione(p)}
+      ${galleria(p, haGalleria ? descSection + unitaSezione(p) : '')}
       ${bozza}
       ${chars.length ? '<section class="props"><h2 id="caratteristiche">Caratteristiche</h2><ul class="pills">' + chars.map((c) => `<li>${esc(c)}</li>`).join('') + '</ul></section>' : ''}
       <section class="prop-ask"><h2 id="richiesta">Chiedi informazioni su questo immobile</h2>
