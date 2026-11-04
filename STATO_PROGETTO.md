@@ -468,3 +468,21 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Verificato con comandi:** `node build.js media` → 192 file, **0 avvisi** · `node build.js` ✓ · `node build.js --check` ✓ (nessun dato personale, nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite) · preload presente **solo** in `index.html` (0 occorrenze in `contatti.html`, `chi-sono.html`, scheda) · nessun file immagine oltre 400 KB (massimo 396 KB) · nessun testo, titolo, descrizione o link modificato rispetto alla versione precedente.
 
 **Cosa resta aperto e non è verificato:** resa desktop e mobile, LCP/CLS reali, contrasto, aree di tocco, errori in console, indicizzazione (Search Console non è accessibile) e **quale dei tre controlli di «Navigazione agentica» fallisce** — serve il JSON del referto Lighthouse. Per abbattere ancora il percorso critico restano due strade: CSS critico inline per la home (il meccanismo in `build.js` c'è, `src/css/critical.css` è ancora un segnaposto) e i tagli `-mid` per tutte le foto di galleria (+24 MB nel repository).
+
+## Foto alleggerite, `llms.txt` sistemato, «Navigazione agentica» capita (04/11/2026)
+
+**Foto: 45,5 MB → 31,4 MB (−14,1 MB, −31%).** Ho ripassato **tutto** il catalogo immagini con ImageMagick, da solo, senza toccare i file originali già pubblicati a mano:
+
+- le **foto a piena dimensione** (quelle del lightbox) passano dal lato lungo 2200 a **1800px** a qualità 84; quelle che restavano sopra i 200 KB hanno avuto un secondo passaggio mirato (1700px q80, 1600px q78, 1500px q78 per la più rumorosa), fermandosi comunque **sotto i 230 KB**. Totale full-size: **36 MB → 22 MB (−39%)**;
+- **nessuna immagine supera ora i 230 KB** (prima il massimo era 529 KB), e `node build.js media` resta a **0 avvisi**;
+- le **miniature 900px** non sono state toccate (9,8 MB in tutto, in media 50 KB l'una): sono già leggere e sono quelle che si vedono nella griglia;
+- confronto visivo su un ritaglio al 200% della foto più compressa (`esterno-lato-prato-03`, 529→220 KB): differenza **impercettibile**; RMSE misurato contro l'originale 0,022-0,024 sulle tre più aggressive, 0,010-0,013 sulle altre;
+- `width`/`height`/`aspect-ratio` di ogni `<figure>` si sono aggiornati da soli dal manifesto: **192 figure**, tutte coerenti con il file reale.
+
+**Il controllo che falliva in «Navigazione agentica».** Ho scaricato il pacchetto ufficiale di Lighthouse (`npm pack lighthouse`) e letto la configurazione `agentic-browsing`: la categoria pesa **7 audit** — `agent-accessibility-tree`, `webmcp-form-coverage`, `webmcp-registered-tools`, `webmcp-schema-validity`, `cumulative-layout-shift`, `llms-txt`, `ard-schema`. Sul nostro sito sono applicabili tre: l'albero di accessibilità (con Accessibilità 100 passa), il CLS, e **`llms-txt`**. Quello pretende, testualmente: un **H1**, **almeno un link Markdown `[testo](url)`** e almeno 50 caratteri. Il nostro `llms.txt` conteneva H1 e 2 KB di testo ma **zero link Markdown** — solo URL nudi, che per quell'audit non contano come link: era l'unico dei tre a poter fallire, ed è quello che spiega il **2/3**.
+
+**Correzione**: `llms.txt` ora ha una sezione `## Pagine` con link a home, catalogo, contatti, chi sono, e la scheda è scritta come `[titolo](url)` invece che con l'URL in fondo. Verificato con **le stesse tre espressioni regolari dell'audit** sul file generato: H1 ✓, link ✓, 2314 caratteri ✓ → punteggio atteso 1. Nessun fatto nuovo: gli stessi contenuti, in forma linkabile. Gli altri audit della categoria restano non applicabili: i tre WebMCP perché il sito non espone strumenti WebMCP, `ard-schema` perché senza segnale esplicito e con `/.well-known/ard.json` assente Lighthouse lo segna come non applicabile (non come errore).
+
+**Verificato:** `node build.js media` 192 file / **0 avvisi** · `node build.js` ✓ · `node build.js --check` ✓ · testo delle 5 pagine **identico** alla versione precedente (confronto del testo estratto dal markup) · `llms.txt` conforme ai criteri dell'audit.
+
+**Resta fuori da qui:** nessun browser e nessun accesso diretto al sito (TLS chiuso), quindi **non misuro** LCP/CLS né vedo la resa a schermo. Il sito pubblicato lo leggo via HTML (ho verificato che la home online e il suo `llms.txt` corrispondono alla versione precedente al merge di questa PR).

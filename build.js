@@ -1402,11 +1402,25 @@ function llms() {
   L.push('- Email: ' + pro.email, '');
   L.push('## Zona');
   L.push('- Rivergaro (PC), in Val Trebbia. La Val Trebbia è un riferimento geografico, non una dichiarazione di copertura dell’intera valle.', '');
+  /* Le pagine vanno scritte come link Markdown [testo](url): l'audit Lighthouse
+     `llms-txt` di «Navigazione agentica» controlla H1, almeno un link e lunghezza
+     minima, e un URL nudo non conta come link. Le pagine elencate devono esistere. */
+  const pagine = [
+    ['index.html', 'Home: case in vendita a Rivergaro e Val Trebbia'],
+    ['immobili.html', 'Catalogo degli immobili disponibili'],
+    ['contatti.html', 'Contatti diretti'],
+    ['chi-sono.html', 'Chi sono'],
+  ].filter(([f]) => exists(f));
+  if (pagine.length) {
+    L.push('## Pagine');
+    pagine.forEach(([f, t]) => L.push(`- [${t}](${BASE}/${f === 'index.html' ? '' : f})`));
+    L.push('');
+  }
   L.push('## Immobili pubblicati');
   if (!elencoLlms.length) L.push('Nessun immobile pubblicato al momento.');
   else elencoLlms.forEach((p) => {
     const details = [[p.zona, p.comune].filter(Boolean).join(', '), p.tipologia, p.unita_abitative ? p.unita_abitative + ' unità abitative' : null, p.vani ? p.vani + ' vani' : null].filter(Boolean);
-    L.push(`- ${p.titolo} — ${details.join(' · ')} · ${BASE}/immobile/${p.slug}.html`);
+    L.push(`- [${p.titolo}](${BASE}/immobile/${p.slug}.html) — ${details.join(' · ')}`);
     if (p.descrizione) L.push('  ' + p.descrizione);
   });
   if (isConfirmed(cfg.contatti_sezione.orari)) L.push('', '## Orari di apertura', cfg.contatti_sezione.orari, '');
