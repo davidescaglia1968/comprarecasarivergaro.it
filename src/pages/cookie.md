@@ -21,9 +21,10 @@ Non esiste un cookie "di sessione" del sito: non c'è un database, non c'è un a
 
 | Servizio | Cosa fa | Quando viene caricato |
 |---|---|---|
-| Google Fonts (`fonts.googleapis.com`, `fonts.gstatic.com`) | Consegna i caratteri Playfair Display e Inter | A ogni caricamento pagina, come sui siti fratelli dell'ecosistema |
 | FormSubmit (`formsubmit.co`) | Riceve i dati del modulo e li inoltra a `info@immobiliarescaglia.com` | Solo se invii un modulo |
 | Google Street View | Anteprima della zona dell'immobile | **Solo** se acconsenti con "Accetta tutto" e la richiedi: senza consenso l'iframe non esiste nel codice della pagina |
+
+I caratteri tipografici (Playfair Display e Inter) sono serviti **direttamente da questo sito**, non da Google Fonts: nessuna richiesta a terzi e nessun indirizzo IP trasferito per mostrarli.
 
 Se selezioni **"Solo tecnici"**, gli iframe di mappa non vengono mai caricati e i moduli restano disponibili perché il loro funzionamento è necessario alla richiesta che stai inviando.
 

@@ -486,3 +486,20 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Verificato:** `node build.js media` 192 file / **0 avvisi** · `node build.js` ✓ · `node build.js --check` ✓ · testo delle 5 pagine **identico** alla versione precedente (confronto del testo estratto dal markup) · `llms.txt` conforme ai criteri dell'audit.
 
 **Resta fuori da qui:** nessun browser e nessun accesso diretto al sito (TLS chiuso), quindi **non misuro** LCP/CLS né vedo la resa a schermo. Il sito pubblicato lo leggo via HTML (ho verificato che la home online e il suo `llms.txt` corrispondono alla versione precedente al merge di questa PR).
+
+## Niente più risorse che bloccano il disegno: caratteri self-hosted e CSS dentro la pagina (04/11/2026)
+
+**Da dove si partiva.** PageSpeed Insights mobile sulla home (report del 4/11, 13:02): **Prestazioni 98 · Accessibilità 100 · Best practice 100 · SEO 100 · Navigazione agentica 3/3**. Il 3/3 conferma che la correzione del `llms.txt` ha chiuso il controllo che falliva. Per arrivare a 100 restavano due cose che bloccano il primo disegno: il CSS di Google Fonts (un dominio terzo da contattare *prima* di dipingere) e il foglio di stile di 29 KB.
+
+**Cosa ho fatto.**
+
+- **Caratteri serviti da questo sito.** I cinque `.woff2` del sottoinsieme *latin* (Playfair 500/700, Inter 400/500/600, 116 KB in tutto — gli stessi file che serviva Google) ora stanno in `css/fonts/`, con licenza **SIL OFL 1.1** accanto. Le `@font-face` sono in `src/css/fonts.css` con `font-display:swap` e lo stesso `unicode-range` di prima, quindi copertura identica (accenti italiani, virgolette, trattino lungo, euro). Spariscono i due `preconnect` e la richiesta a `fonts.googleapis.com`.
+- **CSS dentro la pagina.** `main.css` (29 KB) più le `@font-face` finiscono in un `<style>` in `<head>`: **zero file che bloccano il rendering**. Il CSS non conteneva nessun `url()`, quindi inline non cambia nessun percorso; i font usano il prefisso giusto per ogni livello (`css/fonts/…` in radice, `../css/fonts/…` nelle schede e in `legal/`). Verificato byte per byte: il CSS estratto dalla pagina è **identico** al sorgente (32.171 caratteri, commenti esclusi).
+- **Preload del carattere del titolo** (`playfair-display-latin-700-normal.woff2`, 22 KB): il titolo si disegna subito con il carattere giusto invece di lampeggiare col ripiego.
+- **Testi di legge allineati alla realtà** (era la parte del config che diceva «in Fase 2 valutiamo il self-hosting dei .woff2: elimina il trasferimento dell'IP a Google»): tolta la riga Google Fonts dalla tabella della Cookie Policy e aggiunta la frase «I caratteri tipografici sono serviti direttamente da questo sito»; stessa precisazione nella Privacy; banner cookie riscritto di conseguenza («carica un servizio esterno — l'anteprima Street View, solo se lo chiedi»); voce del config aggiornata. **Nessun'altra parola del sito è cambiata.**
+
+**Pesi.** Home: 52 KB di HTML (13 KB compressi) invece di 21 KB di HTML + 29 KB di CSS (12 KB compressi) + il CSS dei font di Google: **stessi byte, due giri di rete in meno** (il foglio di stile e il dominio `fonts.googleapis.com`/`fonts.gstatic.com`). Scheda: 289 KB raw / 28 KB compressi. Nessuna immagine toccata in questo giro.
+
+**Verificato con comandi:** `node build.js` ✓ su 9 pagine · `node build.js --check` ✓ · **0** riferimenti a `fonts.googleapis`/`fonts.gstatic` in tutto l'output · **0** `<link rel="stylesheet">` residui · preload font presente in tutte le pagine con il prefisso corretto (controllato su radice, `immobile/`, `legal/`) · 5 `@font-face` per pagina, file `.woff2` validi (magic `wOF2`) · CSS inline identico al sorgente · diff del testo pagina per pagina: cambiano **solo** le frasi su Google Fonts, tutto il resto è identico.
+
+**Non verificato:** resa a schermo e punteggio PSI (serve un browser). Se il pannello mostra ancora meno di 100, i sospetti residui sono il TTFB di GitHub Pages e il CLS da scambio carattere: su quest'ultimo si può lavorare con un fallback metrico (`size-adjust`), ma va tarato guardando la pagina.
