@@ -922,9 +922,19 @@ function parseFrontMatter(raw) {
   return { data, body: raw.slice(m[0].length) };
 }
 
+/* CSS che finisce dentro ogni pagina: caratteri (@font-face con %P% da sostituire) + main.css.
+   Si legge una volta sola e si riusa per tutte le pagine. */
+let CSS_RAW = null;
+function cssInline(prefix) {
+  if (CSS_RAW === null) {
+    CSS_RAW = readIf(path.join(SRC, 'css', 'fonts.css'), '') + '\n' + readIf(path.join(SRC, 'css', 'main.css'), '');
+    if (!CSS_RAW.trim()) throw new Error('CSS non trovato: controlla src/css/fonts.css e src/css/main.css');
+  }
+  return CSS_RAW.replace(/%P%/g, prefix);
+}
+
 function head(page, prefix) {
-  const c = [];
-  const title = page.title || cfg.site.titolo_home;
+  const c = [];  const title = page.title || cfg.site.titolo_home;
   if (page.robots_off) page.noindex = true;
   const desc = page.description || cfg.site.description_home;
   const url = BASE + '/' + (page.canonical || '').replace(/^\//, '');
@@ -963,15 +973,21 @@ function head(page, prefix) {
     c.push('<meta name="twitter:image:alt" content="' + attr(ogAlt) + '">');
   }  c.push('<meta name="twitter:card" content="' + attr(cfg.seo_geo.twitter_card) + '">');
   c.push('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Cpath d=%22M4 14L16 4l12 10v14H4z%22 fill=%22none%22 stroke=%22%23d4a520%22 stroke-width=%222%22/%3E%3C/svg%3E">');
+  /* prefisso relativo alla radice calcolato sulla pagina: per le schede `prefix` non e' '../' */
+  const cssBase = rel(page.path || 'index.html', 'css');
+  const rootPfx = cssBase.replace(/css$/, '');
   /* solo la home ha la copertina in evidenza: le altre pagine non preloadano nulla */
   if ((page.path || 'index.html') === 'index.html' && !page.immobile) {
-    const pre = evidenzaPreload(prefix);
+    const pre = evidenzaPreload(rootPfx);
     if (pre) c.push(pre);
   }
-  c.push('<link rel="preconnect" href="https://fonts.googleapis.com">');
-  c.push('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
-  c.push('<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">');
-  c.push('<link rel="stylesheet" href="' + rel(page.path || 'index.html', 'css/main.css') + '">');
+  /* Caratteri serviti da qui: il primo carattere del titolo (Playfair 700) parte subito,
+     gli altri li scopre il browser leggendo il CSS inline qui sotto. */
+  c.push('<link rel="preload" href="' + cssBase + '/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>');
+  /* CSS dei caratteri + foglio di stile, tutto dentro la pagina: prima non c'era nessun
+     file che bloccava il disegno. Il CSS non ha url() quindi puo' stare qui senza
+     cambiare i percorsi; i font invece hanno bisogno del prefisso giusto ('' o '../'). */
+  c.push('<style>' + cssInline(rootPfx) + '</style>');
   if (page.critical_css && exists(page.critical_css)) c.push('<style>' + readIf(path.join(ROOT, page.critical_css), '') + '</style>');
   let ld;
   if (page.immobile) ld = { '@context': 'https://schema.org', '@graph': [listingJsonLd(page.immobile), agentJsonLd(), { '@type': 'WebSite', '@id': BASE + '/#website', name: cfg.site.dominio, url: BASE + '/' }] };
@@ -1521,6 +1537,12 @@ function main() {
   fs.writeFileSync(path.join(OUT, 'immobili.html'), cleanHtml(catHtml));
   console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
   fs.copyFileSync(path.join(SRC, 'css', 'main.css'), path.join(OUT, 'css', 'main.css'));
+  /* caratteri self-hosted: .woff2 + licenza OFL accanto ai file */
+  const fontSrc = path.join(SRC, 'fonts');
+  if (fs.existsSync(fontSrc)) {
+    fs.mkdirSync(path.join(OUT, 'css', 'fonts'), { recursive: true });
+    for (const f of fs.readdirSync(fontSrc)) fs.copyFileSync(path.join(fontSrc, f), path.join(OUT, 'css', 'fonts', f));
+  }
   fs.copyFileSync(path.join(SRC, 'js', 'main.js'), path.join(OUT, 'js', 'main.js'));
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap());
   fs.writeFileSync(path.join(OUT, 'llms.txt'), llms());

@@ -294,12 +294,12 @@
     },
     "servizi_attivi": [
       {
-        "nome": "Google Fonts (Playfair Display, Inter)",
-        "tipo": "font",
+        "nome": "Caratteri tipografici (Playfair Display, Inter)",
+        "tipo": "font serviti da questo sito (self-hosted)",
         "cookie": false,
-        "consenso_previo_richiesto": "DA CONFERMARE",
-        "informativa": "https://policies.google.com/privacy",
-        "mitigazione_proposta": "In Fase 2 valutiamo il self-hosting dei .woff2: elimina il trasferimento dell'IP a Google, toglie il dubbio di legittimo interesse e migliora LCP."
+        "consenso_previo_richiesto": false,
+        "informativa": "nessun servizio esterno: i file .woff2 stanno in css/fonts/ e li serve comprarecasarivergaro.it",
+        "mitigazione_proposta": "Fatta il 04/11/2026: i .woff2 sono serviti da questo sito, quindi nessun indirizzo IP trasferito a Google per i caratteri."
       },
       {
         "nome": "FormSubmit",

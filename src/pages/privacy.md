@@ -47,7 +47,7 @@ Il sito non è destinato a minori. Se scopro di aver ricevuto i dati di un minor
 
 ## Cookie e servizi esterni
 
-Descritti integralmente nella [Cookie Policy](cookie.html): una chiave `localStorage` per la tua scelta sul consenso, Google Fonts per i caratteri, iframe di mappa solo dopo "Accetta tutto".
+Descritti integralmente nella [Cookie Policy](cookie.html): una chiave `localStorage` per la tua scelta sul consenso e iframe di mappa solo dopo "Accetta tutto". I caratteri tipografici sono serviti direttamente da questo sito: nessuna richiesta a Google Fonts.
 
 ## Sicurezza
 
