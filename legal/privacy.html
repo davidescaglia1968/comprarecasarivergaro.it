@@ -444,6 +444,12 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .featured-property-specs{margin-top:var(--s3)}
 .featured-property-specs .specs{margin-bottom:0}
 .featured-property-ref{margin-top:var(--s3)}
+
+/* Tabelle (Cookie Policy, Privacy): prima il Markdown le rendeva come una riga di barre */
+.table-wrap{overflow-x:auto;margin:0 0 var(--s3)}
+table{border-collapse:collapse;width:100%;font-size:.9375rem;line-height:1.5}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--gold);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -473,7 +479,7 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 </div></section>
 <section class="section section--alt" id="dati-che-raccolgo-e-perche"><div class="wrap">
 <h2 id="dati-che-raccolgo-e-perche">Dati che raccolgo e perche'</h2>
-<p>| Dato | Perche' | Base giuridica | |---|---|---| | Nome, email, telefono | Rispondere alla tua richiesta e fissare le visite | Esecuzione di misure precontrattuali (art. 6.1.b GDPR) | | Zona, tipologia, budget, messaggio | Capire cosa cerchi e cercare immobili coerenti | Idem — è l'oggetto stesso del servizio | | Indirizzo IP e user agent | Gestiti dal servizio di invio moduli e dall'hosting, non da noi | Interesse legittimo di sicurezza del sito |</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Dato</th><th scope="col">Perche'</th><th scope="col">Base giuridica</th></tr></thead><tbody><tr><td>Nome, email, telefono</td><td>Rispondere alla tua richiesta e fissare le visite</td><td>Esecuzione di misure precontrattuali (art. 6.1.b GDPR)</td></tr><tr><td>Zona, tipologia, budget, messaggio</td><td>Capire cosa cerchi e cercare immobili coerenti</td><td>Idem — è l'oggetto stesso del servizio</td></tr><tr><td>Indirizzo IP e user agent</td><td>Gestiti dal servizio di invio moduli e dall'hosting, non da noi</td><td>Interesse legittimo di sicurezza del sito</td></tr></tbody></table></div>
 <p>Non raccolgo dati "particolari" (salute, orientamento, religioni), non faccio profilazione, non costruisco profili pubblicitari, non uso cookie di tracciamento.</p>
 </div></section>
 <section class="section" id="chi-riceve-i-dati"><div class="wrap">

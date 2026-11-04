@@ -381,6 +381,23 @@ function renderMarkdown(md) {
       continue;
     }
 
+    /* Tabelle Markdown: | a | b | seguita dalla riga di separazione |---|---|.
+       Prima restavano un paragrafo di barre verticali (Cookie Policy e Privacy). */
+    if (/^\s*\|/.test(line) && i + 1 < lines.length && /^\s*\|?[\s:|-]+\|[\s:|-]*$/.test(lines[i + 1])) {
+      flushAll();
+      const celle = (l) => l.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => c.trim());
+      const testa = celle(line);
+      i++;
+      const righe = [];
+      while (i + 1 < lines.length && /^\s*\|/.test(lines[i + 1])) righe.push(celle(lines[++i]));
+      html.push('<div class="table-wrap"><table><thead><tr>' +
+        testa.map((c) => '<th scope="col">' + inline(c) + '</th>').join('') +
+        '</tr></thead><tbody>' +
+        righe.map((r) => '<tr>' + r.map((c) => '<td>' + inline(c) + '</td>').join('') + '</tr>').join('') +
+        '</tbody></table></div>');
+      continue;
+    }
+
     if (/^<\/?(div|section|table|ul|ol|li|p|figure|aside|details|summary|thead|tbody|tr|th|td|h[1-4])[\s>]/.test(line)) {
       flushAll(); html.push(line); continue;
     }
