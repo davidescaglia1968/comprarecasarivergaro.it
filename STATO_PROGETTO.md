@@ -447,3 +447,42 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Effetto collaterale sistemato**: cambiando `description_home`, `404.html` e `grazie.html` — che non avevano una descrizione propria e la ereditavano — avrebbero preso quella della home. Hanno ora una descrizione propria e sensata per la loro funzione.
 
 **Verificato davvero** (sul file costruito e con anteprima locale): `<title>` 58 caratteri · description 155 · `og:title`/`og:description`/`og:url`/`og:image`/`og:site_name`/`og:type`/`og:locale` presenti · canonical `https://comprarecasarivergaro.it/` · `robots: index, follow` · `<html lang="it-IT">` · nessun meta duplicato · **1 H1**, 6 H2, 8 H3 in ordine · JSON-LD valido con nodi `WebSite, RealEstateAgent, Person, FAQPage` · tag bilanciati (nessuna chiusura orfana) · link interni 15, esterni 8, WhatsApp 2, `tel:` 3, 1 form con 10 campi, 2 immagini: **identici a prima** · le sette pagine rispondono 200 dall'anteprima · `node build.js --check` ✓.
+
+## Prestazioni: logo e copertina più leggeri, preload della copertina, tre foto rientrate nel budget (03/11/2026)
+
+**Punto di partenza.** Il referto Lighthouse mobile che mi hai mandato dice **Prestazioni 97 · Accessibilità 100 · Best practice 100 · SEO 100 · Navigazione agentica 2/3**. Da qui sono partito per cercare il peso inutile. Nessuna modifica a testi, layout, colori o URL: solo byte in meno e metadati.
+
+**Quello che ho potuto fare qui (e quello che no).** In questo ambiente non c'è nessun browser installabile e non riesco a raggiungere il sito pubblicato: Lighthouse, LCP, CLS, contrasto e resa a schermo **non li ho misurati**, e non li dichiaro. Ho lavorato su ciò che è verificabile con comandi: peso dei file, markup generato, dati strutturati, `node build.js media` / `--check`.
+
+**Cosa è cambiato.**
+
+- **Logo 60 KB → 8 KB.** `img/brand/logo-davide-scaglia-rivergaro.webp` (703×153, qualità 92): è la stessa immagine, confrontata a 300% di ingrandimento. Il PNG resta nel repository come originale d'archivio; l'header usa il WebP con `decoding="async"`.
+- **Copertina della home: 357 KB → 131 KB sui telefoni.** Nuovo taglio intermedio `-mid` a 1240px (`…-ingresso-portico-01-mid.webp`, 128 KB) e `srcset` 900/1240/2200 sia nella copertina della home sia nelle foto della galleria della scheda. Il telefono prende la 900 (55 KB), il portatile retina la 1240, il pieno arriva solo se serve davvero.
+- **Tre foto fuori budget rientrate** (erano gli unici 3 avvisi di `node build.js media`): cancello cortile 14 **482→362 KB**, facciata cancello 15 **402→306 KB**, lato prato 03 **529→394 KB**, portate da 2200 a 1900px sul lato lungo a qualità 82. Confronto pixel con l'originale: differenza RMSE **0,013** (impercettibile); le dimensioni reali sono lette dal manifesto, quindi `width`/`height`/`aspect-ratio` si aggiornano da soli. Non avendo i JPEG di partenza per queste tre, la ricodifica è di seconda generazione: per questo la qualità è tenuta alta.
+- **`node build.js media` ora esce a 0 avvisi** invece di 1 (nessun file oltre i 400 KB).
+- **Preload della copertina della home**: `<link rel="preload" as="image" imagesrcset imagesizes fetchpriority="high">` con **gli stessi descrittori della `<img>`** (se coincidono il browser non scarica due volte). Solo nella home: le altre pagine non preloadano nulla.
+- **SEO tecnica**: `robots` → `index, follow, max-image-preview:large, max-snippet:-1` (anteprime grandi nelle SERP); `og:image:alt` e `twitter:image`/`twitter:image:alt` con la descrizione **della foto condivisa**, non della pagina; `Person` arricchito con `hasCredential` (`EducationalOccupationalCredential`, «Iscrizione al Registro Imprese — Ruolo Agenti di Affari in Mediazione», riconosciuto dalla Camera di Commercio di Piacenza) dai dati già confermati.
+
+**Pesi misurati nel repository (percorso critico della home):** HTML 21 KB · `main.css` 29 KB (bloccante) · `main.js` 11 KB (defer) · logo 8 KB · copertina 128 KB su desktop retina, 55 KB su telefono. Il CSS della scheda non è cambiato.
+
+**Verificato con comandi:** `node build.js media` → 192 file, **0 avvisi** · `node build.js` ✓ · `node build.js --check` ✓ (nessun dato personale, nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite) · preload presente **solo** in `index.html` (0 occorrenze in `contatti.html`, `chi-sono.html`, scheda) · nessun file immagine oltre 400 KB (massimo 396 KB) · nessun testo, titolo, descrizione o link modificato rispetto alla versione precedente.
+
+**Cosa resta aperto e non è verificato:** resa desktop e mobile, LCP/CLS reali, contrasto, aree di tocco, errori in console, indicizzazione (Search Console non è accessibile) e **quale dei tre controlli di «Navigazione agentica» fallisce** — serve il JSON del referto Lighthouse. Per abbattere ancora il percorso critico restano due strade: CSS critico inline per la home (il meccanismo in `build.js` c'è, `src/css/critical.css` è ancora un segnaposto) e i tagli `-mid` per tutte le foto di galleria (+24 MB nel repository).
+
+## Foto alleggerite, `llms.txt` sistemato, «Navigazione agentica» capita (04/11/2026)
+
+**Foto: 45,5 MB → 31,4 MB (−14,1 MB, −31%).** Ho ripassato **tutto** il catalogo immagini con ImageMagick, da solo, senza toccare i file originali già pubblicati a mano:
+
+- le **foto a piena dimensione** (quelle del lightbox) passano dal lato lungo 2200 a **1800px** a qualità 84; quelle che restavano sopra i 200 KB hanno avuto un secondo passaggio mirato (1700px q80, 1600px q78, 1500px q78 per la più rumorosa), fermandosi comunque **sotto i 230 KB**. Totale full-size: **36 MB → 22 MB (−39%)**;
+- **nessuna immagine supera ora i 230 KB** (prima il massimo era 529 KB), e `node build.js media` resta a **0 avvisi**;
+- le **miniature 900px** non sono state toccate (9,8 MB in tutto, in media 50 KB l'una): sono già leggere e sono quelle che si vedono nella griglia;
+- confronto visivo su un ritaglio al 200% della foto più compressa (`esterno-lato-prato-03`, 529→220 KB): differenza **impercettibile**; RMSE misurato contro l'originale 0,022-0,024 sulle tre più aggressive, 0,010-0,013 sulle altre;
+- `width`/`height`/`aspect-ratio` di ogni `<figure>` si sono aggiornati da soli dal manifesto: **192 figure**, tutte coerenti con il file reale.
+
+**Il controllo che falliva in «Navigazione agentica».** Ho scaricato il pacchetto ufficiale di Lighthouse (`npm pack lighthouse`) e letto la configurazione `agentic-browsing`: la categoria pesa **7 audit** — `agent-accessibility-tree`, `webmcp-form-coverage`, `webmcp-registered-tools`, `webmcp-schema-validity`, `cumulative-layout-shift`, `llms-txt`, `ard-schema`. Sul nostro sito sono applicabili tre: l'albero di accessibilità (con Accessibilità 100 passa), il CLS, e **`llms-txt`**. Quello pretende, testualmente: un **H1**, **almeno un link Markdown `[testo](url)`** e almeno 50 caratteri. Il nostro `llms.txt` conteneva H1 e 2 KB di testo ma **zero link Markdown** — solo URL nudi, che per quell'audit non contano come link: era l'unico dei tre a poter fallire, ed è quello che spiega il **2/3**.
+
+**Correzione**: `llms.txt` ora ha una sezione `## Pagine` con link a home, catalogo, contatti, chi sono, e la scheda è scritta come `[titolo](url)` invece che con l'URL in fondo. Verificato con **le stesse tre espressioni regolari dell'audit** sul file generato: H1 ✓, link ✓, 2314 caratteri ✓ → punteggio atteso 1. Nessun fatto nuovo: gli stessi contenuti, in forma linkabile. Gli altri audit della categoria restano non applicabili: i tre WebMCP perché il sito non espone strumenti WebMCP, `ard-schema` perché senza segnale esplicito e con `/.well-known/ard.json` assente Lighthouse lo segna come non applicabile (non come errore).
+
+**Verificato:** `node build.js media` 192 file / **0 avvisi** · `node build.js` ✓ · `node build.js --check` ✓ · testo delle 5 pagine **identico** alla versione precedente (confronto del testo estratto dal markup) · `llms.txt` conforme ai criteri dell'audit.
+
+**Resta fuori da qui:** nessun browser e nessun accesso diretto al sito (TLS chiuso), quindi **non misuro** LCP/CLS né vedo la resa a schermo. Il sito pubblicato lo leggo via HTML (ho verificato che la home online e il suo `llms.txt` corrispondono alla versione precedente al merge di questa PR).

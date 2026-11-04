@@ -193,6 +193,16 @@ function personJsonLd() {
     worksFor: { '@id': BASE + '/#agent' },
     knowsAbout: ['Case in vendita a Rivergaro', 'Val Trebbia', 'Acquisto di casa'],
   };
+  /* Credenziale presa dal config, la stessa verificata in visura e gia' pubblicata in
+     "Chi sono" e "Contatti": non e' un titolo aggiunto, e' quello che c'e'. */
+  if (isConfirmed(pro.iscrizione_ruolo)) {
+    p.hasCredential = {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Iscrizione al Registro Imprese — Ruolo Agenti di Affari in Mediazione',
+      description: pro.iscrizione_ruolo,
+      recognizedBy: { '@type': 'Organization', name: 'Camera di Commercio di Piacenza' },
+    };
+  }
   return p;
 }
 function agentJsonLd() {
@@ -671,8 +681,11 @@ function galleria(p, dopoPrimoGruppo = '') {
       const eager = isFeatured ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
       /* il descrittore w e' il lato lungo reale: per i ritratti (lato lungo 1600-2000) il solo
          confronto tw < w avrebbe escluso lo srcset e il telefono avrebbe scaricato il pieno */
+      /* taglia intermedia (-mid, 1240px) quando esiste: evita che il retina scarichi il pieno */
+      const midFile = file.replace(/\.webp$/i, '-mid.webp');
+      const midSrc = midFile !== file && exists('img/' + p.slug + '/' + midFile) ? rel(pagePath, 'img/' + p.slug + '/' + midFile) : '';
       const srcset = derivato && tl < latoLungo
-        ? `srcset="${thumbSrc} ${tw}w, ${src} ${latoLungo}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
+        ? `srcset="${thumbSrc} ${tw}w, ${midSrc ? midSrc + ' 1240w, ' : ''}${src} ${latoLungo}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
       const lightboxCaption = caption || ((p.titolo || 'Immobile') + ' — ' + (section.titolo || 'foto'));
       return `<figure class="gallery-card${isFeatured ? ' gallery-card--featured' : ''}" style="--gallery-ratio:${w} / ${h}">
         <a class="shot" href="${src}" data-lightbox="${attr(p.slug)}" data-caption="${attr(lightboxCaption)}" style="aspect-ratio:${w}/${h}">
@@ -920,7 +933,7 @@ function head(page, prefix) {
   c.push(`<title>${esc(title)}</title>`);
   c.push('<meta name="description" content="' + attr(desc) + '">');
   if (page.noindex || page.robots_off || !cfg.site.robots_indexable) c.push('<meta name="robots" content="noindex, nofollow">');
-  else c.push('<meta name="robots" content="index, follow">');
+  else c.push('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">');
   c.push('<meta name="author" content="Immobili a Rivergaro">');
   c.push(`<meta name="theme-color" content="${attr(cfg.site.theme_color)}">`);
   c.push('<link rel="canonical" href="' + attr(url) + '">');
@@ -938,8 +951,23 @@ function head(page, prefix) {
     c.push('<meta property="og:image" content="' + attr(abs(BASE, '/' + ogImg)) + '">');
     const ogm = mediaCache.items.find((i) => i.path === ogImg);
     if (ogm && ogm.width) c.push('<meta property="og:image:width" content="' + ogm.width + '"><meta property="og:image:height" content="' + ogm.height + '">');
+    /* l'alt descrive l'immagine che si vede, non la pagina: se la condivisione mostra la
+       copertina di un immobile, l'alt e' quello dell'immobile */
+    /* anche quando la copertina arriva dal config (home), l'alt deve descrivere quella foto */
+    const ogProp = page.immobile || tutteProp().find((x) => (x.immagini || []).filter(Boolean).some((f) => 'img/' + x.slug + '/' + f === ogImg));
+    const ogAlt = page.og_image_alt
+      || (ogProp ? ((ogProp.tipologia || 'Immobile') + ' a ' + (ogProp.zona || ogProp.comune || 'Rivergaro'))
+                 : 'Davide Scaglia — Immobili a Rivergaro');
+    c.push('<meta property="og:image:alt" content="' + attr(ogAlt) + '">');
+    c.push('<meta name="twitter:image" content="' + attr(abs(BASE, '/' + ogImg)) + '">');
+    c.push('<meta name="twitter:image:alt" content="' + attr(ogAlt) + '">');
   }  c.push('<meta name="twitter:card" content="' + attr(cfg.seo_geo.twitter_card) + '">');
   c.push('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Cpath d=%22M4 14L16 4l12 10v14H4z%22 fill=%22none%22 stroke=%22%23d4a520%22 stroke-width=%222%22/%3E%3C/svg%3E">');
+  /* solo la home ha la copertina in evidenza: le altre pagine non preloadano nulla */
+  if ((page.path || 'index.html') === 'index.html' && !page.immobile) {
+    const pre = evidenzaPreload(prefix);
+    if (pre) c.push(pre);
+  }
   c.push('<link rel="preconnect" href="https://fonts.googleapis.com">');
   c.push('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
   c.push('<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">');
@@ -1111,7 +1139,7 @@ function mediaScan() {
   const incoming = walk(path.join(ROOT, 'img', '_in')).filter((f) => IMG_EXT.has(path.extname(f).toLowerCase()) || VID_EXT.has(path.extname(f).toLowerCase()));
   const items = [];
   const warnings = [];
-  const derivati = (f) => /-thumb\.(webp|avif|jpg|jpeg|png)$/.test(path.basename(f)) || /(^|\/)(brand|legale)(\/|$)/.test(f.replace(ROOT + '/', ''));
+  const derivati = (f) => /-(thumb|mid)\.(webp|avif|jpg|jpeg|png)$/.test(path.basename(f)) || /(^|\/)(brand|legale)(\/|$)/.test(f.replace(ROOT + '/', ''));
   for (const f of files.concat(incoming)) {
     /* le miniature (-thumb) sono derivate dai file pieni e i loghi/documenti non sono content
        di un annuncio: contarli qui significa raddoppiare il rapporto e generare bozze fantasma */
@@ -1224,6 +1252,28 @@ function buildDraft() {
 function homeFaq() {
   return (cfg.contatti_sezione.risposte_brevi || []).filter((x) => x && x.d && x.r);
 }
+/* LCP della home: la copertina e' la prima immagine visibile. Un <link rel="preload">
+   in <head> la fa partire prima che il parser arrivi al markup. I descrittori sono gli
+   stessi della <img> qui sotto: se coincidono il browser non la scarica due volte. */
+function evidenzaPreload(prefix) {
+  const list = catalogo();
+  if (list.length !== 1) return '';
+  const p = list[0];
+  const file = (p.immagini || []).filter(Boolean)[0];
+  if (!file) return '';
+  const meta = imgMeta(p.slug, file);
+  const fw = (meta && meta.width) || 0;
+  if (!fw) return '';
+  const thumb = file.replace(/\.webp$/i, '-thumb.webp');
+  const mid = file.replace(/\.webp$/i, '-mid.webp');
+  if (thumb === file || !exists('img/' + p.slug + '/' + thumb)) return '';
+  const haMid = mid !== file && exists('img/' + p.slug + '/' + mid);
+  const src = prefix + 'img/' + p.slug + '/';
+  const tw = Math.min(900, fw);
+  const set = `${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w`;
+  return `<link rel="preload" as="image" href="${attr(src + file)}" imagesrcset="${attr(set)}" imagesizes="(max-width: 900px) 100vw, 620px" fetchpriority="high">`;
+}
+
 function immobileEvidenza() {
   const list = catalogo();
   if (!list.length) {
@@ -1241,11 +1291,15 @@ function immobileEvidenza() {
   const photo = file
     ? (() => {
         const thumb = file.replace(/\.webp$/i, '-thumb.webp');
+        const mid = file.replace(/\.webp$/i, '-mid.webp');
         const fw = (meta && meta.width) || 1200;
         const tw = Math.min(900, fw); /* le miniature sono generate a 900px sul lato lungo */
+        /* taglia intermedia: il riquadro della copertina e' largo al massimo 620px CSS, quindi a
+           DPR 2 servono ~1240px. Senza la -mid il browser retina scaricava il pieno (357KB). */
+        const haMid = mid !== file && exists('img/' + p.slug + '/' + mid);
         const src = `img/${p.slug}/`;
         const set = thumb !== file && exists('img/' + p.slug + '/' + thumb)
-          ? ` srcset="${src}${thumb} ${tw}w, ${src}${file} ${fw}w" sizes="(max-width: 900px) 100vw, 620px"` : '';
+          ? ` srcset="${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w" sizes="(max-width: 900px) 100vw, 620px"` : '';
         /* LCP: la copertina della home e' la prima immagine della pagina, non si carica lazy.
            Con srcset, pero', i telefoni scaricano la miniatura invece di 357KB. */
         return `<img src="img/${attr(p.slug)}/${attr(file)}"${set} alt="${attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || ''))}" width="${meta && meta.width || 1200}" height="${meta && meta.height || 800}" fetchpriority="high" decoding="async">`;
@@ -1348,11 +1402,25 @@ function llms() {
   L.push('- Email: ' + pro.email, '');
   L.push('## Zona');
   L.push('- Rivergaro (PC), in Val Trebbia. La Val Trebbia è un riferimento geografico, non una dichiarazione di copertura dell’intera valle.', '');
+  /* Le pagine vanno scritte come link Markdown [testo](url): l'audit Lighthouse
+     `llms-txt` di «Navigazione agentica» controlla H1, almeno un link e lunghezza
+     minima, e un URL nudo non conta come link. Le pagine elencate devono esistere. */
+  const pagine = [
+    ['index.html', 'Home: case in vendita a Rivergaro e Val Trebbia'],
+    ['immobili.html', 'Catalogo degli immobili disponibili'],
+    ['contatti.html', 'Contatti diretti'],
+    ['chi-sono.html', 'Chi sono'],
+  ].filter(([f]) => exists(f));
+  if (pagine.length) {
+    L.push('## Pagine');
+    pagine.forEach(([f, t]) => L.push(`- [${t}](${BASE}/${f === 'index.html' ? '' : f})`));
+    L.push('');
+  }
   L.push('## Immobili pubblicati');
   if (!elencoLlms.length) L.push('Nessun immobile pubblicato al momento.');
   else elencoLlms.forEach((p) => {
     const details = [[p.zona, p.comune].filter(Boolean).join(', '), p.tipologia, p.unita_abitative ? p.unita_abitative + ' unità abitative' : null, p.vani ? p.vani + ' vani' : null].filter(Boolean);
-    L.push(`- ${p.titolo} — ${details.join(' · ')} · ${BASE}/immobile/${p.slug}.html`);
+    L.push(`- [${p.titolo}](${BASE}/immobile/${p.slug}.html) — ${details.join(' · ')}`);
     if (p.descrizione) L.push('  ' + p.descrizione);
   });
   if (isConfirmed(cfg.contatti_sezione.orari)) L.push('', '## Orari di apertura', cfg.contatti_sezione.orari, '');
