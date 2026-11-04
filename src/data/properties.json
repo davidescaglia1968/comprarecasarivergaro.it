@@ -91,6 +91,40 @@
       "superficie": null,
       "locali": null,
       "unita_abitative": 3,
+      "unita": [
+        {
+          "id": "piano-primo",
+          "nome": "Piano primo",
+          "mq": 169,
+          "rendita_catastale": 764.36,
+          "ape_classe": "E",
+          "ape_indice": 228.8
+        },
+        {
+          "id": "piano-rialzato",
+          "nome": "Piano rialzato 1",
+          "mq": 94,
+          "rendita_catastale": 400.25,
+          "ape_classe": "E",
+          "ape_indice": 230.33
+        },
+        {
+          "id": "piano-rialzato-2",
+          "nome": "Piano rialzato 2",
+          "mq": 115,
+          "rendita_catastale": 440.28,
+          "ape_classe": "F",
+          "ape_indice": 326.51
+        },
+        {
+          "id": "box",
+          "nome": "Box",
+          "mq": 84,
+          "rendita_catastale": 301.2,
+          "ape_classe": null,
+          "ape_indice": null
+        }
+      ],
       "pertinenze": null,
       "caratteristiche": [
         "12 vani",

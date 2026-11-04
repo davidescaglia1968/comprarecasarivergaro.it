@@ -517,3 +517,23 @@ Dopo il deploy di font self-hosted e CSS inline il punteggio mobile resta **98**
 **Verificato:** `node build.js` ✓ 9 pagine · `node build.js --check` ✓ · `srcset` della copertina = `720w, 900w, 1240w, 1700w` sia nella `<img>` sia nel preload · logo senza `fetchpriority` · nessuna parola dei testi cambiata.
 
 **Perché 98 è probabilmente il tetto su GitHub Pages.** A questo livello i due punti che mancano non stanno più nella pagina: il tempo di risposta del server (GitHub Pages non ha una CDN configurable e non permette header di cache lunghi) e la variabilità della misura. Le strade vere per il 100 sono due, entrambe fuori dal repository: mettere Cloudflare davanti al dominio, oppure spostare l'hosting. Con i numeri di LCP e CLS dalla sezione «Diagnostica» di PageSpeed si può invece capire se resta qualcosa da fare lato pagina.
+
+## Superfici, rendite catastali e APE per ogni unità (04/11/2026)
+
+**Dati pubblicati** (forniti da Davide, ora nella scheda come numeri veri, non come testo):
+
+| Unità | Superficie | Rendita catastale | APE |
+|---|---|---|---|
+| Piano primo | 169 m² | 764,36 € | classe E · 228,80 |
+| Piano rialzato 1 | 94 m² | 400,25 € | classe E · 230,33 |
+| Piano rialzato 2 | 115 m² | 440,28 € | classe F · 326,51 |
+| Box | 84 m² | 301,20 € | — (non indicato) |
+
+**Dove vivono.** Nuovo blocco `unita` nel dato dell'immobile (`src/data/properties.json`), con un `id` che coincide con quello della galleria della stessa unità: così i numeri non sono scritti due volte. Nessun totale calcolato e nessuna superficie dichiarata "commerciale" o "calpestabile": solo quello che è stato detto.
+
+**Come si vedono.**
+- Una sezione **«Superfici, rendite catastali e APE»** con tabella vera (`<th scope="col">` per le colonne, `<th scope="row">` per il nome dell'unità, `<caption>` per i lettori di schermo), subito dopo il testo dell'immobile e prima delle foto degli interni. Sotto, una riga di nota: rendita in euro, Box senza attestato indicato, e che per l'APE sono riportati classe e indice dell'attestato.
+- Sotto il titolo di **ogni galleria di unità** una riga sola con i suoi numeri: «169 m² · rendita catastale 764,36 € · APE classe E (228,80)». Chi guarda le foto del piano primo ha i suoi dati davanti, senza tornare indietro.
+- Numeri formattati all'italiana (`toLocaleString('it-IT')`): 764,36 e non 764.36.
+
+**Verificato:** `node build.js` ✓ · `node build.js --check` ✓ · ordine delle sezioni nella scheda = Esterni → L'immobile → Superfici/rendite/APE → Piano primo → Piano rialzato 1 → Piano rialzato 2 → Caratteristiche → richiesta · 4 righe di tabella con i valori esatti · 3 righe sotto i titoli delle gallerie (il Box non ha galleria) · nessun'altra pagina toccata.
