@@ -444,6 +444,12 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .featured-property-specs{margin-top:var(--s3)}
 .featured-property-specs .specs{margin-bottom:0}
 .featured-property-ref{margin-top:var(--s3)}
+
+/* Tabelle (Cookie Policy, Privacy): prima il Markdown le rendeva come una riga di barre */
+.table-wrap{overflow-x:auto;margin:0 0 var(--s3)}
+table{border-collapse:collapse;width:100%;font-size:.9375rem;line-height:1.5}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--gold);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -475,7 +481,7 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 </div></section>
 <section class="section section--alt" id="servizi-esterni-che-possono-vedere-il-tuo-indirizzo-ip"><div class="wrap">
 <h2 id="servizi-esterni-che-possono-vedere-il-tuo-indirizzo-ip">Servizi esterni che possono vedere il tuo indirizzo IP</h2>
-<p>| Servizio | Cosa fa | Quando viene caricato | |---|---|---| | FormSubmit (<code>formsubmit.co</code>) | Riceve i dati del modulo e li inoltra a <code>info@immobiliarescaglia.com</code> | Solo se invii un modulo | | Google Street View | Anteprima della zona dell'immobile | <strong>Solo</strong> se acconsenti con "Accetta tutto" e la richiedi: senza consenso l'iframe non esiste nel codice della pagina |</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Servizio</th><th scope="col">Cosa fa</th><th scope="col">Quando viene caricato</th></tr></thead><tbody><tr><td>FormSubmit (<code>formsubmit.co</code>)</td><td>Riceve i dati del modulo e li inoltra a <code>info@immobiliarescaglia.com</code></td><td>Solo se invii un modulo</td></tr><tr><td>Google Street View</td><td>Anteprima della zona dell'immobile</td><td><strong>Solo</strong> se acconsenti con "Accetta tutto" e la richiedi: senza consenso l'iframe non esiste nel codice della pagina</td></tr></tbody></table></div>
 <p>I caratteri tipografici (Playfair Display e Inter) sono serviti <strong>direttamente da questo sito</strong>, non da Google Fonts: nessuna richiesta a terzi e nessun indirizzo IP trasferito per mostrarli.</p>
 <p>Se selezioni <strong>"Solo tecnici"</strong>, gli iframe di mappa non vengono mai caricati e i moduli restano disponibili perché il loro funzionamento è necessario alla richiesta che stai inviando.</p>
 </div></section>
