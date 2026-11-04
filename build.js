@@ -947,7 +947,15 @@ function cssInline(prefix) {
     CSS_RAW = readIf(path.join(SRC, 'css', 'fonts.css'), '') + '\n' + readIf(path.join(SRC, 'css', 'main.css'), '');
     if (!CSS_RAW.trim()) throw new Error('CSS non trovato: controlla src/css/fonts.css e src/css/main.css');
   }
-  return CSS_RAW.replace(/%P%/g, prefix);
+  /* i commenti non servono al browser: -3 KB in ogni pagina (il gzip quasi non cambia,
+     ma il parser ha meno da leggere e il file resta piu' leggero da solo) */
+  return CSS_RAW
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/[ \t]*\n[ \t]*/g, '\n')
+    .replace(/\n{2,}/g, '\n')
+    .replace(/[ \t]{2,}/g, ' ')
+    .replace(/%P%/g, prefix)
+    .trim();
 }
 
 function head(page, prefix) {
@@ -1172,7 +1180,7 @@ function mediaScan() {
   const incoming = walk(path.join(ROOT, 'img', '_in')).filter((f) => IMG_EXT.has(path.extname(f).toLowerCase()) || VID_EXT.has(path.extname(f).toLowerCase()));
   const items = [];
   const warnings = [];
-  const derivati = (f) => /-(thumb|mid)\.(webp|avif|jpg|jpeg|png)$/.test(path.basename(f)) || /(^|\/)(brand|legale)(\/|$)/.test(f.replace(ROOT + '/', ''));
+  const derivati = (f) => /-(thumb|mid|small)\.(webp|avif|jpg|jpeg|png)$/.test(path.basename(f)) || /(^|\/)(brand|legale)(\/|$)/.test(f.replace(ROOT + '/', ''));
   for (const f of files.concat(incoming)) {
     /* le miniature (-thumb) sono derivate dai file pieni e i loghi/documenti non sono content
        di un annuncio: contarli qui significa raddoppiare il rapporto e generare bozze fantasma */
@@ -1301,9 +1309,11 @@ function evidenzaPreload(prefix) {
   const mid = file.replace(/\.webp$/i, '-mid.webp');
   if (thumb === file || !exists('img/' + p.slug + '/' + thumb)) return '';
   const haMid = mid !== file && exists('img/' + p.slug + '/' + mid);
+  const smallF = file.replace(/\.webp$/i, '-small.webp');
+  const haSmall = smallF !== file && exists('img/' + p.slug + '/' + smallF);
   const src = prefix + 'img/' + p.slug + '/';
   const tw = Math.min(900, fw);
-  const set = `${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w`;
+  const set = `${haSmall ? src + smallF + ' 720w, ' : ''}${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w`;
   return `<link rel="preload" as="image" href="${attr(src + file)}" imagesrcset="${attr(set)}" imagesizes="(max-width: 900px) 100vw, 620px" fetchpriority="high">`;
 }
 
@@ -1325,14 +1335,16 @@ function immobileEvidenza() {
     ? (() => {
         const thumb = file.replace(/\.webp$/i, '-thumb.webp');
         const mid = file.replace(/\.webp$/i, '-mid.webp');
+        const smallF = file.replace(/\.webp$/i, '-small.webp');
         const fw = (meta && meta.width) || 1200;
         const tw = Math.min(900, fw); /* le miniature sono generate a 900px sul lato lungo */
         /* taglia intermedia: il riquadro della copertina e' largo al massimo 620px CSS, quindi a
            DPR 2 servono ~1240px. Senza la -mid il browser retina scaricava il pieno (357KB). */
         const haMid = mid !== file && exists('img/' + p.slug + '/' + mid);
+        const haSmall = smallF !== file && exists('img/' + p.slug + '/' + smallF);
         const src = `img/${p.slug}/`;
         const set = thumb !== file && exists('img/' + p.slug + '/' + thumb)
-          ? ` srcset="${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w" sizes="(max-width: 900px) 100vw, 620px"` : '';
+          ? ` srcset="${haSmall ? src + smallF + ' 720w, ' : ''}${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w" sizes="(max-width: 900px) 100vw, 620px"` : '';
         /* LCP: la copertina della home e' la prima immagine della pagina, non si carica lazy.
            Con srcset, pero', i telefoni scaricano la miniatura invece di 357KB. */
         return `<img src="img/${attr(p.slug)}/${attr(file)}"${set} alt="${attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || ''))}" width="${meta && meta.width || 1200}" height="${meta && meta.height || 800}" fetchpriority="high" decoding="async">`;

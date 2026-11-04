@@ -505,3 +505,15 @@ Davide ha risposto **"rialzato"**: i nomi dei JPG continuano a dire "Piano T" ma
 **Non verificato:** resa a schermo e punteggio PSI (serve un browser). Se il pannello mostra ancora meno di 100, i sospetti residui sono il TTFB di GitHub Pages e il CLS da scambio carattere: su quest'ultimo si può lavorare con un fallback metrico (`size-adjust`), ma va tarato guardando la pagina.
 
 **Bonus trovato strada facendo.** La tabella della Cookie Policy e di un paragrafo della Privacy usciva a schermo come **una riga di barre verticali** (`| Servizio | Cosa fa | …`): il generatore Markdown non conosceva la sintassi delle tabelle. Aggiunto il supporto (riga di separazione riconosciuta, `<th scope="col">` per l'intestazione, celle con corsivo/grassetto/link normali) e quattro regole CSS per la resa: ora sono tabelle vere, leggibili e con lo stesso testo di prima. Verificato: nessuna parola persa rispetto alla versione precedente.
+
+## Ultimi ritocchi sul percorso critico (04/11/2026)
+
+Dopo il deploy di font self-hosted e CSS inline il punteggio mobile resta **98**. Senza il referto non posso sapere quale dei cinque pesi perde i due punti (`TTFB`, `FCP`, `LCP`, `CLS`, `TBT`), quindi ho fatto solo ritocchi a rischio zero, ognuno verificabile:
+
+- **Il logo non ruba più priorità.** Aveva `fetchpriority="high"` pur essendo 8 KB e non essendo l'elemento LCP: ora è un'immagine normale con `decoding="async"`, `width`/`height` espliciti. La priorità alta resta solo su quello che può essere l'elemento più grande della pagina.
+- **Nuovo gradino 720w per la copertina** (`…-ingresso-portico-01-small.webp`, 43 KB): su un telefono a 412 px e DPR 1,75 il browser sceglieva la 900w da 53 KB, ora sceglie la 720w. `srcset` e preload allineati (stessi identici descrittori), `-small` trattato come derivato nel manifesto, quindi `node build.js media` non lo conta due volte.
+- **CSS inline più asciutto**: via i commenti e le righe compattate prima di scrivere il `<style>`; la home scende da 52 a **50 KB** (12 KB compressi).
+
+**Verificato:** `node build.js` ✓ 9 pagine · `node build.js --check` ✓ · `srcset` della copertina = `720w, 900w, 1240w, 1700w` sia nella `<img>` sia nel preload · logo senza `fetchpriority` · nessuna parola dei testi cambiata.
+
+**Perché 98 è probabilmente il tetto su GitHub Pages.** A questo livello i due punti che mancano non stanno più nella pagina: il tempo di risposta del server (GitHub Pages non ha una CDN configurable e non permette header di cache lunghi) e la variabilità della misura. Le strade vere per il 100 sono due, entrambe fuori dal repository: mettere Cloudflare davanti al dominio, oppure spostare l'hosting. Con i numeri di LCP e CLS dalla sezione «Diagnostica» di PageSpeed si può invece capire se resta qualcosa da fare lato pagina.
