@@ -537,3 +537,50 @@ Dopo il deploy di font self-hosted e CSS inline il punteggio mobile resta **98**
 - Numeri formattati all'italiana (`toLocaleString('it-IT')`): 764,36 e non 764.36.
 
 **Verificato:** `node build.js` ✓ · `node build.js --check` ✓ · ordine delle sezioni nella scheda = Esterni → L'immobile → Superfici/rendite/APE → Piano primo → Piano rialzato 1 → Piano rialzato 2 → Caratteristiche → richiesta · 4 righe di tabella con i valori esatti · 3 righe sotto i titoli delle gallerie (il Box non ha galleria) · nessun'altra pagina toccata.
+
+## Passata SEO/GEO completa e ristrutturazione dei titoli (09/11/2026)
+
+Giornata di lavoro partita da un'analisi integrale del sito (documento: `AUDIT_2026-11-09.md`), chiusa con le correzioni elencate qui. Obiettivo dichiarato: prima pagina su Google e risposte corrette dai motori generativi (GEO/AI).
+
+### Titoli, H1 e gerarchia (richiesta esplicita di Davide)
+
+- **H1 della home = `Comprare casa a Rivergaro Val Trebbia`**, esattamente come chiesto: senza «e in» e senza «: troviamo insieme la soluzione giusta.». La regola è annotata in `src/data/site-config.json` (`_regola_title_home`) perché nessuno la riscriva per sbaglio.
+- Title della home e H1 restano distinti per funzione: il title porta chiave + marca entro 60 caratteri (`Case in vendita a Rivergaro e Val Trebbia | Davide Scaglia`), l'H1 porta la chiave decisa da Davide.
+- Suffisso di brand unico su tutte le pagine indicizzabili: `| Davide Scaglia` (prima era un misto di `| comprarecasarivergaro.it` e domini nudi). Funzione `pageTitle()` in `build.js`: taglio a parola + suffisso, tetto 60 caratteri.
+- Description riscritte dove sforavano o non dicevano niente: tutte entro 165 caratteri (verifica automatica in `--check`).
+- H2 della home rinominati in chiave di ricerca e con ancore stabili scritte a mano: `## Case in vendita a Rivergaro in questo momento {#immobile-in-evidenza}`, `## Cerchi un'altra casa a Rivergaro? {#ricerca-personalizzata}`, `## Domande frequenti su Rivergaro e Val Trebbia` (prima «Tre domande veloci» con quattro domande sotto). L'ancora del menu «Se cerchi altro» ora punta a `#ricerca-personalizzata` (config `navigazione.ancora_ricerca`), non più a `#la-villa-non-fa-per-te` che etichettava «Contatti» una sezione che non c'entra.
+- Catalogo (`immobili.html`): H1 nuovo `Immobili in vendita a Rivergaro e in Val Trebbia` + due H2 (`Proposte disponibili in questo momento`, `Non trovi quello che cerchi?`) e un paragrafo sulle frazioni: prima la pagina aveva un H1 nudo, un salto h1→h3 e ~90 parole. Le card ora stanno sotto un H2 vero.
+- Contatti e Chi sono: H1 con nome e qualifica (`Contatti con Davide Scaglia, agente immobiliare a Rivergaro`, `Davide Scaglia, agente immobiliare a Rivergaro dal 2007`), H2 parlanti al posto di «I recapiti» / «Le qualifiche».
+- Scheda immobile: title SEO dedicato (`titolo_seo` nel dato, `Villa con 3 unità abitative ad Ancarano, Rivergaro`, 50 caratteri) invece del titolo lungo 85 caratteri troncato in SERP.
+- Nuovo controllo in `node build.js --check`: gerarchia senza salti (h1→h3 ecc.), id univoci per documento, descrittori `srcset` uguali alla larghezza reale del file, title ≤ 62 e description ≤ 165 caratteri.
+
+### Roba tecnica che i motori vedono
+
+- **26 id duplicati eliminati**: `wrapSections()` non copia più l'id dell'H2 sulla `<section>`; la sezione è etichettata con `aria-labelledby` (accessibilità uguale, HTML valido).
+- **Favicon vera**: `/favicon.ico` restituiva la pagina 404 (35 KB di HTML con status 404) a ogni richiesta di browser e crawler. Ora esistono `favicon.ico` (32×32) e `apple-touch-icon.png` (180×180), generati da `tools/make-brand-assets.js` (zero dipendenze) con la stessa figura dell'icona inline, copiati in radice dalla build e dichiarati in `<head>` con percorso relativo corretto anche sotto `/legal/` e `/immobile/`.
+- **Canonical tolto dalle pagine noindex** (404, grazie): dichiarare canonico un URL d'errore o di ringraziamento è un segnale contraddittorio.
+- **og:image solo dove ha senso**: le pagine di servizio (privacy, cookie, grazie, 404) non condividono più la foto della villa; senza immagine il `twitter:card` passa a `summary`.
+- **JSON-LD piùonesto**: `offers` pubblicato solo se il prezzo è un numero (prima usciva `"price": "Prezzo in definizione"`, che per un motore è un prezzo finto); `image` capped a 10 foto campionate uniformemente (prima 192 URL, 55 KB di JSON-LD nella scheda); le unità abitative entrano come `additionalProperty` con m², rendita e APE.
+- **`lastmod` onesto fino in fondo**: nuovo archivio `src/data/lastmod.json` con hash del contenuto per pagina; la sitemap aggiorna la data solo quando la pagina cambia davvero, e la scheda resta a `data_modifica` dell'immobile (2026-11-03) anche se rigeneri il sito.
+- **llms.txt da brochure a fonte citabile**: sede completa con frazione, denominazione dell'impresa, P.IVA, REA, iscrizione al ruolo, e per l'immobile pubblicato i dati di ogni unità (m², rendita catastale, classe APE e indice) più la riga «Prezzo: non pubblicato». Prima un motore generativo che cercava la sede trovava solo quella del sito gemello.
+- **Menu senza voci fantasma**: «Zone» e «Guide» non vengono più dichiarate e scartate con avviso a ogni build; la home ora ha «Immobili» in menu (mancava).
+
+### Il logo che diceva un'altra cosa
+
+`img/brand/logo-davide-scaglia-rivergaro.png` contiene la scritta **«DAVIDE SCAGLIA — VENDERE CASA A PIACENZA»**: è il marchio del sito gemello, e in testata la riga sbagliata veniva coperta da un riquadro CSS in sovrapposizione (`background #1e1c18` allineato a percentuali fisse). Fragile e contraddittorio: l'header di un sito per chi *compra* a Rivergaro mostrava il claim di chi *vende* a Piacenza, e quel file era dichiarato `logo` nel JSON-LD. Ora la testata è un lockup tipografico con i font del sito (nome + claim «IMMOBILI A RIVERGARO»), il JSON-LD dichiara come logo il glifo di marca (`apple-touch-icon.png`), e il vecchio PNG resta in `img/brand/` non referenziato. **Quando Davide consegna un logo Rivergaro corretto si rimette l'immagine cambiando una costante in `build.js`.** Conseguenza positiva: l'elemento LCP della home non è più un'immagine nell'header.
+
+### Cookie e privacy coerenti con la realtà
+
+Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo col consenso: **sul sito non esiste nessun iframe Street View** (quella roba vive su `casepodenzano.it`). Testo del banner e tabella dei servizi esterni riscritti: resta solo FormSubmit, che vede l'IP quando invii un modulo, cioè quando glielo chiedi tu.
+
+### Verifica
+
+`node build.js` ✓ 9 pagine senza avvisi · `node build.js --check` ✓ (zero problemi) · title 40–58 caratteri su tutte le pagine · description 99–161 · un H1 per pagina · nessun id duplicato · srcset = larghezze reali · sitemap con lastmod per contenuto · `data/properties.json` pubblico invariato a parità di dato.
+
+### Restano aperti, in mano a Davide (non risolvibili dal repository)
+
+1. **Prezzo della villa**: i portali lo pubblicano (470.000 €) e la policy interna (`publish_policy.scadenza_bozza`, 14 giorni) è scaduta da 17; il sito dice «Prezzo in definizione». Serve una decisione: pubblicare il prezzo confermato o togliere la dicitura ambigua.
+2. **Search Console**: verifica e copertura non verificabili da qui (`seo_geo.verifica_search_console` = DA CONFERMARE).
+3. **HTTPS forzato** su GitHub Pages spento (`https_enforced: false`) e `www` che punta all'apice con certificato solo apice: vanno accesi/sistemati dal pannello, non dal codice.
+4. **Attivazione FormSubmit**: al primo invio arriva la mail di conferma da cliccare.
+5. **Logo Rivergaro** corretto da fornire (vedi sopra).

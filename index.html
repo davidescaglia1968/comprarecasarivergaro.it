@@ -22,6 +22,8 @@
   <meta name="twitter:image:alt" content="Villa indipendente con 3 unità abitative a Ancarano">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Cpath d=%22M4 14L16 4l12 10v14H4z%22 fill=%22none%22 stroke=%22%23d4a520%22 stroke-width=%222%22/%3E%3C/svg%3E">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" as="image" href="img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01.webp" imagesrcset="img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01-small.webp 720w, img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01-thumb.webp 900w, img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01-mid.webp 1240w, img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01.webp 1700w" imagesizes="(max-width: 900px) 100vw, 620px" fetchpriority="high">
   <link rel="preload" href="css/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <style>@font-face{font-family:'Inter';font-style:normal;font-display:swap;font-weight:400;src:url(css/fonts/inter-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -88,10 +90,10 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .site-header{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .header-in{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
-.brand-logo{position:relative;display:block;flex:0 1 480px;width:min(68vw,480px);line-height:0;text-decoration:none;container-type:inline-size;isolation:isolate}
-.brand-logo img{display:block;width:100%;height:auto}
-.brand-logo-claim{position:absolute;left:31.3%;top:57.5%;width:60.2%;height:17.5%;display:flex;align-items:center;overflow:hidden;padding:0;background-color:#1e1c18;background-image:repeating-linear-gradient(90deg,rgba(60,54,44,.38) 0 1px,transparent 1px 7.11cqw);color:#e0bd66;font-family:var(--font-title);font-size:13px;font-weight:600;letter-spacing:2.9px;line-height:1;text-transform:uppercase;white-space:nowrap}
-@supports(font-size:1cqw){.brand-logo-claim{font-size:2.85cqw;letter-spacing:.62cqw}}
+.brand-logo{display:flex;flex-direction:column;gap:6px;line-height:1;text-decoration:none}
+.brand-name{font-family:var(--font-title);font-size:clamp(19px,2.4vw,26px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-primary)}
+.brand-logo-claim{display:flex;align-items:center;color:#e0bd66;font-family:var(--font-title);font-size:11px;font-weight:600;letter-spacing:2.9px;line-height:1;text-transform:uppercase;white-space:nowrap}
+.brand-logo-claim::before{content:"";width:14px;height:1px;background:var(--gold);margin-right:8px}
 .nav{display:flex;gap:var(--s4);align-items:center}
 .nav a{color:var(--text-secondary);text-decoration:none;font-size:.9375rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
 .nav a:hover{color:#fff;border-bottom-color:var(--pink)}
@@ -241,7 +243,9 @@ border:1px solid var(--line);border-left:3px solid var(--pink);border-radius:var
 .site-footer{margin-top:var(--s8);border-top:1px solid var(--line);background:#080808}
 .footer-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.7fr) minmax(0,1fr);gap:var(--s6);padding:var(--s7) 0 var(--s5)}
 .f-brand{font-family:var(--font-title);font-size:1.125rem;font-weight:700;margin:0 0 var(--s2)}
-.f-nap{font-size:.875rem;color:#d4d4d8;margin:0 0 var(--s3)}
+.f-nap{font-size:.875rem;color:#d4d4d8;margin:0 0 var(--s2)}
+.f-addr{font-size:.875rem;color:var(--text-secondary);margin:0 0 var(--s2)}
+.f-legal{font-size:.8125rem;color:var(--mute-text);margin:0 0 var(--s3)}
 .f-note{font-size:.875rem;color:var(--text-secondary)}
 .f-social{display:flex;gap:var(--s3);font-size:.875rem}
 .f-nav{display:grid;gap:var(--s2);align-content:start}
@@ -274,13 +278,15 @@ background:var(--bg-secondary);border-bottom:1px solid var(--line);padding:var(-
 .field-grid{grid-template-columns:1fr}
 .contact-list li{grid-template-columns:1fr;gap:2px}
 .cross-cta{flex-direction:column;align-items:flex-start}
-.brand-logo{flex-basis:min(48vw,320px);width:min(48vw,320px)}
+.brand-logo{min-width:0}
+.brand-logo-claim{letter-spacing:2.2px}
 .header-in{gap:6px}
 .header-cta{gap:4px}
 .header-cta .btn-tel{font-size:.7rem;padding:7px 8px}
 }
 @media (max-width:360px){
-.brand-logo{flex-basis:43vw;width:43vw}
+.brand-name{font-size:17px}
+.brand-logo-claim{font-size:10px;letter-spacing:1.8px}
 .header-cta .btn-tel{font-size:.68rem;padding:7px 7px}
 .burger{padding:7px}
 }
@@ -481,9 +487,9 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
    ],
    "logo": {
     "@type": "ImageObject",
-    "url": "https://comprarecasarivergaro.it/img/brand/logo-davide-scaglia-rivergaro.png",
-    "width": 703,
-    "height": 153
+    "url": "https://comprarecasarivergaro.it/apple-touch-icon.png",
+    "width": 180,
+    "height": 180
    },
    "contactPoint": [
     {
@@ -579,13 +585,20 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
   <a class="skip" href="#contenuto">Vai al contenuto</a>
   <header class="site-header" id="site-header">
     <div class="wrap header-in">
-      <a class="brand-logo" href="index.html" aria-label="Vai alla pagina principale">
-        <img src="img/brand/logo-davide-scaglia-rivergaro.webp" alt="Davide Scaglia — Immobili a Rivergaro" width="703" height="153" decoding="async">
+      <!-- Lockup di marca reso in CSS (font veri del sito): il file
+           img/brand/logo-davide-scaglia-rivergaro.png contiene in realta' la scritta
+           "VENDERE CASA A PIACENZA" del sito gemello, che qui veniva coperta da un
+           riquadro in sovrapposizione. Finche' non esiste un logo Rivergaro corretto,
+           il marchio e' tipografico: niente immagine con claim sbagliato in testa a
+           ogni pagina, e niente immagine Largest Contentful Paint nell'header. -->
+      <a class="brand-logo" href="index.html" aria-label="Davide Scaglia, immobili a Rivergaro — vai alla pagina principale">
+        <span class="brand-name" aria-hidden="true">Davide Scaglia</span>
         <span class="brand-logo-claim" aria-hidden="true">IMMOBILI A RIVERGARO</span>
       </a>
       <nav class="nav" id="nav" aria-label="Navigazione principale">
-        <a href="#immobile-in-evidenza">Immobile</a>
-        <a href="#la-villa-non-fa-per-te">Contatti</a>
+        <a href="immobili.html">Immobili</a>
+        <a href="#immobile-in-evidenza">In evidenza</a>
+        <a href="contatti.html#contatti-diretti">Contatti</a>
         <a href="chi-sono.html#chi-sono">Chi sono</a>
       </nav>
       <div class="header-cta">
@@ -599,12 +612,12 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
 <section class="hero hero--listing" id="top"><div class="wrap hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">Case in vendita a Rivergaro · Val Trebbia</p>
-        <h1>Comprare casa a Rivergaro e in Val Trebbia: troviamo insieme la soluzione giusta.</h1>
-        <div class="lead"><p>Località Ancarano · 29029 Rivergaro (PC)</p><p>Sono Davide Scaglia, agente immobiliare a Rivergaro. Questo sito è dedicato a chi cerca casa qui e nei comuni intorno, lungo la Val Trebbia: trovi gli immobili effettivamente disponibili, con le foto e i dati che ho verificato.</p><p>Se tra le proposte non c'è quella giusta, il lavoro comincia lì: mi racconti zona, tipo di casa e budget, e la ricerca la faccio io — in modo diretto, senza farti girare tra venti annunci.</p></div>
+        <h1>Comprare casa a Rivergaro Val Trebbia</h1>
+        <div class="lead"><p>Studio in Via Felice Cavallotti 3, frazione Pieve Dugliara — 29029 Rivergaro (PC)</p><p>Sono Davide Scaglia, agente immobiliare a Rivergaro. Questo sito è dedicato a chi cerca casa qui e nei comuni intorno, lungo la Val Trebbia: trovi gli immobili effettivamente disponibili, con le foto e i dati che ho verificato.</p><p>Se tra le proposte non c'è quella giusta, il lavoro comincia lì: mi racconti zona, tipo di casa e budget, e la ricerca la faccio io — in modo diretto, senza farti girare tra venti annunci.</p></div>
         <div class="cta-row"><a class="btn btn-primary" href="#immobile-in-evidenza">Scopri la villa</a><a class="btn btn-ghost" href="immobili.html">Vedi il catalogo con i filtri</a><a class="btn btn-ghost" href="https://wa.me/393286930033" target="_blank" rel="noopener noreferrer">Scrivimi su WhatsApp</a><a class="hero-email-link" href="mailto:info@immobiliarescaglia.com">info@immobiliarescaglia.com</a></div>
       </div></div></section>
-<section class="section" id="immobile-in-evidenza"><div class="wrap">
-<h2 id="immobile-in-evidenza">Immobile in evidenza</h2>
+<section class="section" aria-labelledby="immobile-in-evidenza"><div class="wrap">
+<h2 id="immobile-in-evidenza">Case in vendita a Rivergaro in questo momento</h2>
 <article class="featured-property">
     <a class="featured-property-media" href="immobile/villa-tre-unita-ancarano.html" aria-label="Apri la scheda: Cerchi casa in Val Trebbia? Villa indipendente con 3 unità abitative ad Ancarano, Rivergaro">
       <img src="img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01.webp" srcset="img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01-small.webp 720w, img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01-thumb.webp 900w, img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01-mid.webp 1240w, img/villa-tre-unita-ancarano/villa-ancarano-esterno-ingresso-portico-01.webp 1700w" sizes="(max-width: 900px) 100vw, 620px" alt="Villa indipendente con 3 unità abitative a Ancarano" width="1700" height="765" fetchpriority="high" decoding="async"><span class="badge badge--disponibile" role="img" aria-label="Stato: Disponibile">Disponibile</span>
@@ -620,16 +633,16 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
     </div>
   </article>
 </div></section>
-<section class="section section--alt" id="spazi-e-possibilita"><div class="wrap">
-<h2 id="spazi-e-possibilita">Spazi e possibilità</h2>
-<p>Situata in una posizione strategica e riservata, questa villa indipendente ha finiture e archi in mattoni a vista. Offre <strong>12 vani</strong> distribuiti in <strong>3 unità abitative completamente indipendenti</strong>.</p>
+<section class="section section--alt" aria-labelledby="la-villa-di-ancarano-spazi-e-possibilita"><div class="wrap">
+<h2 id="la-villa-di-ancarano-spazi-e-possibilita">La villa di Ancarano: spazi e possibilità</h2>
+<p>In una posizione riservata ma comoda ai servizi, una villa indipendente con finiture e archi in mattoni a vista: <strong>12 vani</strong> distribuiti in <strong>3 unità abitative completamente indipendenti</strong>, ciascuna con il proprio ingresso, dentro una proprietà con giardino e spazi esterni privati.</p>
 </div></section>
-<section class="section" id="una-soluzione-per-progetti-diversi"><div class="wrap">
-<h2 id="una-soluzione-per-progetti-diversi">Una soluzione per progetti diversi</h2>
+<section class="section" aria-labelledby="chi-cerca-casa-a-rivergaro-tre-progetti-possibili"><div class="wrap">
+<h2 id="chi-cerca-casa-a-rivergaro-tre-progetti-possibili">Chi cerca casa a Rivergaro: tre progetti possibili</h2>
 <ul><li><strong>Famiglie</strong> che desiderano vivere vicine ma con la propria privacy.</li><li><strong>Investitori lungimiranti</strong> che cercano un immobile con alto potenziale di reddito (affitti separati o B&B).</li><li><strong>Appassionati di spazi</strong> che vogliono creare la propria casa, con un ampio giardino privato dove i bambini possono giocare in sicurezza, gli adulti rilassarsi e tenere animali da compagnia.</li></ul>
 </div></section>
-<section class="section section--alt" id="rivergaro-servizi-territorio-e-vita-quotidiana"><div class="wrap">
-<h2 id="rivergaro-servizi-territorio-e-vita-quotidiana">Rivergaro: servizi, territorio e vita quotidiana</h2>
+<section class="section section--alt" aria-labelledby="vivere-a-rivergaro-servizi-territorio-e-vita-quotidiana"><div class="wrap">
+<h2 id="vivere-a-rivergaro-servizi-territorio-e-vita-quotidiana">Vivere a Rivergaro: servizi, territorio e vita quotidiana</h2>
 <p>Rivergaro è il centro di riferimento di questa parte della Val Trebbia. Qui si trova quello che serve tutti i giorni, e da qui si arriva a Piacenza in poco tempo: per molti è il punto giusto tra la città e la valle.</p>
 <h3>I servizi di tutti i giorni</h3>
 <p>Nel centro di Rivergaro ci sono supermercati e negozi, la farmacia, gli ambulatori medici, le banche e l'ufficio postale. Ci sono le scuole e l'asilo nido, i bar e i ristoranti, le strutture sportive e ricreative. Il centro dista circa 2,5 km da Ancarano, dove si trova l'immobile attualmente disponibile, e Piacenza è a una quindicina di chilometri.</p>
@@ -638,8 +651,8 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
 <h3>Dove lavoro</h3>
 <p>Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi — e i comuni vicini lungo l'asta del Trebbia. Se cerchi in una zona che non è la mia, te lo dico subito, invece di farti perdere tempo.</p>
 </div></section>
-<section class="section" id="la-villa-non-fa-per-te"><div class="wrap">
-<h2 id="la-villa-non-fa-per-te">La villa non fa per te?</h2>
+<section class="section" aria-labelledby="ricerca-personalizzata"><div class="wrap">
+<h2 id="ricerca-personalizzata">Cerchi un'altra casa a Rivergaro?</h2>
 <p>Per informazioni sulla villa o per organizzare una visita, chiamami o scrivimi su WhatsApp. Se cerchi altro, raccontami che casa hai in mente.</p>
 <div class="form-shell">
       <form class="form" method="POST" action="https://formsubmit.co/info@immobiliarescaglia.com" id="modulo-ricerca">
@@ -665,8 +678,8 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
         <p class="form-note">Nessuna newsletter. Ti ricontatto appena possibile.</p>
       </form></div>
 </div></section>
-<section class="section section--alt" id="tre-domande-veloci"><div class="wrap">
-<h2 id="tre-domande-veloci">Tre domande veloci</h2>
+<section class="section section--alt" aria-labelledby="domande-frequenti-su-rivergaro-e-val-trebbia"><div class="wrap">
+<h2 id="domande-frequenti-su-rivergaro-e-val-trebbia">Domande frequenti su Rivergaro e Val Trebbia</h2>
 <div class="faq"><div class="faq-item"><h3>Che case hai in vendita adesso a Rivergaro?</h3><p>Una sola, al momento: villa indipendente con 3 unità abitative in località Ancarano, 12 vani, giardino privato, prezzo gestito direttamente con il proprietario. Se cerchi altro, la ricerca la faccio io su richiesta.</p></div><div class="faq-item"><h3>Che zona segui?</h3><p>Il comune di Rivergaro e i comuni intorno lungo l’asta del Trebbia (Piacenza, Podenzano, Gossolengo, Vigolzone, Ponte dell’Olio). Non copro la valle intera.</p></div><div class="faq-item"><h3>Quando è aperto lo studio?</h3><p>Lunedì–venerdì 09:00–12:30 e 15:00–19:00; sabato 09:00–12:30. In quegli orari rispondono al telefono o si passa in Via Felice Cavallotti 3, frazione Pieve Dugliara, Rivergaro.</p></div><div class="faq-item"><h3>Quanto costa farti cercare casa?</h3><p>Prima di qualsiasi proposta scritta ti chiarisco per iscritto condizioni e compenso dell’incarico: nessuna cifra viene data per scontata, né in annuncio né al telefono.</p></div></div>
 </div></section>
 
@@ -676,12 +689,14 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
       <div>
         <p class="f-brand">Immobili a Rivergaro</p>
         <p class="f-nap"><a href="tel:+393286930033">Telefono: +39 328 693 0033</a> · <a href="https://wa.me/393286930033" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="mailto:info@immobiliarescaglia.com">info@immobiliarescaglia.com</a></p>
+        <p class="f-addr">Via Felice Cavallotti 3, 29029 Rivergaro (PC) — fraz. Pieve Dugliara</p>
+        <p class="f-legal">IMMOBILIARESCAGLIA DI SCAGLIA DAVIDE · P.IVA 01493570335 · REA PC-168637</p>
         <p class="f-note">Questo sito raccoglie le richieste di chi compra casa a Rivergaro. Le visite e le valutazioni si concordano senza impegno.</p>
 
       </div>
       <nav class="f-nav" aria-label="Link del sito">
         <a href="immobili.html">Immobili</a>
-        <a href="#la-villa-non-fa-per-te">Ricerca personalizzata</a>
+        <a href="#ricerca-personalizzata">Ricerca personalizzata</a>
         <a href="contatti.html">Contatti</a>
         <a href="chi-sono.html">Chi sono</a>
         <a href="legal/privacy.html">Privacy</a>
@@ -700,7 +715,7 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
 
   <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Scelte sui cookie" hidden>
     <div class="wrap cookie-in">
-      <p>Questo sito usa solo cookie tecnici per funzionare e carica un servizio esterno (l'anteprima Street View, solo se lo chiedi) che può vedere il tuo indirizzo IP. Puoi accettare tutto o andare avanti solo con i tecnici: il sito funziona in entrambi i casi.</p>
+      <p>Questo sito usa solo cookie tecnici per funzionare. Quando invii un modulo, i dati passano da FormSubmit, il servizio che li recapita alla mia casella email: puoi leggere come li tratta nella Cookie Policy. Nessun altro contenuto di terzi viene caricato.</p>
       <div class="cookie-actions">
         <a href="legal/cookie.html" class="cookie-link">Cookie Policy</a>
         <button type="button" class="btn btn-outline btn-sm" id="cookie-reject">Solo tecnici</button>

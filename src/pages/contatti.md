@@ -1,20 +1,20 @@
 ---
-title: Contatti | comprarecasarivergaro.it
+title: Contatti — Davide Scaglia, agente immobiliare a Rivergaro
 description: Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite, informazioni e ricerca personalizzata in Val Trebbia.
 canonical: /contatti.html
 ---
 
-# Contatti diretti
+# Contatti con Davide Scaglia, agente immobiliare a Rivergaro {#contatti-diretti}
 
 Niente centralino e niente modulo da compilare per forza: se cerchi casa a Rivergaro o in Val Trebbia, la strada più corta è una telefonata. Se in quel momento sono in visita o da un proprietario, lasciami un messaggio su WhatsApp o una email e ti rispondo di persona, appena possibile.
 
-## Scrivi cosa stai cercando
+## Raccontami che casa cerchi a Rivergaro
 
 Raccontami zona, tipo di casa e budget: la ricerca parte da quello che mi scrivi, non da un elenco di filtri. Se invece vuoi vedere la villa ad Ancarano, usa lo stesso modulo e indica giorno e fascia oraria.
 
 ::form_ricerca
 
-## I recapiti
+## Recapiti, sede e orari a Rivergaro
 
 ::contatti_card
 

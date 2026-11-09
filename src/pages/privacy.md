@@ -1,5 +1,5 @@
 ---
-title: Privacy Policy | comprarecasarivergaro.it
+title: Privacy Policy — comprarecasarivergaro.it
 description: Quali dati raccoglie comprarecasarivergaro.it, perche', dove vengono conservati e come esercitare i diritti previste dal GDPR.
 canonical: /legal/privacy.html
 ---

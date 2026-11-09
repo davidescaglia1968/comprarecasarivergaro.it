@@ -10,6 +10,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = __dirname;
 const SRC = path.join(ROOT, 'src');
@@ -220,11 +221,16 @@ function agentJsonLd() {
   if (as.length) a.areaServed = as.map((n) => ({ '@type': 'City', name: n }));
   const social = Object.keys(pro.social || {}).map((k) => pro.social[k]).filter((u) => /^https?:\/\//.test(u));
   if (social.length) a.sameAs = social;
-  /* Il logo non e' nel manifesto media (img/brand e' escluso per contratto): le dimensioni si
-     leggono dai byte del PNG, cosi' non sono numeri scritti a mano. */
-  const LOGO = 'img/brand/logo-davide-scaglia-rivergaro.png';
-  if (exists(LOGO)) {
-    const dim = pngSize(fs.readFileSync(path.join(ROOT, LOGO)));
+  /* Logo dell'entita': il PNG "logo-davide-scaglia-rivergaro.png" contiene in realta' il
+     claim del sito gemello ("VENDERE CASA A PIACENZA"), quindi dichiararlo come logo di
+     questo sito darebbe ai motori un marchio contraddittorio. Si dichiara il glifo di
+     marca generato da tools/make-brand-assets.js (lo stesso di favicon e apple-touch-icon);
+     le dimensioni si leggono dai byte, cosi' non sono numeri scritti a mano.
+     Quando Davide fornira' un logo Rivergaro corretto, bastera' cambiare questa costante. */
+  const LOGO = 'apple-touch-icon.png';
+  const logoFile = path.join(SRC, 'brand', LOGO);
+  if (fs.existsSync(logoFile)) {
+    const dim = pngSize(fs.readFileSync(logoFile));
     a.logo = Object.assign({ '@type': 'ImageObject', url: BASE + '/' + LOGO }, dim && dim.w ? { width: dim.w, height: dim.h } : {});
   }
   if (isConfirmed(pro.pec)) a.contactPoint = [{ '@type': 'ContactPoint', contactType: 'sales', telephone: pro.telefono_e164, email: pro.email, availableLanguage: ['it'], areaServed: 'IT' }];
@@ -261,9 +267,15 @@ function listingJsonLd(p) {
     (p.gallerie || []).forEach((section) => (section.immagini || []).forEach((image) => {
       if (image && typeof image === 'object' && image.file && image.didascalia) captions[image.file] = image.didascalia;
     }));
-    o.image = imgs.map((file) => captions[file]
+    let all = imgs.map((file) => captions[file]
       ? { '@type': 'ImageObject', contentUrl: BASE + '/img/' + p.slug + '/' + file, caption: captions[file] }
       : BASE + '/img/' + p.slug + '/' + file);
+    /* 192 voci nell'array `image` costavano 55KB di JSON-LD in ogni fetch (anche di
+       Googlebot) senza dare alcun vantaggio: i motori ne usano poche. Si campiona in
+       modo uniforme sulle gallerie, cosi' restano rappresentative di ogni ambiente. */
+    const MAX_IMG = 10;
+    if (all.length > MAX_IMG) all = Array.from({ length: MAX_IMG }, (_, i) => all[Math.floor((i * all.length) / MAX_IMG)]);
+    o.image = all;
   }
   const addr = { '@type': 'PostalAddress' };
   if (p.zona) addr.streetAddress = p.zona;
@@ -274,16 +286,18 @@ function listingJsonLd(p) {
   o.address = addr;
   const offer = { '@type': 'Offer' };
   const hasPrice = typeof p.prezzo === 'number' && p.prezzo > 0;
-  /* Qui il prezzo e' una frase confermata dal proprietario ("Prezzo in definizione"): non essendo
-     un numero non si inventa price = ..., ma l'indicazione testuale va comunque nell'offerta. */
-  const priceText = !hasPrice && typeof p.prezzo === 'string' && p.prezzo.trim() ? p.prezzo.trim() : '';
+  /* Senza un prezzo NUMERICO l'offerta non viene proprio emessa: `price` popolato con una
+     frase ("Prezzo in definizione") e' ammesso da schema.org ma non dalla specifica Google
+     di Offer (il Rich Results Test lo segnala come valore non valido), ed e' il tipo di
+     dato che un motore generativo legge male o scarta. La frase resta dove un lettore la
+     capisce: nel testo visibile e nella <dl> dei dati. Appena arriva il numero, l'offerta
+     esce da sola con price + priceCurrency + availability + validFrom. */
   if (hasPrice) { offer.price = String(p.prezzo); offer.priceCurrency = 'EUR'; }
-  else if (priceText) { offer.price = priceText; offer.priceCurrency = 'EUR'; }
   const map = cfg.seo_geo.jsonld.offers_schema || {};
   const av = p.stato === 'Disponibile' ? map.disponibile : p.stato === 'In trattativa' ? map.in_trattativa : map.chiuso;
   if (av) offer.availability = av;
   if (p.data_pubblicazione) offer.validFrom = p.data_pubblicazione;
-  if (Object.keys(offer).length > 1) o.offers = offer;
+  if (hasPrice && Object.keys(offer).length > 1) o.offers = offer;
   if (p.stato === 'Venduto') o.usedProd = { '@type': 'Product', name: 'immobile venduto' };
   if (p.superficie) o.floorSize = { '@type': 'QuantitativeValue', value: p.superficie, unitCode: 'MTK' };
   if (p.locali) o.numberOfRooms = p.locali;
@@ -291,6 +305,18 @@ function listingJsonLd(p) {
      Si legge dall'elenco caratteristiche cosi' il numero resta scritto una volta sola. */
   else { const vani = vaniDaCaratteristiche(p); if (vani) o.numberOfRooms = vani; }
   if (p.anno_costruzione) o.yearBuilt = String(p.anno_costruzione);
+  /* Superfici, rendite catastali e APE per unita' sono gia' pubblicati in HTML (tabella
+     "Superfici, rendite catastali e APE"): qui entrano gli STESSI numeri, senza totali
+     calcolati (la regola del progetto resta), cosi' un motore che chiede "quanto e'
+     grande?" o "che classe energetica ha?" non deve sommare celle di una tabella. */
+  const unitProps = (p.unita || []).filter((u) => u && u.nome).flatMap((u) => {
+    const out = [];
+    if (u.mq) out.push({ '@type': 'PropertyValue', name: 'Superficie — ' + u.nome, value: u.mq + ' m²' });
+    if (u.rendita_catastale) out.push({ '@type': 'PropertyValue', name: 'Rendita catastale — ' + u.nome, value: euroIT(u.rendita_catastale) });
+    if (u.ape_classe) out.push({ '@type': 'PropertyValue', name: 'Classe energetica (APE) — ' + u.nome, value: u.ape_classe + (u.ape_indice ? ' — ' + numIT(u.ape_indice) + ' kWh/m²anno' : '') });
+    return out;
+  });
+  if (unitProps.length) o.additionalProperty = unitProps;
   if (p.lat && p.lng) o.geo = { '@type': 'GeoCoordinates', latitude: p.lat, longitude: p.lng };
   o.areaServed = { '@type': 'City', name: p.comune || cfg.area_servizio.comune_principale };
   if (p.data_pubblicazione) o.datePosted = p.data_pubblicazione;
@@ -440,7 +466,11 @@ function renderMarkdown(md) {
 }
 
 /* Raggruppa il contenuto tra H2 in sezioni con ancoraggio: meno markup a mano,
-   stessa struttura visiva in tutte le pagine, id = id del titolo (accessibile da nav). */
+   stessa struttura visiva in tutte le pagine. L'id vive UNA volta sola, sul titolo:
+   prima section e h2 condividevano lo stesso id (26 duplicati su 6 pagine, HTML non
+   valido e WCAG 4.1.1), e l'ancora risolveva sul primo dei due per caso. La sezione
+   resta agganciata al suo titolo con aria-labelledby, cosi' screen reader e motori
+   leggono il nome della regione senza bisogno di un secondo id. */
 function wrapSections(content) {
   if (!content.trim()) return content;
   const parts = content.split(/(?=<h2 )/);
@@ -450,8 +480,9 @@ function wrapSections(content) {
   if (first.trim()) out += first.trim() + '\n';
   rest.forEach((chunk, idx) => {
     const m = chunk.match(/<h2 id="([^"]+)"/);
-    const id = m ? m[1] : 'sezione-' + (idx + 1);
-    out += '<section class="section' + (idx % 2 ? ' section--alt' : '') + '" id="' + id + '"><div class="wrap">\n' + chunk.trim() + '\n</div></section>\n';
+    const cls = 'section' + (idx % 2 ? ' section--alt' : '');
+    if (m) out += `<section class="${cls}" aria-labelledby="${m[1]}"><div class="wrap">\n` + chunk.trim() + '\n</div></section>\n';
+    else out += `<section class="${cls}" id="sezione-${idx + 1}"><div class="wrap">\n` + chunk.trim() + '\n</div></section>\n';
   });
   return out;
 }
@@ -660,6 +691,23 @@ function imgMeta(slug, file) {
   const m = mediaCache.items.find((i) => i.path === 'img/' + slug + '/' + file);
   return m || null;
 }
+/* Dimensioni lette dai byte del file. Serve per i derivati (-thumb/-mid/-small), che
+   per contratto NON sono nel manifesto media: prima la loro larghezza veniva DEDOTTA
+   ("900 sul lato lungo") e finita nel descrittore `w` del srcset. Per un ritratto il
+   lato lungo e' l'altezza, quindi un thumb largo 405px veniva dichiarato 900w: il
+   browser credeva di avere 900px e serviva un'immagine morbida su retina. Il descrittore
+   `w` deve essere la larghezza intrinseca reale, e qui si legge, non si indovina. */
+function imgDims(slug, file) {
+  const relp = 'img/' + slug + '/' + file;
+  const m = mediaCache.items.find((i) => i.path === relp);
+  if (m && m.width) return { w: m.width, h: m.height };
+  const full = path.join(ROOT, relp);
+  if (!fs.existsSync(full)) return null;
+  const buf = fs.readFileSync(full);
+  const ext = path.extname(full).toLowerCase();
+  const d = ext === '.png' ? pngSize(buf) : (ext === '.jpg' || ext === '.jpeg') ? jpegSize(buf) : ext === '.webp' ? webpSize(buf) : null;
+  return d && d.w ? d : null;
+}
 /* Numeri all'italiana: 764.36 -> "764,36". Serve per rendite catastali e indici APE. */
 function numIT(n, dec = 2) {
   return Number(n).toLocaleString('it-IT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
@@ -713,15 +761,13 @@ function galleria(p, dopoPrimoGruppo = '') {
       const thumb = (typeof item === 'object' && item.thumb) || file;
       const meta = imgMeta(p.slug, file) || {};
       const w = Number(meta.width) || 1200, h = Number(meta.height) || 800;
-      /* le miniature (-thumb) non sono nel manifesto, che per contratto elenca solo gli originali:
-         le dimensioni si ricavano dalla regola di generazione (900px sul lato lungo) invece di
-         cercarle, perche' imgMeta() su un derivato restituisce null e tw = w azzerava lo srcset */
       const derivato = thumb !== file && exists('img/' + p.slug + '/' + thumb);
-      const latoLungo = Math.max(w, h);
-      const tl = derivato ? Math.min(900, latoLungo) : latoLungo;
-      /* i descrittori w sono il lato lungo: per un ritratto il 405 reale sarebbe scartato
-         da un browser che guarda "405w" contro un CSS da 280px, e il srcset non si aprirebbe */
-      const tw = tl;
+      /* descrittori `w` = larghezza intrinseca REALE di ogni candidato, letta dai byte
+         (imgDims legge anche i derivati, che il manifesto per contratto non elenca).
+         Prima si deduceva "900 sul lato lungo": per i 12 ritratti della villa il thumb
+         e' largo 405px ma veniva dichiarato 900w, e il browser serviva foto morbide. */
+      const td = derivato ? imgDims(p.slug, thumb) : null;
+      const tw = td && td.w ? td.w : w;
       const pagePath = 'immobile/' + p.slug + '.html';
       const src = rel(pagePath, 'img/' + p.slug + '/' + file);
       const thumbSrc = rel(pagePath, 'img/' + p.slug + '/' + thumb);
@@ -733,8 +779,10 @@ function galleria(p, dopoPrimoGruppo = '') {
       /* taglia intermedia (-mid, 1240px) quando esiste: evita che il retina scarichi il pieno */
       const midFile = file.replace(/\.webp$/i, '-mid.webp');
       const midSrc = midFile !== file && exists('img/' + p.slug + '/' + midFile) ? rel(pagePath, 'img/' + p.slug + '/' + midFile) : '';
-      const srcset = derivato && tl < latoLungo
-        ? `srcset="${thumbSrc} ${tw}w, ${midSrc ? midSrc + ' 1240w, ' : ''}${src} ${latoLungo}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
+      const md = midSrc ? imgDims(p.slug, midFile) : null;
+      const mw = md && md.w ? md.w : 0;
+      const srcset = derivato && tw < w
+        ? `srcset="${thumbSrc} ${tw}w, ${midSrc && mw ? midSrc + ' ' + mw + 'w, ' : ''}${src} ${w}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
       const lightboxCaption = caption || ((p.titolo || 'Immobile') + ' — ' + (section.titolo || 'foto'));
       return `<figure class="gallery-card${isFeatured ? ' gallery-card--featured' : ''}" style="--gallery-ratio:${w} / ${h}">
         <a class="shot" href="${src}" data-lightbox="${attr(p.slug)}" data-caption="${attr(lightboxCaption)}" style="aspect-ratio:${w}/${h}">
@@ -937,18 +985,24 @@ function catalogoPage() {
   const list = catalogo();
   if (!list.length) {
     return '<section class="section"><div class="wrap">'
-      + '<h1>Immobili a Rivergaro</h1>'
-      + '<p class="muted">Le proposte pubblicate riguardano Rivergaro. In questo momento non ci sono schede con dati completi da pubblicare: è una scelta di metodo, non un\'assenza di case in zona.</p>'
+      + '<h1>Immobili in vendita a Rivergaro e in Val Trebbia</h1>'
+      + '<p class="muted">Le proposte pubblicate riguardano Rivergaro e le sue frazioni. In questo momento non ci sono schede con dati completi da pubblicare: è una scelta di metodo, non un\'assenza di case in zona.</p>'
       + '<div class="empty-state"><p>Se mi dici cosa cerchi, la ricerca parte oggi e ti contatto quando trovo qualcosa di coerente — anche prima che finisca in vetrina.</p><a class="btn btn-primary" href="' + anchorRicerca('immobili.html') + '">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
       + '<p class="draft-note">Schede in bozza (non indicizzate, solo per te): ' + tutteProp().filter((p) => p.bozza).map((p) => `<a href="immobile/${esc(p.slug)}.html">${esc(p.slug)}</a>`).join(', ') + '</p>'
       + '</div></section>';
   }
+  /* H1 con la chiave di ricerca + un H2 che apre la lista: prima il titolo della scheda
+     era un <h3> figlio diretto dell'<h1> (salto di gerarchia, contro la regola interna
+     seo_geo.regole_geo[2]) e la pagina aveva ~90 parole di contenuto unico. */
+  const frazioni = (cfg.area_servizio.frazioni || []).map((f) => f.nome).filter(Boolean);
   return '<section class="section"><div class="wrap">'
-    + '<h1>Immobili a Rivergaro</h1>'
-    + '<p class="muted">Ogni scheda pubblicata qui è una scheda verificata: i dati che non ho in mano non vengono scritti, nemmeno come "circa".</p>'
+    + '<h1>Immobili in vendita a Rivergaro e in Val Trebbia</h1>'
+    + '<p class="muted">Ogni scheda pubblicata qui è una scheda verificata: i dati che non ho in mano non vengono scritti, nemmeno come "circa". Se un prezzo o una metratura non compaiono, è perché non li ho ancora confermati: meglio una scheda in meno che un dato sbagliato.</p>'
+    + (frazioni.length ? '<p class="muted">Cerco e pubblico immobili nel comune di Rivergaro — ' + frazioni.map((f) => esc(f)).join(', ') + ' — e nei comuni vicini lungo l’asta del Trebbia.</p>' : '')
+    + '<h2 id="proposte-disponibili">Proposte disponibili in questo momento</h2>'
     + filterBar(list)
     + '<ul class="grid-cards" id="catalogo">' + list.map((p) => cardImmobile(p, 'immobili.html')).join('') + '</ul>'
-    + '<div class="catalog-cta"><p>Ti serve qualcosa che qui non c\'è?</p><a class="btn btn-outline" href="' + anchorRicerca('immobili.html') + '">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
+    + '<div class="catalog-cta"><h2 id="non-trovi-quello-che-cerchi">Non trovi quello che cerchi?</h2><p>La ricerca personalizzata parte da te: dimmi zona, tipo di casa e budget, e lavoro sui proprietari che contatto e su ciò che arriva prima di finire in vetrina.</p><a class="btn btn-outline" href="' + anchorRicerca('immobili.html') + '">' + esc(cfg.contatti_sezione.cta_principale) + '</a></div>'
     + '</div></section>';
 }
 
@@ -1012,7 +1066,9 @@ function head(page, prefix) {
   else c.push('<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">');
   c.push('<meta name="author" content="Immobili a Rivergaro">');
   c.push(`<meta name="theme-color" content="${attr(cfg.site.theme_color)}">`);
-  c.push('<link rel="canonical" href="' + attr(url) + '">');
+  /* niente canonical sulle pagine noindex (404, grazie): un canonico verso una pagina
+     d'errore o di ringraziamento e' un URL canonico che non dovrebbe esistere */
+  if (!(page.noindex || page.robots_off || !cfg.site.robots_indexable)) c.push('<link rel="canonical" href="' + attr(url) + '">');
   c.push('<meta property="og:type" content="' + (page.immobile ? 'article' : 'website') + '">');
   c.push('<meta property="og:site_name" content="Immobili a Rivergaro">');
   c.push('<meta property="og:locale" content="it_IT">');
@@ -1020,9 +1076,12 @@ function head(page, prefix) {
   c.push('<meta property="og:title" content="' + attr(title) + '">');
   c.push('<meta property="og:description" content="' + attr(desc) + '">');
   /* og:image: solo file reali. Per la home si usa il file indicato nel config (foto vera),
-     per la scheda la copertina della sua galleria: cosi' ogni condivisione mostra casa sua. */
+     per la scheda la copertina della sua galleria: cosi' ogni condivisione mostra casa sua.
+     Le pagine di servizio (privacy, cookie, grazie, 404) NON portano la foto di una casa:
+     prima la stessa copertina finiva anche come anteprima della Privacy Policy. */
   const cover = page.immobile && (page.immobile.immagini || []).filter(Boolean)[0];
-  const ogImg = cover ? 'img/' + page.immobile.slug + '/' + cover : (isConfirmed(cfg.seo_geo.og_image) ? cfg.seo_geo.og_image : (page.og_img || ''));
+  const ogImg = page.jsonld === 'none' ? ''
+    : cover ? 'img/' + page.immobile.slug + '/' + cover : (isConfirmed(cfg.seo_geo.og_image) ? cfg.seo_geo.og_image : (page.og_img || ''));
   if (ogImg) {
     c.push('<meta property="og:image" content="' + attr(abs(BASE, '/' + ogImg)) + '">');
     const ogm = mediaCache.items.find((i) => i.path === ogImg);
@@ -1037,8 +1096,13 @@ function head(page, prefix) {
     c.push('<meta property="og:image:alt" content="' + attr(ogAlt) + '">');
     c.push('<meta name="twitter:image" content="' + attr(abs(BASE, '/' + ogImg)) + '">');
     c.push('<meta name="twitter:image:alt" content="' + attr(ogAlt) + '">');
-  }  c.push('<meta name="twitter:card" content="' + attr(cfg.seo_geo.twitter_card) + '">');
+  }  c.push('<meta name="twitter:card" content="' + attr(ogImg ? cfg.seo_geo.twitter_card : 'summary') + '">');
   c.push('<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230a0a0a%22/%3E%3Cpath d=%22M4 14L16 4l12 10v14H4z%22 fill=%22none%22 stroke=%22%23d4a520%22 stroke-width=%222%22/%3E%3C/svg%3E">');
+  /* /favicon.ico restituiva la pagina 404 (35KB di HTML con status 404) a ogni visita:
+     il file ora esiste, generato da tools/make-brand-assets.js con la stessa figura
+     dell'icona inline. apple-touch-icon copre iOS/macOS, che ignorano l'SVG. */
+  c.push(`<link rel="icon" type="image/x-icon" href="${attr(rel(page.path || 'index.html', 'favicon.ico'))}" sizes="32x32">`);
+  c.push(`<link rel="apple-touch-icon" href="${attr(rel(page.path || 'index.html', 'apple-touch-icon.png'))}">`);
   /* prefisso relativo alla radice calcolato sulla pagina: per le schede `prefix` non e' '../' */
   const cssBase = rel(page.path || 'index.html', 'css');
   const rootPfx = cssBase.replace(/css$/, '');
@@ -1066,7 +1130,7 @@ function head(page, prefix) {
     const agente = ld['@graph'].find((n) => n && n['@type'] === 'RealEstateAgent');
     if (agente) agente.founder = { '@id': BASE + '/#davide-scaglia' };
   }
-  if (page.breadcrumb) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: page.breadcrumb }] });
+  if (page.breadcrumb) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: BASE + '/' + (page.canonical || page.path || '').replace(/^\//, '') }] });
   /* FAQPage: le righe Q&A che il visitatore sta vedendo, non domande inventate per il markup.
      Google dal 07/05/2026 non mostra piu' il risultato arricchito FAQ (lo aveva gia' limitato ai
      siti sanitari/governativi dal 2023), ma il tipo resta valido e viene letto da Bing e dai
@@ -1110,9 +1174,11 @@ function fill(tpl, prefix, page) {
   page = page || {};
   if (!page.path) page.path = 'index.html';
   /* le voci di default si allargano da sole quando esiste la pagina markdown corrispondente */
-  const nav = (page.nav || ['immobili', 'ricerca', 'zona', 'guide', 'contatti'].concat(navExtra()))
+  /* Niente voci "Zone"/"Guide" nel menu finche' non esistono pagine con quei paragrafi:
+     prima il generatore le dichiarava e poi le scartava con un avviso a ogni build. */
+  const nav = (page.nav || ['immobili', 'ricerca', 'contatti'].concat(navExtra()))
     .filter((k) => k !== page.nav_key);
-  const labels = { proposta: 'Immobile', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', contatti: 'Contatti', 'chi-sono': 'Chi sono' };
+  const labels = { proposta: 'In evidenza', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', contatti: 'Contatti', 'chi-sono': 'Chi sono' };
   const links = nav
     .map((k) => {
       const ric = (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te';
@@ -1132,6 +1198,12 @@ function fill(tpl, prefix, page) {
     .join('\n        ');
   const map = {
     NAV: links,
+    /* Se il menu e' vuoto il pulsante hamburger non ha nulla da aprire: prima
+       restava in pagina (privacy, cookie, grazie, 404) con un aria-controls verso
+       una nav vuota. Si spegne da solo insieme alle voci. */
+    BURGER: links.trim()
+      ? '<button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu"><span></span><span></span><span></span></button>'
+      : '',
     BRAND: 'Rivergaro',
     BRAND_FULL: 'Immobili a Rivergaro',
     BRAND_MARK: '⌂',
@@ -1141,20 +1213,28 @@ function fill(tpl, prefix, page) {
     EMAIL: attr(pro.email),
     YEAR: String(year),
     FOOTER_NAV: footerNav(prefix, page),
-    NAP: page.path.startsWith('legal/') ? napText()
-      : `<a href="tel:${attr(pro.telefono_e164)}">Telefono: ${esc(pro.telefono_display)}</a> · <a href="https://wa.me/${attr(String(pro.whatsapp || pro.telefono_e164).replace(/\D/g, ''))}" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a>`,
+    /* NAP identico su TUTTE le pagine, legali comprese: prima le pagine legal/
+       ricevevano una variante di testo e le altre i soli recapiti cliccabili, e in
+       nessun caso il footer riportava l'indirizzo (la "A" di NAP mancava). */
+    NAP: `<a href="tel:${attr(pro.telefono_e164)}">Telefono: ${esc(pro.telefono_display)}</a> · <a href="https://wa.me/${attr(String(pro.whatsapp || pro.telefono_e164).replace(/\D/g, ''))}" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a>`,
+    /* La "A" di NAP mancava dal footer: solo telefono/WhatsApp/email, e la regola
+       interna seo_geo.regole_geo[1] chiede il NAP identico su tutte le pagine.
+       L'indirizzo e' lo stesso verificato in visura e gia' pubblicato in contatti. */
+    NAP_ADDR: addr
+      ? `<p class="f-addr">${esc(addr.street)}, ${esc(addr.cap)} ${esc(addr.localita)} (${esc(addr.provincia)})${addr.frazione ? ' — fraz. ' + esc(addr.frazione) : ''}</p>`
+      : '',
+    /* Partita IVA nella home page e in footer: obbligo per i soggetti IVA (art. 35
+       DPR 633/72). Prima index.html non conteneva la P.IVA in nessun punto. */
+    LEGAL: [
+      isConfirmed(pro.denominazione_legale) ? esc(pro.denominazione_legale) : '',
+      isConfirmed(pro.partita_iva) ? 'P.IVA ' + esc(pro.partita_iva) : '',
+      isConfirmed(pro.rea) ? 'REA ' + esc(pro.rea) : '',
+    ].filter(Boolean).join(' · '),
     SOCIAL: '',
     PREFIX: prefix,
     P0: prefix,
   };
   return tpl.replace(/\{\{([A-Z0-9_]+)\}\}/g, (m0, k) => (map[k] !== undefined ? map[k] : m0));
-}
-function napText() {
-  const parts = [pro.denominazione_legale ? 'Immobiliare Scaglia di Scaglia Davide' : pro.brand];
-  if (addr) parts.push(addr.street + ', ' + addr.cap + ' ' + addr.localita + ' (' + addr.provincia + ')' + (addr.frazione ? ', fraz. ' + addr.frazione : ''));
-  parts.push(pro.telefono_display);
-  parts.push(pro.email);
-  return parts.map(esc).join(' · ');
 }
 /* Voci nate insieme alle pagine: 'Chi sono' entra nel menu quando esiste src/pages/chi-sono.md. */
 function navExtra() {
@@ -1353,8 +1433,13 @@ function evidenzaPreload(prefix) {
   const smallF = file.replace(/\.webp$/i, '-small.webp');
   const haSmall = smallF !== file && exists('img/' + p.slug + '/' + smallF);
   const src = prefix + 'img/' + p.slug + '/';
-  const tw = Math.min(900, fw);
-  const set = `${haSmall ? src + smallF + ' 720w, ' : ''}${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w`;
+  /* descrittori = larghezze reali lette dai byte: il preload e la <img> dell'hero
+     devono dichiarare gli stessi numeri, altrimenti il browser scarica due volte */
+  const dThumb = imgDims(p.slug, thumb), dSmall = haSmall ? imgDims(p.slug, smallF) : null, dMid = haMid ? imgDims(p.slug, mid) : null;
+  const tw = dThumb && dThumb.w ? dThumb.w : fw;
+  const sw = dSmall && dSmall.w ? dSmall.w : 0;
+  const mw = dMid && dMid.w ? dMid.w : 0;
+  const set = `${haSmall && sw ? src + smallF + ' ' + sw + 'w, ' : ''}${src}${thumb} ${tw}w, ${haMid && mw ? src + mid + ' ' + mw + 'w, ' : ''}${src}${file} ${fw}w`;
   return `<link rel="preload" as="image" href="${attr(src + file)}" imagesrcset="${attr(set)}" imagesizes="(max-width: 900px) 100vw, 620px" fetchpriority="high">`;
 }
 
@@ -1378,14 +1463,17 @@ function immobileEvidenza() {
         const mid = file.replace(/\.webp$/i, '-mid.webp');
         const smallF = file.replace(/\.webp$/i, '-small.webp');
         const fw = (meta && meta.width) || 1200;
-        const tw = Math.min(900, fw); /* le miniature sono generate a 900px sul lato lungo */
         /* taglia intermedia: il riquadro della copertina e' largo al massimo 620px CSS, quindi a
            DPR 2 servono ~1240px. Senza la -mid il browser retina scaricava il pieno (357KB). */
         const haMid = mid !== file && exists('img/' + p.slug + '/' + mid);
         const haSmall = smallF !== file && exists('img/' + p.slug + '/' + smallF);
         const src = `img/${p.slug}/`;
+        const dThumb = imgDims(p.slug, thumb), dSmall = haSmall ? imgDims(p.slug, smallF) : null, dMid = haMid ? imgDims(p.slug, mid) : null;
+        const tw = dThumb && dThumb.w ? dThumb.w : fw;
+        const sw = dSmall && dSmall.w ? dSmall.w : 0;
+        const mw = dMid && dMid.w ? dMid.w : 0;
         const set = thumb !== file && exists('img/' + p.slug + '/' + thumb)
-          ? ` srcset="${haSmall ? src + smallF + ' 720w, ' : ''}${src}${thumb} ${tw}w, ${haMid ? src + mid + ' 1240w, ' : ''}${src}${file} ${fw}w" sizes="(max-width: 900px) 100vw, 620px"` : '';
+          ? ` srcset="${haSmall && sw ? src + smallF + ' ' + sw + 'w, ' : ''}${src}${thumb} ${tw}w, ${haMid && mw ? src + mid + ' ' + mw + 'w, ' : ''}${src}${file} ${fw}w" sizes="(max-width: 900px) 100vw, 620px"` : '';
         /* LCP: la copertina della home e' la prima immagine della pagina, non si carica lazy.
            Con srcset, pero', i telefoni scaricano la miniatura invece di 357KB. */
         return `<img src="img/${attr(p.slug)}/${attr(file)}"${set} alt="${attr((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || ''))}" width="${meta && meta.width || 1200}" height="${meta && meta.height || 800}" fetchpriority="high" decoding="async">`;
@@ -1457,9 +1545,30 @@ function pagineIndicizzabili() {
   return out;
 }
 /* Ultimo aggiornamento di una scheda: il campo `data_modifica` e' il segnale che il sito
- * si e' dato (vedi publish_policy), quindi anche la sitemap deve leggere quello. Se si usasse
- * il mtime del file, ogni `node build.js` in una data nuova advancebbe il <lastmod> senza
- * nessun contenuto cambiato: un segnale di freschezza gonfiato e' peggio di nessuno. */
+ * si e' dato (vedi publish_policy), quindi anche la sitemap deve leggere quello. Per le
+ * pagine statiche il lastmod NON puo' essere il mtime del file generato: verrebbe scritto
+ * pochi millisecondi prima, quindi ogni `node build.js` in una data nuova advancebbe il
+ * <lastmod> senza nessun contenuto cambiato (un segnale di freschezza gonfiato e' peggio
+ * di nessuno, e la build diventava non riproducibile: git status diceva sempre "cambiato").
+ * Si tiene invece src/data/lastmod.json: per ogni pagina l'hash del contenuto renderizzato
+ * e la data dell'ULTIMO cambiamento reale. Se l'hash non cambia, la data non si tocca. */
+const LASTMOD_FILE = path.join(SRC, 'data', 'lastmod.json');
+let lastmodStore = readJson(LASTMOD_FILE, null) || {};
+function contentHash(s) { return crypto.createHash('sha1').update(String(s), 'utf8').digest('hex').slice(0, 16); }
+function touchLastmod(key, html) {
+  const today = new Date().toISOString().slice(0, 10);
+  const h = contentHash(html);
+  const rec = lastmodStore[key];
+  if (!rec || rec.hash !== h) lastmodStore[key] = { hash: h, data: today };
+  return lastmodStore[key].data;
+}
+function saveLastmod() {
+  const prev = readJson(LASTMOD_FILE, null);
+  const next = JSON.stringify(lastmodStore, null, 2) + '\n';
+  if (prev && JSON.stringify(prev, null, 2) + '\n' === next) return false;
+  fs.writeFileSync(LASTMOD_FILE, next);
+  return true;
+}
 function ultimaModifica(f0) {
   const m = f0.match(/^immobile\/([a-z0-9-]+)\.html$/);
   if (m) {
@@ -1467,7 +1576,9 @@ function ultimaModifica(f0) {
       .find((x) => x.slug === m[1]);
     if (p && p.data_modifica) return p.data_modifica;
   }
-  try { return fs.statSync(path.join(ROOT, f0)).mtime.toISOString().slice(0, 10); } catch (e) { return null; }
+  const rec = lastmodStore[f0];
+  if (rec && rec.data) return rec.data;
+  return new Date().toISOString().slice(0, 10);
 }
 
 function sitemap() {
@@ -1482,11 +1593,20 @@ function llms() {
   const L = [];
   L.push('# Annunci immobiliari a Rivergaro — ' + cfg.site.dominio, '');
   L.push('> Una proposta immobiliare a Rivergaro, con informazioni pubblicate solo quando disponibili e confermate.', '');
-  L.push('## Contatti');
+  /* llms.txt: gli stessi dati NAP e anagrafici che il sito mostra in footer, cosi' un
+     motore generativo che cita lo studio non deve indovinarli ne' copiarli da un altro
+     dominio dell'ecosistema (che dichiara una sede diversa). */
+  L.push('## Chi risponde e dove');
+  L.push('- Professionista: ' + pro.nome_completo + ' — ' + pro.ruolo);
+  L.push('- Impresa: ' + (pro.denominazione_legale || pro.forma_legale || pro.nome_completo));
+  if (addr) L.push('- Sede: ' + [addr.street, addr.cap + ' ' + addr.localita + ' (' + addr.provincia + ')', addr.frazione ? 'frazione ' + addr.frazione : null].filter(Boolean).join(', '));
   L.push('- Telefono: ' + pro.telefono_display);
   L.push('- WhatsApp: ' + pro.telefono_display);
-  L.push('- Email: ' + pro.email, '');
-  L.push('## Zona');
+  L.push('- Email: ' + pro.email);
+  if (isConfirmed(pro.partita_iva)) L.push('- Partita IVA: ' + pro.partita_iva);
+  if (isConfirmed(pro.rea)) L.push('- REA: ' + pro.rea);
+  if (isConfirmed(pro.iscrizione_ruolo)) L.push('- Iscrizione al ruolo: ' + pro.iscrizione_ruolo);
+  L.push('', '## Zona');
   L.push('- Rivergaro (PC), in Val Trebbia. La Val Trebbia è un riferimento geografico, non una dichiarazione di copertura dell’intera valle.', '');
   /* Le pagine vanno scritte come link Markdown [testo](url): l'audit Lighthouse
      `llms-txt` di «Navigazione agentica» controlla H1, almeno un link e lunghezza
@@ -1508,6 +1628,16 @@ function llms() {
     const details = [[p.zona, p.comune].filter(Boolean).join(', '), p.tipologia, p.unita_abitative ? p.unita_abitative + ' unità abitative' : null, p.vani ? p.vani + ' vani' : null].filter(Boolean);
     L.push(`- [${p.titolo}](${BASE}/immobile/${p.slug}.html) — ${details.join(' · ')}`);
     if (p.descrizione) L.push('  ' + p.descrizione);
+    /* Le unita' con i dati verificati (m², rendita catastale, classe APE) sono il dato
+       piu' citabile per un motore generativo: e' quello che i portali non hanno. */
+    (p.unita || []).forEach((u) => {
+      const bits = [];
+      if (u.mq) bits.push(u.mq + ' m²');
+      if (u.rendita_catastale) bits.push('rendita catastale ' + String(u.rendita_catastale).replace('.', ',') + ' €');
+      if (u.ape_classe) bits.push('APE ' + u.ape_classe + (u.ape_indice ? ' · ' + String(u.ape_indice).replace('.', ',') + ' kWh/m² anno' : ''));
+      if (bits.length) L.push('  - ' + (u.nome || u.id || 'Unità') + ': ' + bits.join(' · '));
+    });
+    if (typeof p.prezzo !== 'number') L.push('  - Prezzo: non pubblicato (richiesta diretta al professionista).');
   });
   if (isConfirmed(cfg.contatti_sezione.orari)) L.push('', '## Orari di apertura', cfg.contatti_sezione.orari, '');
   const qa = homeFaq();
@@ -1519,10 +1649,10 @@ function llms() {
 /* -------------------------------------------------------------------- main */
 
 const PAGES = [
-  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', person: true, nav: ['proposta', 'richiesta', 'chi-sono'] },
-  { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti | comprarecasarivergaro.it', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite e ricerca personalizzata.', canonical: '/contatti.html', jsonld: 'site', nav: ['immobili', 'ricerca', 'contatti'] },
-  { path: 'chi-sono.html', source: 'chi-sono.md', nav_id: 'chi-sono', title: 'Chi sono | comprarecasarivergaro.it', description: 'Davide Scaglia, agente immobiliare a Rivergaro dal 2007: come lavoro con chi compra casa in Val Trebbia, sede, qualifiche e contatti diretti.', canonical: '/chi-sono.html', jsonld: 'site', nav: ['immobili', 'ricerca', 'contatti', 'chi-sono'] },
-  { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata | ' + cfg.site.dominio, description: 'Richiesta inviata a Davide Scaglia, agente immobiliare a Rivergaro: ti ricontatto appena possibile.', canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
+  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', person: true, nav: ['immobili', 'proposta', 'contatti', 'chi-sono'] },
+  { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti — Davide Scaglia, agente immobiliare a Rivergaro', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite, informazioni e ricerca personalizzata in Val Trebbia.', canonical: '/contatti.html', jsonld: 'site', person: true, breadcrumb: 'Contatti', nav: ['immobili', 'ricerca', 'contatti'] },
+  { path: 'chi-sono.html', source: 'chi-sono.md', nav_id: 'chi-sono', title: 'Chi sono — Davide Scaglia, agente immobiliare a Rivergaro', description: 'Davide Scaglia, agente immobiliare a Rivergaro dal 2007. Come lavoro con chi compra casa in Val Trebbia: sede, qualifiche e contatti diretti.', canonical: '/chi-sono.html', jsonld: 'site', person: true, breadcrumb: 'Chi sono', nav: ['immobili', 'ricerca', 'contatti', 'chi-sono'] },
+  { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata — Davide Scaglia', description: 'Richiesta inviata a Davide Scaglia, agente immobiliare a Rivergaro: ti ricontatto appena possibile.', canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/privacy.html', source: 'privacy.md', title: 'Privacy Policy | ' + cfg.site.dominio, canonical: '/legal/privacy.html', jsonld: 'none', nav: [] },
   { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', description: 'La pagina cercata non esiste. Torna alla home o apri il catalogo degli immobili disponibili a Rivergaro e in Val Trebbia.', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/cookie.html', source: 'cookie.md', title: 'Cookie Policy | ' + cfg.site.dominio, canonical: '/legal/cookie.html', jsonld: 'none', nav: [] },
@@ -1562,7 +1692,7 @@ function main() {
   if (soloCheck) { runCheck(); return; }
   refreshMediaCache();
   // dati pubblici per i filtri client-side (la pagina catalogo si genera dopo le altre pagine)
-  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro | comprarecasarivergaro.it', description: 'Case e ville in vendita a Rivergaro, con schede verificate. Filtri per zona, tipologia e budget.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'zona', 'guide', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
+  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro e Val Trebbia | Davide Scaglia', description: 'Case e ville in vendita a Rivergaro e in Val Trebbia, con schede verificate: dati, foto reali e documenti controllati. Filtri per zona e tipologia.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
   fs.mkdirSync(path.join(OUT, 'data'), { recursive: true });
   const pubblici = catalogo().map((p) => ({
     slug: p.slug, titolo: p.titolo, stato: p.stato, tipologia: p.tipologia || null,
@@ -1570,13 +1700,20 @@ function main() {
     superficie: p.superficie || null, locali: p.locali || null, data_modifica: p.data_modifica || null,
     immagini: (p.immagini || []).filter(Boolean).length, url: '/immobile/' + p.slug + '.html',
   }));
-  fs.writeFileSync(path.join(OUT, 'data', 'properties.json'), JSON.stringify({ generato: new Date().toISOString().slice(0, 10), immobili: pubblici }, null, 2) + '\n');
-  // Tag <title>: taglia ai confini delle parole (niente parole mozze in SERP)
-  const cutWord = (s, n) => (s.length <= n ? s : (s.slice(0, n).lastIndexOf(' ') > 0 ? s.slice(0, s.slice(0, n).lastIndexOf(' ')) : s.slice(0, n)).trim());
+  /* come il manifesto media: senza dati nuovi il file resta identico, cosi' la data
+     `generato` non dice "oggi" quando oggi non e' cambiato niente */
+  const pubFile = path.join(OUT, 'data', 'properties.json');
+  const pubPrev = readJson(pubFile, null);
+  let gen = new Date().toISOString().slice(0, 10);
+  if (pubPrev && JSON.stringify(pubPrev.immobili) === JSON.stringify(pubblici) && pubPrev.generato) gen = pubPrev.generato;
+  fs.writeFileSync(pubFile, JSON.stringify({ generato: gen, immobili: pubblici }, null, 2) + '\n');
   for (const p of schedaPagine()) {
     const page = {
       path: 'immobile/' + p.slug + '.html', source: null, immobile: p,
-      title: cutWord(p.titolo || 'Immobile', 60) + ' | ' + cfg.site.dominio,
+      /* titolo SEO: se Davide ne scrive uno suo (`titolo_seo`) vince quello, altrimenti
+         il titolo della scheda tagliato a parola + suffisso di brand, entro 60 caratteri
+         (prima era 85: troncato in SERP) */
+      title: p.titolo_seo ? p.titolo_seo : pageTitle(p.titolo || 'Immobile'),
       description: clipMeta(p.descrizione_meta || p.descrizione || '', 155),
       canonical: '/immobile/' + p.slug + '.html',
       breadcrumb: 'Immobili',
@@ -1595,6 +1732,7 @@ function main() {
       .replace(/\{\{[A-Z0-9_]+\}\}/g, '');
     fs.mkdirSync(path.join(OUT, 'immobile'), { recursive: true });
     fs.writeFileSync(path.join(OUT, page.path), cleanHtml(html));
+    touchLastmod(page.path, cleanHtml(html));
     console.log('✓ ' + page.path + (p.bozza ? '  [BOZZA · noindex]' : '') + ' (' + (html.length / 1024).toFixed(1) + 'KB)');
   }
   for (const p of PAGES) {
@@ -1602,10 +1740,13 @@ function main() {
     const html = buildPage(p);
     fs.mkdirSync(path.dirname(path.join(OUT, p.path)), { recursive: true });
     fs.writeFileSync(path.join(OUT, p.path), cleanHtml(html));
+    touchLastmod(p.path, cleanHtml(html));
     console.log('✓ ' + p.path + ' (' + (html.length / 1024).toFixed(1) + 'KB)');
   }
   fs.writeFileSync(path.join(OUT, 'immobili.html'), cleanHtml(catHtml));
+  touchLastmod('immobili.html', cleanHtml(catHtml));
   console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
+  if (saveLastmod()) console.log('✓ src/data/lastmod.json (aggiornate solo le pagine il cui contenuto e\' cambiato)');
   fs.copyFileSync(path.join(SRC, 'css', 'main.css'), path.join(OUT, 'css', 'main.css'));
   /* caratteri self-hosted: .woff2 + licenza OFL accanto ai file */
   const fontSrc = path.join(SRC, 'fonts');
@@ -1614,6 +1755,13 @@ function main() {
     for (const f of fs.readdirSync(fontSrc)) fs.copyFileSync(path.join(fontSrc, f), path.join(OUT, 'css', 'fonts', f));
   }
   fs.copyFileSync(path.join(SRC, 'js', 'main.js'), path.join(OUT, 'js', 'main.js'));
+  /* icone di marca: se mancano si rigenerano con  node tools/make-brand-assets.js */
+  const brandSrc = path.join(SRC, 'brand');
+  if (fs.existsSync(brandSrc)) {
+    for (const f of fs.readdirSync(brandSrc)) {
+      if (f === 'favicon.ico' || f === 'apple-touch-icon.png') fs.copyFileSync(path.join(brandSrc, f), path.join(OUT, f));
+    }
+  } else console.warn('⚠ manca src/brand/: esegui  node tools/make-brand-assets.js  (favicon.ico e apple-touch-icon)');
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap());
   fs.writeFileSync(path.join(OUT, 'llms.txt'), llms());
   fs.writeFileSync(path.join(OUT, 'robots.txt'), robots());
@@ -1654,8 +1802,42 @@ function runCheck() {
       }
       const h1 = (s.match(/<h1/g) || []).length;
       if (h1 !== 1) { console.log(`✗ ${f}: ${h1} H1 (deve essere 1)`); problems++; }
+      /* Gerarchia dei titoli: nessun salto di livello (h1→h3 ecc.). Regola interna
+         seo_geo.regole_geo[2]: prima il catalogo aveva un h3 figlio diretto dell'h1. */
+      const livelli = [...s.matchAll(/<h([1-6])[\s>]/g)].map((x) => Number(x[1]));
+      for (let i = 1; i < livelli.length; i++) {
+        if (livelli[i] > livelli[i - 1] + 1) {
+          console.log(`✗ ${f}: salto di gerarchia h${livelli[i - 1]} → h${livelli[i]}`);
+          problems++;
+          break;
+        }
+      }
       const nimg = [...s.matchAll(/<img [^>]*>/g)].filter((x) => !/width="\d+" height="\d+"/.test(x[0])).length;
       if (nimg) { console.log(`✗ ${f}: ${nimg} img senza width/height (rischio CLS)`); problems++; }
+      /* id univoci: l'attributo id deve esserlo per documento (HTML spec, WCAG 4.1.1).
+         Prima section e h2 condividevano lo stesso id (26 duplicati su 6 pagine). */
+      const idsAll = [...s.matchAll(/\sid="([^"]+)"/g)].map((x) => x[1]);
+      const dupIds = [...new Set(idsAll.filter((v, i) => idsAll.indexOf(v) !== i))];
+      if (dupIds.length) { console.log(`✗ ${f}: ${dupIds.length} id duplicati (${dupIds.slice(0, 4).join(', ')})`); problems++; }
+      /* descrittori srcset = larghezza intrinseca REALE della risorsa: un "900w" su un
+         file largo 405px fa servire foto morbide su retina e non passa la validazione. */
+      for (const set of s.matchAll(/srcset="([^"]+)"/g)) {
+        for (const part of set[1].split(',')) {
+          const m2 = part.trim().match(/^(\S+)\s+(\d+)w$/);
+          if (!m2) continue;
+          const target = path.join(path.dirname(f), m2[1]);
+          if (!exists(target)) continue;
+          const buf = fs.readFileSync(target);
+          const ext = path.extname(target).toLowerCase();
+          const d = ext === '.png' ? pngSize(buf) : (ext === '.jpg' || ext === '.jpeg') ? jpegSize(buf) : ext === '.webp' ? webpSize(buf) : null;
+          if (d && d.w && d.w !== Number(m2[2])) { console.log(`✗ ${f}: srcset dichiara ${m2[2]}w ma ${path.basename(m2[1])} e' larga ${d.w}px`); problems++; }
+        }
+      }
+      /* limiti SERP: title <= 62 e description <= 165 caratteri, altrimenti troncati */
+      const t = (s.match(/<title>([^<]*)<\/title>/) || [])[1] || '';
+      if (t.length > 62) { console.log(`✗ ${f}: title di ${t.length} caratteri (> 62, troncato in SERP)`); problems++; }
+      const dd = (s.match(/name="description" content="([^"]*)"/) || [])[1] || '';
+      if (dd.length > 165) { console.log(`✗ ${f}: description di ${dd.length} caratteri (> 165, troncata in SERP)`); problems++; }
     }
     problems += privacyGuard();
     console.log(problems ? '\n' + problems + ' problemi trovati' : '\n✓ check superato: nessun dato personale della visura, nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite');

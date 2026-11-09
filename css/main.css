@@ -79,10 +79,13 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 /* ---------------------------------------------------------- header/nav */
 .site-header{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .header-in{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
-.brand-logo{position:relative;display:block;flex:0 1 480px;width:min(68vw,480px);line-height:0;text-decoration:none;container-type:inline-size;isolation:isolate}
-.brand-logo img{display:block;width:100%;height:auto}
-.brand-logo-claim{position:absolute;left:31.3%;top:57.5%;width:60.2%;height:17.5%;display:flex;align-items:center;overflow:hidden;padding:0;background-color:#1e1c18;background-image:repeating-linear-gradient(90deg,rgba(60,54,44,.38) 0 1px,transparent 1px 7.11cqw);color:#e0bd66;font-family:var(--font-title);font-size:13px;font-weight:600;letter-spacing:2.9px;line-height:1;text-transform:uppercase;white-space:nowrap}
-@supports(font-size:1cqw){.brand-logo-claim{font-size:2.85cqw;letter-spacing:.62cqw}}
+/* Lockup di marca tipografico: nome del professionista + claim di zona, con i font del
+   sito. Sostituisce l'immagine logo, che conteneva il claim del sito gemello
+   ("vendere casa a Piacenza") coperto da un riquadro in sovrapposizione. */
+.brand-logo{display:flex;flex-direction:column;gap:6px;line-height:1;text-decoration:none}
+.brand-name{font-family:var(--font-title);font-size:clamp(19px,2.4vw,26px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-primary)}
+.brand-logo-claim{display:flex;align-items:center;color:#e0bd66;font-family:var(--font-title);font-size:11px;font-weight:600;letter-spacing:2.9px;line-height:1;text-transform:uppercase;white-space:nowrap}
+.brand-logo-claim::before{content:"";width:14px;height:1px;background:var(--gold);margin-right:8px}
 .nav{display:flex;gap:var(--s4);align-items:center}
 .nav a{color:var(--text-secondary);text-decoration:none;font-size:.9375rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
 .nav a:hover{color:#fff;border-bottom-color:var(--pink)}
@@ -253,7 +256,9 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .site-footer{margin-top:var(--s8);border-top:1px solid var(--line);background:#080808}
 .footer-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.7fr) minmax(0,1fr);gap:var(--s6);padding:var(--s7) 0 var(--s5)}
 .f-brand{font-family:var(--font-title);font-size:1.125rem;font-weight:700;margin:0 0 var(--s2)}
-.f-nap{font-size:.875rem;color:#d4d4d8;margin:0 0 var(--s3)}
+.f-nap{font-size:.875rem;color:#d4d4d8;margin:0 0 var(--s2)}
+.f-addr{font-size:.875rem;color:var(--text-secondary);margin:0 0 var(--s2)}
+.f-legal{font-size:.8125rem;color:var(--mute-text);margin:0 0 var(--s3)}
 .f-note{font-size:.875rem;color:var(--text-secondary)}
 .f-social{display:flex;gap:var(--s3);font-size:.875rem}
 .f-nav{display:grid;gap:var(--s2);align-content:start}
@@ -290,13 +295,15 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
   .field-grid{grid-template-columns:1fr}
   .contact-list li{grid-template-columns:1fr;gap:2px}
   .cross-cta{flex-direction:column;align-items:flex-start}
-  .brand-logo{flex-basis:min(48vw,320px);width:min(48vw,320px)}
+  .brand-logo{min-width:0}
+  .brand-logo-claim{letter-spacing:2.2px}
   .header-in{gap:6px}
   .header-cta{gap:4px}
   .header-cta .btn-tel{font-size:.7rem;padding:7px 8px}
 }
 @media (max-width:360px){
-  .brand-logo{flex-basis:43vw;width:43vw}
+  .brand-name{font-size:17px}
+  .brand-logo-claim{font-size:10px;letter-spacing:1.8px}
   .header-cta .btn-tel{font-size:.68rem;padding:7px 7px}
   .burger{padding:7px}
 }
