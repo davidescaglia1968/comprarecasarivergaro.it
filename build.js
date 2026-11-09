@@ -1067,6 +1067,12 @@ function head(page, prefix) {
   /* niente canonical sulle pagine noindex (404, grazie): un canonico verso una pagina
      d'errore o di ringraziamento e' un URL canonico che non dovrebbe esistere */
   if (!(page.noindex || page.robots_off || !cfg.site.robots_indexable)) c.push('<link rel="canonical" href="' + attr(url) + '">');
+  /* Discoverability di llms.txt (voce "Navigazione agentica" di PageSpeed, 2/3
+     prima di questa riga): il file esisteva ed era valido, ma nessuna pagina lo
+     dichiarava. Il link rel="llms-txt" nell'head e' il meccanismo con cui un
+     agente che arriva su una pagina qualsiasi scopre l'indice dei contenuti,
+     senza dover conoscere a memoria la convenzione sul percorso. */
+  if (!(page.noindex || page.robots_off || !cfg.site.robots_indexable)) c.push('<link rel="llms-txt" href="' + attr(rel(page.path || 'index.html', 'llms.txt')) + '">');
   c.push('<meta property="og:type" content="' + (page.immobile ? 'article' : 'website') + '">');
   c.push('<meta property="og:site_name" content="Immobili a Rivergaro">');
   c.push('<meta property="og:locale" content="it_IT">');
@@ -1552,6 +1558,9 @@ function robots() {
   }
   linee.push('');
   linee.push('Sitemap: ' + BASE + '/sitemap.xml');
+  /* Secondo punto di discoverability per gli agenti: un commento e' ignorato dai
+     parser robots classici ma leggibile da chi cerca l'indice dei contenuti. */
+  linee.push('# Indice dei contenuti in formato leggibile dagli agenti AI: ' + BASE + '/llms.txt');
   linee.push('');
   return linee.join('\n');
 }
