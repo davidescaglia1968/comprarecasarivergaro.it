@@ -22,7 +22,7 @@
     "robots_indexable": true,
     "deploy_notes": "GitHub Pages pubblica il ROOT del ramo main, come gia' fanno venderecasapiacenza.it e casepodenzano.it (repo a layout piatto). Richiede: .nojekyll e CNAME nella radice del repo. Nessun /docs.",
     "eyebrow_home": "Case in vendita a Rivergaro · Val Trebbia",
-    "_regola_title_home": "Title della home e H1 del ::hero non sono piu' la stessa frase (scelta del 03/11/2026): il title porta le parole chiave di ricerca e il nome del professionista entro i 60 caratteri, l'H1 parla a chi legge. Restano pero' legati nel senso: se cambia la promessa della pagina, si aggiornano insieme. Valgono i campi del front matter di home.md, allineati a titolo_home/description_home qui sopra."
+    "_regola_title_home": "Title della home e H1 del ::hero non sono la stessa frase: il title porta le parole chiave di ricerca e il nome del professionista entro i 60 caratteri, l'H1 porta la chiave di ricerca principale cosi' com'e' decisa da Davide il 09/11/2026: 'Comprare casa a Rivergaro Val Trebbia' (senza 'e in', senza sottotitolo: la frase parlata 'troviamo insieme la soluzione giusta' e' uscita perche' allungava l'H1 senza aggiungere chiave di ricerca). Restano legati nel senso: se cambia la promessa della pagina, si aggiornano insieme. Valgono i campi del front matter di home.md, allineati a titolo_home/description_home qui sopra."
   },
   "professionista": {
     "nome_completo": "Davide Scaglia",
@@ -540,7 +540,7 @@
       "contatti.html",
       "immobili.html"
     ],
-    "ancora_ricerca": "index.html#la-villa-non-fa-per-te",
+    "ancora_ricerca": "index.html#ricerca-personalizzata",
     "_regola_ancora": "Un solo punto per il pulsante 'Raccontami che casa cerchi': se Davide cambia il titolo del paragrafo in home.md, aggiorna questo valore (build.js lo verifica e avvisa se il paragrafo non esiste piu').",
     "_regola_voci": "Le voci del menu puntano a una pagina solo se esiste il suo markdown e il paragrafo ha quell'id: 'Contatti' e' diventata automatica il 02/11/2026 con contatti.html."
   }

@@ -1,5 +1,5 @@
 ---
-title: Cookie Policy | comprarecasarivergaro.it
+title: Cookie Policy — comprarecasarivergaro.it
 description: Quali cookie e quali servizi esterni usa comprarecasarivergaro.it, perche' il banner esiste e come modificare la tua scelta.
 canonical: /legal/cookie.html
 ---
@@ -22,11 +22,10 @@ Non esiste un cookie "di sessione" del sito: non c'è un database, non c'è un a
 | Servizio | Cosa fa | Quando viene caricato |
 |---|---|---|
 | FormSubmit (`formsubmit.co`) | Riceve i dati del modulo e li inoltra a `info@immobiliarescaglia.com` | Solo se invii un modulo |
-| Google Street View | Anteprima della zona dell'immobile | **Solo** se acconsenti con "Accetta tutto" e la richiedi: senza consenso l'iframe non esiste nel codice della pagina |
 
 I caratteri tipografici (Playfair Display e Inter) sono serviti **direttamente da questo sito**, non da Google Fonts: nessuna richiesta a terzi e nessun indirizzo IP trasferito per mostrarli.
 
-Se selezioni **"Solo tecnici"**, gli iframe di mappa non vengono mai caricati e i moduli restano disponibili perché il loro funzionamento è necessario alla richiesta che stai inviando.
+Se selezioni **"Solo tecnici"** non cambia nulla nel funzionamento del sito: in questo momento non esiste nessun contenuto esterno facoltativo da caricare. I moduli restano disponibili con entrambe le scelte, perché il loro invio è la richiesta stessa che stai facendo.
 
 ## Come modificare la scelta
 
@@ -34,7 +33,7 @@ Cancella la chiave `cookie_consent` da `localStorage` (Strumenti sviluppatore �
 
 ## Perche' non vedi una cookie bar con "rifiuta tutto" separata
 
-Il banner e' a due scelte perche' non ci sono trattamenti facoltativi da negoziare uno per uno: l'unica opzione reale e' se caricare o meno i contenuti multimediali esterni. La scelta ha la stessa validita' del consenso granulare e resta revocabile come descritto sopra.
+Il banner e' a due scelte perche' non ci sono trattamenti facoltativi da negoziare uno per uno: questo sito non carica contenuti di terzi finche' non sei tu a inviare un modulo, e quell'invio e' il servizio che stai chiedendo. La scelta ha la stessa validita' del consenso granulare e resta revocabile come descritto sopra.
 
 ## Contatto per le richieste sull'uso dei dati
 
