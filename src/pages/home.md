@@ -8,7 +8,7 @@ canonical: /
   "eyebrow": "Case in vendita a Rivergaro · Val Trebbia",
   "h1": "Comprare casa a Rivergaro Val Trebbia",
   "lead": [
-    "Sono Davide Scaglia, agente immobiliare a Rivergaro. Questo sito è dedicato a chi cerca casa qui e nei comuni intorno, lungo la Val Trebbia: trovi gli immobili effettivamente disponibili, con le foto e i dati che ho verificato.",
+    "Sono Davide Scaglia, agente immobiliare. Questo sito è dedicato a chi cerca casa A Rivergaro Val Trebbia.",
     "Se tra le proposte non c'è quella giusta, il lavoro comincia lì: mi racconti zona, tipo di casa e budget, e la ricerca la faccio io — in modo diretto, senza farti girare tra venti annunci."
   ],
   "cta": ["Scopri la villa", "#immobile-in-evidenza"],

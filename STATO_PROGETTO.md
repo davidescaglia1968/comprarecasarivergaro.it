@@ -634,3 +634,6 @@ Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo c
 **HTTPS forzato: non ancora risultato attivo.** Al momento della scrittura l'API GitHub risponde ancora `https_enforced: false` e `html_url` in `http://`: o la spunta non è stata salvata o era disabilitata in attesa del certificato. Percorso da ricontrollare: GitHub → repository → **Settings → Pages → sezione HTTPS → spunta «Enforce HTTPS»** e attendere che la casella resti spuntata dopo un refresh. Nessun cambiamento di codice necessario: è un'impostazione del pannello.
 
 **Verificato:** `node build.js` ✓ · `node build.js --check` ✓ · zero occorrenze della riga rimossa in `index.html` · NAP del footer intatto su tutte le pagine · hero con due paragrafi di lead.
+
+### Copy dell'hero decisa da Davide (stesso giro, prima della merge di #63)
+Primo paragrafo del lead sostituito verbatim con la frase dettata: «Sono Davide Scaglia, agente immobiliare. Questo sito è dedicato a chi cerca casa A Rivergaro Val Trebbia.» (maiuscola voluta da Davide). Il secondo paragrafo («Se tra le proposte non c'è quella giusta…») resta.
