@@ -597,6 +597,10 @@ const shortcodes = {
     const m = cfg.ecosistema.sito_madre;
     return `<aside class="cross-cta"><div><p class="cross-cta-k">Se invece devi vendere</p><p class="cross-cta-t">Su ${esc(m.nome)} trovi il percorso per chi mette in vendita casa, nella stessa zona e con lo stesso metodo.</p></div><a class="btn btn-outline" href="${attr(m.url)}" rel="noopener">vai su ${esc(m.nome)}</a></aside>`;
   },
+  /* Davide, 09/11/2026: nella card la riga "Studio + indirizzo" e' diventata la
+     promessa di metodo "A CASA TUA" (gli incontri li apre lui, dal cliente).
+     L'indirizzo della sede non sparisce dal sito: resta nel NAP del footer, in
+     llms.txt, nel JSON-LD e nel paragrafo "Dove si trova lo studio". */
   contatti_card() {
     const albo = pro.qualifica_albo && isConfirmed(pro.qualifica_albo.iscrizione)
       ? `<li><span class="k">Qualifica</span><span class="v">${esc(pro.qualifica_albo.sezione)} — ruolo di Piacenza, iscritto dal ${esc(pro.qualifica_albo.iscrizione)}</span></li>` : '';
@@ -606,7 +610,7 @@ const shortcodes = {
         <li><span class="k">Chi</span><span class="v">${esc(pro.nome_completo)} — ${esc(pro.ruolo)}</span></li>
         <li><span class="k">Telefono e WhatsApp</span><span class="v"><a href="tel:${attr(pro.telefono_e164)}">${esc(pro.telefono_display)}</a></span></li>
         <li><span class="k">Email</span><span class="v"><a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></span></li>
-        ${addr ? `<li><span class="k">Studio</span><span class="v">${esc(addr.street)}, ${esc(addr.cap)} ${esc(addr.localita)} (${esc(addr.provincia)})${addr.frazione ? ' — fraz. ' + esc(addr.frazione) : ''}</span></li>` : ''}
+        <li class="contact-wide"><span class="k">A casa tua</span></li>
         ${isConfirmed(cfg.contatti_sezione.orari) ? `<li><span class="k">Orari</span><span class="v">${esc(cfg.contatti_sezione.orari)}</span></li>` : ''}
         ${isConfirmed(pro.partita_iva) ? `<li><span class="k">Dati aziendali</span><span class="v">P.IVA ${esc(pro.partita_iva)} · REA ${esc(pro.rea)}${isConfirmed(pro.pec) ? ' · PEC ' + esc(pro.pec) : ''}</span></li>` : ''}
         ${albo}
