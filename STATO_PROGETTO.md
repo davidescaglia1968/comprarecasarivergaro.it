@@ -610,3 +610,15 @@ Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo c
 **HTTPS forzato: serve un clic di Davide.** Il tentativo di accendere `https_enforced` via API REST di GitHub risponde 403 con il token di questa integrazione («Resource not accessible by integration»): è un'impostazione che richiede i permessi di amministrazione del repository. Percorso esatto: GitHub → repository → **Settings → Pages → spuntare «Enforce HTTPS»**. Finché resta spento, `http://comprarecasarivergaro.it` non viene redirectato e l'URL dichiarato da GitHub è ancora quello in chiaro: è l'ultimo punto tecnico non risolvibile dal codice.
 
 **Verificato:** `node build.js` ✓ 9 pagine · `node build.js --check` ✓ · robots.txt con 16 blocchi AI + sitemap · footer con 4 profili `rel="me"` su tutte le pagine · `immobili.html` con `ItemList` numberOfItems 1 · meta robots esteso (`max-image-preview:large, max-snippet:-1`) già presente sulle pagine indicizzabili.
+
+## Navigazione agentica 2/3 → discoverability di llms.txt (09/11/2026, quarto giro)
+
+**Il sintomo.** PageSpeed Insights del 09/11/2026 19:50 (mobile): Prestazioni 95, Accessibilità 100, Best practice 100, SEO 100, ma **Navigazione agentica 2/3**. Search Console, nel frattempo, pulita: l'indicizzazione è confermata.
+
+**La causa.** Dei tre requisiti della voce agentica (file `llms.txt` presente e servito; file valido con intestazioni, collegamenti Markdown e pagine collegate complete; file **dichiarato dal sito**), il terzo mancava: `llms.txt` esisteva (3.159 byte, formato corretto) ma nessuna pagina lo annunciava — zero `<link rel="llms-txt">` nell'head, nessuna menzione in `robots.txt`. Un agente che arriva su una pagina qualsiasi senza conoscere la convenzione sul percorso non aveva modo di scoprirlo.
+
+**La correzione.**
+- `head()` emette `<link rel="llms-txt" href="…/llms.txt">` su tutte le pagine indicizzabili, con prefisso relativo corretto (`llms.txt` in radice, `../llms.txt` sotto `/legal/` e `/immobile/`), escluso sulle noindex come il canonical.
+- `robots.txt` aggiunge, dopo la Sitemap, un commento con l'URL assoluto dell'indice: ignorato dai parser robots classici, leggibile da chi cerca l'indice dei contenuti.
+
+**Da rifare dopo la merge.** Rilanciare PageSpeed sullo stesso URL: la voce agentica dovrebbe leggere 3/3. Il 95 di Prestazioni resta il tetto realistico su GitHub Pages (niente CDN configurabile, niente cache lunghe): i margini veri stanno dietro Cloudflare o un altro hosting, non nel repository.

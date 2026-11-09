@@ -36,3 +36,4 @@ User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://comprarecasarivergaro.it/sitemap.xml
+# Indice dei contenuti in formato leggibile dagli agenti AI: https://comprarecasarivergaro.it/llms.txt
