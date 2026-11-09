@@ -1129,6 +1129,8 @@ function head(page, prefix) {
     if (agente) agente.founder = { '@id': BASE + '/#davide-scaglia' };
   }
   if (page.breadcrumb) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: BASE + '/' + (page.canonical || page.path || '').replace(/^\//, '') }] });
+  /* Blocchi JSON-LD aggiuntivi specifici della pagina (es. ItemList del catalogo). */
+  if (page.jsonld_extra && ld && Array.isArray(ld['@graph'])) ld['@graph'].push(...page.jsonld_extra);
   /* FAQPage: le righe Q&A che il visitatore sta vedendo, non domande inventate per il markup.
      Google dal 07/05/2026 non mostra piu' il risultato arricchito FAQ (lo aveva gia' limitato ai
      siti sanitari/governativi dal 2023), ma il tipo resta valido e viene letto da Bing e dai
@@ -1228,7 +1230,16 @@ function fill(tpl, prefix, page) {
       isConfirmed(pro.partita_iva) ? 'P.IVA ' + esc(pro.partita_iva) : '',
       isConfirmed(pro.rea) ? 'REA ' + esc(pro.rea) : '',
     ].filter(Boolean).join(' · '),
-    SOCIAL: '',
+    /* Profili social pubblicati nel footer con rel="me": gli stessi URL che il
+       JSON-LD dichiara in sameAs, cosi' pagina e dati strutturati si confermano
+       a vicenda (segnale di entita' per Google e per i motori AI). */
+    SOCIAL: (() => {
+      const labels = { instagram: 'Instagram', facebook: 'Facebook', linkedin: 'LinkedIn', youtube: 'YouTube' };
+      const link = Object.entries(pro.social || {})
+        .filter(([, u]) => /^https?:\/\//.test(u || ''))
+        .map(([k, u]) => `<a href="${attr(u)}" rel="me noopener" target="_blank">${labels[k] || esc(k)}</a>`);
+      return link.length ? '<p class="f-social"><span class="f-social-t">Seguimi:</span> ' + link.join(' · ') + '</p>' : '';
+    })(),
     PREFIX: prefix,
     P0: prefix,
   };
@@ -1522,6 +1533,23 @@ function cardImmobile(p, prefix) {
 function robots() {
   const linee = ['User-agent: *'];
   linee.push((cfg.site.robots_indexable ? 'Allow' : 'Disallow') + ': /');
+  /* GEO/AI: permesso esplicito, crawler per crawler, ai motori generativi che
+     cercano contenuti da citare. Con il solo "User-agent: *" alcuni client
+     interpretano male l'assenza di una regola propria; dichiararli uno per uno
+     rende l'apertura inequivocabile e documenta la scelta nel file stesso. */
+  if (cfg.site.robots_indexable) {
+    const AI_BOT = [
+      'GPTBot', 'ChatGPT-User', 'OAI-SearchBot',
+      'ClaudeBot', 'Claude-User', 'Anthropic-AI',
+      'PerplexityBot', 'Perplexity-User',
+      'Google-Extended', 'Gemini-Deep-Research',
+      'Applebot-Extended', 'Amazonbot',
+      'CCBot', 'cohere-ai', 'YouBot', 'meta-externalagent',
+    ];
+    linee.push('');
+    linee.push('# Motori generativi e assistenti AI: lettura e citazione consentite.');
+    for (const b of AI_BOT) { linee.push('User-agent: ' + b); linee.push('Allow: /'); }
+  }
   linee.push('');
   linee.push('Sitemap: ' + BASE + '/sitemap.xml');
   linee.push('');
@@ -1690,7 +1718,17 @@ function main() {
   if (soloCheck) { runCheck(); return; }
   refreshMediaCache();
   // dati pubblici per i filtri client-side (la pagina catalogo si genera dopo le altre pagine)
-  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro e Val Trebbia | Davide Scaglia', description: 'Case e ville in vendita a Rivergaro e in Val Trebbia, con schede verificate: dati, foto reali e documenti controllati. Filtri per zona e tipologia.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili' }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
+  /* ItemList del catalogo: l'elenco strutturato delle schede pubblicate, con
+     posizione e URL. Ai motori dice quant'e' profonda l'offerta e collega la
+     pagina elenco alle schede senza ambiguita'. */
+  const itemList = {
+    '@type': 'ItemList',
+    name: 'Immobili in vendita a Rivergaro e in Val Trebbia',
+    url: BASE + '/immobili.html',
+    numberOfItems: catalogo().length,
+    itemListElement: catalogo().map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titolo, url: BASE + '/immobile/' + p.slug + '.html' })),
+  };
+  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro e Val Trebbia | Davide Scaglia', description: 'Case e ville in vendita a Rivergaro e in Val Trebbia, con schede verificate: dati, foto reali e documenti controllati. Filtri per zona e tipologia.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili', jsonld_extra: [itemList] }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
   fs.mkdirSync(path.join(OUT, 'data'), { recursive: true });
   const pubblici = catalogo().map((p) => ({
     slug: p.slug, titolo: p.titolo, stato: p.stato, tipologia: p.tipologia || null,
