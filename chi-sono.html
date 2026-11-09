@@ -89,10 +89,8 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .site-header{position:sticky;top:0;z-index:60;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .header-in{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);min-height:64px}
-.brand-logo{display:flex;flex-direction:column;gap:6px;line-height:1;text-decoration:none}
-.brand-name{font-family:var(--font-title);font-size:clamp(19px,2.4vw,26px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-primary)}
-.brand-logo-claim{display:flex;align-items:center;color:#e0bd66;font-family:var(--font-title);font-size:11px;font-weight:600;letter-spacing:2.9px;line-height:1;text-transform:uppercase;white-space:nowrap}
-.brand-logo-claim::before{content:"";width:14px;height:1px;background:var(--gold);margin-right:8px}
+.brand-logo{display:block;flex:0 1 560px;width:min(72vw,560px);line-height:0;text-decoration:none}
+.brand-logo img{display:block;width:100%;height:auto}
 .nav{display:flex;gap:var(--s4);align-items:center}
 .nav a{color:var(--text-secondary);text-decoration:none;font-size:.9375rem;font-weight:500;padding:6px 0;border-bottom:2px solid transparent}
 .nav a:hover{color:#fff;border-bottom-color:var(--pink)}
@@ -277,15 +275,13 @@ background:var(--bg-secondary);border-bottom:1px solid var(--line);padding:var(-
 .field-grid{grid-template-columns:1fr}
 .contact-list li{grid-template-columns:1fr;gap:2px}
 .cross-cta{flex-direction:column;align-items:flex-start}
-.brand-logo{min-width:0}
-.brand-logo-claim{letter-spacing:2.2px}
+.brand-logo{flex-basis:min(60vw,400px);width:min(60vw,400px)}
 .header-in{gap:6px}
 .header-cta{gap:4px}
 .header-cta .btn-tel{font-size:.7rem;padding:7px 8px}
 }
 @media (max-width:360px){
-.brand-name{font-size:17px}
-.brand-logo-claim{font-size:10px;letter-spacing:1.8px}
+.brand-logo{flex-basis:56vw;width:56vw}
 .header-cta .btn-tel{font-size:.68rem;padding:7px 7px}
 .burger{padding:7px}
 }
@@ -486,9 +482,9 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
    ],
    "logo": {
     "@type": "ImageObject",
-    "url": "https://comprarecasarivergaro.it/apple-touch-icon.png",
-    "width": 180,
-    "height": 180
+    "url": "https://comprarecasarivergaro.it/img/brand/logo-rivergaro.png",
+    "width": 1077,
+    "height": 141
    },
    "contactPoint": [
     {
@@ -564,15 +560,16 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
   <a class="skip" href="#contenuto">Vai al contenuto</a>
   <header class="site-header" id="site-header">
     <div class="wrap header-in">
-      <!-- Lockup di marca reso in CSS (font veri del sito): il file
-           img/brand/logo-davide-scaglia-rivergaro.png contiene in realta' la scritta
-           "VENDERE CASA A PIACENZA" del sito gemello, che qui veniva coperta da un
-           riquadro in sovrapposizione. Finche' non esiste un logo Rivergaro corretto,
-           il marchio e' tipografico: niente immagine con claim sbagliato in testa a
-           ogni pagina, e niente immagine Largest Contentful Paint nell'header. -->
+      <!-- Il marchio di Davide, ricreato il 09/11/2026 con il claim giusto per questo
+           dominio («IMMOBILI A RIVERGARO»): stesso linguaggio grafico della famiglia
+           (monogramma DS sfumato rosa→blu, filetto oro, nome in Playfair maiuscolo
+           spaziato) ma generato dai font del sito a risoluzione doppia, sfondo
+           trasparente, senza più la scritta «VENDERE CASA A PIACENZA» che il file
+           storico conteneva e che un riquadro CSS doveva coprire. Il file storico
+           resta in img/brand/ come archivio, non referenziato. Rigenerabile con
+           tools/make-logo.js. Esposto a metà dei pixel nativi: nitido su retina. -->
       <a class="brand-logo" href="index.html" aria-label="Davide Scaglia, immobili a Rivergaro — vai alla pagina principale">
-        <span class="brand-name" aria-hidden="true">Davide Scaglia</span>
-        <span class="brand-logo-claim" aria-hidden="true">IMMOBILI A RIVERGARO</span>
+        <img src="img/brand/logo-rivergaro.png" alt="Davide Scaglia — Immobili a Rivergaro" width="1077" height="141" decoding="async">
       </a>
       <nav class="nav" id="nav" aria-label="Navigazione principale">
         <a href="immobili.html">Immobili</a>

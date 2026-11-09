@@ -189,6 +189,11 @@ function ico(pngBuf, size) {
   return Buffer.concat([head, entry, pngBuf]);
 }
 /* ------------------------------------------------------------------- main */
+module.exports = { pngEncode, pngDecode, crc32, chunk, put };
+
+if (require.main === module) main();
+
+function main() {
 fs.mkdirSync(OUT, { recursive: true });
 if (!fs.existsSync(LOGO)) { console.error('Manca ' + LOGO); process.exit(1); }
 
@@ -199,4 +204,5 @@ fs.writeFileSync(path.join(OUT, 'apple-touch-icon.png'), pngEncode(180, 180, dra
 for (const f of ['favicon.ico', 'apple-touch-icon.png']) {
   const q = path.join(OUT, f);
   console.log('✓ src/brand/' + f + '  ' + (fs.statSync(q).size / 1024).toFixed(1) + 'KB');
+}
 }

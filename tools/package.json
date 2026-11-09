@@ -1,0 +1,13 @@
+{
+  "name": "comprarecasarivergaro-it-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tool di generazione asset di marca (icone e logo). Serve solo a rigenerare i file committed in src/brand e img/brand: la build del sito (build.js) resta senza dipendenze.",
+  "scripts": {
+    "icons": "node make-brand-assets.js",
+    "logo": "node make-logo.js"
+  },
+  "dependencies": {
+    "fontkit": "^2.0.4"
+  }
+}

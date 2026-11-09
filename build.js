@@ -221,14 +221,12 @@ function agentJsonLd() {
   if (as.length) a.areaServed = as.map((n) => ({ '@type': 'City', name: n }));
   const social = Object.keys(pro.social || {}).map((k) => pro.social[k]).filter((u) => /^https?:\/\//.test(u));
   if (social.length) a.sameAs = social;
-  /* Logo dell'entita': il PNG "logo-davide-scaglia-rivergaro.png" contiene in realta' il
-     claim del sito gemello ("VENDERE CASA A PIACENZA"), quindi dichiararlo come logo di
-     questo sito darebbe ai motori un marchio contraddittorio. Si dichiara il glifo di
-     marca generato da tools/make-brand-assets.js (lo stesso di favicon e apple-touch-icon);
-     le dimensioni si leggono dai byte, cosi' non sono numeri scritti a mano.
-     Quando Davide fornira' un logo Rivergaro corretto, bastera' cambiare questa costante. */
-  const LOGO = 'apple-touch-icon.png';
-  const logoFile = path.join(SRC, 'brand', LOGO);
+  /* Logo dell'entita': il lockup di marca rigenerato il 09/11/2026 con il claim corretto
+     per questo dominio ("IMMOBILI A RIVERGARO"), stessi font del sito e risoluzione
+     doppia. Il PNG storico con il claim del sito gemello resta in archivio senza essere
+     referenziato. Le dimensioni si leggono dai byte, cosi' non sono numeri scritti a mano. */
+  const LOGO = 'img/brand/logo-rivergaro.png';
+  const logoFile = path.join(ROOT, LOGO);
   if (fs.existsSync(logoFile)) {
     const dim = pngSize(fs.readFileSync(logoFile));
     a.logo = Object.assign({ '@type': 'ImageObject', url: BASE + '/' + LOGO }, dim && dim.w ? { width: dim.w, height: dim.h } : {});

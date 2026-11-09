@@ -584,3 +584,17 @@ Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo c
 3. **HTTPS forzato** su GitHub Pages spento (`https_enforced: false`) e `www` che punta all'apice con certificato solo apice: vanno accesi/sistemati dal pannello, non dal codice.
 4. **Attivazione FormSubmit**: al primo invio arriva la mail di conferma da cliccare.
 5. **Logo Rivergaro** corretto da fornire (vedi sopra).
+
+## Il logo di Davide è tornato in testata, ricreato corretto (09/11/2026, sera)
+
+**Perché.** Dopo la merge della PR #59 Davide ha chiesto di rimettere il logo: è il suo marchio, nome e cognome devono restare riconoscibili in ogni sito pubblicato, e va reso «ancora più bello e visibile». Aveva ragione: toglierlo non era la strada giusta, la strada era ricrearlo senza la scritta sbagliata.
+
+**Il file nuovo: `img/brand/logo-rivergaro.png`** (1077×141, sfondo trasparente, ~20 KB). Stesso linguaggio grafico della famiglia — monogramma **DS** sfumato rosa→blu, filetto oro verticale, **DAVIDE SCAGLIA** in Playfair Display 700 maiuscolo spaziato, claim in oro — ma con il claim giusto per questo dominio: **«IMMOBILI A RIVERGARO»**, non «VENDERE CASA A PIACENZA». I glifi sono rasterizzati dai woff2 auto-ospitati del sito (gli stessi che legge il browser), quindi il logo è tipograficamente identico al testo del sito; il file è a risoluzione doppia e in testata è esposto a metà dei pixel nativi: nitido su retina.
+
+**Come si rigenera.** `tools/make-logo.js` (nuovo): `cd tools && npm install && npm run logo`. È l'unico tool con una dipendenza (`fontkit`, solo per leggere i woff2); la build del sito resta senza dipendenze e il PNG generato è committed, quindi a Davide non serve installare nulla. Cambiando la stringa del claim nello stesso script si produce la variante gemella per gli altri siti dell'ecosistema: il marchio resta identico, il claim diventa quello del dominio.
+
+**In testata, più grande di prima.** Lockup immagine ripristinato in `src/templates/header.html`: larghezza `min(72vw,560px)` contro la precedente `min(68vw,480px)` del vecchio logo (e contro il lockup tipografico provvisorio), con `alt` veritiero e `width`/`height` nativi per il CLS. Sui breakpoint piccoli resta proporzionalmente più presente del vecchio (60vw/56vw contro 48vw/43vw).
+
+**Dove punta ora il marchio.** Il JSON-LD dell'entità dichiara `logo` = il file nuovo con le dimensioni lette dai byte; favicon e apple-touch-icon restano il glifo quadrato coerente. Il PNG storico con il claim gemello rimane in `img/brand/` come archivio, non referenziato da nessuna pagina.
+
+**Verificato:** `node build.js` ✓ 9 pagine · `node build.js --check` ✓ · logo presente in tutte le testate con dimensioni esplicite · JSON-LD `logo` = 1077×141 · anteprima su fondo #0a0a0a controllata a video: monogramma, filetto e claim leggibili e contrastati.
