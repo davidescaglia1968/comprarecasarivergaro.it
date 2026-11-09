@@ -190,7 +190,8 @@
     "provider": "FormSubmit",
     "action": "https://formsubmit.co/info@immobiliarescaglia.com",
     "metodo": "POST",
-    "stato_configurazione": "DA CONFERMARE",
+    "stato_configurazione": "ATTIVO",
+    "attivazione_confermata": "09/11/2026: Davide ha inviato il modulo di prova e cliccato il link di attivazione FormSubmit nella casella info@immobiliarescaglia.com. I moduli del sito recapitano davvero; possono essere presentati come attivi nei testi.",
     "attivazione": "Al primo invio FormSubmit manda una mail di attivazione all'indirizzo di destinazione: va confermata una volta sola, da Davide. Fino a quel momento i moduli sono nel repository ma NON vanno pubblicizzati come attivi.",
     "post_submit_redirect": "/grazie.html",
     "campi_richiesti": [
@@ -266,7 +267,8 @@
       "Zero cifre non verificate: niente 'a partire da', niente percentuali di rivalutazione, niente numero di immobili gestiti.",
       "Ogni guida risponde a una domanda specifica in apertura, poi la sviluppa."
     ],
-    "verifica_search_console": "DA CONFERMARE",
+    "verifica_search_console": "CONFERMATA",
+    "verifica_search_console_nota": "09/11/2026: Davide riporta proprietà verificata e copertura senza errori in Search Console; sitemap inviata.",
     "verifica_sfiducia": "Nessun link a directory/portali non autorizzati: li aggiunge Davide solo se reali.",
     "llms_txt": {
       "attivo": true,
@@ -465,8 +467,6 @@
       "professionista.bio_acquirenti ( testo della pagina Chi Sono, solo da Davide)",
       "professionista.bio_acquirenti",
       "seo_geo.og_image",
-      "seo_geo.verifica_search_console",
-      "form.stato_configurazione (attivazione FormSubmit)",
       "privacy_cookie.servizi_attivi[0].consenso_previo_richiesto",
       "privacy_cookie.servizi_attivi[1].trasferimento_extra_ue",
       "privacy_cookie.data_retention_richieste",
@@ -476,7 +476,8 @@
       "catalogo.properties (nessun immobile presente)",
       "media: cartella sorgente dei file reali (perche' li smisti io serve il percorso)"
     ],
-    "svincolo": "Finche' un campo e' 'DA CONFERMARE' o null, build.js omette il blocco dal markup pubblico e la pagina resta valida. La lista viene riportata in STATO_PROGETTO.md."
+    "svincolo": "Finche' un campo e' 'DA CONFERMARE' o null, build.js omette il blocco dal markup pubblico e la pagina resta valida. La lista viene riportata in STATO_PROGETTO.md.",
+    "campi_da_confermare_nota_09_11": "Rimossi dalla lista il 09/11/2026: form.stato_configurazione (FormSubmit attivato) e seo_geo.verifica_search_console (Search Console verificata). Restano aperti solo i campi legali/privacy e i contenuti che scrive Davide."
   },
   "media": {
     "description": "Cartelle immagine/video da monitorare per la pubblicazione. Nessuna foto viene inventata o scaricata da portali terzi.",

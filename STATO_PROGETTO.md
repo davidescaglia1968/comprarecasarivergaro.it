@@ -622,3 +622,15 @@ Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo c
 - `robots.txt` aggiunge, dopo la Sitemap, un commento con l'URL assoluto dell'indice: ignorato dai parser robots classici, leggibile da chi cerca l'indice dei contenuti.
 
 **Da rifare dopo la merge.** Rilanciare PageSpeed sullo stesso URL: la voce agentica dovrebbe leggere 3/3. Il 95 di Prestazioni resta il tetto realistico su GitHub Pages (niente CDN configurabile, niente cache lunghe): i margini veri stanno dietro Cloudflare o un altro hosting, non nel repository.
+
+## Hero senza indirizzo, FormSubmit attivo, Search Console confermata (09/11/2026, quinto giro)
+
+**Rimosso su richiesta di Davide.** La riga «Studio in Via Felice Cavallotti 3, frazione Pieve Dugliara — 29029 Rivergaro (PC)» non apre più la home: il lead dell'hero adesso comincia direttamente con «Sono Davide Scaglia, agente immobiliare a Rivergaro…». L'indirizzo dello studio **resta dove serve ai motori e alla legge, ma non in vetrina**: riga NAP nel footer di ogni pagina, blocco «Chi risponde e dove» in `llms.txt`, `address` nel JSON-LD dell'entità. Coerenza NAP mantenuta, vetrina più pulita.
+
+**FormSubmit: da «DA CONFERMARE» ad «ATTIVO».** Davide ha inviato il modulo di prova e cliccato il link di attivazione nella casella info@immobiliarescaglia.com: `form.stato_configurazione` passa ad ATTIVO con la data della conferma, e il campo esce dalla lista `campi_da_confermare`. I moduli del sito possono essere presentati come funzionanti.
+
+**Search Console: da «DA CONFERMARE» a «CONFERMATA».** Proprietà verificata e copertura senza errori, sitemap inviata: annotato in `seo_geo.verifica_search_console` con la data. Anche questo campo esce dalla lista dei campi aperti, che ora contiene solo voci legali/privacy e contenuti che scrive Davide.
+
+**HTTPS forzato: non ancora risultato attivo.** Al momento della scrittura l'API GitHub risponde ancora `https_enforced: false` e `html_url` in `http://`: o la spunta non è stata salvata o era disabilitata in attesa del certificato. Percorso da ricontrollare: GitHub → repository → **Settings → Pages → sezione HTTPS → spunta «Enforce HTTPS»** e attendere che la casella resti spuntata dopo un refresh. Nessun cambiamento di codice necessario: è un'impostazione del pannello.
+
+**Verificato:** `node build.js` ✓ · `node build.js --check` ✓ · zero occorrenze della riga rimossa in `index.html` · NAP del footer intatto su tutte le pagine · hero con due paragrafi di lead.
