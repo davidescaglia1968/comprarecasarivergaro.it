@@ -1,14 +1,15 @@
   <header class="site-header" id="site-header">
     <div class="wrap header-in">
-      <!-- Lockup di marca reso in CSS (font veri del sito): il file
-           img/brand/logo-davide-scaglia-rivergaro.png contiene in realta' la scritta
-           "VENDERE CASA A PIACENZA" del sito gemello, che qui veniva coperta da un
-           riquadro in sovrapposizione. Finche' non esiste un logo Rivergaro corretto,
-           il marchio e' tipografico: niente immagine con claim sbagliato in testa a
-           ogni pagina, e niente immagine Largest Contentful Paint nell'header. -->
+      <!-- Il marchio di Davide, ricreato il 09/11/2026 con il claim giusto per questo
+           dominio («IMMOBILI A RIVERGARO»): stesso linguaggio grafico della famiglia
+           (monogramma DS sfumato rosa→blu, filetto oro, nome in Playfair maiuscolo
+           spaziato) ma generato dai font del sito a risoluzione doppia, sfondo
+           trasparente, senza più la scritta «VENDERE CASA A PIACENZA» che il file
+           storico conteneva e che un riquadro CSS doveva coprire. Il file storico
+           resta in img/brand/ come archivio, non referenziato. Rigenerabile con
+           tools/make-logo.js. Esposto a metà dei pixel nativi: nitido su retina. -->
       <a class="brand-logo" href="{{PREFIX}}index.html" aria-label="Davide Scaglia, immobili a Rivergaro — vai alla pagina principale">
-        <span class="brand-name" aria-hidden="true">Davide Scaglia</span>
-        <span class="brand-logo-claim" aria-hidden="true">IMMOBILI A RIVERGARO</span>
+        <img src="{{PREFIX}}img/brand/logo-rivergaro.png" alt="Davide Scaglia — Immobili a Rivergaro" width="1077" height="141" decoding="async">
       </a>
       <nav class="nav" id="nav" aria-label="Navigazione principale">
         {{NAV}}
