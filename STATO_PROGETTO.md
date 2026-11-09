@@ -598,3 +598,15 @@ Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo c
 **Dove punta ora il marchio.** Il JSON-LD dell'entità dichiara `logo` = il file nuovo con le dimensioni lette dai byte; favicon e apple-touch-icon restano il glifo quadrato coerente. Il PNG storico con il claim gemello rimane in `img/brand/` come archivio, non referenziato da nessuna pagina.
 
 **Verificato:** `node build.js` ✓ 9 pagine · `node build.js --check` ✓ · logo presente in tutte le testate con dimensioni esplicite · JSON-LD `logo` = 1077×141 · anteprima su fondo #0a0a0a controllata a video: monogramma, filetto e claim leggibili e contrastati.
+
+## Segnali espliciti per i motori AI + entità sociale (09/11/2026, terzo giro)
+
+**robots.txt con permesso nominale ai crawler AI.** Oltre al `User-agent: *` aperto, il file generato ora dichiara uno per uno i client dei motori generativi — GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, Anthropic-AI, PerplexityBot, Perplexity-User, Google-Extended, Gemini-Deep-Research, Applebot-Extended, Amazonbot, CCBot, cohere-ai, YouBot, meta-externalagent — con `Allow: /` e un commento che spiega la scelta. Con la sola regola generica alcuni client interpretano male l'assenza di una riga propria; così l'apertura è inequivocabile e leggibile anche da chi audita il sito.
+
+**Profili social nel footer con `rel="me"`.** Il token `{{SOCIAL}}` esisteva ma restava vuoto: i quattro profili dichiarati nel config (Instagram, Facebook, LinkedIn, YouTube) non erano pubblicati da nessuna parte, mentre il JSON-LD li dichiarava in `sameAs`. Ora il footer li mostra («Seguimi: …») con `rel="me noopener"`: pagina e dati strutturati si confermano a vicenda, che è il segnale di consolidamento dell'entità usato da Google e dai motori generativi per capire che profilo, sito e scheda parlano della stessa persona.
+
+**`ItemList` nel JSON-LD del catalogo.** `immobili.html` dichiara ora l'elenco strutturato delle schede pubblicate (posizione, titolo, URL, `numberOfItems`): la pagina elenco e le schede sono collegate senza ambiguità anche per chi legge solo i dati strutturati. Quando il catalogo crescerà, l'elenco si aggiorna da solo perché nasce da `catalogo()`.
+
+**HTTPS forzato: serve un clic di Davide.** Il tentativo di accendere `https_enforced` via API REST di GitHub risponde 403 con il token di questa integrazione («Resource not accessible by integration»): è un'impostazione che richiede i permessi di amministrazione del repository. Percorso esatto: GitHub → repository → **Settings → Pages → spuntare «Enforce HTTPS»**. Finché resta spento, `http://comprarecasarivergaro.it` non viene redirectato e l'URL dichiarato da GitHub è ancora quello in chiaro: è l'ultimo punto tecnico non risolvibile dal codice.
+
+**Verificato:** `node build.js` ✓ 9 pagine · `node build.js --check` ✓ · robots.txt con 16 blocchi AI + sitemap · footer con 4 profili `rel="me"` su tutte le pagine · `immobili.html` con `ItemList` numberOfItems 1 · meta robots esteso (`max-image-preview:large, max-snippet:-1`) già presente sulle pagine indicizzabili.
