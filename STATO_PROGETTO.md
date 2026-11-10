@@ -637,3 +637,6 @@ Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo c
 
 ### Copy dell'hero decisa da Davide (stesso giro, prima della merge di #63)
 Primo paragrafo del lead sostituito verbatim con la frase dettata: «Sono Davide Scaglia, agente immobiliare. Questo sito è dedicato a chi cerca casa A Rivergaro Val Trebbia.» (maiuscola voluta da Davide). Il secondo paragrafo («Se tra le proposte non c'è quella giusta…») resta.
+
+### Nella card contatti la riga «Studio» diventa «A CASA TUA» (09/11/2026)
+Richiesta di Davide su chi-sono.html: al posto dell'etichetta «Studio» con l'indirizzo della sede, la card contatti (usata da `chi-sono.md` e `contatti.md`, quindi coerente su entrambe) mostra ora la riga a tutta larghezza **«A casa tua»** — la promessa di metodo: gli incontri li apre lui, dal cliente. L'indirizzo della sede **non è stato cancellato**: resta nel NAP del footer di ogni pagina, in `llms.txt`, nel JSON-LD `address` e nel paragrafo «Dove si trova lo studio: Rivergaro, frazione Pieve Dugliara» della stessa chi-sono. CSS: `.contact-list li.contact-wide{grid-template-columns:1fr}` per la riga a piena larghezza.
