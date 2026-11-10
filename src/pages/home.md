@@ -8,8 +8,7 @@ canonical: /
   "eyebrow": "Case in vendita a Rivergaro · Val Trebbia",
   "h1": "Comprare casa a Rivergaro Val Trebbia",
   "lead": [
-    "Sono Davide Scaglia, agente immobiliare. Questo sito è dedicato a chi cerca casa A Rivergaro Val Trebbia.",
-    "Se tra le proposte non c'è quella giusta, il lavoro comincia lì: mi racconti zona, tipo di casa e budget, e la ricerca la faccio io — in modo diretto, senza farti girare tra venti annunci."
+    "Sono Davide Scaglia, agente immobiliare. Questo sito è dedicato a chi cerca casa A Rivergaro Val Trebbia."
   ],
   "cta": ["Scopri la villa", "#immobile-in-evidenza"],
   "cta2": ["Vedi il catalogo con i filtri", "immobili.html"]
@@ -43,7 +42,7 @@ Intorno c'è il paesaggio della valle: il fiume Trebbia, le colline, i boschi, l
 
 ### Dove lavoro
 
-Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi — e i comuni vicini lungo l'asta del Trebbia. Se cerchi in una zona che non è la mia, te lo dico subito, invece di farti perdere tempo.
+Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi.
 
 ## Cerchi un'altra casa a Rivergaro? {#ricerca-personalizzata}
 

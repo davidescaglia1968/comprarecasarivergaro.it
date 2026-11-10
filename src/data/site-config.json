@@ -55,7 +55,7 @@
       "linkedin": "https://www.linkedin.com/in/davide-scaglia-55575210b",
       "youtube": "https://www.youtube.com/@VendereCasaPiacenza"
     },
-    "bio_acquirenti": "Faccio l’agente immobiliare a Rivergaro dal 2007 e lavoro con chi compra casa in Val Trebbia: seguo io la ricerca, le visite e la trattativa, dall’inizio alla firma del preliminare.\n\nHo scelto di non avere una vetrina con decine di annunci: sul mio sito trovi solo le case di cui ho verificato i documenti e che ho visto di persona. Se quella che cerchi non c’è, la cerco: mi dici zona, tipo di casa e budget e parto di lì.\n\nL’ufficio è a Rivergaro, in Via Felice Cavallotti 3, frazione Pieve Dugliara: la stessa sede che trovi in fondo a ogni pagina di questo sito, non un recapito generico. Sono un’impresa individuale: la persona che leggi in questa pagina è la stessa che ti risponde al telefono.",
+    "bio_acquirenti": "Faccio l’agente immobiliare a Rivergaro dal 2007. Lavoro con chi compra casa: la ricerca, le visite e la trattativa le seguo io, al tuo fianco, dall’inizio alla firma.\n\nNon troverai una vetrina con decine di annunci: pubblico solo le case che ho visto di persona e i cui documenti ho verificato. Se quella che cerchi non c’è ancora, la cerco io, partendo da quello che mi racconti.\n\nIl primo incontro lo facciamo dove preferisci, anche a casa tua. Sono un’impresa individuale: la persona che leggi in questa pagina è la stessa che ti risponde al telefono.",
     "brand_precedente": "Davide Scaglia — Consulente Immobiliare",
     "forma_legale": "Immobiliare Scaglia",
     "nota_anno": "RISOLTO dalla visura: due date diverse spiegano il conflitto. 12/12/2007 = data fondazione/inizio attivita' e 07/12/2007 = iscrizione al ruolo agenti di affari in mediazione (PC). 21/05/2008 = iscrizione al Registro Imprese come piccolo imprenditore. Il sito usa 'dal 2007' e foundingDate=2007.",
@@ -84,7 +84,7 @@
     "sede_nella_frazione": true,
     "rea": "PC-168637",
     "addetti": "1 (titolare, impresa individuale senza dipendenti)",
-    "_regola_bio": "Testo BOZZA preparata l’02/11/2026 da Arena a partire dai soli dati verificati (visura camerale, config, copy gia’ approvato in home). Non è autobiografia: nessun numero di immobili, nessuna zona 'conosciuta’ diversa da quelle in area_servizio, nessuna esperienza personale. Davide deve riscriverlo con la sua voce: i paragrafi si separano con una riga vuota. Finchè resta questo testo, in fondo alla pagina compare la nota 'profilo in corso di revisionè.",
+    "_regola_bio": "Testo riscritto il 10/11/2026 con Davide: voce naturale ed empatica, senza fronzoli; via il recapito dell’ufficio dal racconto (la sede resta in footer, llms.txt e JSON-LD) e dentro la promessa «A CASA TUA» (il primo incontro dove preferisce il cliente). I paragrafi si separano con una riga vuota. bio_stato=confermato: nessuna nota di revisione in pagina.",
     "bio_stato": "confermato"
   },
   "area_servizio": {
