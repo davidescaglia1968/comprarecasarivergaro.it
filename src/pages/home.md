@@ -42,7 +42,7 @@ Intorno c'è il paesaggio della valle: il fiume Trebbia, le colline, i boschi, l
 
 ### Dove lavoro
 
-Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi.
+Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi — e i comuni intorno: Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell'Olio.
 
 ## Cerchi un'altra casa a Rivergaro? {#ricerca-personalizzata}
 

@@ -87,7 +87,7 @@
       "titolo": "Cerchi casa in Val Trebbia? Villa indipendente con 3 unità abitative ad Ancarano, Rivergaro",
       "comune": "Rivergaro",
       "zona": "Ancarano",
-      "prezzo": "Prezzo in definizione",
+      "prezzo": "Prezzo riservato: te lo dico io al telefono",
       "superficie": null,
       "locali": null,
       "unita_abitative": 3,
@@ -329,7 +329,7 @@
       "video": [],
       "data_pubblicazione": "2026-10-23",
       "data_modifica": "2026-11-03",
-      "note_interne": "Testo della scheda scritto da Davide Scaglia, pubblicato il 03/11/2026 e da usare alla lettera: titolo, capoversi, sezioni «Una proprietà, diverse possibilità», «La posizione: tranquillità e servizi a portata di mano», «Una casa da scoprire», frase finale in grassetto e firma. `descrizione` = primo capoverso (meta description, dati strutturati, anteprime, llms.txt); `testo` = blocchi della pagina, con **grassetto** come unico segno. Distanze indicate da Davide: Rivergaro 2,5 km, Piacenza 15 km. Restano da verificare: elenco servizi, uso a studio medico, accessibilita' dei piani rialzati, progetto di ospitalita'/affitti brevi. Mancano prezzo, superfici, locali, stato catastale, APE, pertinenze. Testo e firma: nome unico «Davide Scaglia — Immobili a Rivergaro»; prezzo «Prezzo in definizione» (non ancora quantificato).",
+      "note_interne": "Testo della scheda scritto da Davide Scaglia, pubblicato il 03/11/2026 e da usare alla lettera: titolo, capoversi, sezioni «Una proprietà, diverse possibilità», «La posizione: tranquillità e servizi a portata di mano», «Una casa da scoprire», frase finale in grassetto e firma. `descrizione` = primo capoverso (meta description, dati strutturati, anteprime, llms.txt); `testo` = blocchi della pagina, con **grassetto** come unico segno. Distanze indicate da Davide: Rivergaro 2,5 km, Piacenza 15 km. Restano da verificare: elenco servizi, uso a studio medico, accessibilita' dei piani rialzati, progetto di ospitalita'/affitti brevi. Mancano prezzo, superfici, locali, stato catastale, APE, pertinenze. Testo e firma: nome unico «Davide Scaglia — Immobili a Rivergaro»; prezzo «Prezzo in definizione» (non ancora quantificato). | Aggiornamento 10/11/2026 (decisione di Davide): il prezzo NON e' pubblicato e non lo sara' finche' non lo decide lui; la dicitura visibile diventa «Prezzo riservato: te lo dico io al telefono». JSON-LD senza offers.price finche' non arriva il numero.",
       "cap": "29029",
       "gallerie": [
         {

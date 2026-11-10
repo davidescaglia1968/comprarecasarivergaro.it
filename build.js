@@ -34,6 +34,12 @@ function clipMeta(t, n = 155) {
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const cleanHtml = (s) => s.replace(/[ \t]+\n/g, '\n');
 const abs = (base, p) => (typeof p === 'string' && /^https?:\/\//.test(p) ? p : base + p);
+/* Elenco in italiano: "a, b e c" (niente virgola prima della e). */
+function listaIt(arr) {
+  const a = arr.filter(Boolean);
+  return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' e ' + a[a.length - 1];
+}
+
 const rel = (from, to) => {
   if (/^https?:\/\//.test(to)) return to;
   const fromDir = path.posix.dirname(from);
@@ -285,7 +291,7 @@ function listingJsonLd(p) {
   const offer = { '@type': 'Offer' };
   const hasPrice = typeof p.prezzo === 'number' && p.prezzo > 0;
   /* Senza un prezzo NUMERICO l'offerta non viene proprio emessa: `price` popolato con una
-     frase ("Prezzo in definizione") e' ammesso da schema.org ma non dalla specifica Google
+     frase ("Prezzo riservato: te lo dico io al telefono") e' ammesso da schema.org ma non dalla specifica Google
      di Offer (il Rich Results Test lo segnala come valore non valido), ed e' il tipo di
      dato che un motore generativo legge male o scarta. La frase resta dove un lettore la
      capisce: nel testo visibile e nella <dl> dei dati. Appena arriva il numero, l'offerta
@@ -1000,7 +1006,7 @@ function catalogoPage() {
   return '<section class="section"><div class="wrap">'
     + '<h1>Immobili in vendita a Rivergaro e in Val Trebbia</h1>'
     + '<p class="muted">Ogni scheda pubblicata qui è una scheda verificata: i dati che non ho in mano non vengono scritti, nemmeno come "circa". Se un prezzo o una metratura non compaiono, è perché non li ho ancora confermati: meglio una scheda in meno che un dato sbagliato.</p>'
-    + (frazioni.length ? '<p class="muted">Cerco e pubblico immobili nel comune di Rivergaro — ' + frazioni.map((f) => esc(f)).join(', ') + ' — e nei comuni vicini lungo l’asta del Trebbia.</p>' : '')
+    + (frazioni.length ? '<p class="muted">Cerco e pubblico immobili nel comune di Rivergaro — ' + frazioni.map((f) => esc(f)).join(', ') + ' — e nei comuni intorno: ' + listaIt((cfg.area_servizio.area_coperta_servizio || []).map((x) => x.nome).filter((n) => n && n !== cfg.area_servizio.comune_principale)) + '.</p>' : '')
     + '<h2 id="proposte-disponibili">Proposte disponibili in questo momento</h2>'
     + filterBar(list)
     + '<ul class="grid-cards" id="catalogo">' + list.map((p) => cardImmobile(p, 'immobili.html')).join('') + '</ul>'
@@ -1646,7 +1652,12 @@ function llms() {
   if (isConfirmed(pro.rea)) L.push('- REA: ' + pro.rea);
   if (isConfirmed(pro.iscrizione_ruolo)) L.push('- Iscrizione al ruolo: ' + pro.iscrizione_ruolo);
   L.push('', '## Zona');
-  L.push('- Rivergaro (PC), in Val Trebbia. La Val Trebbia è un riferimento geografico, non una dichiarazione di copertura dell’intera valle.', '');
+  /* Area coperta: l'elenco deciso da Davide il 10/11/2026, con i CAP, identico a
+     quello del profilo pubblico dell'attivita': un motore generativo che risponde
+     "in quali comuni lavora?" deve leggere qui la stessa lista che trova altrove. */
+  const area = (cfg.area_servizio.area_coperta_servizio || []).filter((x) => x && x.nome);
+  L.push('- Area coperta dal servizio: ' + area.map((x) => x.nome + (x.cap ? ' (' + x.cap + ')' : '') + (x.provincia ? ' ' + x.provincia : '')).join('; ') + '.');
+  L.push('- La Val Trebbia nel nome del sito è un riferimento geografico, non una dichiarazione di copertura dell’intera valle.', '');
   /* Le pagine vanno scritte come link Markdown [testo](url): l'audit Lighthouse
      `llms-txt` di «Navigazione agentica» controlla H1, almeno un link e lunghezza
      minima, e un URL nudo non conta come link. Le pagine elencate devono esistere. */
@@ -1676,7 +1687,7 @@ function llms() {
       if (u.ape_classe) bits.push('APE ' + u.ape_classe + (u.ape_indice ? ' · ' + String(u.ape_indice).replace('.', ',') + ' kWh/m² anno' : ''));
       if (bits.length) L.push('  - ' + (u.nome || u.id || 'Unità') + ': ' + bits.join(' · '));
     });
-    if (typeof p.prezzo !== 'number') L.push('  - Prezzo: non pubblicato (richiesta diretta al professionista).');
+    if (typeof p.prezzo !== 'number') L.push('  - Prezzo: riservato — te lo dice Davide al telefono, ' + pro.telefono_display + '.');
   });
   if (isConfirmed(cfg.contatti_sezione.orari)) L.push('', '## Orari di apertura', cfg.contatti_sezione.orari, '');
   const qa = homeFaq();
