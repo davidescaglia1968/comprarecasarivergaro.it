@@ -169,7 +169,40 @@
     ],
     "nota_aree_limitrofe": "Gossolengo, Vigolzone e Ponte dell'Olio compaiono gia' nelle zone operative di venderecasapiacenza.it: le usiamo solo come areaServed e come filtro 'zone vicine', senza promettere competenza specifica su di esse.",
     "nota_elenco_frazioni": "Elenco delle frazioni da usare, DECISO DA DAVIDE (23/10/2026): Niviano e' stata rimossa perche' non pertinente alla zona di interesse. Nessuna frazione va aggiunta o tolta senza una sua indicazione, e ogni nome deve comparire SOLO dove serve (filtro, hub zone): nei testi della home non elenco frazioni a caso.",
-    "elenco_in_ui": "solo filtri e pagina zona, mai nel copy fisso"
+    "elenco_in_ui": "solo filtri e pagina zona, mai nel copy fisso",
+    "area_coperta_servizio": [
+      {
+        "nome": "Piacenza",
+        "provincia": "PC",
+        "cap": null
+      },
+      {
+        "nome": "Vigolzone",
+        "provincia": "PC",
+        "cap": "29020"
+      },
+      {
+        "nome": "Podenzano",
+        "provincia": "PC",
+        "cap": "29027"
+      },
+      {
+        "nome": "Rivergaro",
+        "provincia": "PC",
+        "cap": "29029"
+      },
+      {
+        "nome": "Gossolengo",
+        "provincia": "PC",
+        "cap": "29020"
+      },
+      {
+        "nome": "Ponte dell'Olio",
+        "provincia": "PC",
+        "cap": "29028"
+      }
+    ],
+    "_nota_area_coperta": "Elenco DECISO DA DAVIDE il 10/11/2026 ('Area coperta dal servizio', incollato alla lettera con CAP e provincia): e' il perimetro vero del servizio, uguale a areaServed_jsonld e al profilo pubblico dell'attivita'. Ogni testo del sito che nomina la zona (home 'Dove lavoro', catalogo, FAQ, llms.txt) deve citare esattamente questi comuni: niente 'asta del Trebbia' generica, niente valle intera."
   },
   "ecosistema": {
     "sito_madre": {
@@ -419,7 +452,7 @@
       },
       {
         "d": "Che zona segui?",
-        "r": "Il comune di Rivergaro e i comuni intorno lungo l’asta del Trebbia (Piacenza, Podenzano, Gossolengo, Vigolzone, Ponte dell’Olio). Non copro la valle intera."
+        "r": "Il comune di Rivergaro con le sue frazioni e i comuni intorno: Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell’Olio. Non copro la valle intera."
       },
       {
         "d": "Quando è aperto lo studio?",
