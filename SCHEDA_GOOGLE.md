@@ -10,19 +10,31 @@ nel nome è il motivo più comune di sospensione. La chiave «agente immobiliare
 la presidiamo col sito (fatto il 09/11) e con la categoria qui sotto.
 
 ## 1. Categorie (voce «Categoria dell'attività»)
+Nel pannello del 10/11 la primaria risultava «Agenzia immobiliare»: Davide è agente,
+impresa individuale, quindi va portata a:
 - Primaria: **Agente immobiliare**
 - Aggiuntiva: **Consulente immobiliare**
 
-## 2. Descrizione dell'attività (max 750 caratteri, questa ne fa ~600)
+## 1bis. Data di apertura
+Il pannello del 10/11 diceva «12 dicembre 2012»: **è sbagliata**. La visura camerale dice
+inizio attività 12/12/2007 e iscrizione al ruolo 07/12/2007, e tutto il sito dice «dal 2007».
+Da impostare: **12 dicembre 2007**. Le date coerenti tra scheda, sito e llms.txt sono
+fiducia e segnale locale.
 
-> Agente immobiliare a Rivergaro dal 2007, iscritto al ruolo degli Agenti di Affari in
-> Mediazione della Camera di Commercio di Piacenza. Lavoro con chi compra casa: la ricerca,
-> le visite e la trattativa le seguo io, dall'appuntamento alla firma. Seguo Rivergaro con le
-> sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi —
-> e i comuni di Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell'Olio. Sede in Via
-> Felice Cavallotti 3, frazione Pieve Dugliara, Rivergaro (PC). Il prezzo degli immobili lo
-> comunico a voce; prima di qualsiasi proposta scritta chiarisco per iscritto condizioni e
-> compenso dell'incarico.
+## 2. Descrizione dell'attività (max 750 caratteri, questa ne fa ~700)
+Testo definitivo concordato in chat il 10/11/2026: incollare esattamente questo,
+cancellando prima tutto il vecchio (che diceva 2008, «W.APP» e chiudeva col marchio
+vecchio «Vendere Casa a Piacenza»).
+
+> Sono Davide Scaglia, agente immobiliare a Rivergaro dal 2007, iscritto al ruolo degli
+> Agenti di Affari in Mediazione della Camera di Commercio di Piacenza. Lavoro con chi
+> compra casa: la ricerca, le visite e la trattativa le seguo io, dall'appuntamento alla
+> firma. Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara,
+> Ancarano, Bassano, Roveleto Landi — e i comuni di Piacenza, Vigolzone, Podenzano,
+> Gossolengo e Ponte dell'Olio. Lo studio è in Via Felice Cavallotti 3, frazione Pieve
+> Dugliara, a Rivergaro. Il prezzo degli immobili lo comunico a voce; prima di qualsiasi
+> proposta scritta chiarisco per iscritto condizioni e compenso dell'incarico. Chiamami:
+> +39 328 693 0033.
 
 ## 3. Servizi (voce «Servizi», uno per riga)
 - Ricerca personalizzata per chi compra casa
