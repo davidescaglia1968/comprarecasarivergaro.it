@@ -37,6 +37,6 @@ Il banner e' a due scelte perche' non ci sono trattamenti facoltativi da negozia
 
 ## Contatto per le richieste sull'uso dei dati
 
-Titolare del trattamento: **Davide Scaglia — Immobiliare Scaglia**, Via Cavallotti 3, 29029 Rivergaro (PC) · P.IVA 01493570335 · **info@immobiliarescaglia.com** · +39 328 693 0033.
+Titolare del trattamento: **Davide Scaglia — Immobiliare Scaglia**, Rivergaro (PC) · P.IVA 01493570335 · **info@immobiliarescaglia.com** · +39 328 693 0033. L'indirizzo completo del titolare è riportato nella [Privacy Policy](privacy.html).
 
 > **Nota di redazione:** questa pagina descrive in modo esatto la tecnologia del sito. La Privacy Policy completa e i Termini e Condizioni — che richiedono dati normativi che solo il professionista puo' confermare (responsabile DPI, conservazioni, foro competente) — verranno pubblicati nella Fase 4 e collegati qui. Fino a quel momento, tutto il trattamento si ferma alle informazioni che ci fornisci volontariamente con il modulo di ricerca.

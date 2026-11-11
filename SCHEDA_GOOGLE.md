@@ -31,10 +31,16 @@ vecchio «Vendere Casa a Piacenza»).
 > compra casa: la ricerca, le visite e la trattativa le seguo io, dall'appuntamento alla
 > firma. Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara,
 > Ancarano, Bassano, Roveleto Landi — e i comuni di Piacenza, Vigolzone, Podenzano,
-> Gossolengo e Ponte dell'Olio. Lo studio è in Via Felice Cavallotti 3, frazione Pieve
-> Dugliara, a Rivergaro. Il prezzo degli immobili lo comunico a voce; prima di qualsiasi
+> Gossolengo e Ponte dell'Olio. Lo studio è a Rivergaro (PC); ricevo su appuntamento o
+> con una telefonata. Il prezzo degli immobili lo comunico a voce; prima di qualsiasi
 > proposta scritta chiarisco per iscritto condizioni e compenso dell'incarico. Chiamami:
 > +39 328 693 0033.
+
+**Attenzione (10/11/2026):** la versione precedente di questa descrizione conteneva la via
+di casa-sede. Davide ha deciso che l'indirizzo non è pubblico: nel profilo Google va
+inserito come **indirizzo nascosto** (attività con area di servizio) e mai scritto nei
+testi pubblici, descrizione compresa. Se la descrizione sul profilo contiene ancora la
+via, va corretta subito con il testo qui sopra.
 
 ## 3. Servizi (voce «Servizi», uno per riga)
 - Ricerca personalizzata per chi compra casa
@@ -58,7 +64,10 @@ Su GBP puoi pubblicare tu domanda e risposta (sono le domande che ti fanno al te
 ## 5. Sito e contatti (devono coincidere col sito, lettera per lettera)
 - Sito web: `https://comprarecasarivergaro.it/`
 - Telefono: `+39 328 693 0033` (stesso formato del footer del sito)
-- Indirizzo: `Via Felice Cavallotti 3, 29029 Rivergaro PC`
+- Indirizzo **pubblico**: nessuno — il profilo è attività con area di servizio e mostra
+  solo `Rivergaro (PC)` più le aree servite, come il footer del sito.
+- Indirizzo **nel conto Google** (nascosto ai clienti, serve a Google): via e CAP veri,
+  come da visura; non va mai copiato in testi pubblici.
 - Orari: lunedì–venerdì 09:00–12:30 e 15:00–19:00; sabato 09:00–12:30
 
 La coerenza NAP (nome-indirizzo-telefono identici tra scheda, footer del sito e llms.txt)
