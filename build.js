@@ -216,6 +216,8 @@ function agentJsonLd() {
   const a = {
     '@type': 'RealEstateAgent', '@id': BASE + '/#agent',
     name: 'Immobili a Rivergaro', alternateName: pro.nome_completo,
+    slogan: 'Agente immobiliare a Rivergaro e Val Trebbia, al fianco di chi compra',
+    description: "Davide Scaglia, agente immobiliare iscritto al ruolo dal 2007: consulenza per chi compra casa a Rivergaro e nei comuni di Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell'Olio.",
     legalName: pro.denominazione_legale || undefined,
     url: BASE + '/', telephone: pro.telefono_e164, email: pro.email,
   };
@@ -481,7 +483,11 @@ function wrapSections(content) {
   let first = parts[0] || '';
   const rest = parts.slice(1);
   let out = '';
-  if (first.trim()) out += first.trim() + '\n';
+  /* Il blocco prima del primo H2 (H1 + attacco) finiva fuori da qualsiasi contenitore:
+     su chi-sono, contatti, 404 e legali il testo partiva sparato contro il bordo dello
+     schermo (difetto visto dal vivo l'8/11/2026). Lo si mette nel wrap, tranne quando
+     contiene gia' una sezione piena come l'hero della home, che e' full-bleed apposta. */
+  if (first.trim()) out += (/<section[\s>]/.test(first) ? first.trim() : '<div class="wrap page-head">\n' + first.trim() + '\n</div>') + '\n';
   rest.forEach((chunk, idx) => {
     const m = chunk.match(/<h2 id="([^"]+)"/);
     const cls = 'section' + (idx % 2 ? ' section--alt' : '');
@@ -1163,7 +1169,11 @@ function head(page, prefix) {
 }
 
 function buildPage(page) {
-  const prefix = page.path.includes('/') ? '../' : '';
+  /* La 404 viene servita da GitHub Pages sotto QUALSIASI percorso inesistente, anche in
+     sottocartelle (/zone/x.html, /immobili/y.html): con il prefisso relativo logo, menu,
+     css e link si rompono proprio nel momento in cui servono. Per lei prefisso assoluto
+     dalla radice, cosi' la pagina d'errore e' integra da qualunque URL arrivi. */
+  const prefix = page.path === '404.html' ? '/' : (page.path.includes('/') ? '../' : '');
   CURRENT_PAGE = page.path;
   const md = readIf(path.join(SRC, 'pages', page.source), '');
   const { data, body } = parseFrontMatter(md);
@@ -1181,8 +1191,8 @@ function buildPage(page) {
     .replace('{{FOOTER}}', footer)
     .replace('{{COOKIE_BANNER}}', banner)
     .replace('{{PREFIX}}', prefix)
-    .replace('{{P0}}', page.path.includes('/') ? '../' : '')
-    .replace('{{SCRIPT}}', `<script src="${rel(page.path, 'js/main.js')}" defer></script>`);
+    .replace('{{P0}}', prefix === '/' ? '/' : (page.path.includes('/') ? '../' : ''))
+    .replace('{{SCRIPT}}', `<script src="${prefix === '/' ? '/js/main.js' : rel(page.path, 'js/main.js')}" defer></script>`);
   return out;
 }
 
@@ -1642,7 +1652,7 @@ function llms() {
      motore generativo che cita lo studio non deve indovinarli ne' copiarli da un altro
      dominio dell'ecosistema (che dichiara una sede diversa). */
   L.push('## Chi risponde e dove');
-  L.push('- Professionista: ' + pro.nome_completo + ' — ' + pro.ruolo);
+  L.push('- Professionista: ' + pro.nome_completo + ' — Agente immobiliare a Rivergaro e Val Trebbia, consulente per gli acquirenti');
   L.push('- Impresa: ' + (pro.denominazione_legale || pro.forma_legale || pro.nome_completo));
   if (addr) L.push('- Sede: ' + [addr.street, addr.cap + ' ' + addr.localita + ' (' + addr.provincia + ')', addr.frazione ? 'frazione ' + addr.frazione : null].filter(Boolean).join(', '));
   L.push('- Telefono: ' + pro.telefono_display);

@@ -73,6 +73,8 @@ a:hover{color:#fff}
 hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 ::selection{background:rgba(236,72,153,.35)}
 .wrap{width:var(--wrap);margin-inline:auto}
+.page-head{padding:clamp(40px,6vw,72px) 0 var(--s4)}
+.page-head h1{margin:0 0 var(--s3)}
 .section{padding:clamp(48px,7vw,88px) 0}
 .section--alt{background:var(--bg-secondary);border-block:1px solid var(--line)}
 .eyebrow{font-size:.8125rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-text);font-weight:600;margin:0 0 var(--s2)}
@@ -375,7 +377,11 @@ border-bottom:1px solid var(--line)}
 @media (max-width:640px){.lb-cap{font-size:.8125rem}}
 .featured-property-specs{margin-top:var(--s3)}
 .featured-property-specs .specs{margin-bottom:0}
-.featured-property-ref{margin-top:var(--s3)}
+.featured-property-ref{margin-top:var(--s2)}
+.featured-property-ref a{display:inline-block;font-size:1.25rem;font-weight:700;color:#ffd700;text-decoration-thickness:2px;text-underline-offset:4px;animation:cta-pulse 2.2s ease-in-out infinite}
+.featured-property-ref a:hover{color:#fff}
+@keyframes cta-pulse{0%,100%{transform:scale(1);text-shadow:0 0 0 rgba(255,215,0,0)}50%{transform:scale(1.045);text-shadow:0 0 22px rgba(255,215,0,.5)}}
+@media (prefers-reduced-motion:reduce){.featured-property-ref a{animation:none}}
 .table-wrap{overflow-x:auto;margin:0 0 var(--s3)}
 table{border-collapse:collapse;width:100%;font-size:.9375rem;line-height:1.5}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -396,8 +402,8 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
            storico conteneva e che un riquadro CSS doveva coprire. Il file storico
            resta in img/brand/ come archivio, non referenziato. Rigenerabile con
            tools/make-logo.js. Esposto a metà dei pixel nativi: nitido su retina. -->
-      <a class="brand-logo" href="index.html" aria-label="Davide Scaglia, immobili a Rivergaro — vai alla pagina principale">
-        <img src="img/brand/logo-rivergaro.png" alt="Davide Scaglia — Immobili a Rivergaro" width="1077" height="141" decoding="async">
+      <a class="brand-logo" href="/index.html" aria-label="Davide Scaglia, immobili a Rivergaro — vai alla pagina principale">
+        <img src="/img/brand/logo-rivergaro.png" alt="Davide Scaglia — Immobili a Rivergaro" width="1077" height="141" decoding="async">
       </a>
       <nav class="nav" id="nav" aria-label="Navigazione principale">
 
@@ -410,9 +416,11 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
   </header>
 
   <main id="contenuto">
+<div class="wrap page-head">
 <h1 id="la-pagina-che-cercavi-non-ce">La pagina che cercavi non c'è</h1>
-<p>Può succedere per due motivi: un link sbagliato, oppure una scheda immobiliare che ho rimosso perche' l'immobile è stato venduto o ritirato (non tengo pagine morte che promettono case che non ci sono più).</p>
-<ul><li><strong><a href="index.html">Torna alla home</a></strong> e guarda cosa c'è in questo momento</li><li><strong><a href="index.html#la-villa-non-fa-per-te">Ricerca personalizzata</a></strong>: dimmi cosa cerchi, cerco io</li><li>Chiama o scrivi su WhatsApp: <strong>+39 328 693 0033</strong></li></ul>
+<p>Può succedere per due motivi: un link sbagliato, oppure una scheda immobiliare che ho rimosso perché l'immobile è stato venduto o ritirato (non tengo pagine morte che promettono case che non ci sono più).</p>
+<ul><li><strong><a href="/index.html">Torna alla home</a></strong> e guarda cosa c'è in questo momento</li><li><strong><a href="/index.html#ricerca-personalizzata">Ricerca personalizzata</a></strong>: dimmi cosa cerchi, cerco io</li><li>Chiama o scrivi su WhatsApp: <strong>+39 328 693 0033</strong></li></ul>
+</div>
 
   </main>
   <footer class="site-footer">
@@ -448,13 +456,13 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
     <div class="wrap cookie-in">
       <p>Questo sito usa solo cookie tecnici per funzionare. Quando invii un modulo, i dati passano da FormSubmit, il servizio che li recapita alla mia casella email: puoi leggere come li tratta nella Cookie Policy. Nessun altro contenuto di terzi viene caricato.</p>
       <div class="cookie-actions">
-        <a href="legal/cookie.html" class="cookie-link">Cookie Policy</a>
+        <a href="/legal/cookie.html" class="cookie-link">Cookie Policy</a>
         <button type="button" class="btn btn-outline btn-sm" id="cookie-reject">Solo tecnici</button>
         <button type="button" class="btn btn-primary btn-sm" id="cookie-accept">Accetta tutto</button>
       </div>
     </div>
   </div>
 
-  <script src="js/main.js" defer></script>
+  <script src="/js/main.js" defer></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 ---
 title: Case in vendita a Rivergaro e Val Trebbia | Davide Scaglia
-description: Cerchi casa a Rivergaro o in Val Trebbia? Scopri le proposte immobiliari di Davide Scaglia e richiedi una ricerca personalizzata in base alle tue esigenze.
+description: Agente immobiliare a Rivergaro e Val Trebbia dal 2007: case con dati e foto verificati e ricerca su misura per chi compra. Chiama Davide: +39 328 693 0033.
 canonical: /
 ---
 
@@ -43,6 +43,10 @@ Intorno c'è il paesaggio della valle: il fiume Trebbia, le colline, i boschi, l
 ### Dove lavoro
 
 Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi — e i comuni intorno: Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell'Olio.
+
+## Agente immobiliare a Rivergaro, dal 2007 {#agente-immobiliare-rivergaro}
+
+Faccio l'agente immobiliare a Rivergaro dal 2007, iscritto al ruolo della Camera di Commercio di Piacenza: lavoro su Rivergaro con le sue frazioni e sui comuni intorno — Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell'Olio. Chi mi chiama ha davanti una persona sola, dall'appuntamento alla firma: la ricerca, le visite e la trattativa le seguo io. Se cerchi un agente immobiliare a Rivergaro che conosca la zona strada per strada, il numero è qui sul sito e negli orari indicati risponde.
 
 ## Cerchi un'altra casa a Rivergaro? {#ricerca-personalizzata}
 

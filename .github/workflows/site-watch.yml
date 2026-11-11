@@ -1,0 +1,33 @@
+name: Sorveglianza sito vivo
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Attendi il deploy di Pages
+        if: github.event_name == 'push'
+        run: sleep 240
+      - name: Controlli sul sito vivo
+        id: watch
+        run: |
+          set -o pipefail
+          node tools/watch-site.js | tee watch.log
+      - name: Apri una Issue se un controllo fallisce
+        if: steps.watch.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Sorveglianza sito: controlli falliti il $(date +%d/%m/%Y)" --body-file watch.log
