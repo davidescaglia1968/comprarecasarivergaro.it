@@ -683,3 +683,8 @@ Tre correzioni di Davide sulla scheda immobile, in ordine:
 - `tools/watch-site.js` scrive il resoconto (controlli passati e numeri PageSpeed mobile) nel **riassunto del passo** della run GitHub (`GITHUB_STEP_SUMMARY`): Davide legge i valori dalla scheda Actions senza aprire i log.
 - `ci.yml` ora lint-a i workflow con `npx yaml-lint`: un errore di sintassi YAML come quello che l'8/11 aveva fermato il custode (due punti non virgolettati in uno scalar) viene bloccato in CI prima del merge, non scoperto dopo.
 - `llms.txt`: la sezione «Pagine» elenca anche «Vivere a Rivergaro e in Val Trebbia: servizi, distanze, tempo libero», cosi' la navigazione agentica trova la pagina territorio dall'indice.
+
+### Giro 10/11/2026: territorio indicizzato, link dalla scheda, pacchetto scheda Google
+- Davide conferma il 10/11 che `/vivere-a-rivergaro.html` **e' indicizzata** su Google.
+- Riquadro laterale della scheda immobile: nuova riga «Com'è vivere a Rivergaro?» che linka la pagina territorio (link interno dalla scheda piu' profonda verso la pagina di luogo, utile a lettori e motori); compare solo se la pagina esiste.
+- Nasce `SCHEDA_GOOGLE.md`: testi pronti da copia-incolla per completare il Google Business Profile esistente (categorie, descrizione ~600 caratteri, servizi, domande e risposte, NAP identico al footer, piano foto, primo post, risposta alle recensioni), tutti ricavati da dati gia' pubblicati e confermati. Regola scritta in testa: mai toccare il nome della scheda.

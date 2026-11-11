@@ -971,6 +971,7 @@ function schedaPage(p, prefix) {
         <p class="side-k">Non è quella giusta?</p>
         <p class="side-note">Dimmi cosa cerchi: la ricerca parte da te, non da quello che ho in vetrina.</p>
         <a class="btn btn-outline btn-sm" href="${attr(anchorRicerca('immobile/' + p.slug + '.html', prefix))}">Ricerca personalizzata</a>
+        ${paginaViva('vivere-a-rivergaro.html') ? `<p class="side-note">Com'è vivere a Rivergaro? <a href="${rel('immobile/' + p.slug + '.html', 'vivere-a-rivergaro.html')}">Servizi, distanze e tempo libero, raccontati da chi lavora</a>.</p>` : ''}
       </div>
     </aside>
   </div>
