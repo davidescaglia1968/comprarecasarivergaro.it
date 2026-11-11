@@ -46,6 +46,26 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
     else ok('nessun prezzo in ' + (u.replace(BASE, '') || '/'));
   }
 
+  console.log('== Frasi e dati dettati da Davide (non devono cambiare)');
+  /*Invarianti decisi da Davide nei giri precedenti: H1 e attacco della home parola per
+    parola, perimetro dell'area coperta con i CAP, la riga che dice che il prezzo lo
+    comunica lui, e la chiave IndexNow raggiungibile. Se una modifica futura ne altera
+    una, la sorveglianza la segnala come guasto, non come dettaglio. */
+  const casa = await (await fetch(BASE + '/')).text();
+  const llmsTxt = await (await fetch(BASE + '/llms.txt')).text();
+  const chiave = await (await fetch(BASE + '/d41e8b2f6a0c4e79b35f1a2c8e6d0497.txt')).text();
+  const invarianti = [
+    ['H1 home «Comprare casa a Rivergaro Val Trebbia»', casa.includes('<h1>Comprare casa a Rivergaro Val Trebbia</h1>')],
+    ['attacco hero della home, parola per parola', casa.includes('Sono Davide Scaglia, agente immobiliare. Questo sito è dedicato a chi cerca casa A Rivergaro Val Trebbia.')],
+    ['area coperta dal servizio con i CAP, in llms.txt', llmsTxt.includes('Area coperta dal servizio: Piacenza PC; Vigolzone (29020) PC; Podenzano (29027) PC; Rivergaro (29029) PC;') && llmsTxt.includes('Olio (29028) PC.')],
+    ['riga «Prezzo: riservato — te lo dice Davide al telefono» in llms.txt', llmsTxt.includes('Prezzo: riservato — te lo dice Davide al telefono')],
+    ['chiave IndexNow raggiungibile in radice', chiave.trim() === 'd41e8b2f6a0c4e79b35f1a2c8e6d0497'],
+  ];
+  for (const [nome, va] of invarianti) {
+    if (va) ok('invariante: ' + nome);
+    else fail.push('invariante rotta: ' + nome);
+  }
+
   console.log('== PageSpeed Insights mobile (solo avviso)');
   const psi = [BASE + '/', urls.find((u) => u.includes('/immobile/'))].filter(Boolean);
   for (const u of psi) {
