@@ -1196,6 +1196,15 @@ function buildPage(page) {
   return out;
 }
 
+/* Una pagina conta come viva se esiste il file generato OPPURE esiste il suo markdown
+   sorgente: menu e footer devono poter linkare una pagina nuova gia' al primo build,
+   quando l'output non e' ancora stato scritto (con la sola exists() la voce spariva
+   al primo giro e compariva dal secondo: visto il 11/11/2026 con vivere-a-rivergaro). */
+function paginaViva(f) {
+  if (exists(f)) return true;
+  const pg = PAGES.find((x) => x.path === f);
+  return !!pg && !!readIf(path.join(SRC, 'pages', pg.source), '');
+}
 function fill(tpl, prefix, page) {
   page = page || {};
   if (!page.path) page.path = 'index.html';
@@ -1204,20 +1213,20 @@ function fill(tpl, prefix, page) {
      prima il generatore le dichiarava e poi le scartava con un avviso a ogni build. */
   const nav = (page.nav || ['immobili', 'ricerca', 'contatti'].concat(navExtra()))
     .filter((k) => k !== page.nav_key);
-  const labels = { proposta: 'In evidenza', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', contatti: 'Contatti', 'chi-sono': 'Chi sono' };
+  const labels = { proposta: 'In evidenza', richiesta: 'Contatti', ricerca: 'Se cerchi altro', immobili: 'Immobili', zona: 'Zone', guide: 'Guide', vivere: 'Vivere qui', contatti: 'Contatti', 'chi-sono': 'Chi sono' };
   const links = nav
     .map((k) => {
       const ric = (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te';
       /* se la pagina di una voce esiste (perche' qualcuno ha scritto il suo markdown) la voce
          del menu punta a quel paragrafo: le "voci fantasma" spariscono da sole appena la pagina c'e' */
       const verso = (k) => { const pg = PAGES.find((x) => x.source === k + '.md'); return pg && exists(pg.path) ? pg.path + '#' + (pg.nav_id || k) : null; };
-      const target = { proposta: '#immobile-in-evidenza', richiesta: ric, ricerca: ric, immobili: 'immobili.html', zona: '#zona', guide: '#guide', 'chi-sono': verso('chi-sono') || 'index.html', contatti: verso('contatti') || ric }[k];
+      const target = { proposta: '#immobile-in-evidenza', richiesta: ric, ricerca: ric, immobili: 'immobili.html', zona: '#zona', guide: '#guide', vivere: readIf(path.join(SRC, 'pages', 'vivere-rivergaro.md'), '') ? 'vivere-a-rivergaro.html' : null, 'chi-sono': verso('chi-sono') || 'index.html', contatti: verso('contatti') || ric }[k];
       if (k === 'immobili' && !exists('immobili.html')) return `<a href="#immobili">${labels[k]}</a>`;
       if (!target) return '';
       let href;
       if (target.startsWith('#')) href = page.path === 'index.html' && pageIds('index.html').has(target.slice(1)) ? target : anchorHref(page.path, 'index.html' + target);
       else if (target.includes('#')) href = anchorHref(page.path, target);
-      else href = exists(target) ? rel(page.path, target) : anchorHref(page.path, 'index.html#' + k);
+      else href = paginaViva(target) ? rel(page.path, target) : anchorHref(page.path, 'index.html#' + k);
       if (!href) { console.warn(`⚠ voce di menu "${labels[k]}" rimossa: nessuna pagina contiene un paragrafo utile (${target})`); return ''; }
       return `<a href="${href}">${labels[k]}</a>`;
     })
@@ -1273,7 +1282,8 @@ function fill(tpl, prefix, page) {
 }
 /* Voci nate insieme alle pagine: 'Chi sono' entra nel menu quando esiste src/pages/chi-sono.md. */
 function navExtra() {
-  return ['chi-sono'].filter((k) => { const pg = PAGES.find((x) => x.source === k + '.md'); return !!pg && exists(pg.path); });
+  const fonti = { 'chi-sono': 'chi-sono.md', vivere: 'vivere-rivergaro.md' };
+  return Object.keys(fonti).filter((k) => { const pg = PAGES.find((x) => x.source === fonti[k]); return !!pg && exists(pg.path); });
 }
 function footerNav(prefix, page) {
   const items = [];
@@ -1281,11 +1291,12 @@ function footerNav(prefix, page) {
   items.push(['Ricerca personalizzata', (cfg.navigazione && cfg.navigazione.ancora_ricerca) || 'index.html#la-villa-non-fa-per-te']);
   if (exists('contatti.html')) items.push(['Contatti', 'contatti.html']);
   if (exists('chi-sono.html')) items.push(['Chi sono', 'chi-sono.html']);
+  if (paginaViva('vivere-a-rivergaro.html')) items.push(['Vivere a Rivergaro', 'vivere-a-rivergaro.html']);
   items.push(['Privacy', 'legal/privacy.html']);
   items.push(['Cookie', 'legal/cookie.html']);
   items.push(['Termini', 'legal/termini.html']);
   return items
-    .filter(([, f]) => (f.includes('#') ? exists(f.split('#')[0]) : exists(f)))
+    .filter(([, f]) => (f.includes('#') ? exists(f.split('#')[0]) : paginaViva(f)))
     .map(([l, f]) => [l, f.includes('#') ? anchorHref(page.path, f) : rel(page.path, f)])
     .filter(([l, href]) => { if (!href) console.warn(`⚠ voce di footer "${l}" rimossa: nessuna destinazione valida`); return !!href; })
     .map(([l, href]) => `<a href="${href}">${l}</a>`)
@@ -1589,13 +1600,13 @@ function robots() {
 
 function pagesList() {
   const out = [];
-  ['index.html', 'immobili.html', 'ricerca-personalizzata.html', 'contatti.html', 'chi-sono.html', 'zona/val-trebbia.html', 'legal/privacy.html', 'legal/cookie.html', 'legal/termini.html'].forEach((f) => { if (exists(f)) out.push(f); });
+  ['index.html', 'immobili.html', 'ricerca-personalizzata.html', 'contatti.html', 'chi-sono.html', 'vivere-a-rivergaro.html', 'zona/val-trebbia.html', 'legal/privacy.html', 'legal/cookie.html', 'legal/termini.html'].forEach((f) => { if (exists(f)) out.push(f); });
   return out;
 }
 function pagineIndicizzabili() {
   const out = [];
   const indicizzabili = tutteProp().filter(pubblicabili);
-  ['index.html', 'immobili.html', 'ricerca-personalizzata.html', 'contatti.html', 'chi-sono.html', 'zona/val-trebbia.html', 'legal/privacy.html', 'legal/cookie.html', 'legal/termini.html'].forEach((f) => { if (exists(f)) out.push(f); });
+  ['index.html', 'immobili.html', 'ricerca-personalizzata.html', 'contatti.html', 'chi-sono.html', 'vivere-a-rivergaro.html', 'zona/val-trebbia.html', 'legal/privacy.html', 'legal/cookie.html', 'legal/termini.html'].forEach((f) => { if (exists(f)) out.push(f); });
   for (const p of indicizzabili) out.push('immobile/' + p.slug + '.html');
   return out;
 }
@@ -1668,6 +1679,16 @@ function llms() {
   const area = (cfg.area_servizio.area_coperta_servizio || []).filter((x) => x && x.nome);
   L.push('- Area coperta dal servizio: ' + area.map((x) => x.nome + (x.cap ? ' (' + x.cap + ')' : '') + (x.provincia ? ' ' + x.provincia : '')).join('; ') + '.');
   L.push('- La Val Trebbia nel nome del sito è un riferimento geografico, non una dichiarazione di copertura dell’intera valle.', '');
+  /* Territorio: gli stessi fatti della pagina /vivere-a-rivergaro.html, cosi' un motore
+     generativo che risponde a «com'è vivere a Rivergaro?» cita noi e non un portale.
+     La sezione compare solo se la pagina esiste davvero. */
+  if (exists('vivere-a-rivergaro.html')) {
+    L.push('## Territorio');
+    L.push('- Pagina: [Vivere a Rivergaro e in Val Trebbia](' + BASE + '/vivere-a-rivergaro.html)');
+    L.push('- Servizi in paese: polo scolastico di via Alberoni (nido, infanzia, primaria, media), asilo nido Sole e Luna, medicina di gruppo, farmacia Andena e farmacia di Niviano, biblioteca comunale, ufficio postale, pubblica assistenza, casa residenza anziani Villa Verde, palazzetto dello sport, tennis e padel.');
+    L.push('- Contesto: fiume Trebbia con spiagge e meandri, Parco regionale del Trebbia, prime colline; la statale 45 sale ai borghi (Travo, Bobbio con il Ponte Gobbo e l’abbazia di San Colombano del 614) e ai castelli di Rivalta, Statto e Ancarano.');
+    L.push('- Distanze: Piacenza una quindicina di chilometri (misura di Davide); tra comuni Vigolzone 5,5 km, Travo 6,7 km, Gazzola 6,8 km, Podenzano 8,6 km; il centro di Rivergaro dista circa 2,5 km da Ancarano.', '');
+  }
   /* Le pagine vanno scritte come link Markdown [testo](url): l'audit Lighthouse
      `llms-txt` di «Navigazione agentica» controlla H1, almeno un link e lunghezza
      minima, e un URL nudo non conta come link. Le pagine elencate devono esistere. */
@@ -1709,9 +1730,13 @@ function llms() {
 /* -------------------------------------------------------------------- main */
 
 const PAGES = [
-  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', person: true, nav: ['immobili', 'proposta', 'contatti', 'chi-sono'] },
-  { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti — Davide Scaglia, agente immobiliare a Rivergaro', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite, informazioni e ricerca personalizzata in Val Trebbia.', canonical: '/contatti.html', jsonld: 'site', person: true, breadcrumb: 'Contatti', nav: ['immobili', 'ricerca', 'contatti'] },
-  { path: 'chi-sono.html', source: 'chi-sono.md', nav_id: 'chi-sono', title: 'Chi sono — Davide Scaglia, agente immobiliare a Rivergaro', description: 'Davide Scaglia, agente immobiliare a Rivergaro dal 2007. Come lavoro con chi compra casa in Val Trebbia: sede, qualifiche e contatti diretti.', canonical: '/chi-sono.html', jsonld: 'site', person: true, breadcrumb: 'Chi sono', nav: ['immobili', 'ricerca', 'contatti', 'chi-sono'] },
+  { path: 'index.html', source: 'home.md', title: cfg.site.titolo_home, description: cfg.site.description_home, canonical: '/', jsonld: 'site', person: true, nav: ['immobili', 'proposta', 'vivere', 'contatti', 'chi-sono'] },
+  { path: 'contatti.html', source: 'contatti.md', nav_id: 'contatti-diretti', title: 'Contatti — Davide Scaglia, agente immobiliare a Rivergaro', description: 'Telefono, WhatsApp ed email di Davide Scaglia, agente immobiliare a Rivergaro: contatti diretti per visite, informazioni e ricerca personalizzata in Val Trebbia.', canonical: '/contatti.html', jsonld: 'site', person: true, breadcrumb: 'Contatti', nav: ['immobili', 'ricerca', 'vivere', 'contatti'] },
+  { path: 'chi-sono.html', source: 'chi-sono.md', nav_id: 'chi-sono', title: 'Chi sono — Davide Scaglia, agente immobiliare a Rivergaro', description: 'Davide Scaglia, agente immobiliare a Rivergaro dal 2007. Come lavoro con chi compra casa in Val Trebbia: sede, qualifiche e contatti diretti.', canonical: '/chi-sono.html', jsonld: 'site', person: true, breadcrumb: 'Chi sono', nav: ['immobili', 'ricerca', 'vivere', 'contatti', 'chi-sono'] },
+  /* Pagina di territorio decisa da Davide il 09/11/2026: niente case e niente prezzi,
+     solo servizi, distanze e vita quotidiana verificati — il contenuto che i portali
+     non hanno e che motori e AI citano quando qualcuno chiede com'è vivere qui. */
+  { path: 'vivere-a-rivergaro.html', source: 'vivere-rivergaro.md', title: 'Vivere a Rivergaro: servizi e territorio | Davide Scaglia', description: 'Come si vive a Rivergaro: servizi, scuole, sanità, sport, il Trebbia e i borghi vicini, con le distanze vere. Racconto di chi ci lavora dal 2007.', canonical: '/vivere-a-rivergaro.html', jsonld: 'site', breadcrumb: 'Vivere a Rivergaro', nav: ['immobili', 'ricerca', 'contatti', 'chi-sono'] },
   { path: 'grazie.html', source: 'grazie.md', title: 'Richiesta inviata — Davide Scaglia', description: 'Richiesta inviata a Davide Scaglia, agente immobiliare a Rivergaro: ti ricontatto appena possibile.', canonical: '/grazie.html', jsonld: 'none', nav: [], noindex: true },
   { path: 'legal/privacy.html', source: 'privacy.md', title: 'Privacy Policy | ' + cfg.site.dominio, canonical: '/legal/privacy.html', jsonld: 'none', nav: [] },
   { path: '404.html', source: '404.md', title: 'Pagina non trovata | comprarecasarivergaro.it', description: 'La pagina cercata non esiste. Torna alla home o apri il catalogo degli immobili disponibili a Rivergaro e in Val Trebbia.', canonical: '/404.html', jsonld: 'none', nav: [], noindex: true },
@@ -1762,7 +1787,7 @@ function main() {
     numberOfItems: catalogo().length,
     itemListElement: catalogo().map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.titolo, url: BASE + '/immobile/' + p.slug + '.html' })),
   };
-  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro e Val Trebbia | Davide Scaglia', description: 'Case e ville in vendita a Rivergaro e in Val Trebbia, con schede verificate: dati, foto reali e documenti controllati. Filtri per zona e tipologia.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili', jsonld_extra: [itemList] }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
+  const catHtml = '<!doctype html>\n<html lang="' + LANG + '">\n<head>\n  ' + head({ title: 'Immobili a Rivergaro e Val Trebbia | Davide Scaglia', description: 'Case e ville in vendita a Rivergaro e in Val Trebbia, con schede verificate: dati, foto reali e documenti controllati. Filtri per zona e tipologia.', path: 'immobili.html', canonical: '/immobili.html', jsonld: 'site', breadcrumb: 'Immobili', jsonld_extra: [itemList] }) + '\n</head>\n<body>\n  <a class="skip" href="#contenuto">Vai al contenuto</a>\n' + fill(readIf(path.join(SRC, 'templates', 'header.html'), ''), '', { nav: ['immobili', 'ricerca', 'vivere', 'contatti'], path: 'immobili.html' }) + '\n  <main id="contenuto">\n' + catalogoPage() + '\n  </main>\n' + fill(readIf(path.join(SRC, 'templates', 'footer.html'), ''), '', { nav: [], path: 'immobili.html' }) + '\n' + fill(readIf(path.join(SRC, 'templates', 'cookie-banner.html'), ''), '', {}) + '\n  <script src="js/main.js" defer></script>\n</body>\n</html>\n';
   fs.mkdirSync(path.join(OUT, 'data'), { recursive: true });
   const pubblici = catalogo().map((p) => ({
     slug: p.slug, titolo: p.titolo, stato: p.stato, tipologia: p.tipologia || null,

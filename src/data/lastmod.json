@@ -1,38 +1,42 @@
 {
   "immobile/villa-tre-unita-ancarano.html": {
-    "hash": "5931937be840fe89",
+    "hash": "b594cc4f86ee068e",
     "data": "2026-11-11"
   },
   "index.html": {
-    "hash": "e951e7abfd26cea4",
+    "hash": "886f93f593248746",
     "data": "2026-11-11"
   },
   "contatti.html": {
-    "hash": "5538bc6d25860d4b",
+    "hash": "ad933378d1ef266c",
     "data": "2026-11-11"
   },
   "chi-sono.html": {
-    "hash": "769ac41a6b5f38a6",
+    "hash": "0a3ba8038b86a1f3",
     "data": "2026-11-11"
   },
   "grazie.html": {
-    "hash": "6eb9f57ad097f302",
+    "hash": "65a915ec912ad992",
     "data": "2026-11-11"
   },
   "legal/privacy.html": {
-    "hash": "04805a638bb148c3",
+    "hash": "7ec9fe8e010cadc5",
     "data": "2026-11-11"
   },
   "404.html": {
-    "hash": "32ee2562a937a557",
+    "hash": "1e794854662f3df5",
     "data": "2026-11-11"
   },
   "legal/cookie.html": {
-    "hash": "3ed952ec05fec65d",
+    "hash": "10753e415c6c331a",
     "data": "2026-11-11"
   },
   "immobili.html": {
-    "hash": "7da6084d9ca91b8c",
+    "hash": "37ae28f21b93328f",
+    "data": "2026-11-11"
+  },
+  "vivere-a-rivergaro.html": {
+    "hash": "cd0701061af8cc41",
     "data": "2026-11-11"
   }
 }

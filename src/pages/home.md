@@ -44,6 +44,8 @@ Intorno c'è il paesaggio della valle: il fiume Trebbia, le colline, i boschi, l
 
 Seguo Rivergaro con le sue frazioni — Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi — e i comuni intorno: Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell'Olio.
 
+Se vuoi capire com'è la vita da queste parti prima ancora di cercare casa, ho scritto una pagina apposta: [vivere a Rivergaro e in Val Trebbia](/vivere-a-rivergaro.html), con i servizi veri, le distanze e il tempo libero.
+
 ## Agente immobiliare a Rivergaro, dal 2007 {#agente-immobiliare-rivergaro}
 
 Faccio l'agente immobiliare a Rivergaro dal 2007, iscritto al ruolo della Camera di Commercio di Piacenza: lavoro su Rivergaro con le sue frazioni e sui comuni intorno — Piacenza, Vigolzone, Podenzano, Gossolengo e Ponte dell'Olio. Chi mi chiama ha davanti una persona sola, dall'appuntamento alla firma: la ricerca, le visite e la trattativa le seguo io. Se cerchi un agente immobiliare a Rivergaro che conosca la zona strada per strada, il numero è qui sul sito e negli orari indicati risponde.
