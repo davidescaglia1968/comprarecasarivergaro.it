@@ -1,0 +1,20 @@
+name: IndexNow — notifica a Bing, Copilot e compagni
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Notifica le URL della sitemap
+        run: |
+          KEY_FILE=$(ls | grep -E '^[0-9a-f]{32}\.txt$' | head -1)
+          KEY=${KEY_FILE%.txt}
+          URLS=$(grep -o '<loc>[^<]*</loc>' sitemap.xml | sed -e 's/<loc>//' -e 's#</loc>##')
+          LIST=$(printf '%s\n' "$URLS" | sed 's/.*/"&"/' | paste -sd,)
+          curl -sf -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"comprarecasarivergaro.it\",\"key\":\"$KEY\",\"keyLocation\":\"https://comprarecasarivergaro.it/$KEY.txt\",\"urlList\":[$LIST]}"
+          echo "IndexNow notificato con $(printf '%s\n' "$URLS" | wc -l) URL"

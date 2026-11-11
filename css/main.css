@@ -67,6 +67,10 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
 ::selection{background:rgba(236,72,153,.35)}
 
 .wrap{width:var(--wrap);margin-inline:auto}
+/* Attacco delle pagine markdown (H1 + prime frasi prima del primo H2): nel contenitore,
+   con aria sopra e sotto, come il resto del sito. */
+.page-head{padding:clamp(40px,6vw,72px) 0 var(--s4)}
+.page-head h1{margin:0 0 var(--s3)}
 .section{padding:clamp(48px,7vw,88px) 0}
 .section--alt{background:var(--bg-secondary);border-block:1px solid var(--line)}
 .eyebrow{font-size:.8125rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-text);font-weight:600;margin:0 0 var(--s2)}
@@ -416,7 +420,16 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 /* In evidenza: tabella dati confermati + rimando alla scheda */
 .featured-property-specs{margin-top:var(--s3)}
 .featured-property-specs .specs{margin-bottom:0}
-.featured-property-ref{margin-top:var(--s3)}
+/* CTA verso la scheda: richiesta di Davide del 09/11/2026 — piu' grande, colore che
+   stacca, e un movimento che porta l'occhio. Niente lampeggio secco acceso/spento:
+   oltre i 3 flash al secondo e' rischio fotosensibile (WCAG 2.3.1) e sa di pagina
+   truffa; il battito lento ottiene lo sguardo senza perdere serieta'. Chi preferisce
+   meno movimento (prefers-reduced-motion) lo vede fermo. */
+.featured-property-ref{margin-top:var(--s2)}
+.featured-property-ref a{display:inline-block;font-size:1.25rem;font-weight:700;color:#ffd700;text-decoration-thickness:2px;text-underline-offset:4px;animation:cta-pulse 2.2s ease-in-out infinite}
+.featured-property-ref a:hover{color:#fff}
+@keyframes cta-pulse{0%,100%{transform:scale(1);text-shadow:0 0 0 rgba(255,215,0,0)}50%{transform:scale(1.045);text-shadow:0 0 22px rgba(255,215,0,.5)}}
+@media (prefers-reduced-motion:reduce){.featured-property-ref a{animation:none}}
 
 /* Tabelle (Cookie Policy, Privacy): prima il Markdown le rendeva come una riga di barre */
 .table-wrap{overflow-x:auto;margin:0 0 var(--s3)}
