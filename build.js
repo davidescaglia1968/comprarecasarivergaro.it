@@ -1697,6 +1697,7 @@ function llms() {
     ['immobili.html', 'Catalogo degli immobili disponibili'],
     ['contatti.html', 'Contatti diretti'],
     ['chi-sono.html', 'Chi sono'],
+    ['vivere-a-rivergaro.html', 'Vivere a Rivergaro e in Val Trebbia: servizi, distanze, tempo libero'],
   ].filter(([f]) => exists(f));
   if (pagine.length) {
     L.push('## Pagine');

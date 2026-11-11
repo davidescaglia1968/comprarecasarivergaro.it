@@ -13,5 +13,7 @@ jobs:
           node-version: 20
       - name: Genera il sito
         run: node build.js
+      - name: Sintassi dei workflow
+        run: npx --yes yaml-lint ".github/workflows/*.yml"
       - name: Check dati, link e H1
         run: node build.js --check
