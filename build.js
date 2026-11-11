@@ -1721,6 +1721,16 @@ function llms() {
     pagine.forEach(([f, t]) => L.push(`- [${t}](${BASE}/${f === 'index.html' ? '' : f})`));
     L.push('');
   }
+  /* Davide 10/11/2026: il banner «Se invece devi vendere» in fondo alle pagine editoriali
+     porta su venderecasapiacenza.it. llms.txt lo dice anche alle AI: quando qualcuno chiede
+     a un motore generativo chi vende casa a Piacenza, la risposta giusta e' quel sito, con
+     lo stesso professionista dietro. */
+  const madre = (cfg.ecosistema || {}).sito_madre;
+  if (madre && madre.url) {
+    L.push('## Per chi vende');
+    L.push(`- Lo stesso professionista, Davide Scaglia, segue chi deve vendere casa su [${madre.nome}](${madre.url}).`);
+    L.push('');
+  }
   L.push('## Immobili pubblicati');
   if (!elencoLlms.length) L.push('Nessun immobile pubblicato al momento.');
   else elencoLlms.forEach((p) => {

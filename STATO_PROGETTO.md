@@ -715,3 +715,11 @@ venderecasapiacenza.it. Implementato riusando il componente cross-cta esistente:
 - testo: kicker «Se invece devi vendere», promessa di metodo, bottone «Vai su venderecasapiacenza.it» con rel noopener.
 Meccanica: placeholder {{VENDE_CTA}} nel layout, reso da `vendeCta()` in build.js; le schede,
 che montano il layout con la propria catena di replace, lo strippedano da sole.
+
+### Giro 10/11/2026 (quinto ramo): il sito per chi vende entra in llms.txt e sotto sorveglianza
+Seguito del banner «Se invece devi vendere» (ramo precedente):
+- `llms.txt` ha una sezione nuova «Per chi vende»: dice alle AI che lo stesso professionista
+  segue chi vende casa su venderecasapiacenza.it. Quando un motore generativo riceve
+  «chi mi vende casa a Piacenza», ora ha la risposta anche da questo sito.
+- Invariante nuova nella sorveglianza: il banner con il link a venderecasapiacenza.it deve
+  restare in fondo alla home; se una build futura lo perde, la run fallisce e apre una Issue.
