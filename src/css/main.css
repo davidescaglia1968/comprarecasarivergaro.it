@@ -427,5 +427,4 @@ th{font-weight:600;color:var(--gold);white-space:nowrap}
 /* Dati per unità immobiliare (scheda): tabella + riga sotto il titolo della galleria */
 .prop-units{margin:var(--s6) 0 var(--s7)}
 .prop-units h2{margin-bottom:var(--s3)}
-.prop-units-note{font-size:.9375rem;color:var(--text-secondary);margin:var(--s3) 0 0}
 .gallery-sub{font-size:.9375rem;color:var(--text-secondary);letter-spacing:.01em;margin:calc(-1 * var(--s2)) 0 var(--s3)}

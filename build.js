@@ -675,9 +675,13 @@ function vaniDaCaratteristiche(p) {
   const v = (p.caratteristiche || []).map(String).find((x) => /^\s*\d+\s+vani\s*$/i.test(x));
   return v ? parseInt(v, 10) : null;
 }
+/* Prezzo in pagina SOLO se numerico e confermato. Decisione di Davide (10/11/2026):
+   il prezzo non si pubblica, lo comunica lui al telefono; la stringa nel dato
+   ("Prezzo riservato: te lo dico io al telefono") e' un promemoria interno e non
+   va resa visibile. Appena arriva il numero, card, evidenza, hero e <dl> lo
+   mostrano da soli, e il JSON-LD emette offers.price. */
 function prezzo(p) {
   if (typeof p.prezzo === 'number' && p.prezzo > 0) return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(p.prezzo);
-  if (typeof p.prezzo === 'string' && p.prezzo) return p.prezzo;
   return '';
 }
 function prezzoCell(p) {
@@ -733,18 +737,13 @@ function unitaSezione(p) {
       : '—';
     return `<tr><th scope="row">${esc(u.nome)}</th><td>${u.mq ? esc(numIT(u.mq, 0)) + ' m²' : '—'}</td><td>${u.rendita_catastale ? esc(euroIT(u.rendita_catastale)) : '—'}</td><td>${ape}</td></tr>`;
   }).join('');
-  const senzaApe = unita.filter((u) => !u.ape_classe).map((u) => esc(u.nome));
-  const nota = [
-    'Rendita catastale espressa in euro.',
-    senzaApe.length ? 'Senza attestato energetico indicato: ' + senzaApe.join(', ') + '.' : '',
-    "Per l'APE sono riportati la classe e l'indice dell'attestato.",
-  ].filter(Boolean).join(' ');
+  /* Davide, 10/11/2026: la nota sotto la tabella ("Rendita catastale espressa in euro.
+     Senza attestato energetico indicato: Box…") va tolta: la tabella parla da sola. */
   return `<section class="prop-units"><h2 id="unita">Superfici, rendite catastali e APE</h2>
         <div class="table-wrap"><table><caption class="sr-only">Dati per unità immobiliare</caption>
           <thead><tr><th scope="col">Unità</th><th scope="col">Superficie</th><th scope="col">Rendita catastale</th><th scope="col">APE</th></tr></thead>
           <tbody>${righe}</tbody>
         </table></div>
-        <p class="prop-units-note">${nota}</p>
       </section>`;
 }
 
@@ -944,8 +943,9 @@ function schedaPage(p, prefix) {
   </div></header>
   <div class="wrap prop-grid">
     <div class="prop-main">
-      ${haGalleria ? '' : descSection + unitaSezione(p)}
-      ${galleria(p, haGalleria ? descSection + unitaSezione(p) : '')}
+      ${unitaSezione(p)}
+      ${haGalleria ? '' : descSection}
+      ${galleria(p, haGalleria ? descSection : '')}
       ${bozza}
       ${chars.length ? '<section class="props"><h2 id="caratteristiche">Caratteristiche</h2><ul class="pills">' + chars.map((c) => `<li>${esc(c)}</li>`).join('') + '</ul></section>' : ''}
       <section class="prop-ask"><h2 id="richiesta">Chiedi informazioni su questo immobile</h2>
