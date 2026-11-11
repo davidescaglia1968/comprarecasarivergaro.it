@@ -85,7 +85,8 @@
     "rea": "PC-168637",
     "addetti": "1 (titolare, impresa individuale senza dipendenti)",
     "_regola_bio": "Testo riscritto il 10/11/2026 con Davide: voce naturale ed empatica, senza fronzoli; via il recapito dell’ufficio dal racconto (la sede resta in footer, llms.txt e JSON-LD) e dentro la promessa «A CASA TUA» (il primo incontro dove preferisce il cliente). I paragrafi si separano con una riga vuota. bio_stato=confermato: nessuna nota di revisione in pagina.",
-    "bio_stato": "confermato"
+    "bio_stato": "confermato",
+    "_regola_indirizzo_pubblico": "DECISO DA DAVIDE il 10/11/2026: l'indirizzo della sede (che e' casa sua) NON e' pubblico. In footer, llms.txt, JSON-LD e pagine pubbliche compare solo 'Rivergaro (PC)'. L'indirizzo completo (via, CAP, frazione) vive SOLO in src/pages/privacy.md (obbligo legale sul titolare) e nella scheda Google Business Profile come indirizzo nascosto al pubblico. 'Pieve Dugliara' resta solo come nome di frazione nell'elenco zone (geografia, non indirizzo). watch-site fallisce se 'Cavallotti' ricompare in una pagina pubblica o in llms.txt."
   },
   "area_servizio": {
     "comune_principale": "Rivergaro",

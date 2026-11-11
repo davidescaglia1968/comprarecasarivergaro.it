@@ -692,3 +692,16 @@ Tre correzioni di Davide sulla scheda immobile, in ordine:
 ### Giro 10/11/2026 (secondo ramo): scheda Google allineata e invarianti sotto sorveglianza
 - `SCHEDA_GOOGLE.md` allineato al testo definitivo concordato in chat il 10/11: descrizione esatta da incollare (~700 caratteri), piu' due voci nuove viste nel pannello di Davide: categoria primaria da portare da «Agenzia immobiliare» a «Agente immobiliare» (con «Consulente immobiliare» aggiuntiva) e data di apertura da correggere da «12 dicembre 2012» a **12 dicembre 2007** (visura: inizio attivita' 12/12/2007, ruolo 07/12/2007; tutto il sito dice «dal 2007»).
 - `tools/watch-site.js` ora presidia anche le frasi dettate da Davide: H1 della home, attacco dell'hero parola per parola, area coperta dal servizio con i CAP in llms.txt, riga «Prezzo: riservato — te lo dice Davide al telefono», e la chiave IndexNow raggiungibile. Se una modifica futura ne altera una, la sorveglianza la tratta come guasto e apre una Issue.
+
+### Giro 10/11/2026 (terzo ramo): l'indirizzo di casa-sede non e' piu' pubblico
+Decisione di Davide del 10/11/2026: Via Felice Cavallotti 3 e' casa sua e non va pubblicata.
+- Footer di ogni pagina: la riga indirizzo e' ora solo «Rivergaro (PC)»; telefono ed email restano.
+- `llms.txt`: la riga «Sede» del blocco «Chi risponde e dove» e' ora «Rivergaro (PC)».
+- JSON-LD (nodo organizzazione/agente e nodo persona): via tolta dal PostalAddress; restano comune, CAP, provincia e Paese.
+- chi-sono: il capitolo diventa «Dove si trova lo studio: Rivergaro» e il testo perde via e frazione; resta la sua frase sul telefonare prima di passare.
+- cookie.md: il blocco titolare indica «Rivergaro (PC)» e rimanda alla privacy per l'indirizzo completo.
+- contatti: la sede e' dichiarata «Rivergaro (PC)» e la sezione linka la pagina territorio.
+- L'indirizzo completo vive SOLO in `legal/privacy.html` (obbligo legale sul titolare) e nella scheda Google come indirizzo nascosto (attivita' con area di servizio); regola scritta in `professionista._regola_indirizzo_pubblico` e in `SCHEDA_GOOGLE.md`.
+- «Pieve Dugliara» resta unicamente come nome di frazione nell'elenco zone/filtri (geografia decisa da Davide il 23/10, non indirizzo).
+- Sorveglianza: due invarianti nuove in `tools/watch-site.js` — «Cavallotti» assente da home, chi-sono, contatti, vivere, immobili, llms.txt e cookie; chi-sono senza «Pieve Dugliara». Se ricompaiono, la run fallisce e apre una Issue.
+- Link interni nuovi verso `/vivere-a-rivergaro.html` da chi-sono e contatti.

@@ -161,10 +161,12 @@ const year = new Date().getFullYear();
 
 const pro = cfg.professionista;
 const addr = isConfirmed(pro.indirizzo_studio) ? pro.indirizzo_studio : null;
+/* Indirizzo strutturato senza la via: pubblico vuol dire solo comune, provincia e CAP
+   (decisione di Davide 10/11/2026). La strada resta nei dati del config per la privacy
+   policy e per la scheda Google nascosta, non nel markup. */
 const addressObj = addr
   ? {
       '@type': 'PostalAddress',
-      streetAddress: addr.street,
       addressLocality: addr.localita,
       postalCode: addr.cap,
       addressRegion: addr.provincia,
@@ -221,7 +223,7 @@ function agentJsonLd() {
     legalName: pro.denominazione_legale || undefined,
     url: BASE + '/', telephone: pro.telefono_e164, email: pro.email,
   };
-  if (addr) a.address = { '@type': 'PostalAddress', streetAddress: addr.street, addressLocality: addr.localita, postalCode: addr.cap, addressRegion: addr.provincia, addressCountry: 'IT' };
+  if (addr) a.address = { '@type': 'PostalAddress', addressLocality: addr.localita, postalCode: addr.cap, addressRegion: addr.provincia, addressCountry: 'IT' };
   const ore = openingHours();
   if (ore.length) a.openingHoursSpecification = ore;
   if (isConfirmed(pro.anno_inizio_attivita)) a.foundingDate = String(pro.anno_inizio_attivita);
@@ -1256,8 +1258,11 @@ function fill(tpl, prefix, page) {
     /* La "A" di NAP mancava dal footer: solo telefono/WhatsApp/email, e la regola
        interna seo_geo.regole_geo[1] chiede il NAP identico su tutte le pagine.
        L'indirizzo e' lo stesso verificato in visura e gia' pubblicato in contatti. */
+    /* DECISIONE DI DAVIDE 10/11/2026: l'indirizzo di casa-sede non e' pubblico. In footer
+       resta solo il comune; la via vive unicamente nella privacy policy (obbligo legale)
+       e nella scheda Google come indirizzo nascosto. Sorvegliato da watch-site. */
     NAP_ADDR: addr
-      ? `<p class="f-addr">${esc(addr.street)}, ${esc(addr.cap)} ${esc(addr.localita)} (${esc(addr.provincia)})${addr.frazione ? ' — fraz. ' + esc(addr.frazione) : ''}</p>`
+      ? `<p class="f-addr">${esc(addr.localita)} (${esc(addr.provincia)})</p>`
       : '',
     /* Partita IVA nella home page e in footer: obbligo per i soggetti IVA (art. 35
        DPR 633/72). Prima index.html non conteneva la P.IVA in nessun punto. */
@@ -1666,7 +1671,8 @@ function llms() {
   L.push('## Chi risponde e dove');
   L.push('- Professionista: ' + pro.nome_completo + ' — Agente immobiliare a Rivergaro e Val Trebbia, consulente per gli acquirenti');
   L.push('- Impresa: ' + (pro.denominazione_legale || pro.forma_legale || pro.nome_completo));
-  if (addr) L.push('- Sede: ' + [addr.street, addr.cap + ' ' + addr.localita + ' (' + addr.provincia + ')', addr.frazione ? 'frazione ' + addr.frazione : null].filter(Boolean).join(', '));
+  /* Sede pubblica: solo il comune (decisione di Davide 10/11/2026, come il footer). */
+  if (addr) L.push('- Sede: ' + addr.localita + ' (' + addr.provincia + ')');
   L.push('- Telefono: ' + pro.telefono_display);
   L.push('- WhatsApp: ' + pro.telefono_display);
   L.push('- Email: ' + pro.email);

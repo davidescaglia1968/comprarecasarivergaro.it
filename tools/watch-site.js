@@ -60,6 +60,10 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
     ['area coperta dal servizio con i CAP, in llms.txt', llmsTxt.includes('Area coperta dal servizio: Piacenza PC; Vigolzone (29020) PC; Podenzano (29027) PC; Rivergaro (29029) PC;') && llmsTxt.includes('Olio (29028) PC.')],
     ['riga «Prezzo: riservato — te lo dice Davide al telefono» in llms.txt', llmsTxt.includes('Prezzo: riservato — te lo dice Davide al telefono')],
     ['chiave IndexNow raggiungibile in radice', chiave.trim() === 'd41e8b2f6a0c4e79b35f1a2c8e6d0497'],
+    /* Privacy di Davide (10/11/2026): la via di casa-sede non e' pubblica. Se ricompare
+       in una pagina pubblica o in llms.txt e' un guasto, non un dettaglio. */
+    ['indirizzo di casa assente dalle pagine pubbliche', !(await Promise.all(['/chi-sono.html', '/contatti.html', '/vivere-a-rivergaro.html', '/immobili.html'].map((u) => fetch(BASE + u).then((r) => r.text())))).some((t) => t.includes('Cavallotti')) && !casa.includes('Cavallotti') && !llmsTxt.includes('Cavallotti')],
+    ['chi-sono senza la frazione nel capitolo sede', !(await fetch(BASE + '/chi-sono.html').then((r) => r.text())).includes('Pieve Dugliara')],
   ];
   for (const [nome, va] of invarianti) {
     if (va) ok('invariante: ' + nome);

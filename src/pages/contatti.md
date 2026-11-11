@@ -18,6 +18,8 @@ Raccontami zona, tipo di casa e budget: la ricerca parte da quello che mi scrivi
 
 ::contatti_card
 
+La sede è a Rivergaro (PC). Se vuoi prima farti un'idea del posto in cui cerco casa per te, c'è una pagina apposta: [vivere a Rivergaro e in Val Trebbia](/vivere-a-rivergaro.html), con i servizi, le distanze e il tempo libero.
+
 ## Cosa succede dopo il primo contatto
 
 - **Prima risposta di persona:** leggo io ciò che mi scrivi, non un assistitore che raccoglie nominativi.

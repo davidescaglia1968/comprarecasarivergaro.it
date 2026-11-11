@@ -20,6 +20,6 @@ I dati qui sotto non sono una presentazione: sono quelli del Registro Imprese, v
 
 ::contatti_card
 
-## Dove si trova lo studio: Rivergaro, frazione Pieve Dugliara
+## Dove si trova lo studio: Rivergaro
 
-La sede è a Rivergaro, in Via Felice Cavallotti 3, frazione Pieve Dugliara. Gli orari di apertura sono quelli che trovi nella [pagina dei contatti](contatti.html), insieme al numero per avvisare prima di passare: meglio una telefonata che una porta chiusa.
+La sede è a Rivergaro (PC). Gli orari di apertura sono quelli che trovi nella [pagina dei contatti](contatti.html), insieme al numero per avvisare prima di passare: meglio una telefonata che una porta chiusa. Se vuoi prima farti un'idea del posto, c'è una pagina apposta: [vivere a Rivergaro e in Val Trebbia](/vivere-a-rivergaro.html), con i servizi, le distanze e il tempo libero.
