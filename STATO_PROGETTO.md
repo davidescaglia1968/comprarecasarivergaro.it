@@ -678,3 +678,8 @@ Tre correzioni di Davide sulla scheda immobile, in ordine:
 - **`paginaViva()` nuovo in build.js**: una pagina conta come viva se esiste l'output o anche solo il suo markdown sorgente, cosi' menu e footer la linkano gia' al primo build pulito (prima la voce cadeva al primo giro e ricompariva dal secondo).
 - **Immagini alleggerite** con `tools/optimize-img.py` (thumbnail ≤ 640 px q68, intere ≤ 1600 px q72, riscrive solo se pesa meno): cartella villa da 32 MB a 16 MB; width/height nell'HTML riallineati dal build da solo.
 - **`site-watch.yml` riparato**: la riga che apre la Issue era uno scalar YAML non quotato con due punti dentro → il workflow moriva prima di partire; ora è quotata e il titolo usa un trattino.
+
+### Giro 09/11/2026 (terzo ramo): resoconti leggibili e guardia anti-YAML
+- `tools/watch-site.js` scrive il resoconto (controlli passati e numeri PageSpeed mobile) nel **riassunto del passo** della run GitHub (`GITHUB_STEP_SUMMARY`): Davide legge i valori dalla scheda Actions senza aprire i log.
+- `ci.yml` ora lint-a i workflow con `npx yaml-lint`: un errore di sintassi YAML come quello che l'8/11 aveva fermato il custode (due punti non virgolettati in uno scalar) viene bloccato in CI prima del merge, non scoperto dopo.
+- `llms.txt`: la sezione «Pagine» elenca anche «Vivere a Rivergaro e in Val Trebbia: servizi, distanze, tempo libero», cosi' la navigazione agentica trova la pagina territorio dall'indice.

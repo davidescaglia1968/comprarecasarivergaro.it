@@ -57,6 +57,7 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
       const score = ((j.lighthouseResult || {}).categories || {}).performance;
       const riga = u.replace(BASE, '') + ' → punteggio ' + Math.round((score && score.score || 0) * 100) + ', LCP ' + (lcp / 1000).toFixed(1) + 's, CLS ' + (cls || 0).toFixed(3);
       console.log('  · ' + riga);
+      logLines.push('- · PSI ' + riga);
       if (lcp > 6000) warn.push('LCP lento: ' + riga);
     } catch (e) { warn.push('PSI non rispondente per ' + u + ' (' + e.message + ')'); }
   }
