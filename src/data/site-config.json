@@ -202,7 +202,8 @@
         "cap": "29028"
       }
     ],
-    "_nota_area_coperta": "Elenco DECISO DA DAVIDE il 10/11/2026 ('Area coperta dal servizio', incollato alla lettera con CAP e provincia): e' il perimetro vero del servizio, uguale a areaServed_jsonld e al profilo pubblico dell'attivita'. Ogni testo del sito che nomina la zona (home 'Dove lavoro', catalogo, FAQ, llms.txt) deve citare esattamente questi comuni: niente 'asta del Trebbia' generica, niente valle intera."
+    "_nota_area_coperta": "Elenco DECISO DA DAVIDE il 10/11/2026 ('Area coperta dal servizio', incollato alla lettera con CAP e provincia): e' il perimetro vero del servizio, uguale a areaServed_jsonld e al profilo pubblico dell'attivita'. Ogni testo del sito che nomina la zona (home 'Dove lavoro', catalogo, FAQ, llms.txt) deve citare esattamente questi comuni: niente 'asta del Trebbia' generica, niente valle intera.",
+    "_nota_distanza_piacenza": "DECISO DA DAVIDE il 09/11/2026: la distanza Rivergaro-Piacenza da pubblicare e' 'una quindicina di chilometri' (scelta sua, confermata contro i ~20 km delle fonti pubbliche). La home lo scriveva gia' cosi'; la pagina /vivere-a-rivergaro.html usa la stessa formula. Nessuno la 'corregga' sulle fonti esterne senza chiederlo a lui."
   },
   "ecosistema": {
     "sito_madre": {
