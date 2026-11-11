@@ -723,3 +723,8 @@ Seguito del banner «Se invece devi vendere» (ramo precedente):
   «chi mi vende casa a Piacenza», ora ha la risposta anche da questo sito.
 - Invariante nuova nella sorveglianza: il banner con il link a venderecasapiacenza.it deve
   restare in fondo alla home; se una build futura lo perde, la run fallisce e apre una Issue.
+
+### Giro 10/11/2026 (sesto ramo): il bottone «Vai su venderecasapiacenza.it» apre una finestra nuova
+Richiesto da Davide il 10/11/2026: chi clicca non deve perdere comprarecasarivergaro.it.
+Il link del banner cross-cta ora ha target="_blank" (con rel="noopener", che chiude la porta
+fra le due schede). L'invariante di sorveglianza sul banner controlla anche la finestra nuova.

@@ -609,7 +609,9 @@ const shortcodes = {
   },
   sito_madre_cta() {
     const m = cfg.ecosistema.sito_madre;
-    return `<aside class="cross-cta"><div><p class="cross-cta-k">Se invece devi vendere</p><p class="cross-cta-t">Su ${esc(m.nome)} trovi il percorso per chi mette in vendita casa, nella stessa zona e con lo stesso metodo.</p></div><a class="btn btn-outline" href="${attr(m.url)}" rel="noopener">Vai su ${esc(m.nome)}</a></aside>`;
+    /* Davide 10/11/2026: il bottone apre una finestra nuova, cosi' chi clicca non perde
+       comprarecasarivergaro.it; noopener chiude la porta fra le due schede (sicurezza). */
+    return `<aside class="cross-cta"><div><p class="cross-cta-k">Se invece devi vendere</p><p class="cross-cta-t">Su ${esc(m.nome)} trovi il percorso per chi mette in vendita casa, nella stessa zona e con lo stesso metodo.</p></div><a class="btn btn-outline" href="${attr(m.url)}" target="_blank" rel="noopener">Vai su ${esc(m.nome)}</a></aside>`;
   },
   /* Davide, 09/11/2026: nella card la riga "Studio + indirizzo" e' diventata la
      promessa di metodo "A CASA TUA" (gli incontri li apre lui, dal cliente).
