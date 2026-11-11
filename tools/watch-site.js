@@ -64,8 +64,9 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
        in una pagina pubblica o in llms.txt e' un guasto, non un dettaglio. */
     ['indirizzo di casa assente dalle pagine pubbliche', !(await Promise.all(['/chi-sono.html', '/contatti.html', '/vivere-a-rivergaro.html', '/immobili.html'].map((u) => fetch(BASE + u).then((r) => r.text())))).some((t) => t.includes('Cavallotti')) && !casa.includes('Cavallotti') && !llmsTxt.includes('Cavallotti')],
     ['chi-sono senza la frazione nel capitolo sede', !(await fetch(BASE + '/chi-sono.html').then((r) => r.text())).includes('Pieve Dugliara')],
-    /* Davide 10/11/2026: il rimando a chi vende in fondo alla home deve restare dov'e'. */
-    ['banner «Se invece devi vendere» in fondo alla home', casa.includes('cross-cta') && casa.includes('https://venderecasapiacenza.it')],
+    /* Davide 10/11/2026: il rimando a chi vende in fondo alla home deve restare dov'e',
+       e il bottone deve aprire una finestra nuova. */
+    ['banner «Se invece devi vendere» in fondo alla home, con finestra nuova', casa.includes('cross-cta') && casa.includes('href="https://venderecasapiacenza.it" target="_blank"')],
   ];
   for (const [nome, va] of invarianti) {
     if (va) ok('invariante: ' + nome);
