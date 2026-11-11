@@ -705,3 +705,13 @@ Decisione di Davide del 10/11/2026: Via Felice Cavallotti 3 e' casa sua e non va
 - «Pieve Dugliara» resta unicamente come nome di frazione nell'elenco zone/filtri (geografia decisa da Davide il 23/10, non indirizzo).
 - Sorveglianza: due invarianti nuove in `tools/watch-site.js` — «Cavallotti» assente da home, chi-sono, contatti, vivere, immobili, llms.txt e cookie; chi-sono senza «Pieve Dugliara». Se ricompaiono, la run fallisce e apre una Issue.
 - Link interni nuovi verso `/vivere-a-rivergaro.html` da chi-sono e contatti.
+
+### Giro 10/11/2026 (quarto ramo): banner «Se invece devi vendere» in fondo alle pagine
+Richiesto da Davide il 10/11/2026: un pulsante dedicato a chi vende casa, che porta su
+venderecasapiacenza.it. Implementato riusando il componente cross-cta esistente:
+- compare in fondo a home, chi-sono, contatti e vivere-a-rivergaro (sezioni editoriali);
+- NON compare sulla scheda immobile (regola ecosistema: chi legge una casa non va distratto),
+  ne' su legali, grazie e 404; la regola aggiornata e' scritta in `ecosistema.sito_madre.posizionamento_link`;
+- testo: kicker «Se invece devi vendere», promessa di metodo, bottone «Vai su venderecasapiacenza.it» con rel noopener.
+Meccanica: placeholder {{VENDE_CTA}} nel layout, reso da `vendeCta()` in build.js; le schede,
+che montano il layout con la propria catena di replace, lo strippedano da sole.
