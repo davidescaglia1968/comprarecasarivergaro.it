@@ -609,7 +609,7 @@ const shortcodes = {
   },
   sito_madre_cta() {
     const m = cfg.ecosistema.sito_madre;
-    return `<aside class="cross-cta"><div><p class="cross-cta-k">Se invece devi vendere</p><p class="cross-cta-t">Su ${esc(m.nome)} trovi il percorso per chi mette in vendita casa, nella stessa zona e con lo stesso metodo.</p></div><a class="btn btn-outline" href="${attr(m.url)}" rel="noopener">vai su ${esc(m.nome)}</a></aside>`;
+    return `<aside class="cross-cta"><div><p class="cross-cta-k">Se invece devi vendere</p><p class="cross-cta-t">Su ${esc(m.nome)} trovi il percorso per chi mette in vendita casa, nella stessa zona e con lo stesso metodo.</p></div><a class="btn btn-outline" href="${attr(m.url)}" rel="noopener">Vai su ${esc(m.nome)}</a></aside>`;
   },
   /* Davide, 09/11/2026: nella card la riga "Studio + indirizzo" e' diventata la
      promessa di metodo "A CASA TUA" (gli incontri li apre lui, dal cliente).
@@ -1171,6 +1171,15 @@ function head(page, prefix) {
   return c.join('\n  ');
 }
 
+/* Banner «se invece devi vendere» in fondo alla pagina, richiesto da Davide il 10/11/2026.
+   Vive sulla home e sulle pagine editoriali (chi-sono, contatti, territorio); NON sulla
+   scheda immobile, dove la regola ecosistema del config lo vieta per non distrarre chi
+   sta gia' leggendo una casa, e niente su legali/grazie/404. */
+function vendeCta(page) {
+  const dove = ['index.html', 'chi-sono.html', 'contatti.html', 'vivere-a-rivergaro.html'];
+  if (!dove.includes(page.path)) return '';
+  return '<section class="section section--alt"><div class="wrap">' + shortcodes.sito_madre_cta() + '</div></section>';
+}
 function buildPage(page) {
   /* La 404 viene servita da GitHub Pages sotto QUALSIASI percorso inesistente, anche in
      sottocartelle (/zone/x.html, /immobili/y.html): con il prefisso relativo logo, menu,
@@ -1191,6 +1200,7 @@ function buildPage(page) {
     .replace('{{HEAD}}', head(merged, prefix))
     .replace('{{HEADER}}', header)
     .replace('{{CONTENT}}', content)
+    .replace('{{VENDE_CTA}}', vendeCta(merged))
     .replace('{{FOOTER}}', footer)
     .replace('{{COOKIE_BANNER}}', banner)
     .replace('{{PREFIX}}', prefix)
