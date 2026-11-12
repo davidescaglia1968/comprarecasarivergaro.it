@@ -54,6 +54,24 @@ def main():
             os.remove(out)
             dopo += old
     print(f'immagini: {toccati} alleggerite, {prima // 1024} KB → {dopo // 1024} KB')
+    # Giro 10/11/2026 (brief di ottimizzazione): la taglia intermedia -mid.webp (1240 px,
+    # qualita' 70) per il retina fra telefono e piena. Si crea solo dove manca, dalla
+    # piena, e non si tocca mai dove gia' esiste: build.js la mette da solo nel srcset.
+    creati = 0
+    for f in sorted(glob.glob('img/*/*.webp')):
+        b = os.path.basename(f)
+        if b.endswith(('-thumb.webp', '-small.webp', '-mid.webp')):
+            continue
+        mid = f[:-5] + '-mid.webp'
+        if os.path.exists(mid):
+            continue
+        im = Image.open(f).convert('RGB')
+        if im.width > 1240:
+            h = round(im.height * 1240 / im.width)
+            im = im.resize((1240, h), Image.LANCZOS)
+        im.save(mid, 'WEBP', quality=70, method=6)
+        creati += 1
+    print(f'taglie intermedie create: {creati}')
 
 
 if __name__ == '__main__':

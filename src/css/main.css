@@ -245,6 +245,25 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 .cross-cta p{margin:0}
 .cross-cta-k{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-text);margin-bottom:6px!important}
 .cross-cta-t{color:#d4d4d8;max-width:56ch}
+/* Giro 10/11/2026: la banda del banner era mezza vuota sopra il testo (padding della
+   sezione + margine della carta). Compattata: il testo parte alto, come chiesto da Davide. */
+.section--cta{padding:var(--s5) 0}
+.section--cta .cross-cta{margin-top:0}
+/* «Mostra tutte le foto»: e' un <summary> nativo, quindi pulsante senza JavaScript,
+   apribile da tastiera e annunciato dagli screen reader. Target touch >= 44px. */
+.gallery-all{margin-top:var(--s4)}
+.gallery-all summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  min-height:44px;padding:var(--s2) var(--s5);border:1px solid rgba(244,114,182,.55);border-radius:999px;
+  color:#fff;font-weight:700;background:transparent}
+.gallery-all summary:hover{border-color:var(--pink);background:rgba(236,72,153,.1)}
+.gallery-all summary::-webkit-details-marker{display:none}
+.gallery-all .gallery-all-close{display:none}
+.gallery-all[open] .gallery-all-open{display:none}
+.gallery-all[open] .gallery-all-close{display:inline}
+.gallery-all[open] summary{margin-bottom:var(--s5)}
+/* se una foto risponde 404, al posto dell'icona rotta resta una scatola con l'alt */
+.img-fallback{display:grid;place-items:center;min-height:160px;padding:var(--s3);text-align:center;
+  border:1px dashed var(--line);border-radius:var(--radius);color:#a1a1aa}
 .contact-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-secondary);padding:var(--s5)}
 .contact-list{list-style:none;margin:0;padding:0;display:grid;gap:var(--s2)}
 .contact-list li{display:grid;grid-template-columns:minmax(140px,auto) 1fr;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--line)}

@@ -251,3 +251,20 @@
   style.textContent = '.is-invalid{border-color:#fca5a5!important}.is-invalid:focus{outline-color:#fca5a5}';
   document.head.appendChild(style);
 })();
+
+/* Giro 10/11/2026 (brief): se una risorsa immagine risponde 404 o non decodifica,
+   al posto dell'icona rotta del browser resta una scatola con il testo alternativo.
+   Miglioramento progressivo: senza JavaScript la pagina funziona uguale. */
+(function () {
+  document.addEventListener('error', function (e) {
+    var t = e.target;
+    if (!t || t.tagName !== 'IMG' || t.dataset.fallback) return;
+    t.dataset.fallback = '1';
+    var d = document.createElement('div');
+    d.className = 'img-fallback';
+    d.setAttribute('role', 'img');
+    d.setAttribute('aria-label', t.alt || 'Immagine non disponibile');
+    d.textContent = t.alt || 'Immagine non disponibile';
+    if (t.parentNode) t.parentNode.replaceChild(d, t);
+  }, true);
+})();

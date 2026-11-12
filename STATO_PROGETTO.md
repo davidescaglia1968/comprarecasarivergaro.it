@@ -728,3 +728,9 @@ Seguito del banner «Se invece devi vendere» (ramo precedente):
 Richiesto da Davide il 10/11/2026: chi clicca non deve perdere comprarecasarivergaro.it.
 Il link del banner cross-cta ora ha target="_blank" (con rel="noopener", che chiude la porta
 fra le due schede). L'invariante di sorveglianza sul banner controlla anche la finestra nuova.
+
+### Giro 10/11/2026 (settimo ramo, giro 1 del brief di ottimizzazione)
+Galleria progressiva (12 foto aperte + «Mostra tutte le foto» nativo senza JavaScript),
+taglia intermedia 1240w su tutte le 192 foto, minificazione CSS/JS in build senza
+dipendenze, banda banner compattata (section--cta), fallback per immagini 404,
+nona invariante di sorveglianza sulla galleria. Tabella prima/dopo in REPORT-OTTIMIZZAZIONE.md.
