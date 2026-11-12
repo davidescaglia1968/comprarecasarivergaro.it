@@ -36,15 +36,12 @@
     "partita_iva": "01493570335",
     "iscrizione_ruolo": "Ruolo Agenti di Affari in Mediazione, sezione Agenti Immobiliari, Camera di Commercio di Piacenza — dal 07/12/2007",
     "indirizzo_studio": {
-      "street": "Via Felice Cavallotti 3",
       "localita": "Rivergaro",
-      "frazione": "Pieve Dugliara",
       "cap": "29029",
       "provincia": "PC",
       "paese": "IT"
     },
     "indirizzo_postale_privacy": {
-      "street": "Via Felice Cavallotti 3",
       "localita": "Rivergaro",
       "cap": "29029",
       "provincia": "PC"
@@ -61,7 +58,7 @@
     "nota_anno": "RISOLTO dalla visura: due date diverse spiegano il conflitto. 12/12/2007 = data fondazione/inizio attivita' e 07/12/2007 = iscrizione al ruolo agenti di affari in mediazione (PC). 21/05/2008 = iscrizione al Registro Imprese come piccolo imprenditore. Il sito usa 'dal 2007' e foundingDate=2007.",
     "fonte": {
       "partita_iva": "visura camerale 07/07/2025",
-      "indirizzo": "visura (Sede: Rivergaro PC, Via Felice Cavallotti 3, 29029, frazione Pieve Dugliara)",
+      "indirizzo": "visura (Sede: Rivergaro PC, 29029) — il civico non si scrive in nessun file del progetto",
       "albo": "visura, sez. Albi e Ruoli",
       "pec": "visura, Domicilio digitale",
       "social": "venderecasapiacenza.it/llms.txt",
@@ -86,7 +83,7 @@
     "addetti": "1 (titolare, impresa individuale senza dipendenti)",
     "_regola_bio": "Testo riscritto il 10/11/2026 con Davide: voce naturale ed empatica, senza fronzoli; via il recapito dell’ufficio dal racconto (la sede resta in footer, llms.txt e JSON-LD) e dentro la promessa «A CASA TUA» (il primo incontro dove preferisce il cliente). I paragrafi si separano con una riga vuota. bio_stato=confermato: nessuna nota di revisione in pagina.",
     "bio_stato": "confermato",
-    "_regola_indirizzo_pubblico": "DECISO DA DAVIDE il 10/11/2026: l'indirizzo della sede (che e' casa sua) NON e' pubblico. In footer, llms.txt, JSON-LD e pagine pubbliche compare solo 'Rivergaro (PC)'. L'indirizzo completo (via, CAP, frazione) vive SOLO in src/pages/privacy.md (obbligo legale sul titolare) e nella scheda Google Business Profile come indirizzo nascosto al pubblico. 'Pieve Dugliara' resta solo come nome di frazione nell'elenco zone (geografia, non indirizzo). watch-site fallisce se 'Cavallotti' ricompare in una pagina pubblica o in llms.txt."
+    "_regola_indirizzo_pubblico": "DECISO DA DAVIDE il 10/11/2026: l'indirizzo della sede (che e' casa sua) NON e' pubblico. In footer, llms.txt, JSON-LD e pagine pubbliche compare solo 'Rivergaro (PC)'. L'indirizzo completo (via, CAP, frazione) vive SOLO in src/pages/privacy.md (obbligo legale sul titolare) e nella scheda Google Business Profile come indirizzo nascosto al pubblico. 'Pieve Dugliara' resta solo come nome di frazione nell'elenco zone (geografia, non indirizzo). Dal 10/11/2026, secondo giro: per il D.Lgs. 70/2003 art. 7 l'indirizzo completo della sede vive in UN solo punto pubblico del sito, la privacy policy (raggiungibile dal footer di ogni pagina); nessun altro file del progetto, pagina o pull request lo contiene. build.js --check e watch-site falliscono se la via di casa ricompare in un file non consentito."
   },
   "area_servizio": {
     "comune_principale": "Rivergaro",
@@ -366,7 +363,7 @@
     "titolare_blocco": {
       "denominazione": "Immobiliare Scaglia di Scaglia Davide",
       "forma": "impresa individuale",
-      "indirizzo": "Via Felice Cavallotti 3, 29029 Rivergaro (PC)",
+      "indirizzo": "Rivergaro (PC) — completo solo nella privacy policy e nel pannello Google come indirizzo nascosto",
       "cap": "29029",
       "partita_iva": "01493570335",
       "rea": "PC-168637",

@@ -2092,6 +2092,14 @@ function runCheck() {
       if (dd.length > 165) { console.log(`✗ ${f}: description di ${dd.length} caratteri (> 165, troncata in SERP)`); problems++; }
     }
     problems += privacyGuard();
+    /* Bonifica 10/11/2026 (decisione di Davide + D.Lgs. 70/2003 art. 7): l'indirizzo
+       completo della sede vive SOLO in src/pages/privacy.md (e nella pagina pubblicata
+       legal/privacy.html). Se ricompare in config, markdown, template o workflow, il
+       check fallisce PRIMA di pubblicare. I file che cercano la stringa per sorvegliarla
+       (build.js, tools/watch-site.js) sono fuori da questa lista per ovvi motivi. */
+    for (const f of ['src/data/site-config.json', 'SCHEDA_GOOGLE.md', 'STATO_PROGETTO.md', 'DESIGN_SYSTEM.md', 'PROFESSIONISTA.md', 'AUDIT_2026-11-09.md', 'REQUISITI-LEGALI.md', 'llms.txt', 'robots.txt', 'src/templates/footer.html', 'src/templates/layout.html', 'src/templates/cookie-banner.html', 'src/templates/header.html', 'src/pages/cookie.md', 'src/pages/contatti.md', 'src/pages/chi-sono.md', 'src/pages/home.md', 'src/pages/vivere-rivergaro.md', '.github/workflows/ci.yml', '.github/workflows/site-watch.yml', '.github/workflows/indexnow.yml']) {
+      if (/Cavallotti/.test(readIf(f, ''))) { console.log('✗ indirizzo di sede in un file dove non deve stare: ' + f); problems++; }
+    }
     console.log(problems ? '\n' + problems + ' problemi trovati' : '\n✓ check superato: nessun dato personale della visura, nessun segnaposto, nessun link rotto, un H1 per pagina, immagini con dimensioni esplicite');
     if (problems) process.exitCode = 1;
 }

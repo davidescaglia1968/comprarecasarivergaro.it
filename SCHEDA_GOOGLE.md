@@ -59,7 +59,7 @@ Su GBP puoi pubblicare tu domanda e risposta (sono le domande che ti fanno al te
 - **D:** Quanto costa farsi cercare casa?
   **R:** Prima di qualsiasi proposta scritta chiarisco per iscritto condizioni e compenso dell'incarico: nessuna cifra viene data per scontata, né in annuncio né al telefono.
 - **D:** Dove si trova lo studio?
-  **R:** In Via Felice Cavallotti 3, frazione Pieve Dugliara, 29029 Rivergaro (PC).
+  **R:** L'indirizzo completo si inserisce SOLO nel pannello Google, come indirizzo nascosto di attività con area di servizio: non compare sul sito né in alcun file di questo progetto. In pubblico esiste solo «Rivergaro (PC)».
 
 ## 5. Sito e contatti (devono coincidere col sito, lettera per lettera)
 - Sito web: `https://comprarecasarivergaro.it/`

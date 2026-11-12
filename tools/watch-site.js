@@ -83,6 +83,11 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
        altrimenti il telefono la scopre tardi e l'LCP peggiora. */
     ['preload della foto LCP sulla scheda', scheda.includes('rel="preload" as="image"')],
   ];
+  /* Bonifica 10/11/2026: l'indirizzo di sede non deve ricomparire nei file del progetto
+     (config, documenti, pagine sorgente). La privacy policy e' l'unico punto legale. */
+  for (const f of ['src/data/site-config.json', 'SCHEDA_GOOGLE.md', 'STATO_PROGETTO.md', 'DESIGN_SYSTEM.md', 'PROFESSIONISTA.md', 'AUDIT_2026-11-09.md', 'REQUISITI-LEGALI.md', 'src/pages/contatti.md', 'src/pages/chi-sono.md', 'src/pages/cookie.md', 'src/pages/home.md']) {
+    if (fs.existsSync(f) && /Cavallotti/.test(fs.readFileSync(f, 'utf8'))) fail.push('indirizzo di sede nel repository: ' + f);
+  }
   for (const [nome, va] of invarianti) {
     if (va) ok('invariante: ' + nome);
     else fail.push('invariante rotta: ' + nome);

@@ -130,7 +130,7 @@ Letti direttamente i sorgenti di `venderecasapiacenza.it` e `casepodenzano.it`. 
 | Chiave consenso | `localStorage["cookie_consent"]`, valori `accetta`/`tecnici` | **identica** | Chi ha già scelto su casepodenzano.it non rivede il banner |
 | Dati strutturati | `RealEstateAgent` + `RealEstateListing` + `FAQPage`, con `taxID`, `address`, `areaServed` come `City` | stesso impianto, stessi `@id` | Coerenza di entità per Google e per i motori generativi |
 | `llms.txt` | presente su entrambi | presente, generato dalla build | GEO |
-| NAP | Davide Scaglia · Via Cavallotti 3, 29029 Rivergaro (PC) · +39 328 693 0033 · info@immobiliarescaglia.com · P.IVA 01493570335 · REA PC-168637 | **identico** | Un solo errore da correggere se cambia |
+| NAP | Davide Scaglia · Rivergaro (PC) · +39 328 693 0033 · info@immobiliarescaglia.com · P.IVA 01493570335 · REA PC-168637 | **identico** | Un solo errore da correggere se cambia |
 
 **Anno di inizio attività: conflitto aperto.** Il brief dice *2008*, i due siti pubblicati dicono *dal 2007*. Finché non confermi, la UI non scrive nessun anno e `foundingDate` è omesso dal JSON-LD (meglio un campo in meno che un campo sbagliato in tutto l'ecosistema).
 
