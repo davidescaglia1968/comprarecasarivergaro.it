@@ -749,3 +749,11 @@ spenta da prefers-reduced-motion; cleanHtml esteso (indentazione e righe vuote);
 URL storici: 404 pulite senza equivalenti reali, zero link residui, sitemap e robots
 coerenti, 404 con noindex; sezione «Fonti e aggiornamento» con link al Comune e data
 visibile su vivere-a-rivergaro; invariante 12 sulla animazione. Tabella in REPORT-OTTIMIZZAZIONE.md.
+
+### Giro 10/11/2026 (decimo ramo, giro 4 del brief): accessibilità e monitoraggio
+Contrasti AA sui pulsanti pieni (gradiente chiaro → toni fondi, oltre 6:1); preload della
+foto LCP anche sulla scheda (stessi descrittori e sizes della img); invariante 13 sul
+preload; piano di monitoraggio 30 giorni scritto nel report (cron giornaliero già attivo,
+checklist settimanale per Davide, confronto baseline GSC al 10/12). L'audit ha confermato
+che foco visibile, skip link, trappola Tab del lightbox, errori annunciati e tabelle
+scorrevoli c'erano già.

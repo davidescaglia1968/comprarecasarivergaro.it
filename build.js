@@ -1232,6 +1232,15 @@ function head(page, prefix) {
     const pre = evidenzaPreload(rootPfx);
     if (pre) c.push(pre);
   }
+  /* Giro 10/11/2026 (giro 4): l'LCP della scheda e' la prima foto della galleria. Senza
+     preload il telefono la scopre solo quando il parser arriva al markup: con il preload
+     (stessi descrittori e stesse sizes della <img>, altrimenti scarica due volte) parte
+     insieme al resto della testa. */
+  if ((page.path || '').startsWith('immobile/')) {
+    const slug = (page.path || '').replace(/^immobile\//, '').replace(/\.html$/, '');
+    const pre = evidenzaPreload(rootPfx, '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px', slug);
+    if (pre) c.push(pre);
+  }
   /* Caratteri serviti da qui: il primo carattere del titolo (Playfair 700) parte subito,
      gli altri li scopre il browser leggendo il CSS inline qui sotto. */
   c.push('<link rel="preload" href="' + cssBase + '/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>');
@@ -1598,10 +1607,10 @@ function homeFaq() {
 /* LCP della home: la copertina e' la prima immagine visibile. Un <link rel="preload">
    in <head> la fa partire prima che il parser arrivi al markup. I descrittori sono gli
    stessi della <img> qui sotto: se coincidono il browser non la scarica due volte. */
-function evidenzaPreload(prefix) {
+function evidenzaPreload(prefix, sizes, slug) {
   const list = catalogo();
-  if (list.length !== 1) return '';
-  const p = list[0];
+  const p = slug ? list.find((x) => x.slug === slug) : (list.length === 1 ? list[0] : null);
+  if (!p) return '';
   const file = (p.immagini || []).filter(Boolean)[0];
   if (!file) return '';
   const meta = imgMeta(p.slug, file);
@@ -1621,7 +1630,7 @@ function evidenzaPreload(prefix) {
   const sw = dSmall && dSmall.w ? dSmall.w : 0;
   const mw = dMid && dMid.w ? dMid.w : 0;
   const set = `${haSmall && sw ? src + smallF + ' ' + sw + 'w, ' : ''}${src}${thumb} ${tw}w, ${haMid && mw ? src + mid + ' ' + mw + 'w, ' : ''}${src}${file} ${fw}w`;
-  return `<link rel="preload" as="image" href="${attr(src + file)}" imagesrcset="${attr(set)}" imagesizes="(max-width: 900px) 100vw, 620px" fetchpriority="high">`;
+  return `<link rel="preload" as="image" href="${attr(src + file)}" imagesrcset="${attr(set)}" imagesizes="${attr(sizes || '(max-width: 900px) 100vw, 620px')}" fetchpriority="high">`;
 }
 
 function immobileEvidenza() {
