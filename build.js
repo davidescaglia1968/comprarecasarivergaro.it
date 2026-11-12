@@ -32,7 +32,10 @@ function clipMeta(t, n = 155) {
   return (sp > 60 ? cut.slice(0, sp) : cut).replace(/[\s,;:.\u2013-]+$/, '') + '\u2026';
 }
 const attr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const cleanHtml = (s) => s.replace(/[ \t]+\n/g, '\n');
+/* Giro 10/11/2026 (giro 3, performance continua): oltre ai trailing space, via anche
+   l'indentazione prima dei tag e le righe vuote doppie: qualche KB in meno su ogni
+   pagina servita, senza toccare il testo (i paragrafi non iniziano mai indentati). */
+const cleanHtml = (s) => s.replace(/[ \t]+\n/g, '\n').replace(/\n[ \t]+</g, '\n<').replace(/\n{2,}/g, '\n');
 const abs = (base, p) => (typeof p === 'string' && /^https?:\/\//.test(p) ? p : base + p);
 /* Elenco in italiano: "a, b e c" (niente virgola prima della e). */
 function listaIt(arr) {

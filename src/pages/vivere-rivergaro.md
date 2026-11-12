@@ -63,4 +63,11 @@ Da Rivergaro la statale 45 sale la valle: il castello di Rivalta sulla riva del 
   ]
 }
 
+## Fonti e aggiornamento
+
+- Servizi, uffici e strutture: sito ufficiale del [Comune di Rivergaro](https://www.comune.rivergaro.pc.it), sezione «Vivere il Comune».
+- Asilo nido comunale nel polo scolastico di via Alberoni: comunicato dell'amministrazione del luglio 2026.
+- Distanze fra comuni: misure pubbliche di riferimento; la distanza da Piacenza è quella che do io, una quindicina di chilometri.
+- Ultimo aggiornamento di questa pagina: 10 novembre 2026.
+
 Se vuoi capire se Rivergaro è il posto giusto per te, parliamone a voce: [apri la pagina dei contatti](/contatti.html) oppure chiama il **+39 328 693 0033**.

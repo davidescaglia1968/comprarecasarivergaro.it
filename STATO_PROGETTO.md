@@ -742,3 +742,10 @@ nuovo); CTA «Chiedi prezzo e disponibilità» dalla scheda al modulo rapido; tr
 confermati vicino ai contatti della scheda; breadcrumb visibile e JSON-LD a tre voci
 (Home → /immobili.html → scheda), corretto il bug della voce «Immobili» auto-puntata;
 invarianti di sorveglianza salite a 11. Tabella in REPORT-OTTIMIZZAZIONE.md.
+
+### Giro 10/11/2026 (nono ramo, giro 3 del brief): foto che respira, fonti, URL storici
+Respirazione lenta (kenburns 22s, solo transform) sulla foto iniziale di home e scheda,
+spenta da prefers-reduced-motion; cleanHtml esteso (indentazione e righe vuote); verifica
+URL storici: 404 pulite senza equivalenti reali, zero link residui, sitemap e robots
+coerenti, 404 con noindex; sezione «Fonti e aggiornamento» con link al Comune e data
+visibile su vivere-a-rivergaro; invariante 12 sulla animazione. Tabella in REPORT-OTTIMIZZAZIONE.md.
