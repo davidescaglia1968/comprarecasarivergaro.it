@@ -734,3 +734,11 @@ Galleria progressiva (12 foto aperte + «Mostra tutte le foto» nativo senza Jav
 taglia intermedia 1240w su tutte le 192 foto, minificazione CSS/JS in build senza
 dipendenze, banda banner compattata (section--cta), fallback per immagini 404,
 nona invariante di sorveglianza sulla galleria. Tabella prima/dopo in REPORT-OTTIMIZZAZIONE.md.
+
+### Giro 10/11/2026 (ottavo ramo, giro 2 del brief): conversione e breadcrumb
+Barra fissa telefono/WhatsApp su smartphone (safe area, spazio riservato, stampa esclusa);
+modulo rapido in tre campi in contatti#contatto-rapido (stesso FormSubmit, nessun servizio
+nuovo); CTA «Chiedi prezzo e disponibilità» dalla scheda al modulo rapido; tre fatti
+confermati vicino ai contatti della scheda; breadcrumb visibile e JSON-LD a tre voci
+(Home → /immobili.html → scheda), corretto il bug della voce «Immobili» auto-puntata;
+invarianti di sorveglianza salite a 11. Tabella in REPORT-OTTIMIZZAZIONE.md.

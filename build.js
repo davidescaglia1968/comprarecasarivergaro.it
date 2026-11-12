@@ -538,6 +538,31 @@ function formRicerca(prefix, submitLabel) {
       </form>`;
 }
 
+/* Giro 10/11/2026 (brief, giro 2): percorso di contatto rapido in tre campi, accanto al
+   modulo dettagliato che resta. Stesso endpoint FormSubmit, stesso honeypot, stessa
+   pagina di ringraziamento: niente servizi nuovi, niente impatto privacy nuovo. */
+function formRapido(prefix) {
+  const grazie = abs(BASE, cfg.form.post_submit_redirect || '/index.html');
+  return `
+      <form class="form" method="POST" action="${attr(cfg.form.action)}" id="modulo-rapido">
+        <input type="hidden" name="_subject" value="Contatto rapido — Rivergaro">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_next" value="${attr(grazie)}">
+        <div class="field-grid">
+          <p class="field"><label for="r-nome">Nome</label><input id="r-nome" name="nome" type="text" autocomplete="name" required></p>
+          <p class="field"><label for="r-tel">Telefono o WhatsApp</label><input id="r-tel" name="telefono_whatsapp" type="tel" autocomplete="tel" inputmode="tel" required></p>
+        </div>
+        <p class="field"><label for="r-msg">Cosa ti serve?</label><textarea id="r-msg" name="messaggio" rows="3" required placeholder="Es. vorrei visitare la villa di Ancarano sabato mattina."></textarea></p>
+        <p class="field field-check"><label for="r-privacy"><input id="r-privacy" type="checkbox" name="privacy" value="si" required> Ho letto l'<a href="${rel(prefix, 'legal/privacy.html')}">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato.</label></p>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Manda il messaggio</button>
+        </div>
+        <p class="form-note">Ti richiamo io, di norma negli orari indicati.</p>
+      </form>`;
+}
+
 const shortcodes = {
   hero(o) {
     /* cta e' sempre [etichetta, destinazione]: la destinazione deve esistere, perche' il
@@ -567,6 +592,9 @@ const shortcodes = {
   },
   form_ricerca() {
     return `<div class="form-shell">${formRicerca('', 'Raccontami che casa cerchi')}</div>`;
+  },
+  form_rapido() {
+    return `<div class="form-shell">${formRapido('')}</div>`;
   },
   immobile_evidenza() {
     return immobileEvidenza();
@@ -989,7 +1017,16 @@ function schedaPage(p, prefix) {
     ? `<section class="todo"><h2 id="da-verificare">Informazioni in attesa di conferma</h2><ul>${manca.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></section>`
     : '';
   const chars = (p.caratteristiche || []).filter((c) => isConfirmed(c));
+  /* Briciole visibili in testa alla scheda: Home / Immobili / scheda. Servono a chi
+     atterra sulla scheda da un motore o da una condivisione e non sa dove sia. */
+  const pp = 'immobile/' + p.slug + '.html';
+  const briciole = `<nav class="breadcrumb" aria-label="Percorso di navigazione"><ol>
+    <li><a href="${rel(pp, 'index.html')}">Home</a></li>
+    <li><a href="${rel(pp, 'immobili.html')}">Immobili</a></li>
+    <li aria-current="page">${esc(p.titolo_breadcrumb || 'Scheda immobile')}</li>
+  </ol></nav>`;
   return `<article class="prop">
+  ${briciole}
   <header class="prop-hero"><div class="wrap">
     <p class="eyebrow">${inCatalogoSoloAnteprima(p) ? '<span class="tag-bozza">ANTEPRIMA INTERNA · BOZZA</span> ' : ''}${esc(p.tipologia || ('Immobile · ' + (p.zona || cfg.area_servizio.comune_principale)))}</p>
     <h1>${esc(p.titolo)}</h1>
@@ -1016,6 +1053,12 @@ function schedaPage(p, prefix) {
         <p class="side-k">Contatti per l'immobile</p>
         <a class="side-tel" href="tel:${attr(pro.telefono_e164)}">${esc(pro.telefono_display)}</a>
         <p class="side-note"><a href="https://wa.me/${attr(String(pro.whatsapp || pro.telefono_e164).replace(/\D/g, ''))}" target="_blank" rel="noopener noreferrer">WhatsApp</a> · <a href="mailto:${attr(pro.email)}">${esc(pro.email)}</a></p>
+        <p><a class="btn btn-primary btn-sm" href="${rel(pp, 'contatti.html')}#contatto-rapido">Chiedi prezzo e disponibilità</a></p>
+        <ul class="trust-mini">
+          <li>Agente immobiliare dal 2007</li>
+          <li>Iscritto al ruolo della Camera di Commercio di Piacenza</li>
+          <li>Risponde una persona sola, dall'appuntamento alla firma</li>
+        </ul>
       </div>
       <div class="side-box side-box--alt">
         <p class="side-k">Non è quella giusta?</p>
@@ -1205,7 +1248,15 @@ function head(page, prefix) {
     const agente = ld['@graph'].find((n) => n && n['@type'] === 'RealEstateAgent');
     if (agente) agente.founder = { '@id': BASE + '/#davide-scaglia' };
   }
-  if (page.breadcrumb) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }, { '@type': 'ListItem', position: 2, name: page.breadcrumb, item: BASE + '/' + (page.canonical || page.path || '').replace(/^\//, '') }] });
+  /* Giro 10/11/2026 (brief, giro 2): il breadcrumb della scheda era Home -> scheda con
+     una voce chiamata «Immobili» che puntava alla scheda stessa. Con breadcrumb_mid il
+     percorso diventa Home -> /immobili.html -> scheda, coerente con quello visibile. */
+  if (page.breadcrumb) {
+    const items = [{ '@type': 'ListItem', position: 1, name: 'Home', item: BASE + '/' }];
+    if (page.breadcrumb_mid) items.push({ '@type': 'ListItem', position: 2, name: page.breadcrumb_mid.name, item: BASE + page.breadcrumb_mid.path });
+    items.push({ '@type': 'ListItem', position: items.length + 1, name: page.breadcrumb, item: BASE + '/' + (page.canonical || page.path || '').replace(/^\//, '') });
+    ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: items });
+  }
   /* Blocchi JSON-LD aggiuntivi specifici della pagina (es. ItemList del catalogo). */
   if (page.jsonld_extra && ld && Array.isArray(ld['@graph'])) ld['@graph'].push(...page.jsonld_extra);
   /* FAQPage: le righe Q&A che il visitatore sta vedendo, non domande inventate per il markup.
@@ -1270,6 +1321,18 @@ function paginaViva(f) {
   const pg = PAGES.find((x) => x.path === f);
   return !!pg && !!readIf(path.join(SRC, 'pages', pg.source), '');
 }
+/* Giro 10/11/2026 (brief, giro 2): barra fissa da smartphone con telefono e WhatsApp.
+   Vive nel footer template cosi' la ricevono tutte le pagine, comprese catalogo e
+   schede. Si vede solo sotto i 760px, rispetta la safe area, e il body le riserva lo
+   spazio cosi' non copre mai il contenuto. Nessun JavaScript necessario. */
+function mobileBar() {
+  const wa = String(pro.whatsapp || pro.telefono_e164).replace(/\D/g, '');
+  return `<nav class="mobile-bar" aria-label="Contatti rapidi: telefono e WhatsApp">
+  <a href="tel:${attr(pro.telefono_e164)}">Chiama Davide</a>
+  <a href="https://wa.me/${attr(wa)}" rel="noopener">WhatsApp</a>
+</nav>`;
+}
+
 function fill(tpl, prefix, page) {
   page = page || {};
   if (!page.path) page.path = 'index.html';
@@ -1326,6 +1389,7 @@ function fill(tpl, prefix, page) {
     NAP_ADDR: addr
       ? `<p class="f-addr">${esc(addr.localita)} (${esc(addr.provincia)})</p>`
       : '',
+    MOBILE_BAR: mobileBar(),
     /* Partita IVA nella home page e in footer: obbligo per i soggetti IVA (art. 35
        DPR 633/72). Prima index.html non conteneva la P.IVA in nessun punto. */
     LEGAL: [
@@ -1891,7 +1955,8 @@ function main() {
       title: p.titolo_seo ? p.titolo_seo : pageTitle(p.titolo || 'Immobile'),
       description: clipMeta(p.descrizione_meta || p.descrizione || '', 155),
       canonical: '/immobile/' + p.slug + '.html',
-      breadcrumb: 'Immobili',
+      breadcrumb: p.titolo_breadcrumb || 'Scheda immobile',
+      breadcrumb_mid: { name: 'Immobili', path: '/immobili.html' },
       noindex: !!p.bozza, robots_off: !!p.bozza,
     };
     const content = schedaPage(p, 'immobile/');

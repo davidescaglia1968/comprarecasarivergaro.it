@@ -45,3 +45,17 @@ giro 1 è nella run citata qui sotto in chat e nel riassunto della workflow.
 - Giro 2: barra fissa telefono/WhatsApp su smartphone, modulo rapido (nome, telefono o WhatsApp, richiesta, consenso), trust vicino alle CTA, breadcrumb a tre voci con JSON-LD coerente (la voce «Immobili» oggi punta alla scheda: bug confermato).
 - Giro 3: vecchi URL (/guide/…, /zone/pieve-dugliara.html, /immobili/casa-indipendente-niviano.html) — Pages non fa 301 lato server: strategia 404 pulita + rimozioni GSC già fatte + zero link residui da verificare; fonti e date visibili su «Vivere a Rivergaro».
 - Giro 4: audit accessibilità (tastiera, zoom 200%, contrasti, focus) e piano di monitoraggio 30 giorni.
+
+## Giro 2 — conversione e breadcrumb (10/11/2026)
+
+| voce | prima | dopo |
+|---|---|---|
+| contatto da smartphone | telefono solo nel testo e nel footer | barra fissa in basso «Chiama Davide / WhatsApp» sotto i 760px, con safe area, target 52px, spazio riservato al body (non copre nulla), nascosta in stampa |
+| percorso di contatto | solo modulo dettagliato (8 campi) | modulo rapido in 3 campi (nome, telefono o WhatsApp, richiesta, consenso) in contatti#contatto-rapido, stesso FormSubmit, stesso honeypot, stessa pagina di grazie; il dettagliato resta |
+| CTA sulla scheda | telefono/WhatsApp/email + ricerca personalizzata | aggiunto «Chiedi prezzo e disponibilità» verso il modulo rapido (la dicitura resta verificabile da Davide: il prezzo continua a non comparire) |
+| fiducia vicino ai contatti | dati aziendali solo in footer/chi-sono | tre fatti confermati sotto i contatti della scheda: dal 2007, ruolo CCIAA Piacenza, una persona sola |
+| breadcrumb scheda | JSON-LD Home → scheda con voce «Immobili» puntata alla scheda (bug del brief, confermato) | JSON-LD e briciole visibili Home → /immobili.html → «Villa con 3 unità ad Ancarano» |
+| sorveglianza | 9 invarianti | 11: barra mobile + modulo rapido; breadcrumb a tre voci |
+
+Nessun servizio esterno nuovo: la barra sono due link tel:/wa.me, il modulo rapido usa
+l'endpoint FormSubmit gia' dichiarato in privacy e cookie policy.
