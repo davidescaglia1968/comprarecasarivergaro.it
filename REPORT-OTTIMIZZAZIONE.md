@@ -59,3 +59,15 @@ giro 1 è nella run citata qui sotto in chat e nel riassunto della workflow.
 
 Nessun servizio esterno nuovo: la barra sono due link tel:/wa.me, il modulo rapido usa
 l'endpoint FormSubmit gia' dichiarato in privacy e cookie policy.
+
+## Giro 3 — URL storici, fonti, foto che respira, html più leggero (10/11/2026)
+
+| voce | prima | dopo |
+|---|---|---|
+| foto iniziale (home e scheda) | ferma | respirazione lenta 22 s, solo transform: zero CLS, nessun ritardo LCP, spenta da prefers-reduced-motion (blocco globale già presente) |
+| html servito | indentazione e righe vuote doppie | cleanHtml toglie indentazione prima dei tag e righe vuote: pagine più leggere a parità di contenuto |
+| vecchi URL (/guide/…, /zone/pieve-dugliara.html, /immobili/casa-indipendente-niviano.html) | 404 | restano 404 pulite: Pages non fa 301 lato server e non esiste un equivalente reale (le guide e le frazioni sono state tolte per decisione di Davide); zero link residui interni verificati, rimozioni GSC già fatte nelle scorse settimane |
+| sitemap | 8 URL | verificate: tutte canoniche, vive e indicizzabili (le legali non sono noindex); robots semplice con permesso ai motori AI |
+| 404 | corretta | ricontrollata: risponde 404 e ha noindex |
+| «Vivere a Rivergaro» | fonti citate nel testo | sezione «Fonti e aggiornamento» con link al sito del Comune, il comunicato del nido (luglio 2026) e la data di ultimo aggiornamento visibile |
+| sorveglianza | 11 invarianti | 12: la respirazione della foto e il blocco moto ridotto devono restare |

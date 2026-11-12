@@ -169,6 +169,12 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 
 /* ---------------------------------------------------------- proposta in evidenza */
 .featured-property{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(24px,4vw,56px);align-items:stretch;overflow:hidden;border:1px solid var(--line);border-radius:calc(var(--radius) + 4px);background:linear-gradient(135deg,rgba(236,72,153,.045),transparent 42%),var(--bg-secondary);box-shadow:var(--shadow);animation:property-arrive .55s ease-out both}
+/* Giro 10/11/2026 (giro 3, richiesta di Davide): la foto iniziale respira. Respirazione
+   lenta (22 s) solo transform: lavora il compositor, non tocca il layout (CLS zero) e
+   non ritarda l'LCP. Il blocco prefers-reduced-motion globale la spegne per chi chiede
+   meno movimento, e i contenitori hanno gia' overflow:hidden. */
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.07)}}
+.featured-property-media img,.gallery-card--featured .shot img{animation:kenburns 22s ease-in-out infinite alternate;transform-origin:50% 42%}
 @keyframes property-arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .featured-property-media{position:relative;display:grid;place-items:center;min-height:340px;overflow:hidden;background:radial-gradient(ellipse at 20% 15%,rgba(236,72,153,.13),transparent 48%),radial-gradient(ellipse at 90% 85%,rgba(59,130,246,.13),transparent 50%),#111;text-decoration:none}
 .featured-property-media::after{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.08);border-radius:10px;pointer-events:none}

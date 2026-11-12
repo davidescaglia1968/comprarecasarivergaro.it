@@ -76,6 +76,9 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
        in contatti devono restare al loro posto. */
     ['barra mobile telefono/WhatsApp + modulo rapido in contatti', casa.includes('class="mobile-bar"') && contattiTxt.includes('id="modulo-rapido"') && contattiTxt.includes('contatto-rapido')],
     ['breadcrumb a tre voci sulla scheda, con il catalogo in mezzo', scheda.includes('Percorso di navigazione') && scheda.includes('immobili.html')],
+    /* Giro 10/11/2026 (giro 3): la foto iniziale deve restare animata in modo discreto,
+       e il blocco che spegne le animazioni per chi chiede meno moto deve restare. */
+    ['foto iniziale con respirazione lenta + rispetto del moto ridotto', casa.includes('@keyframes kenburns') && casa.includes('prefers-reduced-motion:reduce')],
   ];
   for (const [nome, va] of invarianti) {
     if (va) ok('invariante: ' + nome);
