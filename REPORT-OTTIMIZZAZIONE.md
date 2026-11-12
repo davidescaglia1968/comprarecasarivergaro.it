@@ -71,3 +71,33 @@ l'endpoint FormSubmit gia' dichiarato in privacy e cookie policy.
 | 404 | corretta | ricontrollata: risponde 404 e ha noindex |
 | «Vivere a Rivergaro» | fonti citate nel testo | sezione «Fonti e aggiornamento» con link al sito del Comune, il comunicato del nido (luglio 2026) e la data di ultimo aggiornamento visibile |
 | sorveglianza | 11 invarianti | 12: la respirazione della foto e il blocco moto ridotto devono restare |
+
+## Giro 4 — accessibilità e monitoraggio (10/11/2026)
+
+Audit da tastiera, screen reader, zoom e contrasti. Molto era già a posto e l'audit lo
+conferma: foco visibile globale, skip link, lightbox con Esc + foco restituito +
+trappola del Tab, errori dei moduli annunciati con role="status" e aria-invalid,
+tabelle in contenitore che scorre (zoom 200% senza rompere la pagina), target touch
+sopra i 44px, blocco prefers-reduced-motion globale.
+
+| voce | prima | dopo |
+|---|---|---|
+| contrasto pulsanti pieni (btn-primary, «Chiama» della barra mobile) | bianco su gradiente rosa/blu chiari: 3,3:1, sotto il minimo AA | bianco su rosa/blu fondi della stessa famiglia: oltre 6:1 |
+| LCP della scheda | prima foto scoperta dal parser a metà pagina | preload in testa con stessi descrittori e sizes della img (zero doppio scarico) |
+| sorveglianza | 12 invarianti | 13: il preload LCP della scheda deve restare |
+
+### Piano di monitoraggio a 30 giorni
+- **Ogni merge**: CI (build + check), deploy Pages, sorveglianza sul vivo con 13 invarianti
+  + PageSpeed Insights mobile su home e scheda (run citata in ogni giro).
+- **Ogni giorno alle 06:00**: la stessa sorveglianza gira da sola (cron in site-watch.yml),
+  anche senza pubblicazioni: se un controllo fallisce apre una Issue.
+- **Settimanale (Davide, 10 minuti)**: Search Console → rendimento (clic, impression,
+  posizione media), copertura indicizzazione, eventuali rimozioni; controllo che i moduli
+  arrivino (invio di prova una volta al mese); occhiata alle recensioni/interazioni del
+  profilo Google.
+- **A 30 giorni (10/12/2026)**: confronto impression/clic/posizione con la baseline GSC
+  del 09/11 (1 clic, 51 impression, CTR 2%, posizione 9,2); trend LCP/CLS dalle run della
+  sorveglianza; decisione su quali contenuti nuovi abbiano senso (solo con testi di Davide).
+- **Rollback**: ogni giro è un merge separato su main; si torna indietro revertendo il
+  singolo merge, senza toccare gli altri. Le immagini nuove (tagli medi) sono additive:
+  nessun file precedente è stato sostituito in modo irreversibile.

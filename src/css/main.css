@@ -139,7 +139,10 @@ hr{border:0;border-top:1px solid var(--line);margin:var(--s5) 0}
   font-family:var(--font-body);font-size:.9375rem;font-weight:600;line-height:1.2;text-decoration:none;
   border:1px solid transparent;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease}
 .btn:active{transform:translateY(1px)}
-.btn-primary{background:var(--grad);color:#fff;box-shadow:0 14px 30px -18px rgba(236,72,153,.85)}
+/* Giro 10/11/2026 (giro 4, accessibilita'): il gradiente chiaro di prima dava testo
+   bianco su fondo sotto il contrasto minimo AA (3,3:1). Toni piu' fondi della stessa
+   famiglia: rosa e blu scuri, bianco sopra a piu' di 6:1. */
+.btn-primary{background:linear-gradient(135deg,#be185d 0%,#1e40af 100%);color:#fff;box-shadow:0 14px 30px -18px rgba(190,24,93,.85)}
 .btn-primary:hover{box-shadow:0 18px 34px -16px rgba(59,130,246,.75);color:#fff}
 .btn-ghost{background:transparent;color:#fff;border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--blue);color:#fff;background:rgba(59,130,246,.1)}
@@ -290,7 +293,7 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
   .mobile-bar a{flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;
     color:#fff;font-weight:700;text-decoration:none}
   .mobile-bar a+a{border-left:1px solid var(--line)}
-  .mobile-bar a:first-child{background:var(--pink)}
+  .mobile-bar a:first-child{background:#be185d}
   body{padding-bottom:calc(52px + env(safe-area-inset-bottom))}
 }
 @media print{.mobile-bar{display:none}body{padding-bottom:0}}

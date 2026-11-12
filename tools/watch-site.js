@@ -79,6 +79,9 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
     /* Giro 10/11/2026 (giro 3): la foto iniziale deve restare animata in modo discreto,
        e il blocco che spegne le animazioni per chi chiede meno moto deve restare. */
     ['foto iniziale con respirazione lenta + rispetto del moto ridotto', casa.includes('@keyframes kenburns') && casa.includes('prefers-reduced-motion:reduce')],
+    /* Giro 10/11/2026 (giro 4): la prima foto della scheda deve partire col preload,
+       altrimenti il telefono la scopre tardi e l'LCP peggiora. */
+    ['preload della foto LCP sulla scheda', scheda.includes('rel="preload" as="image"')],
   ];
   for (const [nome, va] of invarianti) {
     if (va) ok('invariante: ' + nome);
