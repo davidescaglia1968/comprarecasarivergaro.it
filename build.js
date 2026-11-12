@@ -736,6 +736,34 @@ function numIT(n, dec = 2) {
 }
 function euroIT(n) { return numIT(n) + ' €'; }
 
+/* Minificatori senza dipendenze (filosofia del repo: build statica, zero pacchetti).
+   minCss: via commenti, newline, indentazione e spazi attorno ai separatori di sintassi;
+   gli spazi interni ai valori (font shorthand, ombre, media query con "and") restano.
+   minJs: via commenti blocco, indentazione e righe vuote; poi RICOMPILA con vm.Script:
+   se la sintassi non torna identica, si tiene il sorgente leggibile invece del rotto. */
+function minCss(s) {
+  return String(s)
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\s*([{}:;,>])\s*/g, '$1')
+    .replace(/;}/g, '}')
+    .trim();
+}
+function minJs(s) {
+  const out = String(s)
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l !== '')
+    .join('\n');
+  try {
+    new (require('vm').Script)(out);
+    return out;
+  } catch (e) {
+    return String(s);
+  }
+}
+
 /* Dati per unità immobiliare (superficie, rendita catastale, APE). Si mostra solo quello che
    c'è nel dato: nessun valore inventato, nessuna superficie dedotta. */
 function unitaSezione(p) {
@@ -765,50 +793,54 @@ function galleria(p, dopoPrimoGruppo = '') {
   if (!sections.length) {
     return `<figure class="media-empty"><div class="media-empty-box"><span class="media-empty-ico" aria-hidden="true">◻</span><strong>Nessuna foto pubblicata</strong><p>Le immagini di questo immobile non sono ancora state scelte. Appena arrivano, la galleria e l'immagine principale si compilano da sole da <code>img/${esc(p.slug)}/</code>, con le dimensioni vere lette dal file.</p></div></figure>`;
   }
+  /* Giro 10/11/2026 (brief di ottimizzazione): la galleria apre con le prime 12 foto e
+     tiene le altre dentro un <details> nativo. Nativo = funziona senza JavaScript, da
+     tastiera e con lo screen reader: il summary E' il pulsante «Mostra tutte le foto».
+     Le foto chiuse non vengono scaricate (loading=lazy fuori viewport): alla apertura
+     della pagina il telefono tira giu' solo l'hero e le 12 card aperte. */
+  const vivi = (s) => s.immagini.filter((item) => typeof item === 'string' || (item && item.file));
+  const totFoto = sections.reduce((n, s) => n + vivi(s).length, 0);
+  const APERTURA = 12;
   let first = true;
-  let inserito = false;
-  const rendered = sections.map((section, sectionIndex) => {
-    const items = section.immagini.filter((item) => typeof item === 'string' || (item && item.file));
-    if (!items.length) return '';
-    const id = 'foto-' + (section.id || ('sezione-' + (sectionIndex + 1)));
-    const cards = items.map((item) => {
-      const file = typeof item === 'string' ? item : item.file;
-      const caption = (typeof item === 'object' && item.didascalia) || '';
-      const alt = (typeof item === 'object' && item.alt) || caption || ((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || 'Rivergaro'));
-      const thumb = (typeof item === 'object' && item.thumb) || file;
-      const meta = imgMeta(p.slug, file) || {};
-      const w = Number(meta.width) || 1200, h = Number(meta.height) || 800;
-      const derivato = thumb !== file && exists('img/' + p.slug + '/' + thumb);
-      /* descrittori `w` = larghezza intrinseca REALE di ogni candidato, letta dai byte
-         (imgDims legge anche i derivati, che il manifesto per contratto non elenca).
-         Prima si deduceva "900 sul lato lungo": per i 12 ritratti della villa il thumb
-         e' largo 405px ma veniva dichiarato 900w, e il browser serviva foto morbide. */
-      const td = derivato ? imgDims(p.slug, thumb) : null;
-      const tw = td && td.w ? td.w : w;
-      const pagePath = 'immobile/' + p.slug + '.html';
-      const src = rel(pagePath, 'img/' + p.slug + '/' + file);
-      const thumbSrc = rel(pagePath, 'img/' + p.slug + '/' + thumb);
-      const isFeatured = first;
-      first = false;
-      const eager = isFeatured ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
-      /* il descrittore w e' il lato lungo reale: per i ritratti (lato lungo 1600-2000) il solo
-         confronto tw < w avrebbe escluso lo srcset e il telefono avrebbe scaricato il pieno */
-      /* taglia intermedia (-mid, 1240px) quando esiste: evita che il retina scarichi il pieno */
-      const midFile = file.replace(/\.webp$/i, '-mid.webp');
-      const midSrc = midFile !== file && exists('img/' + p.slug + '/' + midFile) ? rel(pagePath, 'img/' + p.slug + '/' + midFile) : '';
-      const md = midSrc ? imgDims(p.slug, midFile) : null;
-      const mw = md && md.w ? md.w : 0;
-      const srcset = derivato && tw < w
-        ? `srcset="${thumbSrc} ${tw}w, ${midSrc && mw ? midSrc + ' ' + mw + 'w, ' : ''}${src} ${w}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
-      const lightboxCaption = caption || ((p.titolo || 'Immobile') + ' — ' + (section.titolo || 'foto'));
-      return `<figure class="gallery-card${isFeatured ? ' gallery-card--featured' : ''}" style="--gallery-ratio:${w} / ${h}">
+  const cardFor = (section, item) => {
+    const file = typeof item === 'string' ? item : item.file;
+    const caption = (typeof item === 'object' && item.didascalia) || '';
+    const alt = (typeof item === 'object' && item.alt) || caption || ((p.tipologia || 'Immobile') + ' a ' + (p.zona || p.comune || 'Rivergaro'));
+    const thumb = (typeof item === 'object' && item.thumb) || file;
+    const meta = imgMeta(p.slug, file) || {};
+    const w = Number(meta.width) || 1200, h = Number(meta.height) || 800;
+    const derivato = thumb !== file && exists('img/' + p.slug + '/' + thumb);
+    /* descrittori `w` = larghezza intrinseca REALE di ogni candidato, letta dai byte */
+    const td = derivato ? imgDims(p.slug, thumb) : null;
+    const tw = td && td.w ? td.w : w;
+    const pagePath = 'immobile/' + p.slug + '.html';
+    const src = rel(pagePath, 'img/' + p.slug + '/' + file);
+    const thumbSrc = rel(pagePath, 'img/' + p.slug + '/' + thumb);
+    const isFeatured = first;
+    first = false;
+    const eager = isFeatured ? 'loading="eager" fetchpriority="high"' : 'loading="lazy" decoding="async"';
+    /* taglia intermedia (-mid, 1240px) quando esiste: evita che il retina scarichi il pieno */
+    const midFile = file.replace(/\.webp$/i, '-mid.webp');
+    const midSrc = midFile !== file && exists('img/' + p.slug + '/' + midFile) ? rel(pagePath, 'img/' + p.slug + '/' + midFile) : '';
+    const md = midSrc ? imgDims(p.slug, midFile) : null;
+    const mw = md && md.w ? md.w : 0;
+    const srcset = derivato && tw < w
+      ? `srcset="${thumbSrc} ${tw}w, ${midSrc && mw ? midSrc + ' ' + mw + 'w, ' : ''}${src} ${w}w" sizes="${isFeatured ? '(max-width: 760px) 100vw, (max-width: 1200px) 62vw, 700px' : '(max-width: 640px) 90vw, (max-width: 960px) 45vw, 280px'}"` : '';
+    const lightboxCaption = caption || ((p.titolo || 'Immobile') + ' — ' + (section.titolo || 'foto'));
+    return `<figure class="gallery-card${isFeatured ? ' gallery-card--featured' : ''}" style="--gallery-ratio:${w} / ${h}">
         <a class="shot" href="${src}" data-lightbox="${attr(p.slug)}" data-caption="${attr(lightboxCaption)}" style="aspect-ratio:${w}/${h}">
           <img src="${thumbSrc}" ${srcset} alt="${attr(alt)}" width="${w}" height="${h}" ${eager}>
         </a>
         ${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}
         ${isFeatured ? statoBadge(p) : ''}
       </figure>`;
-    }).join('');
+  };
+  let aperto = '';
+  const chiusi = [];
+  sections.forEach((section, sectionIndex) => {
+    const items = vivi(section);
+    if (!items.length) return;
+    const id = 'foto-' + (section.id || ('sezione-' + (sectionIndex + 1)));
     /* se la sezione corrisponde a un'unità, i suoi numeri stanno sotto il titolo */
     const u = (p.unita || []).find((x) => x && x.id === section.id);
     const rigaUnita = u
@@ -818,15 +850,29 @@ function galleria(p, dopoPrimoGruppo = '') {
           u.ape_classe ? 'APE classe ' + esc(u.ape_classe) + (u.ape_indice ? ' (' + esc(numIT(u.ape_indice)) + ')' : '') : '',
         ].filter(Boolean).join(' · ') + '</p>']
       : [];
-    let out = `<section class="gallery-section" aria-labelledby="${attr(id)}">
+    const testa = sectionIndex === 0 ? items.slice(0, APERTURA) : [];
+    const coda = sectionIndex === 0 ? items.slice(APERTURA) : items;
+    if (testa.length) {
+      aperto += `<section class="gallery-section" aria-labelledby="${attr(id)}">
       <h2 id="${attr(id)}">${esc(section.titolo || 'Foto')}</h2>
-      ${rigaUnita.join('')}<div class="gallery-grid">${cards}</div>
+      ${rigaUnita.join('')}<div class="gallery-grid">${testa.map((i) => cardFor(section, i)).join('')}</div>
     </section>`;
-    /* la descrizione entra subito dopo il primo gruppo: si legge la casa dopo aver visto gli esterni */
-    if (!inserito) { inserito = true; out += dopoPrimoGruppo; }
-    return out;
-  }).join('');
-  return `<div class="gallery" role="group" aria-label="Galleria fotografica dell'immobile">${rendered}</div>`;
+      /* la descrizione entra subito dopo il primo gruppo: si legge la casa dopo aver visto gli esterni */
+      aperto += dopoPrimoGruppo;
+    }
+    if (coda.length) {
+      chiusi.push(testa.length
+        ? `<section class="gallery-section" aria-label="${attr((section.titolo || 'Foto') + ' — altre foto')}"><div class="gallery-grid">${coda.map((i) => cardFor(section, i)).join('')}</div></section>`
+        : `<section class="gallery-section" aria-labelledby="${attr(id)}">
+      <h2 id="${attr(id)}">${esc(section.titolo || 'Foto')}</h2>
+      ${rigaUnita.join('')}<div class="gallery-grid">${coda.map((i) => cardFor(section, i)).join('')}</div>
+    </section>`);
+    }
+  });
+  const dettagli = chiusi.length
+    ? `<details class="gallery-all"><summary><span class="gallery-all-open">Mostra tutte le ${totFoto} foto</span><span class="gallery-all-close">Chiudi le foto aggiuntive</span></summary>${chiusi.join('')}</details>`
+    : '';
+  return `<div class="gallery" role="group" aria-label="Galleria fotografica dell'immobile">${aperto}${dettagli}</div>`;
 }
 
 /* ---------------------------------------------------------------- privacy */
@@ -1058,7 +1104,11 @@ function parseFrontMatter(raw) {
 let CSS_RAW = null;
 function cssInline(prefix) {
   if (CSS_RAW === null) {
-    CSS_RAW = readIf(path.join(SRC, 'css', 'fonts.css'), '') + '\n' + readIf(path.join(SRC, 'css', 'main.css'), '');
+    /* Giro 10/11/2026 (brief): il CSS vive inline in ogni pagina, quindi minificarlo
+       vuol dire togliere gli stessi kilobyte da OGNI html servito. Minificazione priva
+       di dipendenze (il package.json del repo dichiara zero dipendenze e resta cosi'):
+       via commenti, capi riga e spaziAround i separatori di sintassi. */
+    CSS_RAW = minCss(readIf(path.join(SRC, 'css', 'fonts.css'), '') + '\n' + readIf(path.join(SRC, 'css', 'main.css'), ''));
     if (!CSS_RAW.trim()) throw new Error('CSS non trovato: controlla src/css/fonts.css e src/css/main.css');
   }
   /* i commenti non servono al browser: -3 KB in ogni pagina (il gzip quasi non cambia,
@@ -1180,7 +1230,7 @@ function head(page, prefix) {
 function vendeCta(page) {
   const dove = ['index.html', 'chi-sono.html', 'contatti.html', 'vivere-a-rivergaro.html'];
   if (!dove.includes(page.path)) return '';
-  return '<section class="section section--alt"><div class="wrap">' + shortcodes.sito_madre_cta() + '</div></section>';
+  return '<section class="section section--alt section--cta"><div class="wrap">' + shortcodes.sito_madre_cta() + '</div></section>';
 }
 function buildPage(page) {
   /* La 404 viene servita da GitHub Pages sotto QUALSIASI percorso inesistente, anche in
@@ -1872,14 +1922,14 @@ function main() {
   touchLastmod('immobili.html', cleanHtml(catHtml));
   console.log('✓ immobili.html (' + (catHtml.length / 1024).toFixed(1) + 'KB, ' + catalogo().length + ' schede in catalogo)');
   if (saveLastmod()) console.log('✓ src/data/lastmod.json (aggiornate solo le pagine il cui contenuto e\' cambiato)');
-  fs.copyFileSync(path.join(SRC, 'css', 'main.css'), path.join(OUT, 'css', 'main.css'));
+  fs.writeFileSync(path.join(OUT, 'css', 'main.css'), minCss(readIf(path.join(SRC, 'css', 'main.css'), '')));
   /* caratteri self-hosted: .woff2 + licenza OFL accanto ai file */
   const fontSrc = path.join(SRC, 'fonts');
   if (fs.existsSync(fontSrc)) {
     fs.mkdirSync(path.join(OUT, 'css', 'fonts'), { recursive: true });
     for (const f of fs.readdirSync(fontSrc)) fs.copyFileSync(path.join(fontSrc, f), path.join(OUT, 'css', 'fonts', f));
   }
-  fs.copyFileSync(path.join(SRC, 'js', 'main.js'), path.join(OUT, 'js', 'main.js'));
+  fs.writeFileSync(path.join(OUT, 'js', 'main.js'), minJs(readIf(path.join(SRC, 'js', 'main.js'), '')));
   /* icone di marca: se mancano si rigenerano con  node tools/make-brand-assets.js */
   const brandSrc = path.join(SRC, 'brand');
   if (fs.existsSync(brandSrc)) {
