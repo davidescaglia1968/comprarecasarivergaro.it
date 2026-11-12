@@ -54,6 +54,7 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
   const casa = await (await fetch(BASE + '/')).text();
   const llmsTxt = await (await fetch(BASE + '/llms.txt')).text();
   const scheda = await (await fetch(BASE + '/immobile/villa-tre-unita-ancarano.html')).text();
+  const contattiTxt = await (await fetch(BASE + '/contatti.html')).text();
   const chiave = await (await fetch(BASE + '/d41e8b2f6a0c4e79b35f1a2c8e6d0497.txt')).text();
   const invarianti = [
     ['H1 home «Comprare casa a Rivergaro Val Trebbia»', casa.includes('<h1>Comprare casa a Rivergaro Val Trebbia</h1>')],
@@ -71,6 +72,10 @@ const status = async (u) => (await fetch(u, { redirect: 'manual' })).status;
     /* Giro 10/11/2026: la galleria della scheda deve restare progressiva — blocco aperto
        con le prime foto e «Mostra tutte le foto» nativo per il resto. */
     ['galleria progressiva: blocco aperto + «Mostra tutte le foto»', scheda.includes('class="gallery-all"') && scheda.includes('Mostra tutte le') && (scheda.slice(0, scheda.indexOf('class="gallery-all"')).match(/<figure class="gallery-card/g) || []).length <= 12],
+    /* Giro 10/11/2026 (giro 2): barra telefono/WhatsApp su smartphone e modulo rapido
+       in contatti devono restare al loro posto. */
+    ['barra mobile telefono/WhatsApp + modulo rapido in contatti', casa.includes('class="mobile-bar"') && contattiTxt.includes('id="modulo-rapido"') && contattiTxt.includes('contatto-rapido')],
+    ['breadcrumb a tre voci sulla scheda, con il catalogo in mezzo', scheda.includes('Percorso di navigazione') && scheda.includes('immobili.html')],
   ];
   for (const [nome, va] of invarianti) {
     if (va) ok('invariante: ' + nome);

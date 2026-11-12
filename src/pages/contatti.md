@@ -8,6 +8,12 @@ canonical: /contatti.html
 
 Niente centralino e niente modulo da compilare per forza: se cerchi casa a Rivergaro o in Val Trebbia, la strada più corta è una telefonata. Se in quel momento sono in visita o da un proprietario, lasciami un messaggio su WhatsApp o una email e ti rispondo di persona, appena possibile.
 
+## Contatto rapido {#contatto-rapido}
+
+Nome, un telefono e quello che ti serve: tre campi e il messaggio arriva a me. Ti richiamo io, di norma negli orari indicati. Se preferisci raccontare la ricerca con più calma, sotto c'è il modulo completo.
+
+::form_rapido
+
 ## Raccontami che casa cerchi a Rivergaro
 
 Raccontami zona, tipo di casa e budget: la ricerca parte da quello che mi scrivi, non da un elenco di filtri. Se invece vuoi vedere la villa ad Ancarano, usa lo stesso modulo e indica giorno e fascia oraria.

@@ -264,6 +264,30 @@ main > section > .wrap > h2:first-child + p{color:var(--text-secondary);max-widt
 /* se una foto risponde 404, al posto dell'icona rotta resta una scatola con l'alt */
 .img-fallback{display:grid;place-items:center;min-height:160px;padding:var(--s3);text-align:center;
   border:1px dashed var(--line);border-radius:var(--radius);color:#a1a1aa}
+/* Giro 10/11/2026 (giro 2): briciole visibili in testa alla scheda */
+.breadcrumb{padding:var(--s3) 0 0;font-size:.85rem}
+.breadcrumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:var(--s2);margin:0;padding:0;color:#a1a1aa}
+.breadcrumb li+li::before{content:"/";margin-right:var(--s2);color:#52525b}
+.breadcrumb a{color:#a1a1aa;text-decoration:none}
+.breadcrumb a:hover{color:#fff;text-decoration:underline}
+.breadcrumb [aria-current]{color:#e4e4e7}
+/* fiducia vicino ai contatti della scheda: solo fatti gia' pubblicati e confermati */
+.trust-mini{list-style:none;margin:var(--s2) 0 0;padding:0;display:grid;gap:4px;font-size:.85rem;color:#a1a1aa}
+.trust-mini li::before{content:"✓";color:var(--pink-text);margin-right:6px}
+/* barra fissa da smartphone: telefono e WhatsApp sempre a portata di pollice.
+   Sotto i 760px; il body le riserva lo spazio cosi' non copre il contenuto;
+   env() rispetta la safe area degli iPhone; in stampa sparisce. */
+.mobile-bar{display:none}
+@media (max-width:760px){
+  .mobile-bar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:70;
+    background:rgba(10,10,10,.98);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+  .mobile-bar a{flex:1;display:flex;align-items:center;justify-content:center;min-height:52px;
+    color:#fff;font-weight:700;text-decoration:none}
+  .mobile-bar a+a{border-left:1px solid var(--line)}
+  .mobile-bar a:first-child{background:var(--pink)}
+  body{padding-bottom:calc(52px + env(safe-area-inset-bottom))}
+}
+@media print{.mobile-bar{display:none}body{padding-bottom:0}}
 .contact-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-secondary);padding:var(--s5)}
 .contact-list{list-style:none;margin:0;padding:0;display:grid;gap:var(--s2)}
 .contact-list li{display:grid;grid-template-columns:minmax(140px,auto) 1fr;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--line)}
