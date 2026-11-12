@@ -9,7 +9,7 @@ Questo file **non viene pubblicato**: alimenta `src/data/site-config.json` ed è
 |---|---|
 | Insegna / denominazione | IMMOBILIARESCAGLIA DI SCAGLIA DAVIDE |
 | Forma giuridica | Impresa individuale, iscritta come **piccolo imprenditore** (sezione speciale) |
-| Sede | Via Felice Cavallotti 3, 29029 **Rivergaro (PC)** — frazione **Pieve Dugliara** |
+| Sede | **Rivergaro (PC)** — l'indirizzo completo, per legge e per decisione del 10/11/2026, vive solo nella privacy policy e nel pannello Google come indirizzo nascosto |
 | P.IVA | 01493570335 |
 | REA | PC-168637 |
 | PEC (domicilio digitale) | immobiliarescaglia@pec.it |

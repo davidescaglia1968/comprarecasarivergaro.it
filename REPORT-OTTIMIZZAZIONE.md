@@ -101,3 +101,14 @@ sopra i 44px, blocco prefers-reduced-motion globale.
 - **Rollback**: ogni giro è un merge separato su main; si torna indietro revertendo il
   singolo merge, senza toccare gli altri. Le immagini nuove (tagli medi) sono additive:
   nessun file precedente è stato sostituito in modo irreversibile.
+
+## Giro 5 — bonifica legale dell'indirizzo di sede (10/11/2026)
+
+Mappa normativa in `REQUISITI-LEGALI.md`: per ogni norma (D.Lgs. 70/2003 art. 7, art. 2250
+c.c., GDPR 13-14, L. 39/1989, DPR 633/72 art. 35, provvedimenti cookie, regole GBP) il dato
+che chiede e il punto del sito dove vive. L'indirizzo completo sta in un unico punto
+pubblico (privacy policy, linkata dal footer di ogni pagina): e' li che la legge vuole le
+informazioni sul prestatore, e pubblicarlo anche altrove era solo esposizione del domicilio
+privato del titolare. Bonificati config, documenti di progetto e sei corpi di PR pubbliche;
+due sentinelle nuove (check e sorveglianza giornaliera) bloccano qualsiasi ricomparsa fuori
+dai due percorsi consentiti.

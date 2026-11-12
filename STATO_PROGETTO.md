@@ -53,7 +53,7 @@ Meccanismo "bozza" (deciso per farti vedere l'impaginazione senza pubblicizzare 
 ## Anagrafica verificata (non inventata)
 
 Fonte: `llms.txt` e `index.html` di `casepodenzano.it` / `venderecasapiacenza.it`, letti via API GitHub il 23/10/2026.
-Sede **Via Cavallotti 3, 29029 Rivergaro (PC)** · **P.IVA 01493570335** · **REA PC-168637** · tel/WhatsApp **+39 328 693 0033** · **info@immobiliarescaglia.com** · social Instagram/Facebook/LinkedIn/YouTube (da `venderecasapiacenza.it/llms.txt`).
+Sede **Rivergaro (PC)** · **P.IVA 01493570335** · **REA PC-168637** · tel/WhatsApp **+39 328 693 0033** · **info@immobiliarescaglia.com** · social Instagram/Facebook/LinkedIn/YouTube (da `venderecasapiacenza.it/llms.txt`).
 `info@venderecasapiacenza.it` resta un altro indirizzo in uso sull'ecosistema: su questo sito, come da tuo brief, si usa `info@immobiliarescaglia.com`.
 
 ## Correzioni a quanto dichiarato in Fase 1
@@ -81,7 +81,7 @@ Estratto in `PROFESSIONISTA.md` (non pubblicato), riversato in `site-config.json
 
 | Campo | Prima | Ora (verificato) |
 |---|---|---|
-| Sede | "DA CONFERMARE" (presi Via Cavallotti 3 dal llms.txt) | Via Felice Cavallotti 3, 29029 Rivergaro (PC) — **frazione Pieve Dugliara** |
+| Sede | "DA CONFERMARE" (presi l'indirizzo di sede dal llms.txt) | Rivergaro (PC) — il completo vive solo nella privacy policy |
 | P.IVA / REA | da llms.txt | 01493570335 / PC-168637 (confermati) |
 | Iscrizione ruolo | assente | **Ruolo Agenti di Affari in Mediazione, sez. Agenti Immobiliari, PC — 07/12/2007** |
 | Denominazione | "Davide Scaglia — Consulente Immobiliare" | **Immobiliare Scaglia di Scaglia Davide**, impresa individuale, piccolo imprenditore |
@@ -106,7 +106,7 @@ Estratto in `PROFESSIONISTA.md` (non pubblicato), riversato in `site-config.json
 ## Campi aperti ("DA CONFERMARE", nessuno esposto al pubblico)
 
 2. **Bio acquirenti** per la pagina Chi Sono.
-3. **Orari di studio** e indirizzo postale da mettere in privacy (se diverso da Via Cavallotti 3).
+3. **Orari di studio** e indirizzo postale da mettere in privacy (se diverso da quello di sede).
 4. **`og-image`**: serve un'immagine reale (foto studio Davide o cover con brand). Nessun placeholder grafico inventato.
 5. **Attivazione FormSubmit**: al primo invio arriva una mail di attivazione a `info@immobiliarescaglia.com` da confermare. Fino ad allora il form è nel sito ma non va pubblicizzato come attivo.
 6. **Termini e Condizioni** (Fase 4) e conservazione dati nelle mailbox.
@@ -142,7 +142,7 @@ Mancano le pagine `contatti.html` e `chi-sono.html` (le uniche due che posso scr
 - **Didascalie**: brevi e descrittive come le esistenti, scritte da me su cio' che si vede nel file ("Camera 3 con balcone.", "Bagno 2, con doccia e specchiera."); nessun dato di catastale, metratura o piano aggiunto.
 - **H1 della home**: ora e' la frase che mi hai dettato, `Cerchi casa a Rivergaro in Val Trebbia? Ecco le mie proposte.` (61 caratteri, niente "e in" aggiunto di mia iniziativa), eyebrow `Case in vendita a Rivergaro · Val Trebbia`. Il `<title>` e' `Cerchi casa a Rivergaro in Val Trebbia? Le mie proposte` (57car, senza dominio: la domanda intera + dominio non sta nei 60 caratteri) e la regola di sincronia e' scritta in `site-config.json` → `site._regola_title_home`. Il nome della villa resta nell'H3 della card "Immobile in evidenza" e nell'H1 della scheda.
 - **`og-image`**: ora esce davvero, usando una foto reale. Home = copertina della galleria della villa (2200x990, ~357KB, dentro il budget media); scheda = copertina di quella scheda. Con `og:image:width/height`. Nessuna grafica inventata: se vuoi una foto dello studio al posto di quella della villa, basta cambiare `seo_geo.og_image`.
-- **`contatti.html` pubblicata** (Fase 4, primo pezzo): solo dati verificati — `::contatti_card` (cellulare/WhatsApp, email, studio Via Felice Cavallotti 3, fraz. Pieve Dugliara, P.IVA, REA, PEC, Ruolo Agenti di Piacenza dal 07/12/2007), modulo di ricerca, tre righe su cosa succede dopo il contatto. Gli orari restano `DA CONFERMARE` e non compaiono. La voce "Contatti" del menu ora esiste perche' la pagina c'e' (meccanismo `PAGES.nav_id` + `verso()` in build.js: la voce punta alla pagina appena il markdown esiste).
+- **`contatti.html` pubblicata** (Fase 4, primo pezzo): solo dati verificati — `::contatti_card` (cellulare/WhatsApp, email, studio a Rivergaro, P.IVA, REA, PEC, Ruolo Agenti di Piacenza dal 07/12/2007), modulo di ricerca, tre righe su cosa succede dopo il contatto. Gli orari restano `DA CONFERMARE` e non compaiono. La voce "Contatti" del menu ora esiste perche' la pagina c'e' (meccanismo `PAGES.nav_id` + `verso()` in build.js: la voce punta alla pagina appena il markdown esiste).
 - **`grazie.html` ripulita**: conteneva due impegni non tuoi ("di norma entro un giorno lavorativo", "dopo 24 ore") e uno "salta la coda" per le urgenze, oltre al numero di telefono scritto a mano invece che letto dal config. Rimossi: ora dice solo che rispondi di persona, appena possibile.
 - **Tre bug di `build.js` chiusi**, tutti emersi provando: (1) `buildDraft()` generava una scheda fantasma "brand" con le immagini del logo, e il rapporto media contava anche le miniature (162 "immagini" per una scheda da 81): ora i derivati `-thumb`, `img/brand` e `img/legale` sono esclusi da rapporto e bozza; (2) `--check` girava solo sulle pagine **indicizzabili**, quindi non vedeva mai `grazie.html` e `404.html`: ora controlla `PAGES` tutte; (3) un link in coda a un titolo H2 finiva dentro l'H2 e ne sporca l'id: ora scende sotto il titolo.
 - **H1 su `#` di primo livello**: gli id valgono anche per gli H1, quindi una pagina che comincia con `# Titolo` e' raggiungibile via `pagina.html#titolo` dal menu.
@@ -157,7 +157,7 @@ node build.js media                      # media: 81 file, 1 immobili, bozza sch
 ## Bozza "Chi sono" (02/11/2026) — da riscrivere con la tua voce
 
 - **`chi-sono.html` pubblicata** con la sola struttura, senza dati inventati: H1 `Chi sono`, bio, "Come lavoro", "Le qualifiche" (riusa `::contatti_card`: dati visura + social), "Se vuoi venire a trovarmi". `data_pubblicazione` non serve: la pagina entra in sitemap (7 voci) e nel menu di **tutte** le pagine.
-- **La bio vive nei dati, non nel markup**: `professionista.bio_acquirenti` in `src/data/site-config.json`, renderizzata dallo shortcode `::bio`. Lì dentro c'è una **BOZZA scritta da me** partendo da soli fatti verificati (dal 2007 nel Ruolo Agenti di Piacenza, impresa individuale con 1 addetto, sede in Via Cavallotti 3 a Pieve Dugliara, zero vetrina di annunci) + le due frasi che avevi già approvato in home. Riscrivila: i paragrafi si separano con riga vuota.
+- **La bio vive nei dati, non nel markup**: `professionista.bio_acquirenti` in `src/data/site-config.json`, renderizzata dallo shortcode `::bio`. Lì dentro c'è una **BOZZA scritta da me** partendo da soli fatti verificati (dal 2007 nel Ruolo Agenti di Piacenza, impresa individuale con 1 addetto, sede a Rivergaro, zero vetrina di annunci) + le due frasi che avevi già approvato in home. Riscrivila: i paragrafi si separano con riga vuota.
 - **Nessun segnaposto pubblico, due protezioni**: (1) se `bio_acquirenti` è `null` lo shortcode stampa una frase neutra, non "DA CONFERMARE" — testato: `bio_acquirenti: null` → `✓ check superato` e frase di rimpiazzo al suo posto; (2) finché `professionista.bio_stato` resta `bozza-da-rivedere`, in fondo alla bio compare "Profilo in corso di revisione: i dati anagrafici e professionali qui sotto sono quelli del Registro Imprese." **Quando hai riscritto la bio, cancella `bio_stato`** e la nota sparisce.
 - **Tre claim della bozza che devi confermare tu** (non sono nella visura e non me li hai detti): "verifico conformità urbanistica e catastale prima della visita", "nessun prezzo o metratura ipotizzata" (vera oggi, ma è un metodo), "seguo la trattativa fino alla firma del preliminare". Se uno non ti appartiene, cancellalo: è testo tuo, non un dato del sito.
 - **Correzione in corsa**: nella bozza avevo scritto "quattro frazioni"; `area_servizio.frazioni` ne contiene **sei** (Pieve Dugliara, Rivergaro centro, Diara, Ancarano, Bassano, Roveleto Landi). La frase è stata tolta — per la regola che hai dato, i nomi delle frazioni restano nei filtri e nella pagina zona, non nel copy fisso.
@@ -625,7 +625,7 @@ Banner e Cookie Policy promettevano un'«anteprima Street View» caricata solo c
 
 ## Hero senza indirizzo, FormSubmit attivo, Search Console confermata (09/11/2026, quinto giro)
 
-**Rimosso su richiesta di Davide.** La riga «Studio in Via Felice Cavallotti 3, frazione Pieve Dugliara — 29029 Rivergaro (PC)» non apre più la home: il lead dell'hero adesso comincia direttamente con «Sono Davide Scaglia, agente immobiliare a Rivergaro…». L'indirizzo dello studio **resta dove serve ai motori e alla legge, ma non in vetrina**: riga NAP nel footer di ogni pagina, blocco «Chi risponde e dove» in `llms.txt`, `address` nel JSON-LD dell'entità. Coerenza NAP mantenuta, vetrina più pulita.
+**Rimosso su richiesta di Davide.** La riga «Studio in [indirizzo di sede] — Rivergaro (PC)» non apre più la home: il lead dell'hero adesso comincia direttamente con «Sono Davide Scaglia, agente immobiliare a Rivergaro…». Superato il 10/11/2026: l'indirizzo completo non sta più né in vetrina né nei dati strutturati; per la legge resta solo nella privacy policy (vedi REQUISITI-LEGALI.md). Coerenza NAP mantenuta, vetrina più pulita.
 
 **FormSubmit: da «DA CONFERMARE» ad «ATTIVO».** Davide ha inviato il modulo di prova e cliccato il link di attivazione nella casella info@immobiliarescaglia.com: `form.stato_configurazione` passa ad ATTIVO con la data della conferma, e il campo esce dalla lista `campi_da_confermare`. I moduli del sito possono essere presentati come funzionanti.
 
@@ -656,7 +656,7 @@ Nota di coerenza da decidere con Davide: la FAQ «Che zona segui?» e `areaServe
 **Prezzo villa: non si pubblica.** Decisione di Davide: «adesso non è ancora ora… al telefono lo dico io». La dicitura visibile diventa **«Prezzo riservato: te lo dico io al telefono»** (card, scheda, `<dl>` dei dati); `llms.txt` dice «Prezzo: riservato — te lo dice Davide al telefono, +39 328 693 0033»; il JSON-LD resta senza `offers.price` finché non arriva il numero, come già progettato. Aggiornata la nota interna dell'immobile con data e motivazione.
 
 ### FAQ orari: via l'invito a passare in sede (10/11/2026)
-Correzione di Davide: la risposta «Quando è aperto lo studio?» diceva «…In quegli orari rispondono al telefono o si passa in Via Felice Cavallotti 3, frazione Pieve Dugliara, Rivergaro.»; la parte dopo «telefono» non è esatta e va tolta. Ora: «Lunedì–venerdì 09:00–12:30 e 15:00–19:00; sabato 09:00–12:30. In quegli orari rispondono al telefono.» Corretto nell'unico punto sorgente (config), quindi aggiornato in home, nel JSON-LD FAQPage e in llms.txt insieme.
+Correzione di Davide: la risposta «Quando è aperto lo studio?» diceva «…In quegli orari rispondono al telefono o si passa in studio, a Rivergaro.»; la parte dopo «telefono» non è esatta e va tolta. Ora: «Lunedì–venerdì 09:00–12:30 e 15:00–19:00; sabato 09:00–12:30. In quegli orari rispondono al telefono.» Corretto nell'unico punto sorgente (config), quindi aggiornato in home, nel JSON-LD FAQPage e in llms.txt insieme.
 
 ### Scheda: tabella subito sotto il titolo, via la nota, via il prezzo visibile (10/11/2026)
 Tre correzioni di Davide sulla scheda immobile, in ordine:
@@ -694,7 +694,7 @@ Tre correzioni di Davide sulla scheda immobile, in ordine:
 - `tools/watch-site.js` ora presidia anche le frasi dettate da Davide: H1 della home, attacco dell'hero parola per parola, area coperta dal servizio con i CAP in llms.txt, riga «Prezzo: riservato — te lo dice Davide al telefono», e la chiave IndexNow raggiungibile. Se una modifica futura ne altera una, la sorveglianza la tratta come guasto e apre una Issue.
 
 ### Giro 10/11/2026 (terzo ramo): l'indirizzo di casa-sede non e' piu' pubblico
-Decisione di Davide del 10/11/2026: Via Felice Cavallotti 3 e' casa sua e non va pubblicata.
+Decisione di Davide del 10/11/2026: l'indirizzo di casa-sede e' privato e non va pubblicato.
 - Footer di ogni pagina: la riga indirizzo e' ora solo «Rivergaro (PC)»; telefono ed email restano.
 - `llms.txt`: la riga «Sede» del blocco «Chi risponde e dove» e' ora «Rivergaro (PC)».
 - JSON-LD (nodo organizzazione/agente e nodo persona): via tolta dal PostalAddress; restano comune, CAP, provincia e Paese.
@@ -703,7 +703,7 @@ Decisione di Davide del 10/11/2026: Via Felice Cavallotti 3 e' casa sua e non va
 - contatti: la sede e' dichiarata «Rivergaro (PC)» e la sezione linka la pagina territorio.
 - L'indirizzo completo vive SOLO in `legal/privacy.html` (obbligo legale sul titolare) e nella scheda Google come indirizzo nascosto (attivita' con area di servizio); regola scritta in `professionista._regola_indirizzo_pubblico` e in `SCHEDA_GOOGLE.md`.
 - «Pieve Dugliara» resta unicamente come nome di frazione nell'elenco zone/filtri (geografia decisa da Davide il 23/10, non indirizzo).
-- Sorveglianza: due invarianti nuove in `tools/watch-site.js` — «Cavallotti» assente da home, chi-sono, contatti, vivere, immobili, llms.txt e cookie; chi-sono senza «Pieve Dugliara». Se ricompaiono, la run fallisce e apre una Issue.
+- Sorveglianza: due invarianti nuove in `tools/watch-site.js` — «la via di casa» assente da home, chi-sono, contatti, vivere, immobili, llms.txt e cookie; chi-sono senza «Pieve Dugliara». Se ricompaiono, la run fallisce e apre una Issue.
 - Link interni nuovi verso `/vivere-a-rivergaro.html` da chi-sono e contatti.
 
 ### Giro 10/11/2026 (quarto ramo): banner «Se invece devi vendere» in fondo alle pagine
@@ -757,3 +757,13 @@ preload; piano di monitoraggio 30 giorni scritto nel report (cron giornaliero gi
 checklist settimanale per Davide, confronto baseline GSC al 10/12). L'audit ha confermato
 che foco visibile, skip link, trappola Tab del lightbox, errori annunciati e tabelle
 scorrevoli c'erano già.
+
+### Giro 10/11/2026 (undicesimo ramo): bonifica dell'indirizzo di sede in tutto il progetto
+Regola finale, con base legale (REQUISITI-LEGALI.md): l'indirizzo completo della sede vive
+in UN solo punto pubblico del sito — la privacy policy, linkata dal footer di ogni pagina —
+perche' il D.Lgs. 70/2003 art. 7 lo chiede li; e fuori dal web solo in visura, atti e
+pannello Google come indirizzo nascosto. Bonificati: site-config.json (via e frazione
+rimosse dai blocchi indirizzo), SCHEDA_GOOGLE.md, STATO_PROGETTO.md, DESIGN_SYSTEM.md,
+PROFESSIONISTA.md, AUDIT_2026-11-09.md e i corpi di sei pull request pubbliche (via API).
+Sorveglianza: build --check e watch-site falliscono se la via ricompare in qualsiasi file
+del progetto diverso da src/pages/privacy.md e legal/privacy.html.
