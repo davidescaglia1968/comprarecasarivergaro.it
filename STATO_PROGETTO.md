@@ -767,3 +767,16 @@ rimosse dai blocchi indirizzo), SCHEDA_GOOGLE.md, STATO_PROGETTO.md, DESIGN_SYST
 PROFESSIONISTA.md, AUDIT_2026-11-09.md e i corpi di sei pull request pubbliche (via API).
 Sorveglianza: build --check e watch-site falliscono se la via ricompare in qualsiasi file
 del progetto diverso da src/pages/privacy.md e legal/privacy.html.
+
+### Giro 13/11/2026 (dodicesimo ramo): automazioni social pronte e decisioni scritte
+- `tools/social-pack.js`: da ogni contenuto nuovo genera i testi per LinkedIn, Facebook+GBP,
+  carosello Instagram/TikTok (5 slide + script parlato), thread X e post YouTube, usando
+  solo contenuti pubblicati e dati verificati (niente prezzi, niente indirizzo).
+- `.github/workflows/social-pack.yml`: a ogni push di contenuto apre una issue-bozza da
+  approvare; se un giorno esistera' il segreto SOCIAL_WEBHOOK_URL, inoltra il JSON a
+  Make/n8n. Senza webhook resta tutto manuale e controllato.
+- `SETUP-AUTOMAZIONI.md`: costi (stack consigliato 0 euro), passi Make/n8n, procedura di
+  privatizzazione del repo con il prerequisito Pro, e le decisioni chiuse: tracker no,
+  sameAs in attesa del link del profilo.
+- `RICHIESTE-PORTALI.md`: checklist con testo GDPR pronto per i portali che pubblicano
+  ancora indirizzi stale o il domicilio privato (cercacasa in testa).

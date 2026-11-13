@@ -1,0 +1,48 @@
+name: Pacchetto social dai contenuti nuovi
+on:
+  push:
+    branches: [main]
+    paths: ['src/pages/**', 'src/data/properties.json']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    env:
+      SOCIAL_WEBHOOK_URL: ${{ secrets.SOCIAL_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: File di contenuto cambiati con questo push
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            FILES="src/data/properties.json"
+          else
+            FILES=$(git diff --name-only HEAD~1 HEAD -- src/pages src/data/properties.json | tr '\n' ' ')
+          fi
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "cambiati: $FILES"
+      - name: Genera il pacchetto
+        if: steps.changed.outputs.files != ''
+        run: node tools/social-pack.js ${{ steps.changed.outputs.files }}
+      - name: Apri la bozza da approvare
+        if: steps.changed.outputs.files != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -s social-pack.md ]; then
+            gh issue create --title "Bozza pacchetto social da approvare ($(date +%d/%m/%Y))" --body-file social-pack.md
+          fi
+      - name: Inoltra a Make/n8n se il webhook e' configurato
+        if: steps.changed.outputs.files != '' && env.SOCIAL_WEBHOOK_URL != ''
+        run: |
+          curl -s -X POST -H 'content-type: application/json' --data @social-pack.json "$SOCIAL_WEBHOOK_URL"
