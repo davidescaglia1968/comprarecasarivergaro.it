@@ -112,3 +112,12 @@ informazioni sul prestatore, e pubblicarlo anche altrove era solo esposizione de
 privato del titolare. Bonificati config, documenti di progetto e sei corpi di PR pubbliche;
 due sentinelle nuove (check e sorveglianza giornaliera) bloccano qualsiasi ricomparsa fuori
 dai due percorsi consentiti.
+
+## Giro 6 — automazioni social e registro decisioni (13/11/2026)
+
+Pacchetto social deterministico + workflow con bozza da approvare (nessuna pubblicazione
+automatica senza ok): i testi derivano solo da contenuti già online e dai dati verificati.
+Guide operative in SETUP-AUTOMAZIONI.md (costi, Make/n8n, privatizzazione repo) e
+RICHIESTE-PORTALI.md (pulizia directory terze, oggi ultima superficie pubblica con
+indirizzi non autorizzati). Decisioni chiuse e motivate: nessun tracker di terzi; sameAs
+del profilo Google in attesa del link certo.
